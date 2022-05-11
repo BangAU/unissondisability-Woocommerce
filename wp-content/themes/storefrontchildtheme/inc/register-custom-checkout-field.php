@@ -7,21 +7,20 @@ global $woocommerce;
 
 $count = $woocommerce->cart->cart_contents_count;
 $i = 1;
-
-       for($k=2; $k<= $count; $k++) {
-		$i++;
-		
-		
-			
-
 		 
-		foreach ( WC()->cart->get_cart() as $cart_item ) {
+	foreach ( WC()->cart->get_cart() as $cart_item ) {
+		$count_each_product = count($cart_item);
 		
-			$product = $cart_item['data'];
-			//var_dump($cart_item_key);
-			 //var_dump($_product);
-			// var_dump($cart_item);
-			
+		for($k=1; $k<= $count_each_product; $k++){
+			print ('<h3>Please enter details of attendee '.$i.', '. $product->get_name().'</h3>');
+			$i ++;
+		}
+
+		/* $product = $cart_item['data'];
+		//var_dump($cart_item_key);
+			//var_dump($_product);
+		// var_dump($cart_item);
+		
 		print ('<h3>Please enter details of attendee '.$i.', '. $product->get_name().'</h3>');
 		
 		woocommerce_form_field( 'plan_type', array(
@@ -34,38 +33,37 @@ $i = 1;
 		),
 		), $checkout->get_value( 'plan_type' ) );   
 		woocommerce_form_field( 'cstm_full_name'.$i, array(
-        	'type'          => 'text',
-        	'class'         => array('my-field-class form-row-wide'),
-        	'label'         => __('Full name'),
-        	'placeholder'   => __('Enter full name'),
-        	),
-        	$checkout->get_value( 'cstm_full_name'.$i ));
+			'type'          => 'text',
+			'class'         => array('my-field-class form-row-wide'),
+			'label'         => __('Full name'),
+			'placeholder'   => __('Enter full name'),
+			),
+			$checkout->get_value( 'cstm_full_name'.$i ));
 		echo '<div class="clear"></div>';
 		woocommerce_form_field( 'cstm_phone'.$i, array(
-        	'type'          => 'text',
-        	'class'         => array('my-field-class form-row-first'),
-        	'label'         => __('Phone'),
-        	'placeholder'   => __('Enter phone number'),
-        	),
-        	$checkout->get_value( 'cstm_phone'.$i ));
+			'type'          => 'text',
+			'class'         => array('my-field-class form-row-first'),
+			'label'         => __('Phone'),
+			'placeholder'   => __('Enter phone number'),
+			),
+			$checkout->get_value( 'cstm_phone'.$i ));
 		woocommerce_form_field( 'cstm_email'.$i, array(
-        	'type'          => 'email',
-        	'class'         => array('my-field-class form-row-last'),
-        	'label'         => __('Email address'),
-        	'placeholder'   => __('Enter email address'),
-        	),
-        	$checkout->get_value( 'cstm_email'.$i ));
+			'type'          => 'email',
+			'class'         => array('my-field-class form-row-last'),
+			'label'         => __('Email address'),
+			'placeholder'   => __('Enter email address'),
+			),
+			$checkout->get_value( 'cstm_email'.$i ));
 		echo '<div class="clear"></div>';
 		woocommerce_form_field( 'cstm_address'.$i, array(
-        	'type'          => 'textarea',
-        	'class'         => array('my-field-class form-row-wide'),
-        	'label'         => __('Full address'),
-        	'placeholder'   => __('Enter full address'),
-        	),
-        	$checkout->get_value( 'cstm_address'.$i ));
-		
-		}
-}
+			'type'          => 'textarea',
+			'class'         => array('my-field-class form-row-wide'),
+			'label'         => __('Full address'),
+			'placeholder'   => __('Enter full address'),
+			),
+			$checkout->get_value( 'cstm_address'.$i ));
+	 */
+	}
 }
 /**
  * Save value of fields
