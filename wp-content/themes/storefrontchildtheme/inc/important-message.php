@@ -23,7 +23,7 @@ function woo_add_order_notes_to_email() {
 			<?php
 		}
 	} else {
-		echo '<li>' . __( 'There are no notes for this order yet.', 'woocommerce' ) . '</li>';
+		echo '<li>' . __( 'We are only chargin activity cost for the support costs we will send you invoicce manually.', 'woocommerce' ) . '</li>';
         
 	}
     echo '</ul>';
