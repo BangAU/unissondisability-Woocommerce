@@ -17,8 +17,7 @@ add_filter('woocommerce_reset_variations_link', '__return_empty_string');
 
 
 
-include('inc/register-taxonomy.php');
-include('inc/register-custom-checkout-field.php');
+
 
 
 
