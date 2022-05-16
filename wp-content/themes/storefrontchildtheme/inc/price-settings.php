@@ -1,19 +1,19 @@
 <?php
-// add_filter( 'woocommerce_order_item_name', 'display_product_title_as_link', 10, 2 );
-// 	function display_product_title_as_link( $item_name, $item ) {
+add_filter( 'woocommerce_order_item_name', 'display_product_title_as_link', 10, 2 );
+	function display_product_title_as_link( $item_name, $item ) {
 
-// 		$_product = get_product( $item['variation_id'] ? $item['variation_id'] : $item['product_id'] );
+		$_product = get_product( $item['variation_id'] ? $item['variation_id'] : $item['product_id'] );
 		
-// 		$link = get_permalink( $_product->id );
+		$link = get_permalink( $_product->id );
 
-// 		$_var_description ='';
+		$_var_description ='';
 
-// 		if ( $item['variation_id'] ) {
-// 			$_var_description = $_product->get_variation_description();
-// 		}
+		if ( $item['variation_id'] ) {
+			$_var_description = $_product->get_variation_description();
+		}
 
-// 		return '<a href="'. $link .'"  rel="nofollow">'. $item_name .'</a><br>'. $_var_description ;
-// }
+		return '<a href="'. $link .'"  rel="nofollow">'. $item_name .'</a><br>'. $_var_description ;
+}
 
 
 //Display Fields in admin on product edit screen
