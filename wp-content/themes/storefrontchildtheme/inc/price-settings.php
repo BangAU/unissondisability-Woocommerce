@@ -405,3 +405,21 @@ function display_cart_items_custom_price_details( $product_price, $cart_item, $c
 }
 
 
+function sku_before_order_item_name( $item_name, $item, $is_visible ) {     
+    $product = $item->get_product();
+    $sku = $product->get_sku();
+
+    // When sku doesn't exist we exit
+    if( empty( $sku ) ) return $item_name;
+
+    $sku_text = __( 'SKU', 'woocommerce' ) . ': ' . $sku;
+
+    // Add product permalink when argument $is_visible is true
+    $product_permalink =  $is_visible ? $product->get_permalink( $item ) : '';
+
+    if( $product_permalink )
+        return sprintf( '<a href="%s">%s - %s</a>', $product_permalink, $sku_text, $item->get_name() );
+    else
+        return $item->get_name() . ' - ' . $sku_text;
+}
+add_filter( 'woocommerce_order_item_name', 'sku_before_order_item_name', 30, 3 );

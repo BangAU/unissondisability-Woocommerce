@@ -14,6 +14,7 @@ function filter_dropdown_option_html( $html, $args ) {
 	return $html;
 }
 add_filter('woocommerce_reset_variations_link', '__return_empty_string');
+add_filter( 'woocommerce_product_variation_title_include_attributes', '__return_false' );
 
 
 
@@ -25,4 +26,3 @@ include('inc/price-settings.php');
 
 
 
-add_filter( 'woocommerce_product_variation_title_include_attributes', '__return_false' );
