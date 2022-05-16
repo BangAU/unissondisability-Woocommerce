@@ -1,0 +1,11 @@
+.homefilter {
+    &-selects {
+        margin-bottom: 75px;
+
+        select {
+            &:not(:last-child) {
+                margin-right: 29px;
+            }
+        }
+    }
+}

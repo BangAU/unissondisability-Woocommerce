@@ -412,7 +412,7 @@ function sku_before_order_item_name( $item_name, $item, $is_visible ) {
     // When sku doesn't exist we exit
     if( empty( $sku ) ) return $item_name;
 
-    $sku_text = __('woocommerce' ) . ': ' . $sku;
+    $sku_text = __ . ': ' . $sku;
 
     // Add product permalink when argument $is_visible is true
     $product_permalink =  $is_visible ? $product->get_permalink( $item ) : '';

@@ -1,0 +1,106 @@
+.programfilter {
+    z-index: 1;
+    position: relative;
+
+    &::before {
+        content: "";
+        z-index: -1;
+        position: absolute;
+        top: 222px;
+        left: 50%;
+        width: 100vw;
+        height: calc(100% - 222px);
+        transform: translateX(-50%);
+        background-color: $color-gray;
+        border-radius: 130px 130px 0 0;
+    }
+
+    &-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 44px;
+    }
+
+    &-body {
+        .row {
+            margin-left: -17px;
+            margin-right: -17px;
+            margin-bottom: -40px;
+        }
+
+        [class^="col-"] {
+            padding-left: 17px;
+            padding-right: 17px;
+            margin-bottom: 40px;
+        }
+    }
+
+    &-card {
+        background-color: #fff;
+        border-radius: 34px;
+        box-shadow: 4px 4px 24px -12px rgba(#000, .1);
+
+        .media {
+            height: 264px;
+
+            img {
+                @include imgfit;
+            }
+        }
+
+        .text {
+            padding: 30px 24px 37px;
+        }
+
+        .heading {
+            &-location {
+                color: $color-orange;
+                font-size: 16px;
+                font-weight: 500;
+                margin-bottom: 6px;
+            }
+
+            &-title {
+                color: $color-purple;
+                font-size: 30px;
+                font-weight: 700;
+                text-transform: uppercase;
+                margin-bottom: 6px
+            }
+
+            &-date {
+                display: block;
+                font-size: 18px;
+                font-weight: 500;
+                margin-bottom: 19px;
+            }
+        }
+
+        p {
+            font-size: 18px;
+            color: $color-black-light;
+        }
+
+        .card-footer {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            margin-top: 46px;
+
+            .price {
+                p {
+                    color: $color-black;
+                    font-weight: 500;
+                    margin-bottom: 9px;
+                }
+
+                .price-num {
+                    color: $color-orange;
+                    font-size: 30px;
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+}

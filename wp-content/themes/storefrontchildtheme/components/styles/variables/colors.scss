@@ -1,0 +1,66 @@
+$color-purple: #650D6B;
+$color-yellow: #FCC412;
+$color-orange: #FF6926;
+
+$color-black: #222222;
+$color-black-1: #3C3C3C;
+$color-black-2: #4D4D4D;
+
+$color-black-light: #6D6E71;
+
+$color-white: #fff;
+
+$color-border: #ddddde;
+$color-gray: #F1F1F2;
+
+.color {
+    &-yellow {
+        color: $color-yellow !important;
+    }
+
+    &-orange {
+        color: $color-orange !important;
+    }
+
+    &-purple {
+        color: $color-purple !important;
+    }
+
+    &-black {
+        color: $color-black !important;
+    }
+
+    &-white {
+        color: $color-white !important;
+    }
+
+    &-gray {
+        color: $color-gray !important;
+    }
+}
+
+.bgcolor {
+    &-yellow {
+        background-color: $color-yellow !important;
+    }
+
+    &-orange {
+        background-color: $color-orange !important;
+    }
+
+    &-purple {
+        background-color: $color-purple !important;
+    }
+
+    &-black {
+        background-color: $color-black !important;
+    }
+
+    &-white {
+        background-color: $color-white !important;
+    }
+
+    &-gray {
+        background-color: $color-gray !important;
+    }
+}
