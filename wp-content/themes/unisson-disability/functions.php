@@ -149,6 +149,13 @@ function unisson_disability_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'unisson_disability_scripts' );
 
+
+/**
+ * acf data sync.
+ */
+require get_template_directory() . '/inc/sync-acf.php';
+
+
 /**
  * Navwalker specially used for mega menu class include
  */
@@ -246,3 +253,28 @@ function search_filter($query) {
 	  }
 	}
   }
+
+
+  if( function_exists('acf_add_options_page') ) {
+	
+	acf_add_options_page(array(
+		'page_title' 	=> 'Unisson General Settings',
+		'menu_title'	=> 'Unisson Settings',
+		'menu_slug' 	=> 'unisson-general-settings',
+		'capability'	=> 'edit_posts',
+		'redirect'		=> true
+	));
+	
+	acf_add_options_sub_page(array(
+		'page_title' 	=> 'Unisson Header Settings',
+		'menu_title'	=> 'Header',
+		'parent_slug'	=> 'unisson-general-settings',
+	));
+	
+	acf_add_options_sub_page(array(
+		'page_title' 	=> 'Unisson Footer Settings',
+		'menu_title'	=> 'Footer',
+		'parent_slug'	=> 'unisson-general-settings',
+	));
+	
+}

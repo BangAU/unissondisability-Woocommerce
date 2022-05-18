@@ -204,7 +204,10 @@
 						endif;
 						?>
                     </div>
-                    <a href="#" class="btn btn-orange">Donate Now</a>
+                    <?php $donation = get_field('donation_link','option'); ?>
+                    <?php if(!empty($donation)): ?>
+                    <a href="<?php echo $donation['url'] ?>" class="btn btn-orange"><?php echo $donation['title'] ?></a>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
