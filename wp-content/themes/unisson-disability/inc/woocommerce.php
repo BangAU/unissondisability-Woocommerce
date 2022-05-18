@@ -25,7 +25,7 @@ function unisson_disability_woocommerce_setup() {
 			'product_grid'          => array(
 				'default_rows'    => 3,
 				'min_rows'        => 1,
-				'default_columns' => 4,
+				'default_columns' => 3,
 				'min_columns'     => 1,
 				'max_columns'     => 6,
 			),

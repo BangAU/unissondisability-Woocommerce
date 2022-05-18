@@ -150,9 +150,36 @@ function unisson_disability_scripts() {
 add_action( 'wp_enqueue_scripts', 'unisson_disability_scripts' );
 
 /**
+ * Navwalker specially used for mega menu class include
+ */
+
+require get_template_directory() . '/inc/class.walker.php';
+
+/**
  * Implement the Custom Header feature.
  */
 require get_template_directory() . '/inc/custom-header.php';
+
+/**
+ * Implement the Custom Header feature.
+ */
+require get_template_directory() . '/inc/header-cart.php';
+
+/**
+ * register module
+ */
+
+require get_template_directory() . '/inc/register-module.php';
+/**
+ * block categories
+ */
+
+require get_template_directory() . '/inc/custom-block-categories.php';
+/**
+ * custom form
+ */
+
+require get_template_directory() . '/inc/search-form.php';
 
 /**
  * Custom template tags for this theme.
@@ -182,3 +209,40 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 if ( class_exists( 'WooCommerce' ) ) {
 	require get_template_directory() . '/inc/woocommerce.php';
 }
+
+
+
+
+//add_filter( 'woocommerce_enqueue_styles', '__return_false' );
+
+
+// add_action( 'wp_enqueue_scripts', 'woocommerce_theme_styles' );
+// function woocommerce_theme_styles() {
+//   wp_enqueue_style('woocommerce_smallscreen', plugins_url() .'/woocommerce/assets/css/woocommerce-smallscreen.css');
+//   wp_enqueue_style('woocommerce_css', plugins_url() .'/woocommerce/assets/css/woocommerce.css');
+//   wp_enqueue_style('woocommerce_layout', plugins_url() .'/woocommerce/assets/css/woocommerce-layout.css');
+// }
+
+// function mytheme_add_woocommerce_support() {
+//     add_theme_support( 'woocommerce' );
+// }
+// add_action( 'after_setup_theme', 'mytheme_add_woocommerce_support' );
+
+
+/** Custom Search for Library */
+function my_search_filter($query) {
+    if ( $query->is_search && ! is_admin() ) {
+        $query->set( 'post_type', 'product' );
+        $query->is_post_type_archive = false;
+    }
+}
+add_filter('pre_get_posts','my_search_filter', 9);
+
+function search_filter($query) {
+	if ( !is_admin() && $query->is_main_query() ) {
+	  if ($query->is_search) {
+		$query->set('paged', ( get_query_var('paged') ) ? get_query_var('paged') : 1 );
+		$query->set('posts_per_page',6);
+	  }
+	}
+  }
