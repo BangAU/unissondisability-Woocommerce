@@ -39,7 +39,7 @@ class wp_bootstrap_navwalker extends Walker_Nav_Menu {
 		//print_r($menuItemAttrubutes);	
 		
 		if($depth == 0 && $this->menu_grid == 'menu-grid'){
-			$output .= "\n$indent<div class=\"dropdown-menu\"><div class=\"megamenu\"><div class=\"drop-holder\"><div class=\"row\">\n";
+			$output .= "\n$indent<div class=\"dropdown-menu\"><div class=\"megamenu\"><div class=\"drop-holder\"><ul>\n";
 		}		
 		else if ( $depth == 0 && in_array("mega-md", $menuItemAttrubutes) ) {
 			$output .= "\n$indent<div class=\"dropdown-menu\"><div class=\"megamenu\"><div class=\"drop-holder\">\n";
@@ -72,7 +72,7 @@ class wp_bootstrap_navwalker extends Walker_Nav_Menu {
 		$indent = str_repeat( "\t", $depth );
 				
 		if ( $depth == 0 && !empty($this->menu_grid_close) ) {
-			$output .= "\n$indent</div></div></div></div></li>\n";
+			$output .= "\n$indent</ul></div></div></div></li>\n";
 			$this->menu_grid = '';
 			$this->menu_grid_close = '';
 		}
@@ -287,7 +287,7 @@ class wp_bootstrap_navwalker extends Walker_Nav_Menu {
 				$menu_item_img_url = get_post_meta( $item->ID, 'menu-item-img-url', true );
 				$thumbnail_id = get_woocommerce_term_meta( $item->object_id, 'thumbnail_id', true );
 														
-				$output .= '<div class="col-lg-4">';
+				$output .= '<li>';
 
 				$url = '';
 				if(!empty($menu_item_img_url)){
@@ -311,7 +311,7 @@ class wp_bootstrap_navwalker extends Walker_Nav_Menu {
 			
 				$output .= '<a'. $attributes .'>'.$args->link_before;
 				$output .=  apply_filters( 'the_title', $item->title, $item->ID ) . $args->link_after.'</a>';
-				$output .= '</div>';
+				$output .= '</li>';
 
 				if($this->menu_grid_item_count >= 4){
 					$this->menu_grid_close = 'menu_grid_item'; 

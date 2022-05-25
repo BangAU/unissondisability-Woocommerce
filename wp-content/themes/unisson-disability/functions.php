@@ -153,7 +153,15 @@ add_action( 'wp_enqueue_scripts', 'unisson_disability_scripts' );
 /**
  * acf data sync.
  */
-require get_template_directory() . '/inc/sync-acf.php';
+ //require get_template_directory() . '/inc/register-taxonomy.php';
+// /**
+//  * acf data sync.
+//  */
+ require get_template_directory() . '/inc/sync-acf.php';
+// /**
+//  * acf data sync.
+//  */
+ require get_template_directory() . '/inc/remove-hooks.php';
 
 
 /**
@@ -223,12 +231,7 @@ if ( class_exists( 'WooCommerce' ) ) {
 //add_filter( 'woocommerce_enqueue_styles', '__return_false' );
 
 
-// add_action( 'wp_enqueue_scripts', 'woocommerce_theme_styles' );
-// function woocommerce_theme_styles() {
-//   wp_enqueue_style('woocommerce_smallscreen', plugins_url() .'/woocommerce/assets/css/woocommerce-smallscreen.css');
-//   wp_enqueue_style('woocommerce_css', plugins_url() .'/woocommerce/assets/css/woocommerce.css');
-//   wp_enqueue_style('woocommerce_layout', plugins_url() .'/woocommerce/assets/css/woocommerce-layout.css');
-// }
+
 
 // function mytheme_add_woocommerce_support() {
 //     add_theme_support( 'woocommerce' );
@@ -277,4 +280,19 @@ function search_filter($query) {
 		'parent_slug'	=> 'unisson-general-settings',
 	));
 	
+}
+
+
+
+add_filter( 'woocommerce_breadcrumb_defaults', 'ts_woocommerce_breadcrumbs_change' );
+function ts_woocommerce_breadcrumbs_change() {
+    return array(
+            'delimiter'   => '  ',
+            'wrap_before' => '<ul class="breadcrumb">',
+            'wrap_after'  => '</ul>',
+            'before'      => '<li> ',
+            'after'       => '</li>',
+            'home'        => _x( 'Home', 'breadcrumb', 'woocommerce' ),
+            
+        );
 }

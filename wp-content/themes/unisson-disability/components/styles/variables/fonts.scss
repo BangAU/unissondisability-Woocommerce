@@ -79,3 +79,13 @@ $font: 'Gotham Rounded';
     font-style: normal;
     font-display: swap;
 }
+
+@font-face {
+    font-family: 'OpenDyslexic 3';
+    src: url('../fonts/OpenDyslexicThree-Regular.woff2') format('woff2'),
+        url('../fonts/OpenDyslexicThree-Regular.woff') format('woff'),
+        url('../fonts/OpenDyslexicThree-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}

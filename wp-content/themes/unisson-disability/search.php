@@ -11,16 +11,7 @@ get_header();
 global $product;
 
 ?>
-<section class="section pageheader--section">
-    <div class="container">
-        <div class="pageheader">
-            <ul class="breadcrumb">
-                <li><a href="#">Home</a></li>
-                <li>Search Results</li>
-            </ul>
-        </div>
-    </div>
-</section>
+
 <section class="section searchresult--section pageheader--pullup">
     <div class="container">
         <div class="searchresult">

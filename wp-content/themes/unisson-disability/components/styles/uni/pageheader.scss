@@ -108,3 +108,18 @@
         background-color: $color-orange;
     }
 }
+
+.pageheader--section-none {
+    padding: 44px 0;
+    height: auto;
+    color: $color-black;
+    background-color: #fff;
+
+    @media (max-width: 991px) {
+        min-height: auto;
+
+        .pageheader {
+            padding-bottom: 0;
+        }
+    }
+}

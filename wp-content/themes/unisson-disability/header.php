@@ -31,7 +31,7 @@
     <?php wp_head(); ?>
 </head>
 
-<body <?php body_class(); ?>>
+<body <?php body_class('woocommerce'); ?>>
     <?php wp_body_open(); ?>
 
     <header class="header dis-lg">
@@ -143,8 +143,16 @@
                             </div>
                             <div class="custom-dropdown-list">
                                 <ul>
+                                    <li>Hi, <?php 
+                                        $user_info = get_userdata(get_current_user_id());
+                                        $first_name = $user_info->first_name;
+                                        $last_name = $user_info->last_name;
+                                        echo "$first_name $last_name";
+                                    ?>
+
+                                    </li>
                                     <li><a
-                                            href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>">Dashbord</a>
+                                            href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>">Dashboard</a>
                                     </li>
                                     <li><a
                                             href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>orders">My
@@ -190,7 +198,7 @@
             <div class="container">
                 <div class="inner">
                     <div class="header-nav">
-                    
+
                         <?php
 						if ( has_nav_menu( 'menu-1' ) ) :
 							wp_nav_menu(
@@ -218,7 +226,7 @@
             <div class="container">
                 <div class="inner">
                     <div class="logo">
-                    <?php 
+                        <?php 
                         $custom_logo_id = get_theme_mod( 'custom_logo' );
                         $logo = wp_get_attachment_image_src( $custom_logo_id , 'full' );
                          
@@ -249,8 +257,12 @@
                     <div class="header-account">
                         <div class="header-myaccount">
                             <div class="custom-dropdown-btn">
-                                <div class="icon"><img src="<?php echo get_template_directory_uri();?>/./images/icons/icon-user.svg" alt=""></div>
-                                <div class="text"><a href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>">My Account</a></div>
+                                <div class="icon"><img
+                                        src="<?php echo get_template_directory_uri();?>/./images/icons/icon-user.svg"
+                                        alt=""></div>
+                                <div class="text"><a
+                                        href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>">My
+                                        Account</a></div>
                             </div>
                         </div>
                     </div>
@@ -261,7 +273,7 @@
 
 
                 <div class="sidemenu-nav">
-                <?php
+                    <?php
 						if ( has_nav_menu( 'menu-1' ) ) :
 							wp_nav_menu(
 								array(
@@ -278,4 +290,18 @@
         </div>
     </div>
 
-    <main class="sitecontent">
+<main class="sitecontent">
+ <?php if(!is_front_page()): ?>   
+ <?php if(!is_product()): ?>   
+<section class="section pageheader--section">
+    <div class="container">
+        <div class="pageheader">
+            <ul class="breadcrumb">
+                <li><a href="<?php echo esc_url( home_url( '/' ) ) ?>">Home</a></li>
+                <li><?php the_title(); ?></li>
+            </ul>
+        </div>
+    </div>
+</section>
+<?php endif; ?>
+<?php endif; ?>

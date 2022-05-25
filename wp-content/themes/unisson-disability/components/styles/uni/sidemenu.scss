@@ -9,10 +9,12 @@
     padding: 24px 0 96px;
     max-height: calc(100vh - 80px);
     overflow-y: auto;
-    transition: all .3s ease-out;
+    transition: left .3s ease-out;
 
     &:not(.toggled) {
         left: -101vw;
+        opacity: 0;
+        transition: all .3s ease-out;
     }
 
     // @media (min-width: 1201px) {

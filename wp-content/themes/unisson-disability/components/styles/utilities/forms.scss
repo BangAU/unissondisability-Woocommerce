@@ -143,11 +143,41 @@ select {
     display: flex;
     align-items: center;
 
-    span {
-        font-size: 18px;
-        font-weight: 500;
-    }
+    .custom-dropdown {
+        &-btn {
+            font-size: 18px;
+            font-weight: 400;
+            color: $color-purple;
 
+            strong {
+                font-weight: 500;
+            }
+
+            &::after {
+                width: 8px;
+                height: 8px;
+                border-color: $color-orange;
+            }
+        }
+
+        &-list {
+            min-width: auto;
+
+            li {
+                padding: 0;
+            }
+
+            button {
+                font-size: 18px;
+                text-align: right;
+                width: 100%;
+                border: 0;
+                padding: 10px 0;
+                background-color: transparent;
+                cursor: pointer;
+            }
+        }
+    }
 }
 
 .checkbox {

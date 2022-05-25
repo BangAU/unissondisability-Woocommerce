@@ -1,4 +1,5 @@
 <?php
+
 /**
  * WooCommerce Compatibility File
  *
@@ -16,6 +17,7 @@
  *
  * @return void
  */
+
 function unisson_disability_woocommerce_setup() {
 	add_theme_support(
 		'woocommerce',
@@ -31,6 +33,7 @@ function unisson_disability_woocommerce_setup() {
 			),
 		)
 	);
+
 	add_theme_support( 'wc-product-gallery-zoom' );
 	add_theme_support( 'wc-product-gallery-lightbox' );
 	add_theme_support( 'wc-product-gallery-slider' );
@@ -42,6 +45,7 @@ add_action( 'after_setup_theme', 'unisson_disability_woocommerce_setup' );
  *
  * @return void
  */
+
 function unisson_disability_woocommerce_scripts() {
 	wp_enqueue_style( 'unisson-disability-woocommerce-style', get_template_directory_uri() . '/woocommerce.css', array(), _S_VERSION );
 
@@ -61,6 +65,20 @@ function unisson_disability_woocommerce_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'unisson_disability_woocommerce_scripts' );
 
+// add_action( 'wp_enqueue_scripts', 'woocommerce_theme_styles' );
+// function woocommerce_theme_styles() {
+//   wp_enqueue_style('woocommerce_smallscreen', plugins_url() .'/woocommerce/assets/css/woocommerce-smallscreen.css');
+//   wp_enqueue_style('woocommerce_css', plugins_url() .'/woocommerce/assets/css/woocommerce.css');
+//   wp_enqueue_style('woocommerce_layout', plugins_url() .'/woocommerce/assets/css/woocommerce-layout.css');
+// }
+
+function utm_user_scripts() {
+	$plugin_url = plugin_dir_url( __FILE__ );
+
+wp_enqueue_style( 'style',  $plugin_url . "/css/style.css");
+}
+
+add_action( 'admin_print_styles', 'utm_user_scripts' );
 /**
  * Disable the default WooCommerce stylesheet.
  *
@@ -69,6 +87,7 @@ add_action( 'wp_enqueue_scripts', 'unisson_disability_woocommerce_scripts' );
  *
  * @link https://docs.woocommerce.com/document/disable-the-default-stylesheet/
  */
+
 add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );
 
 /**
@@ -77,6 +96,7 @@ add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );
  * @param  array $classes CSS classes applied to the body tag.
  * @return array $classes modified to include 'woocommerce-active' class.
  */
+
 function unisson_disability_woocommerce_active_body_class( $classes ) {
 	$classes[] = 'woocommerce-active';
 
@@ -90,6 +110,7 @@ add_filter( 'body_class', 'unisson_disability_woocommerce_active_body_class' );
  * @param array $args related products args.
  * @return array $args related products args.
  */
+
 function unisson_disability_woocommerce_related_products_args( $args ) {
 	$defaults = array(
 		'posts_per_page' => 3,

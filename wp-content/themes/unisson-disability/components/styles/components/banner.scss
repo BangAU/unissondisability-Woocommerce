@@ -101,17 +101,24 @@
                 @media (min-width: 992px) {
                     padding-left: 81px;
                 }
+
+                @media (min-width: 992px) {
+                    padding-bottom: calc(111px + 85px);
+                }
             }
         }
     }
 
     .media {
+        border-radius: 43px;
+        overflow: hidden;
+
         @media (max-width: 991px) {
             margin-bottom: 24px;
         }
 
         img {
-            width: 100%;
+            @include imgfit;
         }
     }
 
@@ -120,7 +127,6 @@
 
         @media (min-width: 992px) {
             max-width: 454px;
-            padding-bottom: calc(111px + 85px);
         }
 
         @media (max-width: 991px) {

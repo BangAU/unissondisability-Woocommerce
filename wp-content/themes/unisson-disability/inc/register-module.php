@@ -44,6 +44,63 @@ function aipm_acf_init() {
 			),
 		));
 
+		acf_register_block(array(
+			'name'				=> 'cta-module',
+			'title'				=> __('CTA Module'),
+			'description'		=> __('CTA Module'),
+			'render_callback'	=> 'aipm_acf_module_template_block_render_callback',
+			'icon'              => 'superhero',
+			'keywords'          => array( 'hero image', 'header', 'banner' ),
+			'mode'				=> 'edit',
+			'category'			=> 'custom_modules',
+			'example' => array(
+				'attributes' => array(
+					'mode' => 'preview', // Important!
+					'data' => array(
+						'image' => '<img src="' . get_template_directory_uri() . '/images/module-preview/hero-header-module.png' . '" style="width:100%; height:auto;">'
+					),
+				),
+			),
+		));
+
+		acf_register_block(array(
+			'name'				=> 'breadcrumbs-module',
+			'title'				=> __('breadcrumbs Module'),
+			'description'		=> __('Breadcrumbs Module'),
+			'render_callback'	=> 'aipm_acf_module_template_block_render_callback',
+			'icon'              => 'superhero',
+			'keywords'          => array( 'breadcrumbs', 'header', 'banner' ),
+			'mode'				=> 'edit',
+			'category'			=> 'custom_modules',
+			'example' => array(
+				'attributes' => array(
+					'mode' => 'preview', // Important!
+					'data' => array(
+						'image' => '<img src="' . get_template_directory_uri() . '/images/module-preview/hero-header-module.png' . '" style="width:100%; height:auto;">'
+					),
+				),
+			),
+		));
+
+		acf_register_block(array(
+			'name'				=> 'register-module',
+			'title'				=> __('Register Module'),
+			'description'		=> __('Register Module'),
+			'render_callback'	=> 'aipm_acf_module_template_block_render_callback',
+			'icon'              => 'superhero',
+			'keywords'          => array( 'register', 'header', 'banner' ),
+			'mode'				=> 'edit',
+			'category'			=> 'custom_modules',
+			'example' => array(
+				'attributes' => array(
+					'mode' => 'preview', // Important!
+					'data' => array(
+						'image' => '<img src="' . get_template_directory_uri() . '/images/module-preview/hero-header-module.png' . '" style="width:100%; height:auto;">'
+					),
+				),
+			),
+		));
+
 	
 
 	}

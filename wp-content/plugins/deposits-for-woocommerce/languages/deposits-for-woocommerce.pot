@@ -1,0 +1,502 @@
+# Copyright (C) 2022 Codeixer
+# This file is distributed under the same license as the Bayna - Deposits & Partial Payments for WooCommerce plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Bayna - Deposits & Partial Payments for WooCommerce 1.2.3\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/deposits-for-woocommerce\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2022-04-10T19:08:51+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.5.0\n"
+"X-Domain: deposits-for-woocommerce\n"
+
+#. Plugin Name of the plugin
+msgid "Bayna - Deposits & Partial Payments for WooCommerce"
+msgstr ""
+
+#. Plugin URI of the plugin
+msgid "https: //wordpress.org/plugins/deposits-for-woocommerce/"
+msgstr ""
+
+#. Description of the plugin
+msgid "Enable customers to pay for products using a deposit or a partial payment."
+msgstr ""
+
+#. Author of the plugin
+msgid "Codeixer"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://codeixer.com"
+msgstr ""
+
+#: deposits-for-woocommerce.php:92
+msgid "Oops! looks like WooCommerce is disabled. Please, enable it in order to use Bayna - Deposits & Partial Payments for WooCommerce."
+msgstr ""
+
+#: deposits-for-woocommerce.php:107
+msgid "Docs & FAQs"
+msgstr ""
+
+#: deposits-for-woocommerce.php:108
+#: deposits-for-woocommerce.php:109
+msgid "Get help"
+msgstr ""
+
+#: deposits-for-woocommerce.php:108
+#: deposits-for-woocommerce.php:109
+msgid "Support"
+msgstr ""
+
+#: includes/functions.php:62
+#: includes/functions.php:63
+#: src/Cart.php:77
+#: src/Checkout.php:287
+#: src/Order.php:268
+#: src/Order.php:313
+msgid "Due Payment:"
+msgstr ""
+
+#: includes/functions.php:111
+msgid "Available in PRO"
+msgstr ""
+
+#: src/Bootstrap.php:172
+#: src/Order.php:114
+msgid "Deposit Payments"
+msgstr ""
+
+#: src/Bootstrap.php:173
+msgctxt "Admin menu name"
+msgid "Deposit Payments"
+msgstr ""
+
+#: src/Bootstrap.php:175
+msgid "This is where store Deposit Payments are stored."
+msgstr ""
+
+#: src/Bootstrap.php:214
+#: src/Bootstrap.php:231
+msgctxt "Order status"
+msgid "Deposit Payment"
+msgstr ""
+
+#. translators: %s: number of orders
+#: src/Bootstrap.php:220
+msgid "Deposit Payment <span class=\"count\">(%s)</span>"
+msgid_plural "Deposit Payment <span class=\"count\">(%s)</span>"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/Cart.php:77
+#: src/Checkout.php:287
+#: src/Order.php:313
+msgid "Deposit:"
+msgstr ""
+
+#: src/Deposit_Colums.php:123
+msgid "Deposit ID"
+msgstr ""
+
+#: src/Deposit_Colums.php:124
+#: src/Order.php:136
+msgid "Date"
+msgstr ""
+
+#: src/Deposit_Colums.php:125
+#: src/Emails.php:34
+#: src/Order.php:138
+#: templates/emails/deposit-summary.php:31
+#: templates/order/deposit-summary.php:33
+msgid "Status"
+msgstr ""
+
+#: src/Deposit_Colums.php:126
+#: src/Order.php:139
+msgid "Total"
+msgstr ""
+
+#: src/Deposit_Colums.php:127
+#: src/Emails.php:36
+msgid "Order"
+msgstr ""
+
+#: src/Emails.php:33
+#: templates/emails/deposit-summary.php:30
+#: templates/order/deposit-summary.php:32
+msgid "Payment ID"
+msgstr ""
+
+#: src/Emails.php:35
+#: templates/emails/deposit-summary.php:32
+#: templates/order/deposit-summary.php:34
+msgid "Amount"
+msgstr ""
+
+#: src/Emails/DepositOrder.php:28
+msgid "Deposit order"
+msgstr ""
+
+#: src/Emails/DepositOrder.php:29
+msgid "Customer deposit emails can be sent to customers containing their deposit information and payment links."
+msgstr ""
+
+#: src/Emails/DepositOrder.php:51
+msgid "{site_title} : Deposit for order #{order_number}"
+msgstr ""
+
+#: src/Emails/DepositOrder.php:62
+msgid "{site_title} : Deposit order #{order_number}"
+msgstr ""
+
+#: src/Emails/DepositOrder.php:72
+msgid "Thanks for using {site_url}!"
+msgstr ""
+
+#. translators: %s: list of placeholders
+#: src/Emails/DepositOrder.php:167
+#: src/Emails/DepositPaid.php:151
+#: src/Emails/NewDeposit.php:145
+msgid "Available placeholders: %s"
+msgstr ""
+
+#: src/Emails/DepositOrder.php:170
+#: src/Emails/DepositPaid.php:154
+#: src/Emails/NewDeposit.php:148
+msgid "Enable/Disable"
+msgstr ""
+
+#: src/Emails/DepositOrder.php:172
+#: src/Emails/DepositPaid.php:156
+#: src/Emails/NewDeposit.php:150
+msgid "Enable this email notification"
+msgstr ""
+
+#: src/Emails/DepositOrder.php:176
+#: src/Emails/DepositPaid.php:161
+#: src/Emails/NewDeposit.php:163
+msgid "Subject"
+msgstr ""
+
+#: src/Emails/DepositOrder.php:184
+#: src/Emails/DepositPaid.php:169
+#: src/Emails/NewDeposit.php:171
+msgid "Email heading"
+msgstr ""
+
+#: src/Emails/DepositOrder.php:193
+#: src/Emails/DepositPaid.php:186
+#: src/Emails/NewDeposit.php:179
+msgid "Additional content"
+msgstr ""
+
+#: src/Emails/DepositOrder.php:194
+#: src/Emails/DepositPaid.php:187
+#: src/Emails/NewDeposit.php:180
+msgid "Text to appear below the main email content."
+msgstr ""
+
+#: src/Emails/DepositOrder.php:196
+#: src/Emails/DepositPaid.php:189
+#: src/Emails/NewDeposit.php:182
+msgid "N/A"
+msgstr ""
+
+#: src/Emails/DepositOrder.php:202
+#: src/Emails/DepositPaid.php:195
+#: src/Emails/NewDeposit.php:188
+msgid "Email type"
+msgstr ""
+
+#: src/Emails/DepositOrder.php:204
+#: src/Emails/DepositPaid.php:197
+#: src/Emails/NewDeposit.php:190
+msgid "Choose which format of email to send."
+msgstr ""
+
+#: src/Emails/DepositPaid.php:28
+msgid "Deposit paid"
+msgstr ""
+
+#: src/Emails/DepositPaid.php:29
+msgid "Deposit order paid emails are sent to customers when their deposit are marked completed."
+msgstr ""
+
+#: src/Emails/DepositPaid.php:79
+msgid "Your {site_title} Deposit receipt for order #{order_parent_number}"
+msgstr ""
+
+#: src/Emails/DepositPaid.php:90
+msgid "Thank you for your payment"
+msgstr ""
+
+#: src/Emails/DepositPaid.php:100
+#: src/Emails/DepositPaid.php:180
+msgid "Your payment has been received. Your order details are shown below for your reference:"
+msgstr ""
+
+#: src/Emails/DepositPaid.php:177
+msgid "Email Text"
+msgstr ""
+
+#: src/Emails/DepositPaid.php:178
+msgid "Text to appear before order details"
+msgstr ""
+
+#: src/Emails/NewDeposit.php:25
+msgid "New deposit"
+msgstr ""
+
+#: src/Emails/NewDeposit.php:26
+msgid "New deposit emails are sent to chosen recipient(s) when a new deposit is received."
+msgstr ""
+
+#: src/Emails/NewDeposit.php:49
+msgid "[{site_title}]: New deposit #{order_number}"
+msgstr ""
+
+#: src/Emails/NewDeposit.php:59
+msgid "New Deposit: #{order_number}"
+msgstr ""
+
+#: src/Emails/NewDeposit.php:137
+msgid "Congratulations on the Deposit."
+msgstr ""
+
+#: src/Emails/NewDeposit.php:154
+msgid "Recipient(s)"
+msgstr ""
+
+#. translators: %s: WP admin email
+#: src/Emails/NewDeposit.php:157
+msgid "Enter recipients (comma separated) for this email. Defaults to %s."
+msgstr ""
+
+#: src/Integrations/Wcmp.php:67
+#: src/Product.php:267
+#: src/Product.php:316
+msgid "Fixed Amount"
+msgstr ""
+
+#: src/Integrations/Wcmp.php:68
+#: src/Product.php:266
+#: src/Product.php:315
+msgid "Percentage of Amount"
+msgstr ""
+
+#: src/Integrations/Wcmp.php:76
+#: src/Product.php:240
+#: src/Product.php:253
+#: src/Product.php:303
+msgid "Enable Deposit"
+msgstr ""
+
+#: src/Integrations/Wcmp.php:80
+msgid "Enable deposits feature for this product"
+msgstr ""
+
+#: src/Integrations/Wcmp.php:115
+#: src/Order.php:146
+#: src/Order.php:190
+#: src/Order.php:288
+#: src/Product.php:223
+#: src/Settings.php:133
+#: templates/order/deposit-summary.php:46
+msgid "Deposit"
+msgstr ""
+
+#: src/Modules/Admin.php:187
+msgid "Bayna database update required"
+msgstr ""
+
+#: src/Order.php:41
+msgid "Deposit Payment details"
+msgstr ""
+
+#: src/Order.php:134
+msgid "Order Number"
+msgstr ""
+
+#: src/Order.php:135
+msgid "Relationship"
+msgstr ""
+
+#: src/Order.php:137
+#: templates/order/deposit-summary.php:31
+msgid "Payment"
+msgstr ""
+
+#: src/Order.php:148
+#: src/Settings.php:140
+#: templates/order/deposit-summary.php:48
+msgid "Due Payment"
+msgstr ""
+
+#: src/Order.php:153
+msgid "Deposit payment"
+msgstr ""
+
+#: src/Order.php:191
+msgid "Due"
+msgstr ""
+
+#: src/Order.php:260
+msgid "Total:"
+msgstr ""
+
+#: src/Order.php:264
+msgid "Paid:"
+msgstr ""
+
+#: src/Order.php:296
+msgid "Due Amount"
+msgstr ""
+
+#: src/Product.php:242
+msgid "Enable deposit feature for this Variable product."
+msgstr ""
+
+#: src/Product.php:255
+#: src/Product.php:305
+msgid "Enable deposits feature for this product."
+msgstr ""
+
+#: src/Product.php:263
+#: src/Product.php:312
+msgid "Deposit type"
+msgstr ""
+
+#: src/Product.php:275
+#: src/Product.php:324
+msgid "Deposit Value *"
+msgstr ""
+
+#: src/Product.php:280
+#: src/Product.php:329
+msgid "Enter the value for deposit. only number allow."
+msgstr ""
+
+#: src/Settings.php:44
+msgid "Deposit Mode"
+msgstr ""
+
+#: src/Settings.php:46
+msgid "Order only deposit products or regular ones"
+msgstr ""
+
+#: src/Settings.php:47
+msgid "Allow Deposit and regular items togather into an order"
+msgstr ""
+
+#: src/Settings.php:58
+msgid "Deposit Paid Status"
+msgstr ""
+
+#: src/Settings.php:59
+msgid "set order status when deposits are paid"
+msgstr ""
+
+#: src/Settings.php:64
+msgid "Disable Payment Methods\t"
+msgstr ""
+
+#: src/Settings.php:79
+msgid "Regular Products Notice"
+msgstr ""
+
+#: src/Settings.php:86
+msgid "Deposit Products Notice"
+msgstr ""
+
+#: src/Settings.php:93
+msgid "Pay Deposit"
+msgstr ""
+
+#: src/Settings.php:101
+msgid "Full Payment"
+msgstr ""
+
+#: src/Settings.php:109
+msgid "Deposit Text"
+msgstr ""
+
+#: src/Settings.php:118
+msgid "Paid"
+msgstr ""
+
+#: src/Settings.php:126
+msgid "To Pay"
+msgstr ""
+
+#: src/Settings.php:147
+msgid "Deposit Payment Fee"
+msgstr ""
+
+#: src/Settings.php:154
+msgid "Due Payment Fee"
+msgstr ""
+
+#: src/Settings.php:176
+msgid "Radio Style"
+msgstr ""
+
+#. translators: 1: first name 2: last name
+#: src/ShopDeposit.php:499
+#: src/ShopDeposit.php:514
+msgctxt "full name"
+msgid "%1$s %2$s"
+msgstr ""
+
+#. translators: %s: Customer billing full name
+#: templates/emails/admin-new-deposit.php:26
+#: templates/emails/plain/admin-new-deposit.php:25
+msgid "You’ve received the following deposit from %s:"
+msgstr ""
+
+#. translators: %s: Customer first name
+#: templates/emails/customer-deposit-paid.php:29
+#: templates/emails/customer-deposit.php:29
+msgid "Hello %s,"
+msgstr ""
+
+#. translators: %1$s Site title, %2$s Order pay link
+#: templates/emails/customer-deposit.php:36
+msgid "An order has been created for you on %1$s. Your deposit details is below, with a link to make payment when you’re ready."
+msgstr ""
+
+#: templates/emails/deposit-summary.php:23
+#: templates/order/deposit-summary.php:26
+msgid "Deposit payments summary"
+msgstr ""
+
+#: templates/emails/deposit-summary.php:33
+#: templates/order/deposit-summary.php:35
+msgid "Actions"
+msgstr ""
+
+#: templates/emails/deposit-summary.php:63
+msgid "Make Payment "
+msgstr ""
+
+#. translators: %s: Customer first name
+#: templates/emails/plain/customer-deposit.php:25
+msgid "Hi %s,"
+msgstr ""
+
+#. translators: %1$s: Site title, %2$s: Order pay link
+#: templates/emails/plain/customer-deposit.php:31
+msgid "An order has been created for you on %1$s. Your invoice is below, with a link to make payment when you’re ready: %2$s"
+msgstr ""
+
+#. translators: %s: Order date
+#: templates/emails/plain/customer-deposit.php:39
+msgid "Here are the details of your order placed on %s:"
+msgstr ""
+
+#: templates/order/deposit-summary.php:72
+msgid "Make Payment"
+msgstr ""

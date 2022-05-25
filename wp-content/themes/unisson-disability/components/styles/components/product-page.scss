@@ -151,6 +151,11 @@
             flex-flow: column;
             padding-top: 138px;
         }
+
+        @media (max-width: 991px) {
+            display: flex;
+            flex-flow: column;
+        }
     }
 
     .heading {
@@ -176,6 +181,7 @@
     &-description {
         @media (max-width: 991px) {
             order: 9;
+            padding-top: 30px;
         }
 
         p {
@@ -211,6 +217,12 @@
         align-items: center;
         flex-wrap: wrap;
         margin-top: 24px;
+
+        >* {
+            @media (max-width: 991px) {
+                margin-bottom: 10px;
+            }
+        }
     }
 }
 

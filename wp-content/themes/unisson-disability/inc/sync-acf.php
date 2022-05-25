@@ -81,7 +81,6 @@ function acf_auto_synch($json_dirs) {
     }
 }
 
-
 /**
  * run the auto synch
  */

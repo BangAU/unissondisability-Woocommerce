@@ -1,0 +1,1 @@
+<?php echo do_shortcode('[wc_reg_form_bbloomer]');
