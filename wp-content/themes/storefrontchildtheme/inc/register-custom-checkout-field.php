@@ -92,22 +92,22 @@ $i = 0;
 /**
  * Add fields to order emails
  **/
-add_filter('woocommerce_email_order_meta_keys', 'my_custom_checkout_field_order_meta_keys');
-function my_custom_checkout_field_order_meta_keys( $keys ) {
+// add_filter('woocommerce_email_order_meta_keys', 'my_custom_checkout_field_order_meta_keys');
+// function my_custom_checkout_field_order_meta_keys( $keys ) {
 
-	$i = 0;
-for($k=1; $k<= 50; $k++) {
-$i++;
-foreach(WC()->cart->get_cart() as $item => $values) { 
-	$_product = $values['data']->post;
-    $quantity = $values['quantity'];
-    $x = 1;
-	 echo '<div class="Attendee-group"><h3>' . $_product->post_title .  __(' - Attendee ' . $x . '') .'</h3>';
-$keys[] = 'First of Attendee'.$i;
-$keys[] = 'Last of Attendee'.$i;
-}
-}	
-return $keys;
+// 	$i = 0;
+// for($k=1; $k<= 50; $k++) {
+// $i++;
+// foreach(WC()->cart->get_cart() as $item => $values) { 
+// 	$_product = $values['data']->post;
+//     $quantity = $values['quantity'];
+//     $x = 1;
+// 	 echo '<div class="Attendee-group"><h3>' . $_product->post_title .  __(' - Attendee ' . $x . '') .'</h3>';
+// $keys[] = 'First of Attendee'.$i;
+// $keys[] = 'Last of Attendee'.$i;
+// }
+// }	
+// return $keys;
 
 // global $woocommerce;
 // $items = $woocommerce->cart->cart_contents_count;
@@ -136,4 +136,4 @@ return $keys;
 // $keys[] = 'Last Name'.$i;
 // }	
 // return $keys;
-}
+//}

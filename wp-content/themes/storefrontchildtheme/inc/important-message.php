@@ -23,7 +23,7 @@ function woo_add_order_notes_to_email() {
 			<?php
 		}
 	} else {
-		echo '<li>' . __( 'We are only chargin activity cost for the support costs we will send you invoicce manually.', 'woocommerce' ) . '</li>';
+		echo '<li>' . __( '(We only charging activity costs online. For the Support costs we will send you invoice manually question ? sunil@bang.com.au )', 'woocommerce' ) . '</li>';
         
 	}
     echo '</ul>';

@@ -297,15 +297,3 @@ function ts_woocommerce_breadcrumbs_change() {
         );
 }
 
-
-add_filter('gettext', 'change_backend_product_regular_price', 100, 3 );
-function change_backend_product_regular_price( $translated_text, $text, $domain ) {
-    global $pagenow, $post_type;
-
-    if ( is_admin() && in_array( $pagenow, ['post.php', 'post-new.php'] )
-    && 'product' === $post_type && 'Regular price' === $text  && 'woocommerce' === $domain )
-    {
-        $translated_text =  __( 'Activity price', $domain );
-    }
-    return $translated_text;
-}
