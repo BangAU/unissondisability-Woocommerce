@@ -153,11 +153,24 @@ add_action( 'wp_enqueue_scripts', 'unisson_disability_scripts' );
 /**
  * acf data sync.
  */
- //require get_template_directory() . '/inc/register-taxonomy.php';
+ require get_template_directory() . '/inc/register-taxonomy.php';
+// /**
+/**
+ * acf data sync.
+ */
+ require get_template_directory() . '/inc/remove_checkout_fields.php';
+/**
+ * acf data sync.
+ */
+ require get_template_directory() . '/inc/custom-description-cart-page.php';
+/**
+ * acf data sync.
+ */
+ require get_template_directory() . '/inc/choose_variation_default.php';
 // /**
 //  * acf data sync.
 //  */
- require get_template_directory() . '/inc/sync-acf.php';
+ require get_template_directory() . '/inc/register-custom-checkout-field.php';
 // /**
 //  * acf data sync.
 //  */
@@ -296,4 +309,111 @@ function ts_woocommerce_breadcrumbs_change() {
             
         );
 }
+
+
+function wpse_131562_redirect() {
+    if (
+        ! is_user_logged_in()
+        && (is_page('my-account'))
+    ) {
+        // feel free to customize the following line to suit your needs
+        wp_redirect(home_url());
+        exit;
+    }
+}
+add_action('template_redirect', 'wpse_131562_redirect');
+
+
+// add_filter( 'woocommerce_order_item_name', 'display_product_title_as_link', 10, 2 );
+// 	function display_product_title_as_link( $item_name, $item ) {
+
+// 		$_product = get_product( $item['variation_id'] ? $item['variation_id'] : $item['product_id'] );
+		
+// 		$link = get_permalink( $_product->id );
+
+// 		$_var_description ='';
+
+// 		if ( $item['variation_id'] ) {
+// 			$_var_description = $_product->get_variation_description();
+// 		}
+
+// 		return '<a href="'. $link .'"  rel="nofollow">'. $item_name .'</a><br>'. $_var_description ;
+// 	}
+
+// Cart page (and mini cart)
+// add_filter( 'woocommerce_cart_item_name', 'cart_item_product_description', 20, 3);
+// function cart_item_product_description( $item_name, $cart_item, $cart_item_key ) {
+//     if ( ! is_checkout() ) {
+//         if( $cart_item['variation_id'] > 0 ) {
+//             $description = $cart_item['data']->get_variation_description(); // variation description
+//         } else {
+//             $description = $cart_item['data']->get_variation_description(); // product short description (for others)
+//         }
+
+//         if ( ! empty($description) ) {
+//             return $item_name . '<br><div class="description">
+//                 <strong>' . __( 'Description', 'woocommerce' ) . '</strong>: '. $description . '
+//             </div>';
+//         }
+//     }
+//     return $item_name;
+// }
+
+// // Checkout page
+// add_filter( 'woocommerce_checkout_cart_item_quantity', 'cart_item_checkout_product_description', 20, 3);
+// function cart_item_checkout_product_description( $item_quantity, $cart_item, $cart_item_key ) {
+//     if( $cart_item['variation_id'] > 0 ) {
+//         $description = $cart_item['data']->get_description(); // variation description
+//     } else {
+//         $description = $cart_item['data']->get_short_description(); // product short description (for others)
+//     }
+
+//     if ( ! empty($description) ) {
+//         return $item_quantity . '<br><div class="description">
+//             <strong>' . __( 'Description', 'woocommerce' ) . '</strong>: '. $description . '
+//         </div>';
+//     }
+
+//     return $item_quantity;
+// }
+
+
+remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_title', 5 );
+remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_rating', 10 );
+remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 10 );
+remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_excerpt', 20 );
+
+/* Change Product Quantity Input to Dropdown */
+// function woocommerce_quantity_input() {
+// 	global $product;
+//    if(is_product()){
+// 	$defaults = array(
+// 	 'input_name' => 'quantity',
+// 	 'input_value' => '1',
+// 	 'max_value'  => apply_filters( 'woocommerce_quantity_input_max', '', $product ),
+// 	 'min_value'  => apply_filters( 'woocommerce_quantity_input_min', '', $product ),
+// 	 'step'   => apply_filters( 'woocommerce_quantity_input_step', '1', $product ),
+// 	 'style'   => apply_filters( 'woocommerce_quantity_style', 'float:left; margin-right:10px;', $product )
+// 	);
+   
+// 	if (!empty($defaults['min_value']))
+// 	 $min = $defaults['min_value'];
+// 	 else $min = 1;
+   
+// 	if (!empty($defaults['max_value']))
+// 	 $max = $defaults['max_value'];
+// 	 else $max = 20;
+   
+// 	if (!empty($defaults['step']))
+// 	 $step = $defaults['step'];
+// 	 else $step = 1;
+   
+// 	$options = '';
+// 	for($count = $min;$count <= $max;$count = $count+$step){
+// 	 $options .= '<option value="' . $count . '">' . $count . '</option>';
+// 	}
+   
+// 	echo '<div class="quantity_select" style="' . $defaults['style'] . '"><select name="' . esc_attr( $defaults['input_name'] ) . '" title="' . _x( 'Qty', 'Product quantity input tooltip', 'woocommerce' ) . '" class="qty">' . $options . '</select></div>';
+//    }
+// }
 

@@ -112,6 +112,13 @@
                 "operator": "==",
                 "value": "acf\/cta-module"
             }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "product"
+            }
         ]
     ],
     "menu_order": 0,
@@ -123,5 +130,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1652929831
+    "modified": 1653530738
 }

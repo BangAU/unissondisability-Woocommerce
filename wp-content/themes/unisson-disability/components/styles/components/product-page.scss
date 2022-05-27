@@ -18,7 +18,7 @@
 
     &--col {
         &-text {
-            @media (min-width:992px) {
+            @media (min-width: 992px) {
                 padding-left: 95px;
             }
         }
@@ -29,7 +29,7 @@
             position: relative;
             margin-bottom: 27px;
 
-            @media (max-width:991px) {
+            @media (max-width: 991px) {
                 margin-bottom: 47px;
             }
 
@@ -48,6 +48,7 @@
 
                 img {
                     display: block;
+
                     @include imgfit;
                 }
             }
@@ -63,7 +64,7 @@
                     align-items: center;
                     transition: all .3s ease-out;
 
-                    @media (max-width:991px) {
+                    @media (max-width: 991px) {
                         // position: relative;
                         // top: auto;
                         // left: auto;
@@ -71,7 +72,6 @@
                     }
 
                     .slidenav {
-
                         &-prev,
                         &-next {
                             position: relative;
@@ -95,7 +95,6 @@
                         }
 
                         &-prev {
-
                             &::before {
                                 transform: translate(-25%, -50%) rotate(45deg);
                                 border-width: 0 0 2px 2px;
@@ -124,6 +123,7 @@
 
         &-secondary {
             max-width: 434px;
+
             @include margin-auto;
 
             .item {
@@ -139,6 +139,7 @@
 
                 img {
                     display: block;
+
                     @include imgfit;
                 }
             }
@@ -218,7 +219,7 @@
         flex-wrap: wrap;
         margin-top: 24px;
 
-        >* {
+        > * {
             @media (max-width: 991px) {
                 margin-bottom: 10px;
             }
@@ -261,14 +262,12 @@
         }
 
         &-plus {
-
             &::before {
                 content: "+";
             }
         }
 
         &-input {
-
             &[type="text"],
             &[type="number"] {
                 width: 30px;
@@ -300,5 +299,15 @@
 .product-addtocart {
     .icon {
         margin-right: 14px;
+    }
+}
+
+.woocommerce-notices-wrapper {
+    .woocommerce-message {
+        position: absolute;
+        top: -33px;
+        left: 350px;
+        padding: 6px;
+        color: #650D6B;
     }
 }

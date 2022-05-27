@@ -78,22 +78,164 @@ foreach(WC()->cart->get_cart() as $item => $values) {
     while ($x <= $quantity) {
 
          echo '<div class="Attendee-group"><h3>' . $_product->post_title .  __(' - Attendee ' . $x . '') .'</h3>';
-       
+       //firstname
         woocommerce_form_field( 'attendee_first_name_' . $x, array(
             'type'          => 'text',
             'class'         => array('attendee form-row-first'),
-            'label'         => __('First Name ' . $x . ' First Name'),
+            'label'         => __('First Name '),
             'placeholder'   => __(''),
+            'required' => true,
             ), $checkout->get_value( 'attendee_first_name_' . $x ));
-
+        // lastname
         woocommerce_form_field( 'attendee_last_name_' . $x, array(
             'type'          => 'text',
             'class'         => array('attendee form-row-last'),
-            'label'         => __('Last Name ' . $x . ' Last Name'),
+            'label'         => __('Last Name '),
             'placeholder'   => __(''),
+            'required' => true,
             ), $checkout->get_value( 'attendee_last_name_' . $x ));
+        //email
+        woocommerce_form_field( 'attendee_email_' . $x, array(
+            'type'          => 'email',
+            'class'         => array('attendee form-row-wide'),
+            'label'         => __('Email '),
+            'placeholder'   => __(''),
+            'required' => true,
+            ), $checkout->get_value( 'attendee_email_' . $x ));
+        
+        //phone
+        woocommerce_form_field( 'attendee_phone_' . $x, array(
+            'type'          => 'text',
+            'class'         => array('attendee form-row-wide'),
+            'label'         => __('Phone '),
+            'placeholder'   => __(''),
+            'required' => true,
+            ), $checkout->get_value( 'attendee_phone_' . $x ));
+        //DOB
+        woocommerce_form_field( 'attendee_dob_' . $x, array(
+            'type'          => 'date',
+            'class'         => array('attendee form-row-first'),
+            'label'         => __('DOB '),
+            'placeholder'   => __(''),
+            'required' => true,
+            ), $checkout->get_value( 'attendee_dob_' . $x ));
+        //gender
+        woocommerce_form_field( 'attendee_gender_' . $x, array(
+            'type' => 'select',
+            'class' => array('my-field-class form-row-last'),
+            'label' => __('Gender'),
+            'required' => true,
+            'options' => array(
+            'blank'  => __( '--'),
+            'Male' => __( 'Male'),
+            'Female' => __( 'Female'),
+            'Others' => __( 'Others' )
+            )
+            ), $checkout->get_value( 'attendee_gender_' . $x ));
+        //Address one 
+        woocommerce_form_field( 'attendee_address_1_' . $x, array(
+            'type'          => 'text',
+            'class'         => array('attendee form-row-wide'),
+            'label'         => __('Address '),
+            'placeholder'   => __(''),
+            'required' => true,
+            ), $checkout->get_value( 'attendee_address_1_' . $x ));
+        //Address 2
+        woocommerce_form_field( 'attendee_address_2_' . $x, array(
+            'type'          => 'text',
+            'class'         => array('attendee form-row-wide'),
+            'label'         => __('Apartment, Suite, etc. '),
+            'placeholder'   => __(''),
+            ), $checkout->get_value( 'attendee_address_2_' . $x ));
+        //City
+        woocommerce_form_field( 'attendee_city_' . $x, array(
+            'type'          => 'text',
+            'class'         => array('attendee form-row-wide address-field'),
+            'label'         => __('Suburb/City '),
+            'placeholder'   => __(''),
+            ), $checkout->get_value( 'attendee_city_' . $x ));
+        //State
+        woocommerce_form_field( 'attendee_state_' . $x, array(
+            'type' => 'select',
+            'class' => array('attendee form-row-wide address-field'),
+            'label' => __('State/Territory'),
+            'required' => true,
+            'options' => array(
+            'blank'  => __( '--'),
+            'Australian Capital Territory' => __( 'Australian Capital Territory'),
+            'New South Wales' => __( 'New South Wales'),
+            'Northern Territory' => __( 'Northern Territory' ),
+            'Queensland' => __( 'Queensland' ),
+            'Tasmania' => __( 'South Australia' ),
+            'Northern Territory' => __( 'Tasmania' ),
+            'Victoria' => __( 'Victoria' ),
+            'Western Australia' => __( 'Western Australia' ),
+            )
+            ), $checkout->get_value( 'attendee_gender_' . $x ));
+        //Passcode
+        woocommerce_form_field( 'attendee_postcode_' . $x, array(
+            'type'          => 'text',
+            'class'         => array('attendee form-row-wide address-field'),
+            'label'         => __('Postcode '),
+            'placeholder'   => __(''),
+            'required' => true,
+            ), $checkout->get_value( 'attendee_postcode_' . $x ));
 
         echo '</div>';
+      
+      
+        echo '<div class="Attendee-group"><h3>Funding Type</h3>';
+       //self manage
+
+            woocommerce_form_field( 'self_managed_checkbox', array(
+                'type'  => 'checkbox',
+                'class' => array( 'self-managed-checkbox form-row-wide' ),
+                'label' => __( 'Self-managed' ),
+                'required' => true,
+            ), $checkout->get_value( 'self_managed_checkbox' ) );
+
+            woocommerce_form_field( 'self_managed_textbox', array(
+                'type'  => 'text',
+                'required' =>'required',
+                'class' => array( 'self-managed-text form-row-first' ),
+                'label' => __( 'Enter Neck Size in cm' ),
+            ), $checkout->get_value( 'fitting_neck_textbox' ) );
+            
+            //Plan-managed
+
+            woocommerce_form_field( 'plan_managed_checkbox', array(
+                'type'  => 'checkbox',
+                'class' => array( 'plan-managed-checkbox form-row-wide' ),
+                'label' => __( 'Plan-managed' ),
+            ), $checkout->get_value( 'plan_managed_checkbox' ) );
+
+            woocommerce_form_field( 'plan_managed_textbox', array(
+                'type'  => 'text',
+                'required' =>'required',
+                'class' => array( 'plan-managed-text form-row-first' ),
+                'label' => __( 'Enter Neck Size in cm' ),
+            ), $checkout->get_value( 'plan_managed_textbox' ) );
+            
+            //INDIA-managed
+
+            woocommerce_form_field( 'ndia_managed_checkbox', array(
+                'type'  => 'checkbox',
+                'class' => array( 'india-managed-checkbox form-row-wide' ),
+                'label' => __( 'NDIA Managed' ),
+            ), $checkout->get_value( 'ndia_managed_checkbox' ) );
+
+            woocommerce_form_field( 'ndia_managed_checkbox', array(
+                'type'  => 'text',
+                'required' =>'required',
+                'class' => array( 'ndia-managed-text form-row-first' ),
+                'label' => __( 'Enter Neck Size in cm' ),
+            ), $checkout->get_value( 'ndia_managed_checkbox' ) );
+            
+           
+            
+           
+            
+                echo '</div>';
         $x++;
     }
 

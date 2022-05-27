@@ -744,3 +744,30 @@ function isotopeInitv3() {
         // filterSelectActive()
     });
 }
+
+jQuery(document).ready(function($){
+    var url = window.location.href;
+    url = url.split("/");
+    url = url[url.length-2];
+    if(url == "login") // You can set url[] according to slash parameter wise
+    {
+    $("#customer_login .u-column2").remove(); //Remove Registration Div
+    }
+    if(url == "register")
+    {
+    $("#customer_login .u-column1").remove(); // Remove Login Div
+    }
+    })
+
+
+    jQuery(document).ready(function( $ ){
+        $('.self-managed-checkbox input[type="checkbox"]').on('click', function () {
+              $('.self-managed-text').slideToggle();
+        });
+        $('.plan-managed-checkbox input[type="checkbox"]').on('click', function () {
+              $('.plan-managed-text').slideToggle();
+        });
+        $('.ndia-managed-checkbox input[type="checkbox"]').on('click', function () {
+              $('.ndia-managed-text').slideToggle();
+        });
+    });

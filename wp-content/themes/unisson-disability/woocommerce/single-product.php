@@ -23,7 +23,7 @@ get_header( 'shop' ); ?>
 <section class="section pageheader--section">
     <div class="container">
         <div class="pageheader">
-			<?php
+            <?php
 			/**
 			 * woocommerce_before_main_content hook.
 			 *
@@ -42,73 +42,7 @@ get_header( 'shop' ); ?>
             <div class="row">
                 <?php while ( have_posts() ) : ?>
                 <?php the_post(); ?>
-                <div class="col-lg-6 productsec--col-media">
-                    <div class="productsec--media">
-                        <div class="productsec--media-primary">
-                            <div class="productsec--media-primary-slider">
-                                <?php $attachment_ids = $product->get_gallery_attachment_ids(); ?>
-                                <?php  foreach( $attachment_ids as $attachment_id ) {
-      										  $image_link =wp_get_attachment_url( $attachment_id ); ?>
-                                <div class="item">
-                                    <div class="media-item">
-                                        <?php  echo '<img src="' . $image_link . '">';?>
-                                    </div>
-                                </div>
-                                <?php } ?>
-                            </div>
-                            <div class="slider-navwrap">
-                                <span class="slidenav-prev"></span>
-                                <span class="slidenav-next"></span>
-                                <div class="num">1/4</div>
-                            </div>
-                        </div>
-                        <div class="productsec--media-secondary dis-md">
-                            <div class="productsec--media-secondary-slider">
-                                <?php  foreach( $attachment_ids as $attachment_id ) {
-      										  $image_link =wp_get_attachment_url( $attachment_id ); ?>
-                                <div class="item">
-                                    <div class="media-item">
-                                        <?php  echo '<img src="' . $image_link . '">';?>
-                                    </div>
-                                </div>
-                                <?php } ?>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 productsec--col-text">
-                    <div class="productsec--text">
-                        <h6 class="heading-location">Beaumont Hills</h6>
-                        <h2 class="heading-title">Urban Adventurers</h2>
-                        <h5 class="heading-date">February 28th - May 28th 2022</h5>
-                        <div class="productsec-description">
-                            <p>Unisson Disability host an Urban Adventurers Weekly Program for people with a
-                                physical, psychosocial, and/or intellectual disability. Participants will have
-                                the opportunity to socialise with similar aged people (18 years and over) with
-                                support to enjoy relevant and fun activities.</p>
-                            <p>Total costs is made up of $50 activity costs and $80 support cost. Please note,
-                                support costs will be invoiced directly after the program has been completed.
-                            </p>
-                            <p><strong>The program runs over a 12-week period, each week consisting of a
-                                    different activity, for more details see below.</strong></p>
-                        </div>
-                        <div class="price">
-                            <p>Total cost</p>
-                            <p class="price-num">$130</p>
-                        </div>
-                        <div class="productsec--footer">
-                            <div class="product--num">
-                                <div class="product--num-minus"></div>
-                                <input type="number" class="product--num-input" min="1" max="25" value="1">
-                                <div class="product--num-plus"></div>
-                            </div>
-                            <button class="btn btn-orange product-addtocart">
-                                <div class="icon"><img src="<?php echo get_template_directory_uri();?>/./images/icons/icon-cart-white.svg" alt=""></div>
-                                <div class="text">Add to Cart</div>
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                <?php wc_get_template_part( 'content', 'single-product' ); ?>
                 <?php endwhile; ?>
             </div>
         </div>
@@ -123,283 +57,110 @@ get_header( 'shop' ); ?>
                     <div class="customtab--nav-preview">More information - <span
                             class="customtab--nav-active">Itenerary</span></div>
                     <ul class="customtab--nav-list">
-                        <li><a href="tab1">Program Overview</a></li>
-                        <li class="active"><a href="tab2">Itinerary</a></li>
-                        <li><a href="tab3">How Pricing Works</a></li>
-                        <li><a href="tab4">Terms &amp; Conditions</a></li>
-                        <li><a href="tab5">FAQs</a></li>
+                        <?php
+                        $i = 1; // Set the increment variable
+                        // loop through the rows of data for the tab header
+                        while ( have_rows('tab') ) : the_row();
+                        $tab_title = get_sub_field('tab_title');?>
+                        <li><a class="<?php if($i == 1) echo 'active';?>" href="tab<?php echo $i ?>">
+                                <?php echo $tab_title; ?></a></li>
+                        <?php   
+                        $i++; // Increment the increment variable
+                        endwhile; //End the loop 
+                        ?>
                     </ul>
                 </div>
-                <div class="customtab--content">
-                    <div class="customtab--content-item" data-id="tab1">
-                        <h2>Program overview</h2>
-                    </div>
-                    <div class="customtab--content-item active" data-id="tab2">
-                        <h2 class="heading-text color-purple">Activity program week schedule</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                            irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                            pariatur.</p>
-
+                <div class="customtab--content">                   
+                    <?php
+                    $x = 1; // Set the increment variable
+                    // loop through the rows of data for the tab header
+                    while ( have_rows('tab') ) : the_row();
+                    $tab_title = get_sub_field('tab_title');
+                    $heading = get_sub_field('heading');
+                    $blurb = get_sub_field('blurb');
+                    
+                    ?>
+                    <div class="customtab--content-item <?php if($x == 1) echo 'active';?>"
+                        data-id="tab<?php echo $x ?>">
+                        <?php if($heading): ?>
+                        <h2 class="heading-text color-purple"><?php echo $heading; ?></h2>
+                        <?php endif; ?>
+                        <?php if($blurb): ?>
+                        <p><?php echo $blurb; ?></p>
+                        <?php endif; ?>
                         <div class="customaccord">
-                            <div class="customaccord--item active">
+                        <?php
+                        $z = 1; // Set the increment variable
+                            // loop through the rows of data for the tab header
+                            while ( have_rows('accordion') ) : the_row();
+                            $heading = get_sub_field('heading');
+                            $blurb = get_sub_field('blurb');
+                            $image = get_sub_field('image');
+                            
+                            ?>
+                            <div class="customaccord--item <?php if($z == 1) echo 'active';?>">
+                                <?php if($heading): ?>
                                 <div class="customaccord--item-header">
-                                    <h2><span>Week 1</span> - Meet and greet</h2>
+                                    <h2><?php echo $heading; ?></h2>
                                 </div>
+                                <?php endif; ?>
                                 <div class="customaccord--item-body">
                                     <div class="row">
+                                        <?php if($image): ?>
                                         <div class="col-lg-5">
                                             <div class="media">
-                                                <img src="<?php echo get_template_directory_uri();?>/./images/accord-img.png" alt="">
+                                                <img src="<?php echo $image['url']; ?>"
+                                                    alt="">
                                             </div>
                                         </div>
+                                        <?php endif; ?>
+                                        <?php if($blurb): ?>
                                         <div class="col-lg-7">
-                                            <h4>When</h4>
-                                            <p>Saturday March 5: 9:00am – 3:00pm</p>
-                                            <h4>Schedule</h4>
-                                            <ul>
-                                                <li>Meet and greet at Beaumont Hills Community Access</li>
-                                                <li>Visit the local grocery store to purchase items for the BBQ
-                                                </li>
-                                                <li>Head out to Cattai National Park</li>
-                                                <li>Lunch time</li>
-                                                <li>Afternoon of games</li>
-                                                <li>Return to Beaumont Hills Community Access</li>
-                                            </ul>
-                                            <h4>Where</h4>
-                                            <p>Unisson Disability Community Access Beaumont Hills 12-14 Cressy
-                                                Ave, Beaumont Hills NSW 2155</p>
-                                            <h4>Cost</h4>
-                                            <p>$10</p>
-                                            <h4>What to bring</h4>
-                                            <p>Hat, sunscreen, water bottle and comfortable shoes</p>
-                                            <h4>Goal</h4>
-                                            <p>Social networking, cooking skills, grocery shopping, managing a
-                                                shopping list and handling money.</p>
+                                        <?php echo $blurb; ?>
                                         </div>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                             </div>
-                            <div class="customaccord--item">
-                                <div class="customaccord--item-header">
-                                    <h2><span>Week 2</span> - Meet and greet</h2>
-                                </div>
-                                <div class="customaccord--item-body">
-                                    <div class="row">
-                                        <div class="col-lg-5">
-                                            <div class="media">
-                                                <img src="<?php echo get_template_directory_uri();?>/./images/accord-img.png" alt="">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-7">
-                                            <h4>When</h4>
-                                            <p>Saturday March 5: 9:00am – 3:00pm</p>
-                                            <h4>Schedule</h4>
-                                            <ul>
-                                                <li>Meet and greet at Beaumont Hills Community Access</li>
-                                                <li>Visit the local grocery store to purchase items for the BBQ
-                                                </li>
-                                                <li>Head out to Cattai National Park</li>
-                                                <li>Lunch time</li>
-                                                <li>Afternoon of games</li>
-                                                <li>Return to Beaumont Hills Community Access</li>
-                                            </ul>
-                                            <h4>Where</h4>
-                                            <p>Unisson Disability Community Access Beaumont Hills 12-14 Cressy
-                                                Ave, Beaumont Hills NSW 2155</p>
-                                            <h4>Cost</h4>
-                                            <p>$10</p>
-                                            <h4>What to bring</h4>
-                                            <p>Hat, sunscreen, water bottle and comfortable shoes</p>
-                                            <h4>Goal</h4>
-                                            <p>Social networking, cooking skills, grocery shopping, managing a
-                                                shopping list and handling money.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="customaccord--item">
-                                <div class="customaccord--item-header">
-                                    <h2><span>Week 3</span> - Meet and greet</h2>
-                                </div>
-                                <div class="customaccord--item-body">
-                                    <div class="row">
-                                        <div class="col-lg-5">
-                                            <div class="media">
-                                                <img src="<?php echo get_template_directory_uri();?>/./images/accord-img.png" alt="">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-7">
-                                            <h4>When</h4>
-                                            <p>Saturday March 5: 9:00am – 3:00pm</p>
-                                            <h4>Schedule</h4>
-                                            <ul>
-                                                <li>Meet and greet at Beaumont Hills Community Access</li>
-                                                <li>Visit the local grocery store to purchase items for the BBQ
-                                                </li>
-                                                <li>Head out to Cattai National Park</li>
-                                                <li>Lunch time</li>
-                                                <li>Afternoon of games</li>
-                                                <li>Return to Beaumont Hills Community Access</li>
-                                            </ul>
-                                            <h4>Where</h4>
-                                            <p>Unisson Disability Community Access Beaumont Hills 12-14 Cressy
-                                                Ave, Beaumont Hills NSW 2155</p>
-                                            <h4>Cost</h4>
-                                            <p>$10</p>
-                                            <h4>What to bring</h4>
-                                            <p>Hat, sunscreen, water bottle and comfortable shoes</p>
-                                            <h4>Goal</h4>
-                                            <p>Social networking, cooking skills, grocery shopping, managing a
-                                                shopping list and handling money.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="customaccord--item">
-                                <div class="customaccord--item-header">
-                                    <h2><span>Week 4</span> - Meet and greet</h2>
-                                </div>
-                                <div class="customaccord--item-body">
-                                    <div class="row">
-                                        <div class="col-lg-5">
-                                            <div class="media">
-                                                <img src="<?php echo get_template_directory_uri();?>/./images/accord-img.png" alt="">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-7">
-                                            <h4>When</h4>
-                                            <p>Saturday March 5: 9:00am – 3:00pm</p>
-                                            <h4>Schedule</h4>
-                                            <ul>
-                                                <li>Meet and greet at Beaumont Hills Community Access</li>
-                                                <li>Visit the local grocery store to purchase items for the BBQ
-                                                </li>
-                                                <li>Head out to Cattai National Park</li>
-                                                <li>Lunch time</li>
-                                                <li>Afternoon of games</li>
-                                                <li>Return to Beaumont Hills Community Access</li>
-                                            </ul>
-                                            <h4>Where</h4>
-                                            <p>Unisson Disability Community Access Beaumont Hills 12-14 Cressy
-                                                Ave, Beaumont Hills NSW 2155</p>
-                                            <h4>Cost</h4>
-                                            <p>$10</p>
-                                            <h4>What to bring</h4>
-                                            <p>Hat, sunscreen, water bottle and comfortable shoes</p>
-                                            <h4>Goal</h4>
-                                            <p>Social networking, cooking skills, grocery shopping, managing a
-                                                shopping list and handling money.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="customaccord--item">
-                                <div class="customaccord--item-header">
-                                    <h2><span>Week 5</span> - Meet and greet</h2>
-                                </div>
-                                <div class="customaccord--item-body">
-                                    <div class="row">
-                                        <div class="col-lg-5">
-                                            <div class="media">
-                                                <img src="<?php echo get_template_directory_uri();?>/./images/accord-img.png" alt="">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-7">
-                                            <h4>When</h4>
-                                            <p>Saturday March 5: 9:00am – 3:00pm</p>
-                                            <h4>Schedule</h4>
-                                            <ul>
-                                                <li>Meet and greet at Beaumont Hills Community Access</li>
-                                                <li>Visit the local grocery store to purchase items for the BBQ
-                                                </li>
-                                                <li>Head out to Cattai National Park</li>
-                                                <li>Lunch time</li>
-                                                <li>Afternoon of games</li>
-                                                <li>Return to Beaumont Hills Community Access</li>
-                                            </ul>
-                                            <h4>Where</h4>
-                                            <p>Unisson Disability Community Access Beaumont Hills 12-14 Cressy
-                                                Ave, Beaumont Hills NSW 2155</p>
-                                            <h4>Cost</h4>
-                                            <p>$10</p>
-                                            <h4>What to bring</h4>
-                                            <p>Hat, sunscreen, water bottle and comfortable shoes</p>
-                                            <h4>Goal</h4>
-                                            <p>Social networking, cooking skills, grocery shopping, managing a
-                                                shopping list and handling money.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="customaccord--item">
-                                <div class="customaccord--item-header">
-                                    <h2><span>Week 6</span> - Meet and greet</h2>
-                                </div>
-                                <div class="customaccord--item-body">
-                                    <div class="row">
-                                        <div class="col-lg-5">
-                                            <div class="media">
-                                                <img src="<?php echo get_template_directory_uri();?>/./images/accord-img.png" alt="">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-7">
-                                            <h4>When</h4>
-                                            <p>Saturday March 5: 9:00am – 3:00pm</p>
-                                            <h4>Schedule</h4>
-                                            <ul>
-                                                <li>Meet and greet at Beaumont Hills Community Access</li>
-                                                <li>Visit the local grocery store to purchase items for the BBQ
-                                                </li>
-                                                <li>Head out to Cattai National Park</li>
-                                                <li>Lunch time</li>
-                                                <li>Afternoon of games</li>
-                                                <li>Return to Beaumont Hills Community Access</li>
-                                            </ul>
-                                            <h4>Where</h4>
-                                            <p>Unisson Disability Community Access Beaumont Hills 12-14 Cressy
-                                                Ave, Beaumont Hills NSW 2155</p>
-                                            <h4>Cost</h4>
-                                            <p>$10</p>
-                                            <h4>What to bring</h4>
-                                            <p>Hat, sunscreen, water bottle and comfortable shoes</p>
-                                            <h4>Goal</h4>
-                                            <p>Social networking, cooking skills, grocery shopping, managing a
-                                                shopping list and handling money.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <?php   
+                            $z++; // Increment the increment variable
+                            endwhile; //End the loop 
+                            ?>
                         </div>
                     </div>
-                    <div class="customtab--content-item" data-id="tab3">
-                        <h2>How Pricing Works</h2>
-                    </div>
-                    <div class="customtab--content-item" data-id="tab4">
-                        <h2>Terms &amp; Conditions</h2>
-                    </div>
-                    <div class="customtab--content-item" data-id="tab5">
-                        <h2>FAQs</h2>
-                    </div>
+                    <?php   
+                    $x++; // Increment the increment variable
+                    endwhile; //End the loop 
+                    ?>
+                    
                 </div>
             </div>
         </div>
     </div>
 </section>
 
+<?php
+$enable__disable = get_field('enable__disable');
+$blurb = get_field('blurb');
+$button = get_field('button');
+
+if($enable__disable): 
+  
+?>
 <section class="section ctafooter--section bgcolor-gray">
     <div class="container">
-        <div class="ctafooter bgcolor-orange">
-            <h2 class="heading">Urban adventures brochure</h2>
-            <a href="#" class="btn btn-purple">
-                <div class="icon"><img src="<?php echo get_template_directory_uri();?>/./images/icons/icon-download.svg" alt=""></div>
-                <div class="text">Download</div>
-            </a>
+        <div class="ctafooter">
+            <h2 class="heading"><?php echo $blurb; ?></h2>
+            <?php if($button): ?>
+            <a href="<?php echo $button['url']?>" class="btn btn-purple"><?php echo $button['title']?></a>
+            <?php endif; ?>
         </div>
     </div>
 </section>
+
+
 <?php
+endif;
 		/**
 		 * woocommerce_before_main_content hook.
 		 *

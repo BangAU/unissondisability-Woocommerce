@@ -28,7 +28,10 @@ global $product;
 	do_action( 'woocommerce_after_add_to_cart_quantity' );
 	?>
 
-	<button type="submit" class="single_add_to_cart_button button alt"><?php echo esc_html( $product->single_add_to_cart_text() ); ?></button>
+	<button type="submit" class="btn btn-orange product-addtocart single_add_to_cart_button button alt">
+	<div class="icon"><img src="./images/icons/icon-cart-white.svg" alt=""></div>
+                <div class="text">Add to Cart</div>		
+	</button>
 
 	<?php do_action( 'woocommerce_after_add_to_cart_button' ); ?>
 
@@ -36,3 +39,5 @@ global $product;
 	<input type="hidden" name="product_id" value="<?php echo absint( $product->get_id() ); ?>" />
 	<input type="hidden" name="variation_id" class="variation_id" value="0" />
 </div>
+
+

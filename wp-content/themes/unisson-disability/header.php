@@ -178,10 +178,10 @@
                             <div class="custom-dropdown-list">
                                 <ul>
                                     <li><a
-                                            href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>">Login</a>
+                                            href="<?php echo esc_url( get_page_link( 406 ) ); ?>">Login</a>
                                     </li>
                                     <li><a
-                                            href="<?php echo get_permalink( get_option('woocommerce_myaccount_page_id') ); ?>">Register</a>
+                                            href="<?php echo esc_url( get_page_link( 408 ) ); ?>">Register</a>
                                     </li>
                                 </ul>
                             </div>
