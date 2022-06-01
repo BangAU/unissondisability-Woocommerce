@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
     bannerSlider()
     // custom dropdown
     customDropdown()
+    customCheckboxDropdown()
     // megamenu
     megamenu()
     // toggle sidemenu
@@ -67,8 +68,8 @@ function bannerSlider() {
 function customDropdown() {
     $('.custom-dropdown').each(function () {
         const $this = $(this),
-            btnObj = $this.find('.custom-dropdown-btn'),
-            listObj = $this.find('.custom-dropdown-list');
+            btnObj = $this.find('.custom-dropdown-btn').eq(0),
+            listObj = $this.find('.custom-dropdown-list').eq(0);
 
         btnObj.click(function () {
             if ($this.hasClass('toggled')) {
@@ -90,6 +91,64 @@ function customDropdown() {
                 $this.removeClass('toggled')
             }
         });
+    })
+}
+
+function customCheckboxDropdown() {
+    $('.checkbox-dropdown').each(function () {
+        const $this = $(this),
+            btnObj = $this.find('.checkbox-dropdown-btn').eq(0),
+            btnCheckbox = btnObj.find('input'),
+            listObj = $this.find('.checkbox-dropdown-list').eq(0),
+            childCheckbox = listObj.find('input');
+
+        if (!listObj.length) {
+            $this.addClass('no-list')
+            return;
+        }
+
+        if (btnCheckbox.is(":checked")) {
+            $this.addClass('open');
+            listObj.slideDown();
+        } else {
+            $this.removeClass('open');
+            listObj.slideUp();
+            childCheckbox.prop('checked', false)
+        }
+
+        btnObj.click(function () {
+            console.log('btn obj clicked')
+            if (btnCheckbox.is(":checked")) {
+                $this.addClass('open');
+                listObj.slideDown();
+            } else {
+                $this.removeClass('open');
+                listObj.slideUp();
+                childCheckbox.prop('checked', false)
+            }
+        })
+
+
+        // btnObj.click(function () {
+        //     if ($this.hasClass('toggled')) {
+        //         listObj.slideUp('fast', function () {
+        //             $this.removeClass('toggled');
+        //         })
+        //     } else {
+        //         $this.addClass('toggled');
+        //         listObj.slideDown()
+        //     }
+        // })
+
+        // $(document).mouseup(function (e) {
+        //     var container = $this;
+
+        //     // if the target of the click isn't the container nor a descendant of the container
+        //     if (!container.is(e.target) && container.has(e.target).length === 0) {
+        //         listObj.slideUp();
+        //         $this.removeClass('toggled')
+        //     }
+        // });
     })
 }
 
@@ -482,12 +541,6 @@ function accessibility() {
     });
 }
 
-
-
-$('.priceLowToHigh').click(function () {
-    console.log('henlo')
-})
-
 function isotopeInitv3() {
     if (!$('.programfilter-listing').length) {
         return;
@@ -749,25 +802,10 @@ jQuery(document).ready(function($){
     var url = window.location.href;
     url = url.split("/");
     url = url[url.length-2];
-    if(url == "login") // You can set url[] according to slash parameter wise
-    {
-    $("#customer_login .u-column2").remove(); //Remove Registration Div
+    if(url == "login") {
+        $("#customer_login .u-column2").remove(); //Remove Registration Div
     }
-    if(url == "register")
-    {
-    $("#customer_login .u-column1").remove(); // Remove Login Div
+    if(url == "register"){
+        $("#customer_login .u-column1").remove(); // Remove Login Div
     }
-    })
-
-
-    jQuery(document).ready(function( $ ){
-        $('.self-managed-checkbox input[type="checkbox"]').on('click', function () {
-              $('.self-managed-text').slideToggle();
-        });
-        $('.plan-managed-checkbox input[type="checkbox"]').on('click', function () {
-              $('.plan-managed-text').slideToggle();
-        });
-        $('.ndia-managed-checkbox input[type="checkbox"]').on('click', function () {
-              $('.ndia-managed-text').slideToggle();
-        });
-    });
+})

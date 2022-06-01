@@ -3,9 +3,9 @@ Contributors: ThemeHigh
 Donate link: https://themehigh.com/
 Tags: multistep checkout, multi-step checkout, multi step checkout, woocommerce multistep checkout, woocommerce multi-step checkout, woocommerce multi step checkout, multistep checkout wizard, multi-step checkout wizard, multi step checkout wizard, woocommerce multistep checkout wizard, woocommerce multi-step checkout wizard, woocommerce multi step checkout wizard, checkout wizard, Woocommerce checkout steps
 Requires at least: 5.3
-Tested up to: 5.9
+Tested up to: 6.0
 Requires PHP: 7.0
-Stable tag: 2.0.7
+Stable tag: 2.0.8
 License: GPLv2 or later
 
 MultiStep Checkout for WooCommerce Split up your WooCommerce Checkout form easily into simpler steps.
@@ -173,12 +173,16 @@ Go to Woocommerce > MultiStep Checkout and enable MultiStep Checkout. You can no
 
 == Changelog ==
 
+= 2.0.8 =
+* Added WooCommerce 6.5 compatibility.
+* Added WordPress 6.0 compatibility.
+
 = 2.0.7 =
 * Added option to separate order review and payment steps.
 * Added option to display order review and payment on right side.
 * Added option to display coupon form above payment.
 * Added WooCommerce 6.4.1 compatibility.
-* Added WordPress version - 5.9 compatibility.
+* Added WordPress 5.9 compatibility.
 
 = 2.0.6 =
 * Added new layout (Accordion) for checkout steps.

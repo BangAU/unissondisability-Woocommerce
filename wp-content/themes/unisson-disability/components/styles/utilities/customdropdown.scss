@@ -1,4 +1,5 @@
-.custom-dropdown {
+.custom-dropdown,
+.checkbox-dropdown {
     z-index: 2;
     position: relative;
 
@@ -57,5 +58,43 @@
                 }
             }
         }
+    }
+}
+
+.checkbox-dropdown {
+    &-btn {
+        cursor: pointer;
+
+        &::after {
+            display: none;
+        }
+
+        label {
+            &::after {
+                content: "";
+                display: inline-block;
+                width: 15px;
+                height: 12px;
+                background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNC40NjIiIGhlaWdodD0iOC43MzEiIHZpZXdCb3g9IjAgMCAxNC40NjIgOC43MzEiPg0KICA8cGF0aCBpZD0iUGF0aF8yNDkiIGRhdGEtbmFtZT0iUGF0aCAyNDkiIGQ9Ik0tMjAwMy45Nyw1MzgxLjVsNS4xMSw1LjExLDUuMTA5LTUuMTEiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0xOTkxLjYzIDUzODguMTEpIHJvdGF0ZSgxODApIiBmaWxsPSJub25lIiBzdHJva2U9IiM3MDcwNzAiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIzIi8+DQo8L3N2Zz4NCg==");
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: contain;
+                margin-left: 15.4px;
+            }
+        }
+    }
+
+    &.no-list {
+        .checkbox-dropdown-btn label::after {
+            display: none;
+        }
+    }
+
+    &-list {
+        position: relative;
+        top: auto;
+        right: auto;
+        min-width: auto;
+        width: 100%;
     }
 }

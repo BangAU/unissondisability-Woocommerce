@@ -1,5 +1,21 @@
 <?php 
 
+// add_action( 'woocommerce_edit_account_form', 'display_checkbox_in_account_page' );
+// function display_checkbox_in_account_page() {
+
+//     woocommerce_form_field( 'newsletter-account', array(
+//         'type'  => 'text',
+//         'class' => array('form-row-wide'),
+//         'label' => __( 'Subscribe me.', 'woocommerce' ),
+//         'clear' => true,
+//     ), get_user_meta(get_current_user_id(), 'newsletter-account', true ) );
+// }
+
+// add_action( 'woocommerce_save_account_details', 'save_checkbox_value_to_account_details', 10, 1 );
+// function save_checkbox_value_to_account_details( $user_id ) {
+//     $value = isset( $_POST['newsletter-account'] ) ? '1' : '0';
+//     update_user_meta( $user_id, 'newsletter-account', $value );
+// }
 
 // //Custom WooCommerce Checkout Fields based on Quantity
 // add_action( 'woocommerce_before_order_notes', 'person_details' );
@@ -74,8 +90,10 @@ foreach(WC()->cart->get_cart() as $item => $values) {
     $_product = $values['data']->post;
     $quantity = $values['quantity'];
     $x = 1;
+    
 
     while ($x <= $quantity) {
+        
 
          echo '<div class="Attendee-group"><h3>' . $_product->post_title .  __(' - Attendee ' . $x . '') .'</h3>';
        //firstname
@@ -85,7 +103,7 @@ foreach(WC()->cart->get_cart() as $item => $values) {
             'label'         => __('First Name '),
             'placeholder'   => __(''),
             'required' => true,
-            ), $checkout->get_value( 'attendee_first_name_' . $x ));
+            ), $user, $checkout->get_value( 'attendee_first_name_' . $x ) );
         // lastname
         woocommerce_form_field( 'attendee_last_name_' . $x, array(
             'type'          => 'text',
@@ -182,60 +200,279 @@ foreach(WC()->cart->get_cart() as $item => $values) {
             ), $checkout->get_value( 'attendee_postcode_' . $x ));
 
         echo '</div>';
-      
-      
         echo '<div class="Attendee-group"><h3>Funding Type</h3>';
-       //self manage
-
-            woocommerce_form_field( 'self_managed_checkbox', array(
-                'type'  => 'checkbox',
-                'class' => array( 'self-managed-checkbox form-row-wide' ),
-                'label' => __( 'Self-managed' ),
+		echo '<div class="checkbox">';
+        woocommerce_form_field( 'funding_type_checkbox_self_managed_', array(
+                'type' => 'checkbox',
+                'class' => array('funding-type-checkbox-self-managed form-row-wide'),
                 'required' => true,
-            ), $checkout->get_value( 'self_managed_checkbox' ) );
-
-            woocommerce_form_field( 'self_managed_textbox', array(
-                'type'  => 'text',
-                'required' =>'required',
-                'class' => array( 'self-managed-text form-row-first' ),
-                'label' => __( 'Enter Neck Size in cm' ),
-            ), $checkout->get_value( 'fitting_neck_textbox' ) );
+			    'label'         => __('Self Managed ')
+            ), $checkout->get_value( 'funding_type_checkbox_self_managed_' ) );
+		echo '</div>';
+		echo '<div class="checkbox">';
+		 woocommerce_form_field( 'funding_type_checkbox_plan_managed_', array(
+                'type' => 'checkbox',
+                'class' => array('funding_type_radio form-row-wide'),
+                'required' => true,
+			    'label'         => __('Plan Managed ')
+            ), $checkout->get_value( 'funding_type_checkbox_plan_managed_' ) );
+		echo '</div>';
+		echo '<div class="checkbox">';
+		 woocommerce_form_field( 'funding_type_checkbox_ndia_managed_', array(
+                'type' => 'checkbox',
+                'class' => array('funding_type_radio form-row-wide'),
+                'required' => true,
+			    'label'         => __('NDIA Managed ')
+            ), $checkout->get_value( 'funding_type_checkbox_ndia_managed_' ) );
+			echo '</div>';
+         echo '</div>';
             
-            //Plan-managed
-
-            woocommerce_form_field( 'plan_managed_checkbox', array(
-                'type'  => 'checkbox',
-                'class' => array( 'plan-managed-checkbox form-row-wide' ),
-                'label' => __( 'Plan-managed' ),
-            ), $checkout->get_value( 'plan_managed_checkbox' ) );
-
-            woocommerce_form_field( 'plan_managed_textbox', array(
-                'type'  => 'text',
-                'required' =>'required',
-                'class' => array( 'plan-managed-text form-row-first' ),
-                'label' => __( 'Enter Neck Size in cm' ),
-            ), $checkout->get_value( 'plan_managed_textbox' ) );
+		
+            echo '<div class="self_manage_funding_text Attendee-group">';
             
-            //INDIA-managed
+           echo '<div class=" funding-type-description"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut               enim ad minim veniam, quis nostrud exercitation ullamco labori</p></div>';
+                //self manage
+                echo '<div class="Attendee-group"><h4>Self-managed details for invoicing</h4></div>';
+                //firstname
+                woocommerce_form_field( 'attendee_first_name_' . $x, array(
+                    'type'          => 'text',
+                    'class'         => array('form-row-first'),
+                    'label'         => __('First Name '),
+                    'placeholder'   => __(''),
+                    'required' => true,
+                    ), $user, $checkout->get_value( 'attendee_first_name_' . $x ) );
+                // lastname
+                woocommerce_form_field( 'attendee_last_name_' . $x, array(
+                    'type'          => 'text',
+                    'class'         => array('form-row-last'),
+                    'label'         => __('Last Name '),
+                    'placeholder'   => __(''),
+                    'required' => true,
+                    ), $checkout->get_value( 'attendee_last_name_' . $x ));
+                //email
+                woocommerce_form_field( 'attendee_email_' . $x, array(
+                    'type'          => 'email',
+                    'class'         => array('form-row-wide'),
+                    'label'         => __('Email '),
+                    'placeholder'   => __(''),
+                    'required' => true,
+                    ), $checkout->get_value( 'attendee_email_' . $x ));
+                
+                //phone
+                woocommerce_form_field( 'attendee_phone_' . $x, array(
+                    'type'          => 'text',
+                    'class'         => array('form-row-wide'),
+                    'label'         => __('Phone '),
+                    'placeholder'   => __(''),
+                    'required' => true,
+                    ), $checkout->get_value( 'attendee_phone_' . $x ));
+                //DOB
+                woocommerce_form_field( 'attendee_dob_' . $x, array(
+                    'type'          => 'date',
+                    'class'         => array('form-row-first'),
+                    'label'         => __('DOB '),
+                    'placeholder'   => __(''),
+                    'required' => true,
+                    ), $checkout->get_value( 'attendee_dob_' . $x ));
+                //gender
+                woocommerce_form_field( 'attendee_gender_' . $x, array(
+                    'type' => 'select',
+                    'class' => array('form-row-last'),
+                    'label' => __('Gender'),
+                    'required' => true,
+                    'options' => array(
+                    'blank'  => __( '--'),
+                    'Male' => __( 'Male'),
+                    'Female' => __( 'Female'),
+                    'Others' => __( 'Others' )
+                    )
+                    ), $checkout->get_value( 'attendee_gender_' . $x ));
+                //Address one 
+                woocommerce_form_field( 'attendee_address_1_' . $x, array(
+                    'type'          => 'text',
+                    'class'         => array('form-row-wide'),
+                    'label'         => __('Address '),
+                    'placeholder'   => __(''),
+                    'required' => true,
+                    ), $checkout->get_value( 'attendee_address_1_' . $x ));
+                //Address 2
+                woocommerce_form_field( 'attendee_address_2_' . $x, array(
+                    'type'          => 'text',
+                    'class'         => array('form-row-wide'),
+                    'label'         => __('Apartment, Suite, etc. '),
+                    'placeholder'   => __(''),
+                    ), $checkout->get_value( 'attendee_address_2_' . $x ));
+                //City
+                woocommerce_form_field( 'attendee_city_' . $x, array(
+                    'type'          => 'text',
+                    'class'         => array('form-row-wide address-field'),
+                    'label'         => __('Suburb/City '),
+                    'placeholder'   => __(''),
+                    ), $checkout->get_value( 'attendee_city_' . $x ));
+                //State
+                woocommerce_form_field( 'attendee_state_' . $x, array(
+                    'type' => 'select',
+                    'class' => array('form-row-wide address-field'),
+                    'label' => __('State/Territory'),
+                    'required' => true,
+                    'options' => array(
+                    'blank'  => __( '--'),
+                    'Australian Capital Territory' => __( 'Australian Capital Territory'),
+                    'New South Wales' => __( 'New South Wales'),
+                    'Northern Territory' => __( 'Northern Territory' ),
+                    'Queensland' => __( 'Queensland' ),
+                    'Tasmania' => __( 'South Australia' ),
+                    'Northern Territory' => __( 'Tasmania' ),
+                    'Victoria' => __( 'Victoria' ),
+                    'Western Australia' => __( 'Western Australia' ),
+                    )
+                    ), $checkout->get_value( 'attendee_gender_' . $x ));
+                //Passcode
+                woocommerce_form_field( 'attendee_postcode_' . $x, array(
+                    'type'          => 'text',
+                    'class'         => array('form-row-wide address-field'),
+                    'label'         => __('Postcode '),
+                    'placeholder'   => __(''),
+                    'required' => true,
+                    ), $checkout->get_value( 'attendee_postcode_' . $x ));
+        
+               
+                
+                
+            echo '</div>';
 
-            woocommerce_form_field( 'ndia_managed_checkbox', array(
-                'type'  => 'checkbox',
-                'class' => array( 'india-managed-checkbox form-row-wide' ),
-                'label' => __( 'NDIA Managed' ),
-            ), $checkout->get_value( 'ndia_managed_checkbox' ) );
 
-            woocommerce_form_field( 'ndia_managed_checkbox', array(
-                'type'  => 'text',
-                'required' =>'required',
-                'class' => array( 'ndia-managed-text form-row-first' ),
-                'label' => __( 'Enter Neck Size in cm' ),
-            ), $checkout->get_value( 'ndia_managed_checkbox' ) );
+                    echo '<div class="plan-managed-funding-text Attendee-group">';
+                        echo '<div class="plan-managed-funding-text funding-type-description"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco labori</p></div>';
+                        //self manage
+                        echo '<div class="plan-managed-funding-text Attendee-group"><h4>Plan Managed</h4></div>';
+                        //firstname
+                        woocommerce_form_field( 'attendee_first_name_' . $x, array(
+                            'type'          => 'text',
+                            'class'         => array('plan-managed-funding-text form-row-first'),
+                            'label'         => __('First Name '),
+                            'placeholder'   => __(''),
+                            'required' => true,
+                            ), $user, $checkout->get_value( 'attendee_first_name_' . $x ) );
+                        // lastname
+                        woocommerce_form_field( 'attendee_last_name_' . $x, array(
+                            'type'          => 'text',
+                            'class'         => array('plan-managed-funding-text form-row-last'),
+                            'label'         => __('Last Name '),
+                            'placeholder'   => __(''),
+                            'required' => true,
+                            ), $checkout->get_value( 'attendee_last_name_' . $x ));
+                        //email
+                        woocommerce_form_field( 'attendee_email_' . $x, array(
+                            'type'          => 'email',
+                            'class'         => array('plan-managed-funding-text form-row-wide'),
+                            'label'         => __('Email '),
+                            'placeholder'   => __(''),
+                            'required' => true,
+                            ), $checkout->get_value( 'attendee_email_' . $x ));
+                        
+                        //phone
+                        woocommerce_form_field( 'attendee_phone_' . $x, array(
+                            'type'          => 'text',
+                            'class'         => array('plan-managed-funding-text form-row-wide'),
+                            'label'         => __('Phone '),
+                            'placeholder'   => __(''),
+                            'required' => true,
+                            ), $checkout->get_value( 'attendee_phone_' . $x ));
+                        //DOB
+                        woocommerce_form_field( 'attendee_dob_' . $x, array(
+                            'type'          => 'date',
+                            'class'         => array('atteplan-managed-funding-text form-row-first'),
+                            'label'         => __('DOB '),
+                            'placeholder'   => __(''),
+                            'required' => true,
+                            ), $checkout->get_value( 'attendee_dob_' . $x ));
+                        //gender
+                        woocommerce_form_field( 'attendee_gender_' . $x, array(
+                            'type' => 'select',
+                            'class' => array('plan-managed-funding-text form-row-last'),
+                            'label' => __('Gender'),
+                            'required' => true,
+                            'options' => array(
+                            'blank'  => __( '--'),
+                            'Male' => __( 'Male'),
+                            'Female' => __( 'Female'),
+                            'Others' => __( 'Others' )
+                            )
+                            ), $checkout->get_value( 'attendee_gender_' . $x ));
+                        //Address one 
+                        woocommerce_form_field( 'attendee_address_1_' . $x, array(
+                            'type'          => 'text',
+                            'class'         => array('plan-managed-funding-text form-row-wide'),
+                            'label'         => __('Address '),
+                            'placeholder'   => __(''),
+                            'required' => true,
+                            ), $checkout->get_value( 'attendee_address_1_' . $x ));
+                        //Address 2
+                        woocommerce_form_field( 'attendee_address_2_' . $x, array(
+                            'type'          => 'text',
+                            'class'         => array('plan-managed-funding-text form-row-wide'),
+                            'label'         => __('Apartment, Suite, etc. '),
+                            'placeholder'   => __(''),
+                            ), $checkout->get_value( 'attendee_address_2_' . $x ));
+                        //City
+                        woocommerce_form_field( 'attendee_city_' . $x, array(
+                            'type'          => 'text',
+                            'class'         => array('plan-managed-funding-text form-row-wide address-field'),
+                            'label'         => __('Suburb/City '),
+                            'placeholder'   => __(''),
+                            ), $checkout->get_value( 'attendee_city_' . $x ));
+                        //State
+                        woocommerce_form_field( 'attendee_state_' . $x, array(
+                            'type' => 'select',
+                            'class' => array('plan-managed-funding-text form-row-wide address-field'),
+                            'label' => __('State/Territory'),
+                            'required' => true,
+                            'options' => array(
+                            'blank'  => __( '--'),
+                            'Australian Capital Territory' => __( 'Australian Capital Territory'),
+                            'New South Wales' => __( 'New South Wales'),
+                            'Northern Territory' => __( 'Northern Territory' ),
+                            'Queensland' => __( 'Queensland' ),
+                            'Tasmania' => __( 'South Australia' ),
+                            'Northern Territory' => __( 'Tasmania' ),
+                            'Victoria' => __( 'Victoria' ),
+                            'Western Australia' => __( 'Western Australia' ),
+                            )
+                            ), $checkout->get_value( 'attendee_gender_' . $x ));
+                        //Passcode
+                        woocommerce_form_field( 'attendee_postcode_' . $x, array(
+                            'type'          => 'text',
+                            'class'         => array('plan-managed-funding-text form-row-wide address-field'),
+                            'label'         => __('Postcode '),
+                            'placeholder'   => __(''),
+                            'required' => true,
+                            ), $checkout->get_value( 'attendee_postcode_' . $x ));
+                
+                        
+                        
+                    echo '</div>';
+
+
+            echo '<div class="ndia-managed-funding-text Attendee-group">';
+                echo '<div class="ndia-managed-funding-text funding-type-description"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco labori</p></div>';
+                //self manage
+                echo '<div class="ndia-managed-funding-text Attendee-group"><h4>NDIA-managed details </h4></div>';
+                //firstname
+                woocommerce_form_field( 'attendee_first_name_' . $x, array(
+                    'type'          => 'text',
+                    'class'         => array('ndia-managed-funding-text form-row-first'),
+                    'label'         => __('NDIA Number (If applicable) '),
+                    'placeholder'   => __(''),
+                    'required' => true,
+                    ), $user, $checkout->get_value( 'attendee_first_name_' . $x ) );
+             
+            echo '</div>';
+
             
-           
+
+
             
-           
-            
-                echo '</div>';
         $x++;
     }
 
@@ -307,9 +544,10 @@ foreach(WC()->cart->get_cart() as $item => $values) {
 	$_product = $values['data']->post;
     $quantity = $values['quantity'];
     $x = 1;
-	 echo '<div class="Attendee-group"><h3>' . $_product->post_title .  __(' - Attendee ' . $x . '') .'</h3>';
+echo '<div class="Attendee-group"><h3>' . $_product->post_title .  __(' - Attendee ' . $x . '') .'</h3>';
 $keys[] = 'First of Attendee'.$i;
 $keys[] = 'Last of Attendee'.$i;
+echo '</div>';
 }
 }	
 return $keys;
@@ -342,3 +580,5 @@ return $keys;
 // }	
 // return $keys;
 }
+
+

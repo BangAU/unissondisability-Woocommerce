@@ -21,6 +21,17 @@ function unisson_disability_body_classes( $classes ) {
 	if ( ! is_active_sidebar( 'sidebar-1' ) ) {
 		$classes[] = 'no-sidebar';
 	}
+	
+	if (  is_user_logged_in() ) {
+		$classes[] = 'order-pages';
+	}
+	if (  is_page('login') ) {
+		$classes[] = 'page-login';
+	}
+	
+	if (  is_page('register') ) {
+		$classes[] = 'page-register';
+	}
 
 	return $classes;
 }

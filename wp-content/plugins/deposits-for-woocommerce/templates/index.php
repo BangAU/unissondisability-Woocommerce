@@ -1,2 +1,0 @@
-<?php
-//___ is golden ?

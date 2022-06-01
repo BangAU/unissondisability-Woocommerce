@@ -23,39 +23,65 @@
                                 ?>
                             <li>
                                 <div class="checkbox">
-                                    <input id="<?php echo $category->slug; ?>" type="checkbox" value="<?php echo $category->slug; ?>">
+                                    <input id="<?php echo $category->slug; ?>" type="checkbox"
+                                        value="<?php echo $category->slug; ?>">
                                     <label for="<?php echo $category->slug; ?>"><?php echo $category->name; ?></label>
                                 </div>
                             </li>
-                            <!-- <li>
-                                <div class="checkbox">
-                                    <input id="lga<?php// echo $count; ?>" type="checkbox" value="<?php// echo $category->slug; ?>">
-                                    <label for="lga<?php //echo $count; ?>"><?php// echo $category->name; ?></label>
-                                </div>
-                            </li> -->
                             <?php } 
-                             }?>
+                            ?>
 
                         </ul>
+                        <?php } ?>
                     </div>
                 </div>
                 <div class="custom-dropdown">
                     <div class="custom-dropdown-btn">Location</div>
                     <div class="custom-dropdown-list">
+
                         <ul>
-                        <?php $product_locations = get_terms( 'pa_location', $cat_args );
-                         if( !empty($product_locations) ){ ?>
-                          <?php  foreach ($product_locations as $key => $location) { 
-                              $count++;?>
+                            <?php  $terms = get_terms(array('taxonomy'=> 'location','hide_empty' => false, ));  
+                         //    $count = 0;
+                        foreach ( $terms as $term ) {
+                            // $count++;
+                            if ($term->parent == 0 ) {
+                        ?>
                             <li>
-                                <div class="checkbox">
-                                    <input id="<?php echo $location->slug; ?>" type="checkbox" value="<?php echo $location->slug; ?>">
-                                    <label for="<?php echo $location->slug; ?>"><?php echo $location->name; ?></label>
+                                <div class="checkbox-dropdown">
+                                    <div class="checkbox-dropdown-btn">
+                                        <div class="checkbox">
+                                            <input id="<?php echo $term->slug; ?>" type="checkbox"
+                                                value="<?php echo $term->slug; ?>">
+                                            <label for="<?php echo $term->slug; ?>"><?php echo $term->name; ?></label>
+                                        </div>
+                                    </div>
+                                    <?php 
+                                $subterms = get_terms(array('taxonomy'=> 'location','hide_empty' => false,'parent'=> $term->term_id));
+                                if($subterms): ?>
+                                    <div class="checkbox-dropdown-list">
+                                        <ul>
+                                            <?php  
+                                            foreach ($subterms as $key => $value) { 
+                                                ?>
+                                            <li>
+                                                <div class="checkbox">
+                                                    <input id="<?php echo $value->slug; ?>" type="checkbox"
+                                                        value="<?php echo $value->slug; ?>">
+                                                    <label
+                                                        for="<?php echo $value->slug; ?>"><?php echo $value->name; ?></label>
+                                                </div>
+                                            </li>
+                                            <?php } ?>
+                                        </ul>
+                                    </div>
+                                    <?php endif; ?>
+
                                 </div>
                             </li>
-                           <?php }
+                            <?php }                   
                          } ?>
                         </ul>
+
                     </div>
                 </div>
             </div>
@@ -89,7 +115,7 @@
                 </div>
                 <div class="programfilter-body">
                     <div class="row programfilter-listing">
-                    <?php
+                        <?php
 
                         $args =  array(
                             'post_type'         => 'product',
@@ -107,7 +133,7 @@
                         //get content taxonomies
                         $taxonomies = array();
                         $taxonomies_name = array();
-                        $term_list = wp_get_post_terms($post_id,'product_cat', 'location', array("fields" => "all"));
+                        $term_list = wp_get_post_terms($post_id,'product_cat', array("fields" => "all"));
                         foreach($term_list as $term_single) {
                         array_push($taxonomies, $term_single->slug);
                         array_push($taxonomies_name, $term_single->name);
@@ -121,7 +147,7 @@
 
                         $locations = array();
                         $locations_name = array();
-                        $location_term_list = wp_get_post_terms($post_id, 'pa_location', array("fields" => "all"));
+                        $location_term_list = wp_get_post_terms($post_id, 'location', array("fields" => "all"));
                         foreach($location_term_list as $location_term_single) {
                         array_push($locations, $location_term_single->slug);
                         array_push($locations_name, $location_term_single->name);
@@ -134,24 +160,41 @@
 						$end_date = get_field('tour_end_date', $post_id);
 
                         ?>
-                        <div class="col-lg-4 col-6 homefilter-item <?php print implode(', ',$locations) ;?> <?php print implode(' ', $taxonomies) ;?> ">
+                        <div
+                            class="col-lg-4 col-6 homefilter-item <?php print implode(', ',$locations) ;?> <?php print implode(' ', $taxonomies) ;?> ">
                             <div class="programfilter-card">
                                 <div class="media">
-                                    <img src="<?php echo esc_url( $thumbnail_url[0] ); ?>"
-                                        alt="">
+                                    <img src="<?php echo esc_url( $thumbnail_url[0] ); ?>" alt="">
                                 </div>
                                 <div class="text">
                                     <h6 class="heading-location">
-                                    <?php print implode(', ',$locations_name) ;?>
+                                        <?php print implode(', ',$locations_name) ;?>
                                     </h6>
                                     <h3 class="heading-title"><?php the_title(); ?></h3>
-                                    <span class="heading-date"><?php echo $start_date; ?> - <?php echo $end_date; ?></span>
+                                    <span class="heading-date"><?php echo $start_date; ?> -
+                                        <?php echo $end_date; ?></span>
                                     <p><?php the_excerpt();  ?>
                                     </p>
                                     <div class="card-footer">
                                         <div class="price">
                                             <p>Total Cost</p>
-                                            <p class="price-num">$150</p>
+                                            <?php 
+                                            global $product;
+
+                                                if ($product->is_type( 'simple' )) { ?>
+                                            <p class="price-num"><?php echo $product->get_price_html(); ?></p>
+                                            <?php } ?>
+                                            <?php 
+                                                if($product->product_type=='variable') {
+                                                    $available_variations = $product->get_available_variations();
+                                                    $count = count($available_variations)-1;
+                                                    $variation_id=$available_variations[$count]['variation_id']; // Getting the variable id of just the 1st product. You can loop $available_variations to get info about each variation.
+                                                    $variable_product1= new WC_Product_Variation( $variation_id );
+                                                    $regular_price = $variable_product1 ->regular_price;
+                                                    $sales_price = $variable_product1 ->sale_price; ?>
+                                            <p class="price-num"><?php echo $regular_price;?></p>
+                                            <?php   } ?>
+
                                         </div>
                                         <a href="<?php the_permalink(); ?>" class="btn btn-yellow">View more</a>
                                     </div>

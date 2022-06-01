@@ -180,55 +180,161 @@ select {
     }
 }
 
-.checkbox {
-    display: flex;
-    align-items: center;
-    // flex-wrap: wrap;
+// .checkbox {
+//     display: flex;
+//     align-items: center;
+//     // flex-wrap: wrap;
 
+//     input {
+//         display: none;
+//     }
+
+//     label,
+//     span {
+//         position: relative;
+//         display: flex;
+//         align-items: center;
+//         padding-left: 45px;
+//         min-height: 30px;
+//         font-size: 14px;
+//         font-weight: 500;
+//         margin-bottom: 0;
+//         cursor: pointer;
+//         @include unselect;
+
+//         &::before,
+//         &::after {
+//             content: "";
+//             display: block;
+//             border-radius: 50%;
+//             position: absolute;
+//             top: 50%;
+//             transform: translateY(-50%);
+//             transition: all .2s;
+//         }
+
+//         &::before {
+//             left: 0;
+//             width: 30px;
+//             height: 30px;
+//             background-color: #fff;
+//             border: 1px solid $color-black-1;
+//         }
+
+//         &::after {
+//             width: 26px;
+//             height: 26px;
+//             left: 3.3px;
+//             transform: translateY(-50%) scale(0);
+//             background-color: $color-orange;
+//         }
+//     }
+
+//     input:checked+label::after,
+//     input:checked+span::after {
+//         transform: translateY(-50%) scale(1);
+//     }
+// }
+
+// label.checkbox {
+//     display: flex;
+//     align-items: center;
+
+//     // flex-wrap: wrap;
+//     &::before,
+//     &::after {
+//         display: none;
+//     }
+
+//     input {
+//         display: none;
+//     }
+
+//     span {
+//         position: relative;
+//         display: flex;
+//         align-items: center;
+//         padding-left: 45px;
+//         min-height: 30px;
+//         font-size: 14px;
+//         font-weight: 500;
+//         margin-bottom: 0;
+//         cursor: pointer;
+//         @include unselect;
+
+//         &::before,
+//         &::after {
+//             content: "";
+//             display: block;
+//             border-radius: 50%;
+//             position: absolute;
+//             top: 50%;
+//             transform: translateY(-50%);
+//             transition: all .2s;
+//         }
+
+//         &::before {
+//             left: 0;
+//             width: 30px;
+//             height: 30px;
+//             background-color: #fff;
+//             border: 1px solid $color-black-1;
+//         }
+
+//         &::after {
+//             width: 26px;
+//             height: 26px;
+//             left: 3.3px;
+//             transform: translateY(-50%) scale(0);
+//             background-color: $color-orange;
+//         }
+//     }
+
+//     input:checked+ {
+
+//         span {
+//             &::after {
+//                 transform: translateY(-50%) scale(1);
+//             }
+//         }
+//     }
+// }
+
+.checkbox {
     input {
-        display: none;
+        width: 30px;
+        height: 30px;
+        padding: 0;
+        margin: 0;
+        margin-right: 15px;
+        background-color: #fff;
+        border-radius: 50%;
+        vertical-align: middle;
+        border: 1px solid $color-black-1;
+        appearance: none;
+        -webkit-appearance: none;
+        outline: none;
+        cursor: pointer;
+        transition: all .3s ease-out;
+
+        &:checked {
+            // background-color: $color-orange;
+            background-image: radial-gradient($color-orange 58%, #fff 58%, #fff);
+        }
     }
 
-    label {
-        position: relative;
+    label.woocommerce-form__label-for-checkbox {
         display: flex;
         align-items: center;
-        padding-left: 45px;
-        font-size: 14px;
-        font-weight: 500;
-        margin-bottom: 0;
-        cursor: pointer;
-        @include unselect;
-
-        &::before,
-        &::after {
-            content: "";
-            display: block;
-            border-radius: 50%;
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            transition: all .2s;
-        }
-
-        &::before {
-            left: 0;
-            width: 30px;
-            height: 30px;
-            background-color: #fff;
-            border: 1px solid $color-black-1;
-        }
-
-        &::after {
-            width: 26px;
-            height: 26px;
-            left: 3.3px;
-            transform: translateY(-50%) scale(0);
-            background-color: $color-orange;
-        }
     }
+}
 
-    input:checked+label::after {
-        transform: translateY(-50%) scale(1);
-    }
+label.checkbox {
+    display: flex;
+    align-items: center;
+}
+
+.formfield--submit .checkbox {
+    display: flex;
+    align-items: center;
 }

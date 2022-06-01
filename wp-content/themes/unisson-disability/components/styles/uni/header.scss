@@ -228,4 +228,67 @@
             width: 100%;
         }
     }
+
+    @media (min-width: 992px) {
+        &.theme-light {
+            color: $color-black;
+            background-color: #fff;
+
+            .header {
+                &-top {
+                    border-bottom-color: $color-black-light;
+                }
+
+                &-search {
+                    input:not([type="submit"]) {
+                        background-color: $color-gray-1;
+                        color: $color-black;
+                        font-weight: 500;
+
+                        &::placeholder {
+                            color: $color-black;
+                        }
+                    }
+                }
+
+                &-myaccount {
+                    .custom-dropdown {
+                        &-btn {
+                            color: $color-black;
+
+                            &::after {
+                                border-color: $color-black;
+                            }
+                        }
+
+                        &-list {
+                            ul {
+                                background-color: $color-purple-light;
+
+                                li a {
+                                    color: #fff;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .navul {
+                >li {
+                    >a {
+                        color: $color-black;
+                    }
+
+                    .megamenu {
+                        background-color: $color-purple-light;
+
+                        ul li a {
+                            color: #fff;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

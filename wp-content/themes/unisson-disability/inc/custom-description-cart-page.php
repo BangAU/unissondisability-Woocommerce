@@ -11,7 +11,7 @@ function filter_woocommerce_get_item_data( $item_data, $cart_item ) {
     // Isset & NOT empty
     if ( isset ( $description ) && ! empty( $description ) ) {
         $item_data[] = array(
-            'key'     => __( 'Note', 'woocommerce' ),
+            'key'     => __( 'NOTE', 'woocommerce' ),
             'value'   => $description,
             'display' => $description,
         );

@@ -37,6 +37,11 @@
         input:not([type="submit"]) {
             font-size: 12px;
             font-weight: 500;
+
+            &::placeholder {
+                font-weight: 500;
+                color: $color-black-light;
+            }
         }
     }
 

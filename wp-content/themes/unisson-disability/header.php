@@ -34,7 +34,7 @@
 <body <?php body_class('woocommerce'); ?>>
     <?php wp_body_open(); ?>
 
-    <header class="header dis-lg">
+    <header class="header dis-lg theme-light">
         <div class="header-top">
             <div class="container">
                 <div class="inner">
