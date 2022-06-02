@@ -809,3 +809,37 @@ jQuery(document).ready(function($){
         $("#customer_login .u-column1").remove(); // Remove Login Div
     }
 })
+
+$(document).ready(function() {
+    $('.self_manage_funding_text').hide();
+    $('.plan-managed-funding-text').hide();
+    $('.ndia-managed-funding-text').hide();
+    $('input:radio[name="_funding_type_radio_"]').change(
+  function() {
+      if ($(this).is(':checked') && $(this).val() == 'Self_managed')
+      {
+     $('.self_manage_funding_text').show();
+     $('.plan-managed-funding-text').hide();
+     $('.ndia-managed-funding-text').hide();
+       }
+      else if ($(this).is(':checked') && $(this).val() == 'Plan_managed')
+      {
+        $('.self_manage_funding_text').hide();
+        $('.plan-managed-funding-text').show();
+        $('.ndia-managed-funding-text').hide();
+      }
+    // FINISH FROM HERE
+    else if ($(this).is(':checked') && $(this).val() == 'Ndia_managed')
+      {
+        $('.self_manage_funding_text').hide();
+        $('.plan-managed-funding-text').hide();
+        $('.ndia-managed-funding-text').show();
+     }  
+    
+    }
+  );
+  
+  }
+  );
+  
+  
