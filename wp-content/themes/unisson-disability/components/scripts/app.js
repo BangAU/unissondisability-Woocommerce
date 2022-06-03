@@ -818,7 +818,7 @@ function fundingType() {
     $('.self_manage_funding_text').hide();
     $('.plan-managed-funding-text').hide();
     $('.ndia-managed-funding-text').hide();
-    $('input:radio[name="_funding_type_radio_1"]').change(
+    $('input:radio[name="_funding_type_radio_"]').change(
         function () {
             if ($(this).is(':checked') && $(this).val() == 'Self_managed') {
                 $('.self_manage_funding_text').show();
