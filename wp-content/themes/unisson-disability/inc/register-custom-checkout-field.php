@@ -415,18 +415,20 @@ $i = 0;
 /**
  * Add fields to order emails
  **/
-// add_filter('woocommerce_email_order_meta_keys', 'my_custom_checkout_field_order_meta_keys');
-// function my_custom_checkout_field_order_meta_keys( $keys ) {
-// 	$i = 0;
-// 	for($k=1; $k<= 50; $k++) {
-// 	$i++;
-// 	$keys[] = 'First of Attendee'.''.$i;
-// 	$keys[] = 'Last of Attendee'.$i;
-// }	
-// return $keys;
+add_filter('woocommerce_email_order_meta_keys', 'my_custom_checkout_field_order_meta_keys');
+function my_custom_checkout_field_order_meta_keys( $keys ) {
+	$i = 0;
+	for($k=1; $k<= 50; $k++) {
+	$i++;
+    echo '<div class="ndia-managed-funding-text Attendee-group"><h3>Name of Attendee' .$i. '</h3>';
+	$keys[] = 'First of Attendee';
+	$keys[] = 'Last of Attendee';
+    echo '</div>';
+}	
+return $keys;
 
 
-// }
+}
 
 
 add_filter( 'woocommerce_email_order_meta_fields', 'custom_woocommerce_email_order_meta_fields', 10, 3 );
@@ -444,6 +446,7 @@ function custom_woocommerce_email_order_meta_fields( $keys, $sent_to_admin, $ord
         'label' => __( 'Last of Attendee' ),
         'value' => get_post_meta( $order->id, 'attendee_last_name_', true ),
     );
+    echo '</div>';
  }
     return $keys;
 }
