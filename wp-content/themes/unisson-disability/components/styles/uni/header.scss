@@ -3,6 +3,7 @@
     position: sticky;
     top: 0;
     background-color: $color-purple;
+    box-shadow: 0 8px 24px -4px rgba(#000, .15);
 
     &-top {
         padding: 30px 0 26px;
@@ -44,10 +45,46 @@
 
                 ul {
                     li {
+                        position: relative;
+                        @include unselect;
+
+                        &::after {
+                            content: "";
+                            width: 0%;
+                            height: 3px;
+                            position: absolute;
+                            bottom: 0;
+                            left: 0;
+                            background-color: #fff;
+                            transition: all .3s ease-out;
+                        }
+
+                        &.smallest::after {
+                            width: 33.33333%;
+                        }
+
+                        &.medium::after {
+                            width: 66.66666%;
+                        }
+
+                        &.large::after {
+                            width: 100%;
+                        }
 
                         a {
                             display: flex;
                             align-items: center;
+
+                            &.larger-text.enabled {
+                                &::after {
+                                    content: '\2713';
+                                    position: absolute;
+                                    top: 50%;
+                                    transform: translateY(-50%);
+                                    right: 0;
+                                    font-size: 15px;
+                                }
+                            }
                         }
 
                         .icon {
@@ -60,7 +97,7 @@
                         }
 
                         .text {
-                            font-size: 14px;
+                            font-size: 1.4rem;
                             padding-left: 24px;
                             text-transform: uppercase;
                         }
@@ -74,7 +111,7 @@
         position: relative;
 
         input:not([type="submit"]) {
-            font-size: 18px;
+            font-size: 1.8rem;
             font-weight: 500;
             min-width: 335px;
             height: 50px;
@@ -129,7 +166,7 @@
                 }
 
                 .text {
-                    font-size: 18px;
+                    font-size: 1.8rem;
                     font-weight: 500;
                     padding-left: 8px;
                 }
@@ -147,7 +184,7 @@
 
                     li {
                         color: $color-purple;
-                        font-size: 14px;
+                        font-size: 1.4rem;
                         line-height: normal;
                         font-weight: 500;
                         text-transform: uppercase;
@@ -174,7 +211,7 @@
         }
 
         .text {
-            font-size: 14px;
+            font-size: 1.4rem;
             font-weight: 500;
             text-transform: uppercase;
             margin-right: 8px;
@@ -189,15 +226,14 @@
         }
 
         .num {
-            color: #000;
-            font-size: 18px;
+            color: #fff;
+            font-size: 1.8rem;
             font-weight: 500;
             padding-left: 8.5px;
         }
     }
 
     &-bot {
-        padding: 24px 0 0;
 
         .inner {
             display: flex;
@@ -270,6 +306,12 @@
                                 }
                             }
                         }
+                    }
+                }
+
+                &-cart {
+                    .num {
+                        color: $color-black;
                     }
                 }
             }

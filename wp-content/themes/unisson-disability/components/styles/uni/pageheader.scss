@@ -26,13 +26,13 @@
 
         li {
             color: $color-black;
-            font-size: 18px;
+            font-size: 1.8rem;
             font-weight: 500;
             padding-left: 0;
             margin-bottom: 0;
 
             @media (max-width: 991px) {
-                font-size: 14px;
+                font-size: 1.4rem;
             }
 
             &:not(:first-child) {
@@ -56,12 +56,12 @@
     }
 
     h5 {
-        font-size: 30px;
+        font-size: 3rem;
         font-weight: 700;
         margin: 0;
 
         @media (max-width: 991px) {
-            font-size: 24px;
+            font-size: 2.4rem;
         }
     }
 

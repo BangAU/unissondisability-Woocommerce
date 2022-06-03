@@ -26,13 +26,13 @@
 
         li {
             color: $color-black;
-            font-size: 20px;
+            font-size: 2rem;
             font-weight: 500;
             margin-bottom: 24px;
             padding-left: 0;
 
             @media (max-width: 991px) {
-                font-size: 16px;
+                font-size: 1.6rem;
                 width: 50%;
                 margin-bottom: 20px;
             }
@@ -48,24 +48,24 @@
     .footer-call {
         display: block;
         color: $color-purple;
-        font-size: 32px;
+        font-size: 3.2rem;
         font-weight: 500;
         margin-bottom: 24px;
 
         @media (max-width: 991px) {
-            font-size: 24px;
+            font-size: 2.4rem;
         }
     }
 
     .info {
         color: $color-black;
-        font-size: 20px;
+        font-size: 2rem;
         line-height: 24px;
         font-weight: 500;
         margin-bottom: 24px;
 
         @media (max-width: 991px) {
-            font-size: 16px;
+            font-size: 1.6rem;
         }
 
         &:not(:last-child) {}
@@ -82,7 +82,7 @@
 
         h4 {
             color: $color-purple;
-            font-size: 20px;
+            font-size: 2rem;
             font-weight: 500;
             margin-bottom: 39px;
 
@@ -155,7 +155,7 @@
 
         .text {
             max-width: 142px;
-            font-size: 20px;
+            font-size: 2rem;
             font-weight: 500;
             margin-bottom: 0;
         }
@@ -163,12 +163,12 @@
 
     .copyright {
         color: $color-purple;
-        font-size: 20px;
+        font-size: 2rem;
         font-weight: 500;
         margin: 0;
 
         @media (max-width: 991px) {
-            font-size: 16px;
+            font-size: 1.6rem;
         }
     }
 
@@ -197,14 +197,14 @@
         }
 
         li {
-            font-size: 20px;
+            font-size: 2rem;
             font-weight: 500;
             color: $color-black-light;
             margin-bottom: 0;
             padding-left: 0;
 
             @media (max-width: 991px) {
-                font-size: 16px;
+                font-size: 1.6rem;
             }
 
             &:not(:last-child) {

@@ -8,7 +8,7 @@
     padding: 10px 30px;
     border: 0;
     border-radius: 30px;
-    font-size: 18px;
+    font-size: 1.8rem;
     font-weight: 500;
     cursor: pointer;
 
@@ -49,10 +49,15 @@
 }
 
 .reset-btn {
-    font-size: 21px;
+    font-size: 2.1rem;
     font-weight: 500;
     background-color: transparent;
     border: 0;
     text-decoration: underline;
     cursor: pointer;
+}
+
+.high-contrast .btn {
+    color: #fff !important;
+    background-color: $color-black !important;
 }

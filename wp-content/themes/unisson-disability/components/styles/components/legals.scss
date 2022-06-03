@@ -1,11 +1,11 @@
 .legals {
     h2 {
-        font-size: 30px;
+        font-size: 3rem;
         font-weight: 700;
         margin-bottom: 45px;
 
         @media (max-width: 991px) {
-            font-size: 24px;
+            font-size: 2.4rem;
             margin-bottom: 28px;
         }
     }
@@ -16,22 +16,22 @@
     }
 
     h3 {
-        font-size: 24px;
+        font-size: 2.4rem;
         font-weight: 700;
         color: $color-purple;
 
         @media (max-width: 991px) {
-            font-size: 20px;
+            font-size: 2rem;
         }
     }
 
     p {
         color: $color-black-light;
-        font-size: 18px;
+        font-size: 1.8rem;
         line-height: 24px;
 
         @media (max-width: 991px) {
-            font-size: 16px;
+            font-size: 1.6rem;
         }
     }
 }

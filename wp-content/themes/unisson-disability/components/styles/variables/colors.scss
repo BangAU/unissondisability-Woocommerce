@@ -45,6 +45,10 @@ $color-gray-2: #D1D1D1;
     }
 }
 
+.high-contrast [class*="color-"] {
+    color: $color-black !important;
+}
+
 .bgcolor {
     &-yellow {
         background-color: $color-yellow !important;

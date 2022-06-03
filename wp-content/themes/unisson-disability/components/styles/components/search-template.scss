@@ -50,7 +50,7 @@
         .heading {
 
             &-location {
-                font-size: 16px;
+                font-size: 1.6rem;
                 color: $color-orange;
                 margin-bottom: 7px;
             }
@@ -106,14 +106,14 @@
             }
 
             p {
-                font-size: 30px;
+                font-size: 3rem;
                 font-weight: 700;
                 padding-left: 36px;
                 margin: 0;
                 flex: auto;
 
                 @media (max-width: 991px) {
-                    font-size: 20px;
+                    font-size: 2rem;
                     padding-left: 12px;
                     line-height: normal;
                 }

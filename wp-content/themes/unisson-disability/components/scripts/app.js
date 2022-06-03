@@ -798,48 +798,41 @@ function isotopeInitv3() {
     });
 }
 
-jQuery(document).ready(function($){
+jQuery(document).ready(function ($) {
     var url = window.location.href;
     url = url.split("/");
-    url = url[url.length-2];
-    if(url == "login") {
+    url = url[url.length - 2];
+    if (url == "login") {
         $("#customer_login .u-column2").remove(); //Remove Registration Div
     }
-    if(url == "register"){
+    if (url == "register") {
         $("#customer_login .u-column1").remove(); // Remove Login Div
     }
 })
 
-$(document).ready(function() {
+$(document).ready(function () {
     $('.self_manage_funding_text').hide();
     $('.plan-managed-funding-text').hide();
     $('.ndia-managed-funding-text').hide();
-    $('input:radio[name="_funding_type_radio_"]').change(
-  function() {
-      if ($(this).is(':checked') && $(this).val() == 'Self_managed')
-      {
-     $('.self_manage_funding_text').show();
-     $('.plan-managed-funding-text').hide();
-     $('.ndia-managed-funding-text').hide();
-       }
-      else if ($(this).is(':checked') && $(this).val() == 'Plan_managed')
-      {
-        $('.self_manage_funding_text').hide();
-        $('.plan-managed-funding-text').show();
-        $('.ndia-managed-funding-text').hide();
-      }
-    // FINISH FROM HERE
-    else if ($(this).is(':checked') && $(this).val() == 'Ndia_managed')
-      {
-        $('.self_manage_funding_text').hide();
-        $('.plan-managed-funding-text').hide();
-        $('.ndia-managed-funding-text').show();
-     }  
-    
-    }
-  );
-  
-  }
-  );
-  
-  
+    $('input:radio[name="_funding_type_radio_1"]').change(
+        function () {
+            if ($(this).is(':checked') && $(this).val() == 'Self_managed') {
+                $('.self_manage_funding_text').show();
+                $('.plan-managed-funding-text').hide();
+                $('.ndia-managed-funding-text').hide();
+            } else if ($(this).is(':checked') && $(this).val() == 'Plan_managed') {
+                $('.self_manage_funding_text').hide();
+                $('.plan-managed-funding-text').show();
+                $('.ndia-managed-funding-text').hide();
+            }
+            // FINISH FROM HERE
+            else if ($(this).is(':checked') && $(this).val() == 'Ndia_managed') {
+                $('.self_manage_funding_text').hide();
+                $('.plan-managed-funding-text').hide();
+                $('.ndia-managed-funding-text').show();
+            }
+
+        }
+    );
+
+});

@@ -30,14 +30,14 @@
         margin-bottom: 30px;
         flex-flow: column;
 
-        > li {
+        >li {
             &:not(:last-child) {
                 margin-bottom: 15px;
             }
 
-            > a {
+            >a {
                 color: $color-black;
-                font-size: 18px;
+                font-size: 1.8rem;
                 text-transform: capitalize;
 
                 &:hover {

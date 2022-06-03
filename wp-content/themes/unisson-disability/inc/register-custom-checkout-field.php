@@ -122,7 +122,7 @@ foreach(WC()->cart->get_cart() as $item => $values) {
 
         echo '</div>';
 
-//funding type starting
+        //funding type starting
 
         echo '<div class="Attendee-group"><h3>Funding Type</h3>';
 		

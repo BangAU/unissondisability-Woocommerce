@@ -29,12 +29,12 @@
             }
 
             h2 {
-                font-size: 28px;
+                font-size: 2.8rem;
                 font-weight: 700;
                 margin-bottom: 0;
 
                 @media (max-width: 991px) {
-                    font-size: 18px;
+                    font-size: 1.8rem;
                 }
 
                 span {
@@ -58,10 +58,10 @@
             p,
             ul li {
                 color: $color-black;
-                font-size: 18px;
+                font-size: 1.8rem;
 
                 @media (max-width: 991px) {
-                    font-size: 16px;
+                    font-size: 1.6rem;
                 }
 
                 &:last-child {

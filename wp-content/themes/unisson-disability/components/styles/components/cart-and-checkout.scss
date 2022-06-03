@@ -35,12 +35,12 @@
 
 .woocommerce-cart {
     .woocommerce-message {
-        font-size: 18px;
+        font-size: 1.8rem;
         font-weight: 500;
         margin-bottom: 24px;
 
         @media (max-width: 991px) {
-            font-size: 14px;
+            font-size: 1.4rem;
         }
 
         .restore-item {
@@ -59,6 +59,7 @@
 
         thead,
         tbody {
+
             th,
             td {
                 padding: 24px;
@@ -68,7 +69,7 @@
         thead {
             color: #fff;
             background-color: $color-black;
-            font-size: 18px;
+            font-size: 1.8rem;
             font-weight: 500;
 
             @media (max-width: 991px) {
@@ -96,6 +97,7 @@
 
                 tr {
                     &:last-child {
+
                         &,
                         td {
                             display: block;
@@ -146,7 +148,7 @@
                             display: inline-flex;
                             align-items: center;
                             justify-content: center;
-                            font-size: 14px;
+                            font-size: 1.4rem;
                             font-weight: 700;
                             width: 22px;
                             height: 22px;
@@ -159,7 +161,6 @@
                     &-thumbnail {
                         img {
                             @include imgfit;
-
                             width: 126px;
                             height: 94px;
                             border-radius: 10px;
@@ -188,7 +189,7 @@
                     }
 
                     &-name {
-                        font-size: 16px;
+                        font-size: 1.6rem;
                         font-weight: 700;
                         padding-left: 26px;
 
@@ -214,7 +215,6 @@
 
                             [class^="data-item"] {
                                 // display: flex;
-                           
                             }
 
                             dt,
@@ -222,7 +222,7 @@
                             p {
                                 display: inline;
                                 color: $color-black-light;
-                                font-size: 14px;
+                                font-size: 1.4rem;
                                 line-height: normal;
                             }
 
@@ -261,6 +261,7 @@
                                     margin-bottom: 5px;
                                 }
                             }
+
                         }
                     }
 
@@ -272,12 +273,13 @@
                         }
 
                         .amount {
-                            font-size: 18px;
+                            font-size: 1.8rem;
                             font-weight: 400;
                         }
                     }
 
                     &-quantity {
+
                         .quantity {
                             .input-text {
                                 width: 61px;
@@ -306,7 +308,7 @@
 
                         .amount {
                             color: $color-purple;
-                            font-size: 18px;
+                            font-size: 1.8rem;
                             font-weight: 700;
                         }
                     }
@@ -365,7 +367,7 @@
             }
 
             .button {
-                font-size: 14px;
+                font-size: 1.4rem;
                 font-weight: 500;
                 color: #fff;
                 background-color: $color-orange;
@@ -379,7 +381,7 @@
         }
 
         .button[name="update_cart"] {
-            font-size: 18px;
+            font-size: 1.8rem;
             font-weight: 500;
             min-width: 195px;
             height: 50px;
@@ -413,7 +415,7 @@
 
     .cart_totals {
         h2 {
-            font-size: 30px;
+            font-size: 3rem;
             font-weight: 700;
         }
 
@@ -423,7 +425,7 @@
 
             th,
             td {
-                font-size: 18px;
+                font-size: 1.8rem;
                 font-weight: 500;
                 padding-bottom: 27px;
             }
@@ -450,7 +452,7 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            font-size: 18px;
+            font-size: 1.8rem;
             font-weight: 500;
             width: 100%;
             height: 50px;
@@ -484,7 +486,7 @@
     }
 
     .thwmscf-tab-label {
-        font-size: 14px;
+        font-size: 1.4rem;
         font-weight: 700;
         padding-top: 36px;
     }
@@ -497,7 +499,7 @@
         transform: translate(-50%, -25%);
         width: 42px;
         height: 42px;
-        font-size: 18px;
+        font-size: 1.8rem;
         font-weight: 500;
         border-color: $color-black-3;
         display: flex;
@@ -508,7 +510,7 @@
 
 .thwmscf-wrapper {
     .thwmscf-tab-panels {
-        font-size: 30px;
+        font-size: 3rem;
         font-weight: 700;
         margin-bottom: 28px;
         background-color: transparent !important;
@@ -520,6 +522,7 @@
         justify-content: center;
 
         .button {
+
             &-prev,
             &-next {
                 width: 195px;
@@ -544,7 +547,7 @@
 
 .woocommerce-checkout {
     label {
-        font-size: 14px;
+        font-size: 1.4rem;
         font-weight: 500;
         line-height: normal;
         margin-bottom: 8px;
@@ -584,7 +587,7 @@
         margin-left: -10px;
         margin-right: -10px;
 
-        > .form-row {
+        >.form-row {
             width: 100%;
             margin-bottom: 17px;
             padding-left: 10px;
@@ -592,6 +595,7 @@
         }
 
         @media (min-width: 768px) {
+
             #billing_first_name_field,
             #billing_last_name_field {
                 width: 50%;
@@ -606,6 +610,7 @@
 
         .select2-container--default {
             .select2-selection--single {
+
                 &,
                 .select2-selection__rendered {
                     height: 47px;
@@ -625,9 +630,10 @@
         padding: 50px 50px 75px;
     }
 
+
     .checkout-coupon-toggle {
         display: inline-block;
-        font-size: 16px;
+        font-size: 1.6rem;
         font-weight: 700;
         color: #fff;
         background-color: $color-orange;
@@ -648,7 +654,7 @@
                 margin-right: 16px;
                 width: 18px;
                 height: 18px;
-                background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOCIgaGVpZ2h0PSIxOCIgdmlld0JveD0iMCAwIDE4IDE4Ij4NCiAgPGcgaWQ9Ikdyb3VwXzIyNCIgZGF0YS1uYW1lPSJHcm91cCAyMjQiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAgMCkiPg0KICAgIDxjaXJjbGUgaWQ9IkVsbGlwc2VfNzciIGRhdGEtbmFtZT0iRWxsaXBzZSA3NyIgY3g9IjkiIGN5PSI5IiByPSI5IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwIDApIiBmaWxsPSIjNjUwZDZiIi8+DQogICAgPGcgaWQ9Indhcm5pbmctc3ZncmVwby1jb20iIHRyYW5zZm9ybT0idHJhbnNsYXRlKDguMTM4IDMuOTA2KSI+DQogICAgICA8cGF0aCBpZD0iUGF0aF8xNjkiIGRhdGEtbmFtZT0iUGF0aCAxNjkiIGQ9Ik00My40ODIsNy4yNTFhMSwxLDAsMCwxLTEtMVYxYTEsMSwwLDEsMSwxLjk5LDB2NS4yNkExLDEsMCwwLDEsNDMuNDgyLDcuMjUxWiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTQyLjQ4NykiIGZpbGw9IiNmZmYiLz4NCiAgICAgIDxjaXJjbGUgaWQ9IkVsbGlwc2VfNzYiIGRhdGEtbmFtZT0iRWxsaXBzZSA3NiIgY3g9IjAuODUzIiBjeT0iMC44NTMiIHI9IjAuODUzIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLjA3OCA4LjMxNykiIGZpbGw9IiNmZmYiLz4NCiAgICA8L2c+DQogIDwvZz4NCjwvc3ZnPg0K");
+                background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOCIgaGVpZ2h0PSIxOCIgdmlld0JveD0iMCAwIDE4IDE4Ij4NCiAgPGcgaWQ9Ikdyb3VwXzIyNCIgZGF0YS1uYW1lPSJHcm91cCAyMjQiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAgMCkiPg0KICAgIDxjaXJjbGUgaWQ9IkVsbGlwc2VfNzciIGRhdGEtbmFtZT0iRWxsaXBzZSA3NyIgY3g9IjkiIGN5PSI5IiByPSI5IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwIDApIiBmaWxsPSIjNjUwZDZiIi8+DQogICAgPGcgaWQ9Indhcm5pbmctc3ZncmVwby1jb20iIHRyYW5zZm9ybT0idHJhbnNsYXRlKDguMTM4IDMuOTA2KSI+DQogICAgICA8cGF0aCBpZD0iUGF0aF8xNjkiIGRhdGEtbmFtZT0iUGF0aCAxNjkiIGQ9Ik00My40ODIsNy4yNTFhMSwxLDAsMCwxLTEtMVYxYTEsMSwwLDEsMSwxLjk5LDB2NS4yNkExLDEsMCwwLDEsNDMuNDgyLDcuMjUxWiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTQyLjQ4NykiIGZpbGw9IiNmZmYiLz4NCiAgICAgIDxjaXJjbGUgaWQ9IkVsbGlwc2VfNzYiIGRhdGEtbmFtZT0iRWxsaXBzZSA3NiIgY3g9IjAuODUzIiBjeT0iMC44NTMiIHI9IjAuODUzIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLjA3OCA4LjMxNykiIGZpbGw9IiNmZmYiLz4NCiAgICA8L2c+DQogIDwvZz4NCjwvc3ZnPg0K")
             }
         }
     }
@@ -659,7 +665,7 @@
             padding: 12px 20px;
             color: #fff;
             background-color: $color-yellow;
-            font-size: 16px;
+            font-size: 1.6rem;
             font-weight: 700;
             border-radius: 10px;
 
@@ -683,7 +689,7 @@
 
         button[name="apply_coupon"] {
             font-family: $font;
-            font-size: 14px;
+            font-size: 1.4rem;
             font-weight: 500;
             min-width: 123px;
             text-align: center;
@@ -705,7 +711,7 @@
         padding: 30px 50px 72px;
         background-color: $color-gray-1;
 
-        & + .Attendee-group {
+        &+.Attendee-group {
             margin-top: 50px;
         }
 
@@ -714,26 +720,26 @@
             padding-bottom: 0;
         }
 
-        > * {
+        >* {
             width: 100%;
             padding-left: 15px;
             padding-right: 15px;
         }
 
         h3 {
-            font-size: 30px;
+            font-size: 3rem;
             font-weight: 700;
         }
 
         h4 {
-            font-size: 16px;
+            font-size: 1.6rem;
             font-weight: 700;
         }
 
         .plan-managed-funding-text,
         .funding-type-description {
             p {
-                font-size: 13px;
+                font-size: 1.3rem;
                 font-weight: 400;
                 line-height: 175%;
             }
@@ -754,7 +760,6 @@
                     // width: auto;
                     // display: inline-block;
                     // vertical-align: middle;
-               
                 }
 
                 .input-radio {
@@ -773,49 +778,32 @@
                     //     display: table;
                     //     clear: both;
                     // }
-               
                 }
             }
         }
 
         @media (min-width: 768px) {
-            .form-row[id^="attendee_first_name"],
-            .form-row[id^="attendee_last_name"],
-            .form-row[id^="attendee_dob"],
-            .form-row[id^="attendee_gender"] {
-                width: 50%;
-            }
+            .form-row {
 
-            .form-row[id^="self_managed_funding_type_attendee_first_name_1_field"],
-            .form-row[id^="self_managed_funding_type_attendee_last_name_1_field"],
-            .form-row[id^="self_managed_funding_type_attendee_dob_1_field"],
-            .form-row[id^="self_managed_funding_type_attendee_gender_1_field"] {
-                width: 50%;
-            }
+                &[id^="attendee_first_name"],
+                &[id^="attendee_last_name"],
+                &[id^="attendee_dob"],
+                &[id^="attendee_gender"],
+                &[id*="funding_type_attendee_first_name"],
+                &[id*="funding_type_attendee_last_name"],
+                &[id*="funding_type_attendee_dob"],
+                &[id*="funding_type_attendee_gender"] {
+                    width: 50%;
+                }
 
-            .form-row[id^="plan_managed_funding_type_attendee_first_name_1_field"],
-            .form-row[id^="plan_managed_funding_type_attendee_last_name_1_field"],
-            .form-row[id^="plan_managed_funding_type_attendee_dob_1_field"],
-            .form-row[id^="plan_managed_funding_type_attendee_gender_1_field"] {
-                width: 50%;
-            }
-
-            .form-row[id^="attendee_city"],
-            .form-row[id^="attendee_state"],
-            .form-row[id^="attendee_postcode"] {
-                width: 33.33333%;
-            }
-
-            .form-row[id^="self_managed_funding_type_attendee_city_1_field"],
-            .form-row[id^="self_managed_funding_type_attendee_state_1_field"],
-            .form-row[id^="self_managed_funding_type_attendee_postcode_1_field"] {
-                width: 33.33333%;
-            }
-
-            .form-row[id^="plan_managed_funding_type_attendee_city_1_field"],
-            .form-row[id^="plan_managed_funding_type_attendee_state_1_field"],
-            .form-row[id^="plan_managed_funding_type_attendee_postcode_1_field"] {
-                width: 33.33333%;
+                &[id^="attendee_city"],
+                &[id^="attendee_state"],
+                &[id^="attendee_postcode"],
+                &[id*="funding_type_attendee_city"],
+                &[id*="funding_type_attendee_state"],
+                &[id*="funding_type_attendee_postcode"] {
+                    width: 33.33333%;
+                }
             }
 
             // #attendee {
@@ -835,6 +823,46 @@
             // }
         }
     }
+
+    .funding-type-radio {
+        .woocommerce-input-wrapper {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        input {
+            margin-right: 15px;
+            width: 30px;
+            height: 30px;
+            padding: 0;
+            margin: 0;
+            margin-right: 15px;
+            background-color: #fff;
+            border-radius: 50%;
+            vertical-align: middle;
+            border: 1px solid #3C3C3C;
+            -moz-appearance: none;
+            appearance: none;
+            -webkit-appearance: none;
+            outline: none;
+            cursor: pointer;
+            transition: all .3s ease-out;
+
+            &:checked {
+                background-image: radial-gradient(#FF6926 58%, #fff 58%, #fff);
+            }
+        }
+
+        label {
+            margin-bottom: 0;
+            cursor: pointer;
+        }
+
+        label+input {
+            margin-left: 30px;
+        }
+    }
 }
 
 .woocommerce-checkout-review-order-table {
@@ -843,11 +871,12 @@
     border-collapse: collapse;
 
     thead {
+
         th,
         td {
             color: #fff;
             background-color: $color-black;
-            font-size: 16px;
+            font-size: 1.6rem;
             font-weight: 500;
             padding: 10px 24px 10px 17px;
             height: 75px;
@@ -856,9 +885,10 @@
 
     tbody,
     tfoot {
+
         th,
         td {
-            font-size: 16px;
+            font-size: 1.6rem;
             padding: 24px 17px;
 
             &:first-child {
@@ -879,6 +909,7 @@
         }
 
         .cart_item {
+
             &:not(:last-child) {
                 border-bottom: 1px solid $color-yellow;
             }
@@ -899,6 +930,7 @@
 
     tfoot {
         tr:not(.order-total) {
+
             td,
             th {
                 &:first-child {
@@ -929,16 +961,17 @@
 
             .heading-date {
                 color: $color-black-light;
-                font-size: 14px;
+                font-size: 1.4rem;
                 font-weight: 400;
             }
 
             .variation {
+
                 dt,
                 dd,
                 p {
                     display: inline;
-                    font-size: 14px;
+                    font-size: 1.4rem;
                     font-weight: 400;
                     color: $color-black-light;
                 }
@@ -976,10 +1009,10 @@
             margin-right: 16px;
         }
 
-        > label {
+        >label {
             margin-bottom: 0;
 
-            > img {
+            >img {
                 display: block;
                 margin-top: 4px;
             }
@@ -999,7 +1032,7 @@
     }
 
     #place_order {
-        font-size: 16px;
+        font-size: 1.6rem;
         color: #fff;
         background-color: $color-purple;
         min-width: 220px;
@@ -1011,7 +1044,6 @@
         cursor: pointer;
         text-align: center;
         border-radius: 44px;
-
         @include margin-auto;
     }
 }
@@ -1026,6 +1058,7 @@
         }
 
         &-MyAccount {
+
             &-navigation {
                 flex: 0 0 254px;
 
@@ -1035,7 +1068,7 @@
                 }
 
                 &-link {
-                    font-size: 16px;
+                    font-size: 1.6rem;
                     font-weight: 500;
                     padding: 0;
                     margin: 0;
@@ -1055,33 +1088,33 @@
                     }
 
                     &--dashboard {
-                        background-image: url("https://blog.redzonegroup.com.au/wp-content/uploads/2022/05/dashboard-speedometer.svg");
+                        background-image: url('https://blog.redzonegroup.com.au/wp-content/uploads/2022/05/dashboard-speedometer.svg');
                     }
 
                     &--orders {
-                        background-image: url("https://blog.redzonegroup.com.au/wp-content/uploads/2022/05/dashboard-cart.svg");
+                        background-image: url('https://blog.redzonegroup.com.au/wp-content/uploads/2022/05/dashboard-cart.svg');
                     }
 
                     &--downloads {
-                        background-image: url("https://blog.redzonegroup.com.au/wp-content/uploads/2022/05/dashboard-cart.svg");
+                        background-image: url('https://blog.redzonegroup.com.au/wp-content/uploads/2022/05/dashboard-cart.svg');
                     }
 
                     &--edit-address {
-                        background-image: url("https://blog.redzonegroup.com.au/wp-content/uploads/2022/05/dashboard-address-book.svg");
+                        background-image: url('https://blog.redzonegroup.com.au/wp-content/uploads/2022/05/dashboard-address-book.svg');
                     }
 
                     &--edit-account {
-                        background-image: url("https://blog.redzonegroup.com.au/wp-content/uploads/2022/05/dashboard-account.svg");
+                        background-image: url('https://blog.redzonegroup.com.au/wp-content/uploads/2022/05/dashboard-account.svg');
                     }
 
                     &--customer-logout {
-                        background-image: url("https://blog.redzonegroup.com.au/wp-content/uploads/2022/05/dashboard-logout.svg");
+                        background-image: url('https://blog.redzonegroup.com.au/wp-content/uploads/2022/05/dashboard-logout.svg');
                     }
                 }
             }
 
             &-content {
-                font-size: 16px;
+                font-size: 1.6rem;
                 padding-left: 74px;
                 flex: auto;
 
@@ -1094,6 +1127,7 @@
 
                 .select2-container--default {
                     .select2-selection--single {
+
                         &,
                         .select2-selection__rendered {
                             height: 47px;
@@ -1123,13 +1157,14 @@
 
                         li {
                             padding-left: 0;
-                            font-size: 14px;
+                            font-size: 1.4rem;
                         }
                     }
 
                     thead,
                     tbody,
                     tfoot {
+
                         th,
                         td {
                             padding: 12px;
@@ -1140,10 +1175,11 @@
                     }
 
                     thead {
+
                         th,
                         td {
                             color: $color-black;
-                            font-size: 16px;
+                            font-size: 1.6rem;
                             font-weight: 700;
                             background-color: #F8F8F8;
                         }
@@ -1151,18 +1187,20 @@
 
                     tbody,
                     tfoot {
+
                         th,
                         td {
                             color: $color-black-light;
-                            font-size: 14px;
+                            font-size: 1.4rem;
                             background-color: #FDFDFD;
                         }
                     }
 
                     tfoot {
+
                         th,
                         td {
-                            font-size: 16px;
+                            font-size: 1.6rem;
                         }
                     }
                 }
@@ -1171,8 +1209,9 @@
                     &__cell {
                         &-order {
                             &-actions {
+
                                 .button {
-                                    font-size: 14px;
+                                    font-size: 1.4rem;
                                     font-weight: 700;
                                     text-align: center;
                                     color: #fff;
@@ -1185,7 +1224,7 @@
                                         background-color: darken($color-orange, 6%);
                                     }
 
-                                    + .button {
+                                    +.button {
                                         margin-left: 10px;
                                     }
                                 }
@@ -1198,7 +1237,7 @@
                     tbody {
                         .product-name {
                             a {
-                                font-size: 16px;
+                                font-size: 1.6rem;
                                 color: $color-black;
                             }
 
@@ -1216,7 +1255,7 @@
 
                                     &,
                                     p {
-                                        font-size: 14px;
+                                        font-size: 1.4rem;
                                         line-height: normal;
                                     }
 
@@ -1227,7 +1266,7 @@
                             }
 
                             .button {
-                                font-size: 14px;
+                                font-size: 1.4rem;
                                 font-weight: 700;
                                 text-align: center;
                                 color: #fff;
@@ -1242,7 +1281,7 @@
                                     background-color: darken($color-orange, 6%);
                                 }
 
-                                + .button {
+                                +.button {
                                     margin-left: 10px;
                                 }
                             }
@@ -1262,7 +1301,7 @@
                         padding: 5px 13px;
                         transition: all .15s ease-out;
 
-                        + .button {
+                        +.button {
                             margin-left: 20px;
                         }
 
@@ -1281,7 +1320,7 @@
 
                 .woocommerce-customer-details {
                     .woocommerce-column__title {
-                        font-size: 16px;
+                        font-size: 1.6rem;
                         font-weight: 400;
                         margin-bottom: 26px;
                     }
@@ -1292,7 +1331,7 @@
 
                         &,
                         p {
-                            font-size: 14px;
+                            font-size: 1.4rem;
                             line-height: normal;
                         }
 
@@ -1312,7 +1351,7 @@
                         transition: all .15s ease-out;
                         cursor: pointer;
 
-                        + .button {
+                        +.button {
                             margin-left: 10px;
                         }
 
@@ -1348,7 +1387,7 @@
 
                     .edit {
                         display: block;
-                        font-size: 14px;
+                        font-size: 1.4rem;
                         font-weight: 500;
                         color: $color-orange;
                         text-decoration: underline;
@@ -1361,7 +1400,7 @@
 
                         &,
                         p {
-                            font-size: 14px;
+                            font-size: 1.4rem;
                             line-height: normal;
                         }
 
@@ -1381,7 +1420,7 @@
                         transition: all .15s ease-out;
                         cursor: pointer;
 
-                        + .button {
+                        +.button {
                             margin-left: 20px;
                         }
 
@@ -1395,7 +1434,7 @@
 
                 .edit-account {
                     .button {
-                        font-size: 14px;
+                        font-size: 1.4rem;
                         font-weight: 700;
                         text-align: center;
                         color: #fff;
@@ -1425,6 +1464,7 @@
 }
 
 #customer_login {
+
     .col-1,
     .col-2 {
         padding: 0;
