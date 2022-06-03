@@ -415,31 +415,35 @@ $i = 0;
 /**
  * Add fields to order emails
  **/
-add_filter('woocommerce_email_order_meta_keys', 'my_custom_checkout_field_order_meta_keys');
-function my_custom_checkout_field_order_meta_keys( $keys ) {
-	$i = 0;
-	for($k=1; $k<= 50; $k++) {
-	$i++;
-	$keys[] = 'First of Attendee'.''.$i;
-	$keys[] = 'Last of Attendee'.$i;
-}	
-return $keys;
+// add_filter('woocommerce_email_order_meta_keys', 'my_custom_checkout_field_order_meta_keys');
+// function my_custom_checkout_field_order_meta_keys( $keys ) {
+// 	$i = 0;
+// 	for($k=1; $k<= 50; $k++) {
+// 	$i++;
+// 	$keys[] = 'First of Attendee'.''.$i;
+// 	$keys[] = 'Last of Attendee'.$i;
+// }	
+// return $keys;
 
 
-}
+// }
 
 
 add_filter( 'woocommerce_email_order_meta_fields', 'custom_woocommerce_email_order_meta_fields', 10, 3 );
 
 function custom_woocommerce_email_order_meta_fields( $fields, $sent_to_admin, $order ) {
-    $fields['meta_key'] = array(
+    $i = 0;
+	for($k=1; $k<= 50; $k++) {
+    echo '<div class="ndia-managed-funding-text Attendee-group"><h3>Name of Attendee' .$i. '</h3>';
+    $fields['attendee_first_name_'] = array(
         'label' => __( 'Label' ),
         'value' => get_post_meta( $order->id, 'attendee_first_name_', true ),
     );
-    $fields['meta_key'] = array(
+    $fields['attendee_first_name_'] = array(
         'label' => __( 'Label' ),
         'value' => get_post_meta( $order->id, 'attendee_last_name_', true ),
     );
+ }
     return $fields;
 }
 
