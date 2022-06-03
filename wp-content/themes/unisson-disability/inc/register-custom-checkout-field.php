@@ -431,23 +431,23 @@ return $keys;
 }
 
 
-add_filter( 'woocommerce_email_order_meta_fields', 'custom_woocommerce_email_order_meta_fields', 10, 3 );
+// add_filter( 'woocommerce_email_order_meta_fields', 'custom_woocommerce_email_order_meta_fields', 10, 3 );
 
-function custom_woocommerce_email_order_meta_fields( $keys, $sent_to_admin, $order ) {
-    $i = 0;
-	for($k=1; $k<= 50; $k++) {
-        $i++;
-    echo '<div class="ndia-managed-funding-text Attendee-group"><h3>Name of Attendee' .$i. '</h3>';
-    $keys['attendee_first_name_'] = array(
-        'label' => __( 'First of Attendee' ),
-        'value' => get_post_meta( $order->id, 'attendee_first_name_', true ),
-    );
-    $keys['attendee_first_name_'] = array(
-        'label' => __( 'Last of Attendee' ),
-        'value' => get_post_meta( $order->id, 'attendee_last_name_', true ),
-    );
-    echo '</div>';
- }
-    return $keys;
-}
+// function custom_woocommerce_email_order_meta_fields( $keys, $sent_to_admin, $order ) {
+//     $i = 0;
+// 	for($k=1; $k<= 50; $k++) {
+//         $i++;
+//     echo '<div class="ndia-managed-funding-text Attendee-group"><h3>Name of Attendee' .$i. '</h3>';
+//     $keys['attendee_first_name_'] = array(
+//         'label' => __( 'First of Attendee' ),
+//         'value' => get_post_meta( $order->id, 'attendee_first_name_', true ),
+//     );
+//     $keys['attendee_first_name_'] = array(
+//         'label' => __( 'Last of Attendee' ),
+//         'value' => get_post_meta( $order->id, 'attendee_last_name_', true ),
+//     );
+//     echo '</div>';
+//  }
+//     return $keys;
+// }
 
