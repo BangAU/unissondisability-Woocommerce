@@ -370,7 +370,6 @@ foreach(WC()->cart->get_cart() as $item => $values) {
                     'class'         => array('ndia-managed-funding-text form-row-first'),
                     'label'         => __('NDIA Number (If applicable) '),
                     'placeholder'   => __(''),
-                    'required' => true,
                     ), $checkout->get_value( 'ndia_managed_funding_type_attendee_ndia_number_' . $x ) );
              
             echo '</div>';
@@ -400,13 +399,125 @@ $count = $woocommerce->cart->cart_contents_count;
 $i = 1;
        for($k=1; $k<= $count; $k++) {
 		$i++;
-	if (!empty($_POST['attendee_first_name_'.$i])) {
-		update_post_meta($order_id, 'First of Attendee'.$i, sanitize_text_field($_POST['attendee_first_name_'.$i]));
-	}
-	if (!empty($_POST['attendee_last_name_'.$i])) {
-		update_post_meta($order_id, 'Last of Attendee'.$i, sanitize_text_field($_POST['attendee_last_name_'.$i]));
-	}
-	
+        if (!empty($_POST['attendee_first_name_'.$i])) {
+            update_post_meta($order_id, 'First Name of Attendee'.$i, sanitize_text_field($_POST['attendee_first_name_'.$i]));
+        }
+        if (!empty($_POST['attendee_last_name_'.$i])) {
+            update_post_meta($order_id, 'Last Name of Attendee'.$i, sanitize_text_field($_POST['attendee_last_name_'.$i]));
+        }
+        if (!empty($_POST['attendee_email_'.$i])) {
+            update_post_meta($order_id, 'Email of Attendee'.$i, sanitize_text_field($_POST['attendee_email_'.$i]));
+        }
+        if (!empty($_POST['attendee_phone_'.$i])) {
+            update_post_meta($order_id, 'Phone Number of Attendee'.$i, sanitize_text_field($_POST['attendee_phone_'.$i]));
+        }
+        if (!empty($_POST['attendee_dob_'.$i])) {
+            update_post_meta($order_id, 'DOB of Attendee'.$i, sanitize_text_field($_POST['attendee_dob_'.$i]));
+        }
+        if (!empty($_POST['attendee_gender_'.$i])) {
+            update_post_meta($order_id, 'Gender of Attendee'.$i, sanitize_text_field($_POST['attendee_gender_'.$i]));
+        }
+        if (!empty($_POST['attendee_address_1_'.$i])) {
+            update_post_meta($order_id, 'Address 1 of Attendee'.$i, sanitize_text_field($_POST['attendee_address_1_'.$i]));
+        }
+        if (!empty($_POST['attendee_address_2_'.$i])) {
+            update_post_meta($order_id, 'Address 2 of Attendee'.$i, sanitize_text_field($_POST['attendee_address_2_'.$i]));
+        }
+        if (!empty($_POST['attendee_city_'.$i])) {
+            update_post_meta($order_id, 'City of Attendee'.$i, sanitize_text_field($_POST['attendee_city_'.$i]));
+        }
+        if (!empty($_POST['attendee_state_'.$i])) {
+            update_post_meta($order_id, 'State of Attendee'.$i, sanitize_text_field($_POST['attendee_state_'.$i]));
+        }
+        if (!empty($_POST['attendee_postcode_'.$i])) {
+            update_post_meta($order_id, 'Postcode of Attendee'.$i, sanitize_text_field($_POST['attendee_postcode_'.$i]));
+        }
+        if (!empty($_POST['_funding_type_radio_'.$i])) {
+            update_post_meta($order_id, 'Funding Type of Attendee'.$i, sanitize_text_field($_POST['_funding_type_radio_'.$i]));
+        }
+
+	    //self manage funding type start
+        if (!empty($_POST['self_managed_funding_type_attendee_first_name_'.$i])) {
+            update_post_meta($order_id, 'Self-Managed First Name of Attendee'.$i, sanitize_text_field($_POST['self_managed_funding_type_attendee_first_name_'.$i]));
+        }
+        if (!empty($_POST['self_managed_funding_type_attendee_last_name_'.$i])) {
+            update_post_meta($order_id, 'Self-Managed Last Name of Attendee'.$i, sanitize_text_field($_POST['self_managed_funding_type_attendee_last_name_'.$i]));
+        }
+        if (!empty($_POST['self_managed_funding_type_attendee_email_'.$i])) {
+            update_post_meta($order_id, 'Self-Managed Email of Attendee'.$i, sanitize_text_field($_POST['self_managed_funding_type_attendee_email_'.$i]));
+        }
+        if (!empty($_POST['self_managed_funding_type_attendee_phone_'.$i])) {
+            update_post_meta($order_id, 'Self-Managed Phone Number of Attendee'.$i, sanitize_text_field($_POST['self_managed_funding_type_attendee_phone_'.$i]));
+        }
+        if (!empty($_POST['self_managed_funding_type_attendee_dob_'.$i])) {
+            update_post_meta($order_id, 'Self-Managed DOB of Attendee'.$i, sanitize_text_field($_POST['self_managed_funding_type_attendee_dob_'.$i]));
+        }
+        if (!empty($_POST['self_managed_funding_type_attendee_gender_'.$i])) {
+            update_post_meta($order_id, 'Self-Managed Gender of Attendee'.$i, sanitize_text_field($_POST['self_managed_funding_type_attendee_gender_'.$i]));
+        }
+        if (!empty($_POST['self_managed_funding_type_attendee_address_1_'.$i])) {
+            update_post_meta($order_id, 'Self-Managed Address 1 of Attendee'.$i, sanitize_text_field($_POST['self_managed_funding_type_attendee_address_1_'.$i]));
+        }
+        if (!empty($_POST['self_managed_funding_type_attendee_address_2_'.$i])) {
+            update_post_meta($order_id, 'Self-Managed Address 2 of Attendee'.$i, sanitize_text_field($_POST['self_managed_funding_type_attendee_address_2_'.$i]));
+        }
+        if (!empty($_POST['self_managed_funding_type_attendee_city_'.$i])) {
+            update_post_meta($order_id, 'Self-Managed City of Attendee'.$i, sanitize_text_field($_POST['self_managed_funding_type_attendee_city_'.$i]));
+        }
+        if (!empty($_POST['self_managed_funding_type_attendee_state_'.$i])) {
+            update_post_meta($order_id, 'Self-Managed State of Attendee'.$i, sanitize_text_field($_POST['self_managed_funding_type_attendee_state_'.$i]));
+        }
+        if (!empty($_POST['self_managed_funding_type_attendee_postcode_'.$i])) {
+            update_post_meta($order_id, 'Self-Managed Postcode of Attendee'.$i, sanitize_text_field($_POST['self_managed_funding_type_attendee_postcode_'.$i]));
+        }
+        
+        //self manage funding type end
+
+        //plan manage funding type start
+
+        if (!empty($_POST['plan_managed_funding_type_attendee_first_name_'.$i])) {
+            update_post_meta($order_id, 'Plan-Managed First Name of Attendee'.$i, sanitize_text_field($_POST['plan_managed_funding_type_attendee_first_name_'.$i]));
+        }
+        if (!empty($_POST['plan_managed_funding_type_attendee_last_name_'.$i])) {
+            update_post_meta($order_id, 'Plan-Managed Last Name of Attendee'.$i, sanitize_text_field($_POST['plan_managed_funding_type_attendee_last_name_'.$i]));
+        }
+        if (!empty($_POST['plan_managed_funding_type_attendee_email_'.$i])) {
+            update_post_meta($order_id, 'Plan-Managed Email of Attendee'.$i, sanitize_text_field($_POST['plan_managed_funding_type_attendee_email_'.$i]));
+        }
+        if (!empty($_POST['plan_managed_funding_type_attendee_phone_'.$i])) {
+            update_post_meta($order_id, 'Plan-Managed Phone Number of Attendee'.$i, sanitize_text_field($_POST['plan_managed_funding_type_attendee_phone_'.$i]));
+        }
+        if (!empty($_POST['plan_managed_funding_type_attendee_dob_'.$i])) {
+            update_post_meta($order_id, 'Plan-Managed DOB of Attendee'.$i, sanitize_text_field($_POST['plan_managed_funding_type_attendee_dob_'.$i]));
+        }
+        if (!empty($_POST['plan_managed_funding_type_attendee_gender_'.$i])) {
+            update_post_meta($order_id, 'Plan-Managed Gender of Attendee'.$i, sanitize_text_field($_POST['plan_managed_funding_type_attendee_gender_'.$i]));
+        }
+        if (!empty($_POST['plan_managed_funding_type_attendee_address_1_'.$i])) {
+            update_post_meta($order_id, 'Plan-Managed Address 1 of Attendee'.$i, sanitize_text_field($_POST['plan_managed_funding_type_attendee_address_1_'.$i]));
+        }
+        if (!empty($_POST['plan_managed_funding_type_attendee_address_2_'.$i])) {
+            update_post_meta($order_id, 'Plan-Managed Address 2 of Attendee'.$i, sanitize_text_field($_POST['plan_managed_funding_type_attendee_address_2_'.$i]));
+        }
+        if (!empty($_POST['plan_managed_funding_type_attendee_city_'.$i])) {
+            update_post_meta($order_id, 'Plan-Managed City of Attendee'.$i, sanitize_text_field($_POST['plan_managed_funding_type_attendee_city_'.$i]));
+        }
+        if (!empty($_POST['plan_managed_funding_type_attendee_state_'.$i])) {
+            update_post_meta($order_id, 'Plan-Managed State of Attendee'.$i, sanitize_text_field($_POST['plan_managed_funding_type_attendee_state_'.$i]));
+        }
+        if (!empty($_POST['plan_managed_funding_type_attendee_postcode_'.$i])) {
+            update_post_meta($order_id, 'Plan-Managed Postcode of Attendee'.$i, sanitize_text_field($_POST['plan_managed_funding_type_attendee_postcode_'.$i]));
+        }
+
+        //end plan managed 
+
+        // start ndia managed
+
+        if (!empty($_POST['ndia_managed_funding_type_attendee_ndia_number_'.$i])) {
+            update_post_meta($order_id, 'Plan-Managed First Name of Attendee'.$i, sanitize_text_field($_POST['ndia_managed_funding_type_attendee_ndia_number_'.$i]));
+        }
+        
+
 }
 
 }
