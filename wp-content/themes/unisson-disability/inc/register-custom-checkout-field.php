@@ -120,253 +120,248 @@ foreach(WC()->cart->get_cart() as $item => $values) {
             'required' => true,
             ), $checkout->get_value( 'attendee_postcode_' . $x ));
 
-        echo '</div>';
+            echo '<div class="Attendee-group-funding-type"><h4>Funding Type*</h4>';  echo '</div>';
 
-        //funding type starting
-
-        echo '<div class="Attendee-group"><h3>Funding Type</h3>';
-		
             woocommerce_form_field( '_funding_type_radio_', array(
                 'type' => 'radio',
                 'class' => array('funding-type-radio'),
                 'required' => 'required',
                 'options' => array(
-                'Self_managed' => __( 'Self Managed'),
-                'Plan_managed' => __( 'Plan Managed'),
-                'Ndia_managed' => __( 'NDIA Managed' ),
+                'Self_managed' => __( 'Self-managed'),
+                'Plan_managed' => __( 'Plan-managed'),
+                'Ndia_managed' => __( 'NDIA-managed' ),
                 ),
                // 'default'  => 'Self_managed',
 
             ), $checkout->get_value( '_funding_type_radio_' . $x ));
-         echo '</div>';
-            
-//funding type radio ending
+
+            echo '<div class=" funding-type-description"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut               enim ad minim veniam, quis nostrud exercitation ullamco labori</p></div>';
+
+
+            //funding type radio ending
 
         echo '<div class="self_manage_funding_text Attendee-group">';
             
-           echo '<div class=" funding-type-description"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut               enim ad minim veniam, quis nostrud exercitation ullamco labori</p></div>';
-                //self manage
-                echo '<div class="Attendee-group"><h4>Self-managed details for invoicing</h4></div>';
-                //firstname
-                woocommerce_form_field( 'self_managed_funding_type_attendee_first_name_' . $x, array(
-                    'type'          => 'text',
-                    'class'         => array('form-row-first'),
-                    'label'         => __('First Name '),
-                    'placeholder'   => __(''),
-                    'required' => true,
-                    ), $user, $checkout->get_value( 'self_managed_funding_type_attendee_first_name_' . $x ) );
-                // lastname
-                woocommerce_form_field( 'self_managed_funding_type_attendee_last_name_' . $x, array(
-                    'type'          => 'text',
-                    'class'         => array('form-row-last'),
-                    'label'         => __('Last Name '),
-                    'placeholder'   => __(''),
-                    'required' => true,
-                    ), $checkout->get_value( 'self_managed_funding_type_attendee_last_name_' . $x ));
-                //email
-                woocommerce_form_field( 'self_managed_funding_type_attendee_email_' . $x, array(
-                    'type'          => 'email',
-                    'class'         => array('form-row-wide'),
-                    'label'         => __('Email '),
-                    'placeholder'   => __(''),
-                    'required' => true,
-                    ), $checkout->get_value( 'self_managed_funding_type_attendee_email_' . $x ));
-                
-                //phone
-                woocommerce_form_field( 'self_managed_funding_type_attendee_phone_' . $x, array(
-                    'type'          => 'text',
-                    'class'         => array('form-row-wide'),
-                    'label'         => __('Phone '),
-                    'placeholder'   => __(''),
-                    'required' => true,
-                    ), $checkout->get_value( 'self_managed_funding_type_attendee_phone_' . $x ));
-                //DOB
-                woocommerce_form_field( 'self_managed_funding_type_attendee_dob_' . $x, array(
-                    'type'          => 'date',
-                    'class'         => array('form-row-first'),
-                    'label'         => __('DOB '),
-                    'placeholder'   => __(''),
-                    'required' => true,
-                    ), $checkout->get_value( 'self_managed_funding_type_attendee_dob_' . $x ));
-                //gender
-                woocommerce_form_field( 'self_managed_funding_type_attendee_gender_' . $x, array(
-                    'type' => 'select',
-                    'class' => array('form-row-last'),
-                    'label' => __('Gender'),
-                    'required' => true,
-                    'options' => array(
-                    'blank'  => __( '--'),
-                    'Male' => __( 'Male'),
-                    'Female' => __( 'Female'),
-                    'Others' => __( 'Others' )
-                    )
-                    ), $checkout->get_value( 'self_managed_funding_type_attendee_gender_' . $x ));
-                //Address one 
-                woocommerce_form_field( 'self_managed_funding_type_attendee_address_1_' . $x, array(
-                    'type'          => 'text',
-                    'class'         => array('form-row-wide'),
-                    'label'         => __('Address '),
-                    'placeholder'   => __(''),
-                    'required' => true,
-                    ), $checkout->get_value( 'self_managed_funding_type_attendee_address_1_' . $x ));
-                //Address 2
-                woocommerce_form_field( 'self_managed_funding_type_attendee_address_2_' . $x, array(
-                    'type'          => 'text',
-                    'class'         => array('form-row-wide'),
-                    'label'         => __('Apartment, Suite, etc. '),
-                    'placeholder'   => __(''),
-                    ), $checkout->get_value( 'self_managed_funding_type_attendee_address_2_' . $x ));
-                //City
-                woocommerce_form_field( 'self_managed_funding_type_attendee_city_' . $x, array(
-                    'type'          => 'text',
-                    'class'         => array('form-row-wide address-field'),
-                    'label'         => __('Suburb/City '),
-                    'placeholder'   => __(''),
-                    ), $checkout->get_value( 'self_managed_funding_type_attendee_city_' . $x ));
-                //State
-                woocommerce_form_field( 'self_managed_funding_type_attendee_state_' . $x, array(
-                    'type' => 'select',
-                    'class' => array('form-row-wide address-field'),
-                    'label' => __('State/Territory'),
-                    'required' => true,
-                    'options' => array(
-                    'blank'  => __( '--'),
-                    'Australian Capital Territory' => __( 'Australian Capital Territory'),
-                    'New South Wales' => __( 'New South Wales'),
-                    'Northern Territory' => __( 'Northern Territory' ),
-                    'Queensland' => __( 'Queensland' ),
-                    'Tasmania' => __( 'South Australia' ),
-                    'Northern Territory' => __( 'Tasmania' ),
-                    'Victoria' => __( 'Victoria' ),
-                    'Western Australia' => __( 'Western Australia' ),
-                    )
-                    ), $checkout->get_value( 'self_managed_funding_type_attendee_state_' . $x ));
-                //Passcode
-                woocommerce_form_field( 'self_managed_funding_type_attendee_postcode_' . $x, array(
-                    'type'          => 'text',
-                    'class'         => array('form-row-wide address-field'),
-                    'label'         => __('Postcode '),
-                    'placeholder'   => __(''),
-                    'required' => true,
-                    ), $checkout->get_value( 'self_managed_funding_type_attendee_postcode_' . $x ));
-                        
-            echo '</div>';
+             //self manage
+             echo '<div class="Attendee-group"><h4>Self-managed details for invoicing</h4></div>';
+             //firstname
+             woocommerce_form_field( 'self_managed_funding_type_attendee_first_name_' . $x, array(
+                 'type'          => 'text',
+                 'class'         => array('form-row-first'),
+                 'label'         => __('First Name '),
+                 'placeholder'   => __(''),
+                 'required' => true,
+                 ), $user, $checkout->get_value( 'self_managed_funding_type_attendee_first_name_' . $x ) );
+             // lastname
+             woocommerce_form_field( 'self_managed_funding_type_attendee_last_name_' . $x, array(
+                 'type'          => 'text',
+                 'class'         => array('form-row-last'),
+                 'label'         => __('Last Name '),
+                 'placeholder'   => __(''),
+                 'required' => true,
+                 ), $checkout->get_value( 'self_managed_funding_type_attendee_last_name_' . $x ));
+             //email
+             woocommerce_form_field( 'self_managed_funding_type_attendee_email_' . $x, array(
+                 'type'          => 'email',
+                 'class'         => array('form-row-wide'),
+                 'label'         => __('Email '),
+                 'placeholder'   => __(''),
+                 'required' => true,
+                 ), $checkout->get_value( 'self_managed_funding_type_attendee_email_' . $x ));
+             
+             //phone
+             woocommerce_form_field( 'self_managed_funding_type_attendee_phone_' . $x, array(
+                 'type'          => 'text',
+                 'class'         => array('form-row-wide'),
+                 'label'         => __('Phone '),
+                 'placeholder'   => __(''),
+                 'required' => true,
+                 ), $checkout->get_value( 'self_managed_funding_type_attendee_phone_' . $x ));
+             //DOB
+             woocommerce_form_field( 'self_managed_funding_type_attendee_dob_' . $x, array(
+                 'type'          => 'date',
+                 'class'         => array('form-row-first'),
+                 'label'         => __('DOB '),
+                 'placeholder'   => __(''),
+                 'required' => true,
+                 ), $checkout->get_value( 'self_managed_funding_type_attendee_dob_' . $x ));
+             //gender
+             woocommerce_form_field( 'self_managed_funding_type_attendee_gender_' . $x, array(
+                 'type' => 'select',
+                 'class' => array('form-row-last'),
+                 'label' => __('Gender'),
+                 'required' => true,
+                 'options' => array(
+                 'blank'  => __( '--'),
+                 'Male' => __( 'Male'),
+                 'Female' => __( 'Female'),
+                 'Others' => __( 'Others' )
+                 )
+                 ), $checkout->get_value( 'self_managed_funding_type_attendee_gender_' . $x ));
+             //Address one 
+             woocommerce_form_field( 'self_managed_funding_type_attendee_address_1_' . $x, array(
+                 'type'          => 'text',
+                 'class'         => array('form-row-wide'),
+                 'label'         => __('Address '),
+                 'placeholder'   => __(''),
+                 'required' => true,
+                 ), $checkout->get_value( 'self_managed_funding_type_attendee_address_1_' . $x ));
+             //Address 2
+             woocommerce_form_field( 'self_managed_funding_type_attendee_address_2_' . $x, array(
+                 'type'          => 'text',
+                 'class'         => array('form-row-wide'),
+                 'label'         => __('Apartment, Suite, etc. '),
+                 'placeholder'   => __(''),
+                 ), $checkout->get_value( 'self_managed_funding_type_attendee_address_2_' . $x ));
+             //City
+             woocommerce_form_field( 'self_managed_funding_type_attendee_city_' . $x, array(
+                 'type'          => 'text',
+                 'class'         => array('form-row-wide address-field'),
+                 'label'         => __('Suburb/City '),
+                 'placeholder'   => __(''),
+                 ), $checkout->get_value( 'self_managed_funding_type_attendee_city_' . $x ));
+             //State
+             woocommerce_form_field( 'self_managed_funding_type_attendee_state_' . $x, array(
+                 'type' => 'select',
+                 'class' => array('form-row-wide address-field'),
+                 'label' => __('State/Territory'),
+                 'required' => true,
+                 'options' => array(
+                 'blank'  => __( '--'),
+                 'Australian Capital Territory' => __( 'Australian Capital Territory'),
+                 'New South Wales' => __( 'New South Wales'),
+                 'Northern Territory' => __( 'Northern Territory' ),
+                 'Queensland' => __( 'Queensland' ),
+                 'Tasmania' => __( 'South Australia' ),
+                 'Northern Territory' => __( 'Tasmania' ),
+                 'Victoria' => __( 'Victoria' ),
+                 'Western Australia' => __( 'Western Australia' ),
+                 )
+                 ), $checkout->get_value( 'self_managed_funding_type_attendee_state_' . $x ));
+             //Passcode
+             woocommerce_form_field( 'self_managed_funding_type_attendee_postcode_' . $x, array(
+                 'type'          => 'text',
+                 'class'         => array('form-row-wide address-field'),
+                 'label'         => __('Postcode '),
+                 'placeholder'   => __(''),
+                 'required' => true,
+                 ), $checkout->get_value( 'self_managed_funding_type_attendee_postcode_' . $x ));
+                     
+         echo '</div>';
 
 
-                    echo '<div class="plan-managed-funding-text Attendee-group">';
-                        echo '<div class="plan-managed-funding-text funding-type-description"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco labori</p></div>';
-                        //self manage
-                        echo '<div class="plan-managed-funding-text Attendee-group"><h4>Plan Managed</h4></div>';
-                        //firstname
-                        woocommerce_form_field( 'plan_managed_funding_type_attendee_first_name_' . $x, array(
-                            'type'          => 'text',
-                            'class'         => array('plan-managed-funding-text form-row-first'),
-                            'label'         => __('First Name '),
-                            'placeholder'   => __(''),
-                            'required' => true,
-                            ), $user, $checkout->get_value( 'plan_managed_funding_type_attendee_first_name_' . $x ) );
-                        // lastname
-                        woocommerce_form_field( 'plan_managed_funding_type_attendee_last_name_' . $x, array(
-                            'type'          => 'text',
-                            'class'         => array('plan-managed-funding-text form-row-last'),
-                            'label'         => __('Last Name '),
-                            'placeholder'   => __(''),
-                            'required' => true,
-                            ), $checkout->get_value( 'plan_managed_funding_type_attendee_last_name_' . $x ));
-                        //email
-                        woocommerce_form_field( 'plan_managed_funding_type_attendee_email_' . $x, array(
-                            'type'          => 'email',
-                            'class'         => array('plan-managed-funding-text form-row-wide'),
-                            'label'         => __('Email '),
-                            'placeholder'   => __(''),
-                            'required' => true,
-                            ), $checkout->get_value( 'plan_managed_funding_type_attendee_email_' . $x ));
-                        
-                        //phone
-                        woocommerce_form_field( 'plan_managed_funding_type_attendee_phone_' . $x, array(
-                            'type'          => 'text',
-                            'class'         => array('plan-managed-funding-text form-row-wide'),
-                            'label'         => __('Phone '),
-                            'placeholder'   => __(''),
-                            'required' => true,
-                            ), $checkout->get_value( 'plan_managed_funding_type_attendee_phone_' . $x ));
-                        //DOB
-                        woocommerce_form_field( 'plan_managed_funding_type_attendee_dob_' . $x, array(
-                            'type'          => 'date',
-                            'class'         => array('atteplan-managed-funding-text form-row-first'),
-                            'label'         => __('DOB '),
-                            'placeholder'   => __(''),
-                            'required' => true,
-                            ), $checkout->get_value( 'plan_managed_funding_type_attendee_dob_' . $x ));
-                        //gender
-                        woocommerce_form_field( 'plan_managed_funding_type_attendee_gender_' . $x, array(
-                            'type' => 'select',
-                            'class' => array('plan-managed-funding-text form-row-last'),
-                            'label' => __('Gender'),
-                            'required' => true,
-                            'options' => array(
-                            'blank'  => __( '--'),
-                            'Male' => __( 'Male'),
-                            'Female' => __( 'Female'),
-                            'Others' => __( 'Others' )
-                            )
-                            ), $checkout->get_value( 'plan_managed_funding_type_attendee_gender_' . $x ));
-                        //Address one 
-                        woocommerce_form_field( 'plan_managed_funding_type_attendee_address_1_' . $x, array(
-                            'type'          => 'text',
-                            'class'         => array('plan-managed-funding-text form-row-wide'),
-                            'label'         => __('Address '),
-                            'placeholder'   => __(''),
-                            'required' => true,
-                            ), $checkout->get_value( 'plan_managed_funding_type_attendee_address_1_' . $x ));
-                        //Address 2
-                        woocommerce_form_field( 'plan_managed_funding_type_attendee_address_2_' . $x, array(
-                            'type'          => 'text',
-                            'class'         => array('plan-managed-funding-text form-row-wide'),
-                            'label'         => __('Apartment, Suite, etc. '),
-                            'placeholder'   => __(''),
-                            ), $checkout->get_value( 'plan_managed_funding_type_attendee_address_2_' . $x ));
-                        //City
-                        woocommerce_form_field( 'plan_managed_funding_type_attendee_city_' . $x, array(
-                            'type'          => 'text',
-                            'class'         => array('plan-managed-funding-text form-row-wide address-field'),
-                            'label'         => __('Suburb/City '),
-                            'placeholder'   => __(''),
-                            ), $checkout->get_value( 'plan_managed_funding_type_attendee_city_' . $x ));
-                        //State
-                        woocommerce_form_field( 'plan_managed_funding_type_attendee_state_' . $x, array(
-                            'type' => 'select',
-                            'class' => array('plan-managed-funding-text form-row-wide address-field'),
-                            'label' => __('State/Territory'),
-                            'required' => true,
-                            'options' => array(
-                            'blank'  => __( '--'),
-                            'Australian Capital Territory' => __( 'Australian Capital Territory'),
-                            'New South Wales' => __( 'New South Wales'),
-                            'Northern Territory' => __( 'Northern Territory' ),
-                            'Queensland' => __( 'Queensland' ),
-                            'Tasmania' => __( 'South Australia' ),
-                            'Northern Territory' => __( 'Tasmania' ),
-                            'Victoria' => __( 'Victoria' ),
-                            'Western Australia' => __( 'Western Australia' ),
-                            )
-                            ), $checkout->get_value( 'plan_managed_funding_type_attendee_state_' . $x ));
-                        //Passcode
-                        woocommerce_form_field( 'plan_managed_funding_type_attendee_postcode_' . $x, array(
-                            'type'          => 'text',
-                            'class'         => array('plan-managed-funding-text form-row-wide address-field'),
-                            'label'         => __('Postcode '),
-                            'placeholder'   => __(''),
-                            'required' => true,
-                            ), $checkout->get_value( 'plan_managed_funding_type_attendee_postcode_' . $x ));
-                
-                        
-                        
-                    echo '</div>';
 
+           //plan manage funding type
+           echo '<div class="plan-managed-funding-text Attendee-group">';
+           //self manage
+           echo '<div class="plan-managed-funding-text Attendee-group"><h4>Plan Managed</h4></div>';
+           //firstname
+           woocommerce_form_field( 'plan_managed_funding_type_attendee_first_name_' . $x, array(
+               'type'          => 'text',
+               'class'         => array('plan-managed-funding-text form-row-first'),
+               'label'         => __('First Name '),
+               'placeholder'   => __(''),
+               'required' => true,
+               ), $user, $checkout->get_value( 'plan_managed_funding_type_attendee_first_name_' . $x ) );
+           // lastname
+           woocommerce_form_field( 'plan_managed_funding_type_attendee_last_name_' . $x, array(
+               'type'          => 'text',
+               'class'         => array('plan-managed-funding-text form-row-last'),
+               'label'         => __('Last Name '),
+               'placeholder'   => __(''),
+               'required' => true,
+               ), $checkout->get_value( 'plan_managed_funding_type_attendee_last_name_' . $x ));
+           //email
+           woocommerce_form_field( 'plan_managed_funding_type_attendee_email_' . $x, array(
+               'type'          => 'email',
+               'class'         => array('plan-managed-funding-text form-row-wide'),
+               'label'         => __('Email '),
+               'placeholder'   => __(''),
+               'required' => true,
+               ), $checkout->get_value( 'plan_managed_funding_type_attendee_email_' . $x ));
+           
+           //phone
+           woocommerce_form_field( 'plan_managed_funding_type_attendee_phone_' . $x, array(
+               'type'          => 'text',
+               'class'         => array('plan-managed-funding-text form-row-wide'),
+               'label'         => __('Phone '),
+               'placeholder'   => __(''),
+               'required' => true,
+               ), $checkout->get_value( 'plan_managed_funding_type_attendee_phone_' . $x ));
+           //DOB
+           woocommerce_form_field( 'plan_managed_funding_type_attendee_dob_' . $x, array(
+               'type'          => 'date',
+               'class'         => array('atteplan-managed-funding-text form-row-first'),
+               'label'         => __('DOB '),
+               'placeholder'   => __(''),
+               'required' => true,
+               ), $checkout->get_value( 'plan_managed_funding_type_attendee_dob_' . $x ));
+           //gender
+           woocommerce_form_field( 'plan_managed_funding_type_attendee_gender_' . $x, array(
+               'type' => 'select',
+               'class' => array('plan-managed-funding-text form-row-last'),
+               'label' => __('Gender'),
+               'required' => true,
+               'options' => array(
+               'blank'  => __( '--'),
+               'Male' => __( 'Male'),
+               'Female' => __( 'Female'),
+               'Others' => __( 'Others' )
+               )
+               ), $checkout->get_value( 'plan_managed_funding_type_attendee_gender_' . $x ));
+           //Address one 
+           woocommerce_form_field( 'plan_managed_funding_type_attendee_address_1_' . $x, array(
+               'type'          => 'text',
+               'class'         => array('plan-managed-funding-text form-row-wide'),
+               'label'         => __('Address '),
+               'placeholder'   => __(''),
+               'required' => true,
+               ), $checkout->get_value( 'plan_managed_funding_type_attendee_address_1_' . $x ));
+           //Address 2
+           woocommerce_form_field( 'plan_managed_funding_type_attendee_address_2_' . $x, array(
+               'type'          => 'text',
+               'class'         => array('plan-managed-funding-text form-row-wide'),
+               'label'         => __('Apartment, Suite, etc. '),
+               'placeholder'   => __(''),
+               ), $checkout->get_value( 'plan_managed_funding_type_attendee_address_2_' . $x ));
+           //City
+           woocommerce_form_field( 'plan_managed_funding_type_attendee_city_' . $x, array(
+               'type'          => 'text',
+               'class'         => array('plan-managed-funding-text form-row-wide address-field'),
+               'label'         => __('Suburb/City '),
+               'placeholder'   => __(''),
+               ), $checkout->get_value( 'plan_managed_funding_type_attendee_city_' . $x ));
+           //State
+           woocommerce_form_field( 'plan_managed_funding_type_attendee_state_' . $x, array(
+               'type' => 'select',
+               'class' => array('plan-managed-funding-text form-row-wide address-field'),
+               'label' => __('State/Territory'),
+               'required' => true,
+               'options' => array(
+               'blank'  => __( '--'),
+               'Australian Capital Territory' => __( 'Australian Capital Territory'),
+               'New South Wales' => __( 'New South Wales'),
+               'Northern Territory' => __( 'Northern Territory' ),
+               'Queensland' => __( 'Queensland' ),
+               'Tasmania' => __( 'South Australia' ),
+               'Northern Territory' => __( 'Tasmania' ),
+               'Victoria' => __( 'Victoria' ),
+               'Western Australia' => __( 'Western Australia' ),
+               )
+               ), $checkout->get_value( 'plan_managed_funding_type_attendee_state_' . $x ));
+           //Passcode
+           woocommerce_form_field( 'plan_managed_funding_type_attendee_postcode_' . $x, array(
+               'type'          => 'text',
+               'class'         => array('plan-managed-funding-text form-row-wide address-field'),
+               'label'         => __('Postcode '),
+               'placeholder'   => __(''),
+               'required' => true,
+               ), $checkout->get_value( 'plan_managed_funding_type_attendee_postcode_' . $x ));
+   
+           
+             echo '</div>';
 
-            echo '<div class="ndia-managed-funding-text Attendee-group">';
-                echo '<div class="ndia-managed-funding-text funding-type-description"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco labori</p></div>';
+             echo '<div class="ndia-managed-funding-text Attendee-group">';
                 //self manage
                 echo '<div class="ndia-managed-funding-text Attendee-group"><h4>NDIA-managed details </h4></div>';
                 //firstname
@@ -379,6 +374,15 @@ foreach(WC()->cart->get_cart() as $item => $values) {
                     ), $checkout->get_value( 'ndia_managed_funding_type_attendee_ndia_number_' . $x ) );
              
             echo '</div>';
+
+        echo '</div>';
+
+        //funding type starting
+
+      
+
+
+            
 
             
 

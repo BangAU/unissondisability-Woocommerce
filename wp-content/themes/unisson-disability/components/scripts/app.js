@@ -25,6 +25,10 @@ document.addEventListener('DOMContentLoaded', function () {
     accessibility()
 
     isotopeInitv3()
+
+    loginRegister()
+    
+    fundingType()
 });
 
 //function called on window resize
@@ -798,7 +802,7 @@ function isotopeInitv3() {
     });
 }
 
-jQuery(document).ready(function ($) {
+function loginRegister() {
     var url = window.location.href;
     url = url.split("/");
     url = url[url.length - 2];
@@ -808,9 +812,9 @@ jQuery(document).ready(function ($) {
     if (url == "register") {
         $("#customer_login .u-column1").remove(); // Remove Login Div
     }
-})
+}
 
-$(document).ready(function () {
+function fundingType() {
     $('.self_manage_funding_text').hide();
     $('.plan-managed-funding-text').hide();
     $('.ndia-managed-funding-text').hide();
@@ -835,4 +839,4 @@ $(document).ready(function () {
         }
     );
 
-});
+}
