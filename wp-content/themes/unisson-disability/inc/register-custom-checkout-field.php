@@ -396,7 +396,7 @@ add_action('woocommerce_checkout_update_order_meta', 'customise_checkout_field_u
 function customise_checkout_field_update_order_meta($order_id) {
 global $woocommerce;
 $count = $woocommerce->cart->cart_contents_count;
-$i = 0;
+$i = 1;
        for($k=1; $k<= $count; $k++) {
 		$i++;
         if (!empty($_POST['attendee_first_name_'.$i])) {
