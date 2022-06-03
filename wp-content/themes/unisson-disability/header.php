@@ -300,6 +300,7 @@
                 <li><a href="<?php echo esc_url( home_url( '/' ) ) ?>">Home</a></li>
                 <li><?php the_title(); ?></li>
             </ul>
+            <h5 class="search-term"><?php the_title(); ?></h5>
         </div>
     </div>
 </section>

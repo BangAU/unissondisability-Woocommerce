@@ -379,15 +379,7 @@ foreach(WC()->cart->get_cart() as $item => $values) {
 
         //funding type starting
 
-      
-
-
-            
-
-            
-
-
-            
+     
         $x++;
     }
 
