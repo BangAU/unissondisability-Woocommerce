@@ -396,7 +396,7 @@ add_action('woocommerce_checkout_update_order_meta', 'customise_checkout_field_u
 function customise_checkout_field_update_order_meta($order_id) {
 global $woocommerce;
 $count = $woocommerce->cart->cart_contents_count;
-$i = 1;
+$i = 0;
        for($k=1; $k<= $count; $k++) {
 		$i++;
         if (!empty($_POST['attendee_first_name_'.$i])) {
@@ -528,7 +528,7 @@ $i = 1;
  **/
 add_filter('woocommerce_email_order_meta_keys', 'my_custom_checkout_field_order_meta_keys');
 function my_custom_checkout_field_order_meta_keys( $keys ) {
-	$i = 1;
+	$i = 0;
 	for($k=1; $k<= 50; $k++) {
 	$i++;
     echo '<div class="ndia-managed-funding-text Attendee-group"><h3>Name of Attendee' .$i. '</h3>';
