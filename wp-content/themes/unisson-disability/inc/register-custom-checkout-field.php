@@ -408,33 +408,7 @@ $i = 0;
 	}
 	
 }
-	
-	
-	
-// global $woocommerce;
-// $items = $woocommerce->cart->cart_contents_count;
-// $i = 1;
 
-// foreach(WC()->cart->get_cart() as $item => $values) { 
-//     $_product = $values['data']->post;
-//     $quantity = $values['quantity'];
-//     $x = 1;
-
-//     while ($x <= $quantity) {
-
-//         if (!empty($_POST['attendee_first_name_'.$x])) {
-// 		update_post_meta($order_id, 'First of Attendee'.$x, sanitize_text_field($_POST['attendee_first_name_'.$x]));
-// 	}
-// 	if (!empty($_POST['attendee_last_name_'.$x])) {
-// 		update_post_meta($order_id, 'Last of Attendee'.$x, sanitize_text_field($_POST['attendee_last_name_'.$x]));
-// 	}
-	
-
-//         $x++;
-//     }
-
-//     $i++;
-//     } 
 }
 
 
@@ -451,33 +425,21 @@ function my_custom_checkout_field_order_meta_keys( $keys ) {
 }	
 return $keys;
 
-// global $woocommerce;
-// $items = $woocommerce->cart->cart_contents_count;
-// foreach(WC()->cart->get_cart() as $item => $values) { 
-//     $_product = $values['data']->post;
-//     $quantity = $values['quantity'];
-//     $x = 1;
 
-//     while ($x <= $quantity) {
-//         $keys[] = 'First of Attendee Last of Attendee'.$x;
-	
-//         $x++;
-//     }
-// 	return $keys;
-
-
-//     $i++;
-//     } 
-	
-
-	
-// $i = 1;
-// for($k=1; $k<= 50; $k++) {
-// $i++;
-// $keys[] = 'First Name'.$i;
-// $keys[] = 'Last Name'.$i;
-// }	
-// return $keys;
 }
 
+
+add_filter( 'woocommerce_email_order_meta_fields', 'custom_woocommerce_email_order_meta_fields', 10, 3 );
+
+function custom_woocommerce_email_order_meta_fields( $fields, $sent_to_admin, $order ) {
+    $fields['meta_key'] = array(
+        'label' => __( 'Label' ),
+        'value' => get_post_meta( $order->id, 'attendee_first_name_', true ),
+    );
+    $fields['meta_key'] = array(
+        'label' => __( 'Label' ),
+        'value' => get_post_meta( $order->id, 'attendee_last_name_', true ),
+    );
+    return $fields;
+}
 
