@@ -16,7 +16,7 @@ const {
 	Slot: DiscountsMetaSlot,
 } = createSlotFill( slotName );
 
-const Slot = ( { className, extensions, cart, context } ) => {
+const Slot = ( { className, extensions, cart } ) => {
 	const { fills } = useSlot( slotName );
 	return (
 		hasValidFills( fills ) && (
@@ -26,7 +26,7 @@ const Slot = ( { className, extensions, cart, context } ) => {
 						className,
 						'wc-block-components-discounts-meta'
 					) }
-					fillProps={ { extensions, cart, context } }
+					fillProps={ { extensions, cart } }
 				/>
 			</TotalsWrapper>
 		)

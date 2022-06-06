@@ -12,6 +12,7 @@ import { ReactElement } from 'react';
  * Internal dependencies
  */
 import TotalsItem from '../item';
+import './style.scss';
 
 interface Values {
 	tax_lines: CartTotalsTaxLineItem[];
@@ -47,7 +48,12 @@ const TotalsTaxes = ( {
 
 	const itemisedTaxItems: ReactElement | null =
 		showItemisedTaxes && taxLines.length > 0 ? (
-			<>
+			<div
+				className={ classnames(
+					'wc-block-components-totals-taxes',
+					className
+				) }
+			>
 				{ taxLines.map( ( { name, rate, price }, i ) => {
 					const label = `${ name }${
 						showRateAfterTaxName ? ` ${ rate }` : ''
@@ -55,17 +61,14 @@ const TotalsTaxes = ( {
 					return (
 						<TotalsItem
 							key={ `tax-line-${ i }` }
-							className={ classnames(
-								'wc-block-components-totals-taxes',
-								className
-							) }
+							className="wc-block-components-totals-taxes__grouped-rate"
 							currency={ currency }
 							label={ label }
 							value={ parseInt( price, 10 ) }
 						/>
 					);
 				} ) }{ ' ' }
-			</>
+			</div>
 		) : null;
 
 	return showItemisedTaxes ? (

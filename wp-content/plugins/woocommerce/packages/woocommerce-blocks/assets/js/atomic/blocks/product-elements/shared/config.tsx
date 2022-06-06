@@ -2,7 +2,7 @@
  * External dependencies
  */
 import { __ } from '@wordpress/i18n';
-import { Icon, grid } from '@wordpress/icons';
+import { Icon, grid } from '@woocommerce/icons';
 import { isExperimentalBuild } from '@woocommerce/block-settings';
 import type { BlockConfiguration } from '@wordpress/blocks';
 
@@ -21,7 +21,7 @@ const sharedConfig: Omit< BlockConfiguration, 'attributes' | 'title' > = {
 	icon: {
 		src: (
 			<Icon
-				icon={ grid }
+				srcElement={ grid }
 				className="wc-block-editor-components-block-icon"
 			/>
 		),

@@ -101,6 +101,14 @@
                             padding-left: 24px;
                             text-transform: uppercase;
                         }
+
+                        #gtranslate_selector {
+                            padding: 0;
+                            background-color: transparent;
+                            font-size: 14px;
+                            height: auto;
+                            margin-left: -5px;
+                        }
                     }
                 }
             }
@@ -327,6 +335,10 @@
 
                         ul li a {
                             color: #fff;
+
+                            &:hover {
+                                color: $color-gray;
+                            }
                         }
                     }
                 }

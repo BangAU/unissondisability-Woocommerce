@@ -5,10 +5,6 @@
  * @package WooCommerce\Emails
  */
 
-use Pelago\Emogrifier\CssInliner;
-use Pelago\Emogrifier\HtmlProcessor\CssToAttributeConverter;
-use Pelago\Emogrifier\HtmlProcessor\HtmlPruner;
-
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -563,20 +559,18 @@ class WC_Email extends WC_Settings_API {
 			wc_get_template( 'emails/email-styles.php' );
 			$css = apply_filters( 'woocommerce_email_styles', ob_get_clean(), $this );
 
-			$css_inliner_class = CssInliner::class;
+			$emogrifier_class = 'Pelago\\Emogrifier';
 
-			if ( $this->supports_emogrifier() && class_exists( $css_inliner_class ) ) {
+			if ( $this->supports_emogrifier() && class_exists( $emogrifier_class ) ) {
 				try {
-					$css_inliner = CssInliner::fromHtml( $content )->inlineCss( $css );
+					$emogrifier = new $emogrifier_class( $content, $css );
 
-					do_action( 'woocommerce_emogrifier', $css_inliner, $this );
+					do_action( 'woocommerce_emogrifier', $emogrifier, $this );
 
-					$dom_document = $css_inliner->getDomDocument();
-
-					HtmlPruner::fromDomDocument( $dom_document )->removeElementsWithDisplayNone();
-					$content = CssToAttributeConverter::fromDomDocument( $dom_document )
-						->convertCssToVisualAttributes()
-						->render();
+					$content    = $emogrifier->emogrify();
+					$html_prune = \Pelago\Emogrifier\HtmlProcessor\HtmlPruner::fromHtml( $content );
+					$html_prune->removeElementsWithDisplayNone();
+					$content    = $html_prune->render();
 				} catch ( Exception $e ) {
 					$logger = wc_get_logger();
 					$logger->error( $e->getMessage(), array( 'source' => 'emogrifier' ) );

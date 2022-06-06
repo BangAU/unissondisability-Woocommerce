@@ -9,6 +9,8 @@ import {
 	useMemo,
 	useRef,
 } from '@wordpress/element';
+import isShallowEqual from '@wordpress/is-shallow-equal';
+import { deriveSelectedShippingRates } from '@woocommerce/base-utils';
 
 /**
  * Internal dependencies
@@ -23,9 +25,9 @@ import {
 	emitEvent,
 } from './event-emit';
 import { useCheckoutContext } from '../checkout-state';
+import { useCustomerDataContext } from '../customer';
 import { useStoreCart } from '../../../hooks/cart/use-store-cart';
-import { useSelectShippingRate } from '../../../hooks/shipping/use-select-shipping-rate';
-import { useShippingData } from '../../../hooks/shipping/use-shipping-data';
+import { useSelectShippingRates } from '../../../hooks/shipping/use-select-shipping-rates';
 
 /**
  * @typedef {import('@woocommerce/type-defs/contexts').ShippingDataContext} ShippingDataContext
@@ -45,14 +47,20 @@ export const useShippingDataContext = () => {
 /**
  * The shipping data provider exposes the interface for shipping in the checkout/cart.
  *
- * @param {Object}             props          Incoming props for provider
+ * @param {Object} props Incoming props for provider
  * @param {React.ReactElement} props.children
  */
 export const ShippingDataProvider = ( { children } ) => {
 	const { dispatchActions } = useCheckoutContext();
-	const { shippingRates, isLoadingRates, cartErrors } = useStoreCart();
-	const { isSelectingRate } = useSelectShippingRate();
-	const { selectedRates } = useShippingData();
+	const { shippingAddress, setShippingAddress } = useCustomerDataContext();
+	const {
+		cartNeedsShipping: needsShipping,
+		cartHasCalculatedShipping: hasCalculatedShipping,
+		shippingRates,
+		shippingRatesLoading,
+		cartErrors,
+	} = useStoreCart();
+	const { selectShippingRate, isSelectingRate } = useSelectShippingRates();
 	const [ shippingErrorStatus, dispatchErrorStatus ] = useReducer(
 		errorStatusReducer,
 		NONE
@@ -77,14 +85,27 @@ export const ShippingDataProvider = ( { children } ) => {
 		currentObservers.current = observers;
 	}, [ observers ] );
 
+	// set selected rates on ref so it's always current.
+	const selectedRates = useRef( () =>
+		deriveSelectedShippingRates( shippingRates )
+	);
+	useEffect( () => {
+		const derivedSelectedRates = deriveSelectedShippingRates(
+			shippingRates
+		);
+		if ( ! isShallowEqual( selectedRates.current, derivedSelectedRates ) ) {
+			selectedRates.current = derivedSelectedRates;
+		}
+	}, [ shippingRates ] );
+
 	// increment/decrement checkout calculating counts when shipping is loading.
 	useEffect( () => {
-		if ( isLoadingRates ) {
+		if ( shippingRatesLoading ) {
 			dispatchActions.incrementCalculating();
 		} else {
 			dispatchActions.decrementCalculating();
 		}
-	}, [ isLoadingRates, dispatchActions ] );
+	}, [ shippingRatesLoading, dispatchActions ] );
 
 	// increment/decrement checkout calculating counts when shipping rates are being selected.
 	useEffect( () => {
@@ -122,7 +143,7 @@ export const ShippingDataProvider = ( { children } ) => {
 	// emit events.
 	useEffect( () => {
 		if (
-			! isLoadingRates &&
+			! shippingRatesLoading &&
 			( shippingRates.length === 0 || currentErrorStatus.hasError )
 		) {
 			emitEvent(
@@ -136,14 +157,14 @@ export const ShippingDataProvider = ( { children } ) => {
 		}
 	}, [
 		shippingRates,
-		isLoadingRates,
+		shippingRatesLoading,
 		currentErrorStatus.hasError,
 		currentErrorStatus.hasInvalidAddress,
 	] );
 
 	useEffect( () => {
 		if (
-			! isLoadingRates &&
+			! shippingRatesLoading &&
 			shippingRates.length > 0 &&
 			! currentErrorStatus.hasError
 		) {
@@ -153,7 +174,7 @@ export const ShippingDataProvider = ( { children } ) => {
 				shippingRates
 			);
 		}
-	}, [ shippingRates, isLoadingRates, currentErrorStatus.hasError ] );
+	}, [ shippingRates, shippingRatesLoading, currentErrorStatus.hasError ] );
 
 	// emit shipping rate selection events.
 	useEffect( () => {
@@ -177,7 +198,6 @@ export const ShippingDataProvider = ( { children } ) => {
 			);
 		}
 	}, [
-		selectedRates,
 		isSelectingRate,
 		currentErrorStatus.hasError,
 		currentErrorStatus.hasInvalidAddress,
@@ -190,6 +210,15 @@ export const ShippingDataProvider = ( { children } ) => {
 		shippingErrorStatus: currentErrorStatus,
 		dispatchErrorStatus,
 		shippingErrorTypes: ERROR_TYPES,
+		shippingRates,
+		shippingRatesLoading,
+		selectedRates: selectedRates.current,
+		setSelectedRates: selectShippingRate,
+		isSelectingRate,
+		shippingAddress,
+		setShippingAddress,
+		needsShipping,
+		hasCalculatedShipping,
 		...eventObservers,
 	};
 

@@ -62,6 +62,9 @@ final class BlockTypesController {
 			$block_type_instance = new $block_type_class( $this->asset_api, $this->asset_data_registry, new IntegrationRegistry() );
 		}
 
+		foreach ( self::get_atomic_blocks() as $block_type ) {
+			$block_type_instance = new AtomicBlock( $this->asset_api, $this->asset_data_registry, new IntegrationRegistry(), $block_type );
+		}
 	}
 
 	/**
@@ -171,32 +174,11 @@ final class BlockTypesController {
 			'AttributeFilter',
 			'StockFilter',
 			'ActiveFilters',
-			'ClassicTemplate',
-			'ProductAddToCart',
-			'ProductButton',
-			'ProductCategoryList',
-			'ProductImage',
-			'ProductPrice',
-			'ProductRating',
-			'ProductSaleBadge',
-			'ProductSKU',
-			'ProductStockIndicator',
-			'ProductSummary',
-			'ProductTagList',
+			'LegacyTemplate',
 			'ProductTitle',
+			'ProductSummary',
+			'ProductStockIndicator',
 		];
-
-		/**
-		 * Mini Cart blocks should be available in Site Editor, Widgets and frontend (is_admin function checks this) only.
-		 */
-		if (
-			! is_admin() ||
-			in_array( $pagenow, [ 'widgets.php', 'customize.php', 'site-editor.php' ], true ) ||
-			! empty( $_GET['page'] ) && 'gutenberg-edit-site' === $_GET['page'] // phpcs:ignore WordPress.Security.NonceVerification
-		) {
-			$block_types[] = 'MiniCart';
-			$block_types[] = 'MiniCartContents';
-		}
 
 		if ( Package::feature()->is_feature_plugin_build() ) {
 			$block_types[] = 'Checkout';
@@ -205,6 +187,8 @@ final class BlockTypesController {
 
 		if ( Package::feature()->is_experimental_build() ) {
 			$block_types[] = 'SingleProduct';
+			$block_types[] = 'MiniCart';
+			$block_types[] = 'MiniCartContents';
 		}
 
 		/**
@@ -228,4 +212,22 @@ final class BlockTypesController {
 		return $block_types;
 	}
 
+	/**
+	 * Get atomic blocks types.
+	 *
+	 * @return array
+	 */
+	protected function get_atomic_blocks() {
+		return [
+			'product-button',
+			'product-image',
+			'product-price',
+			'product-rating',
+			'product-sale-badge',
+			'product-sku',
+			'product-category-list',
+			'product-tag-list',
+			'product-add-to-cart',
+		];
+	}
 }

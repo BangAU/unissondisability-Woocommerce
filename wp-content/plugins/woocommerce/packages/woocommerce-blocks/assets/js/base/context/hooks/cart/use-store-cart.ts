@@ -28,7 +28,10 @@ import type {
 	CartResponseCouponItem,
 	CartResponseCoupons,
 } from '@woocommerce/types';
-import { emptyHiddenAddressFields } from '@woocommerce/base-utils';
+import {
+	emptyHiddenAddressFields,
+	fromEntriesPolyfill,
+} from '@woocommerce/base-utils';
 
 /**
  * Internal dependencies
@@ -82,7 +85,7 @@ const defaultCartTotals: CartResponseTotals = {
 const decodeValues = (
 	object: Record< string, unknown >
 ): Record< string, unknown > =>
-	Object.fromEntries(
+	fromEntriesPolyfill(
 		Object.entries( object ).map( ( [ key, value ] ) => [
 			key,
 			decodeEntities( value ),
@@ -108,7 +111,7 @@ export const defaultCartData: StoreCart = {
 	billingAddress: defaultBillingAddress,
 	shippingAddress: defaultShippingAddress,
 	shippingRates: EMPTY_SHIPPING_RATES,
-	isLoadingRates: false,
+	shippingRatesLoading: false,
 	cartHasCalculatedShipping: false,
 	paymentRequirements: EMPTY_PAYMENT_REQUIREMENTS,
 	receiveCart: () => undefined,
@@ -119,11 +122,11 @@ export const defaultCartData: StoreCart = {
  * This is a custom hook that is wired up to the `wc/store/cart` data
  * store.
  *
- * @param {Object}  options              An object declaring the various
- *                                       collection arguments.
- * @param {boolean} options.shouldSelect If false, the previous results will be
- *                                       returned and internal selects will not
- *                                       fire.
+ * @param {Object} options                An object declaring the various
+ *                                        collection arguments.
+ * @param {boolean} options.shouldSelect  If false, the previous results will be
+ *                                        returned and internal selects will not
+ *                                        fire.
  *
  * @return {StoreCart} Object containing cart data.
  */
@@ -163,7 +166,7 @@ export const useStoreCart = (
 					shippingAddress: defaultShippingAddress,
 					extensions: EMPTY_EXTENSIONS,
 					shippingRates: previewCart.shipping_rates,
-					isLoadingRates: false,
+					shippingRatesLoading: false,
 					cartHasCalculatedShipping:
 						previewCart.has_calculated_shipping,
 					paymentRequirements: previewCart.paymentRequirements,
@@ -182,7 +185,7 @@ export const useStoreCart = (
 				'getCartData'
 			);
 
-			const isLoadingRates = store.isCustomerDataUpdating();
+			const shippingRatesLoading = store.isCustomerDataUpdating();
 			const { receiveCart } = dispatch( storeKey );
 			const billingAddress = decodeValues( cartData.billingAddress );
 			const shippingAddress = cartData.needsShipping
@@ -224,7 +227,7 @@ export const useStoreCart = (
 				shippingAddress: emptyHiddenAddressFields( shippingAddress ),
 				extensions: cartData.extensions,
 				shippingRates: cartData.shippingRates,
-				isLoadingRates,
+				shippingRatesLoading,
 				cartHasCalculatedShipping: cartData.hasCalculatedShipping,
 				paymentRequirements: cartData.paymentRequirements,
 				receiveCart,

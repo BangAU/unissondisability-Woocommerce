@@ -9,9 +9,9 @@ $i = 1;
 foreach(WC()->cart->get_cart() as $item => $values) { 
     $_product = $values['data']->post;
     $quantity = $values['quantity'];
-    $start_date = get_field('tour_start_date' , $_product);
-    $end_date = get_field('tour_end_date' , $_product);
-    $terms = get_the_terms( $_product, 'location' );
+    // $start_date = get_field('tour_start_date' , $_product);
+    // $end_date = get_field('tour_end_date' , $_product);
+    // $terms = get_the_terms( $_product, 'location' );
     $x = 1;
     
     while ($x <= $quantity) {
@@ -122,7 +122,7 @@ foreach(WC()->cart->get_cart() as $item => $values) {
 
             echo '<div class="Attendee-group-funding-type"><h4>Funding Type*</h4>';  echo '</div>';
 
-            woocommerce_form_field( '_funding_type_radio_', array(
+            woocommerce_form_field( '_funding_type_radio_'. $x, array(
                 'type' => 'radio',
                 'class' => array('funding-type-radio'),
                 'required' => 'required',
@@ -137,6 +137,7 @@ foreach(WC()->cart->get_cart() as $item => $values) {
 
             echo '<div class=" funding-type-description"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut               enim ad minim veniam, quis nostrud exercitation ullamco labori</p></div>';
 
+          //  echo "<script>alert('message');</script>";
 
             //funding type radio ending
 
@@ -248,7 +249,6 @@ foreach(WC()->cart->get_cart() as $item => $values) {
                  ), $checkout->get_value( 'self_managed_funding_type_attendee_postcode_' . $x ));
                      
          echo '</div>';
-
 
 
            //plan manage funding type
@@ -383,6 +383,7 @@ foreach(WC()->cart->get_cart() as $item => $values) {
     }
 
     $i++;
+
     } 
 
 }
@@ -391,16 +392,15 @@ foreach(WC()->cart->get_cart() as $item => $values) {
  * Save value of fields
  */
  
-add_action('woocommerce_checkout_update_order_meta', 'customise_checkout_field_update_order_meta');
- 
+add_action('woocommerce_checkout_update_order_meta', 'customise_checkout_field_update_order_meta'); 
 function customise_checkout_field_update_order_meta($order_id) {
-global $woocommerce;
-$count = $woocommerce->cart->cart_contents_count;
-$i = 1;
-       for($k=1; $k<= $count; $k++) {
-		$i++;
+    global $woocommerce;
+    $count = $woocommerce->cart->cart_contents_count;
+    $i = 0;
+    for($k=1; $k<= $count; $k++) {
+		    $i++;
         if (!empty($_POST['attendee_first_name_'.$i])) {
-            update_post_meta($order_id, 'First Name of Attendee'.$i, sanitize_text_field($_POST['attendee_first_name_'.$i]));
+            update_post_meta($order_id, 'First Name of Attendee'.$i, sanitize_text_field($_POST['attendee_first_name_'.$i][2]) );
         }
         if (!empty($_POST['attendee_last_name_'.$i])) {
             update_post_meta($order_id, 'Last Name of Attendee'.$i, sanitize_text_field($_POST['attendee_last_name_'.$i]));
@@ -517,8 +517,7 @@ $i = 1;
             update_post_meta($order_id, 'Plan-Managed First Name of Attendee'.$i, sanitize_text_field($_POST['ndia_managed_funding_type_attendee_ndia_number_'.$i]));
         }
         
-
-}
+    }
 
 }
 
@@ -529,13 +528,13 @@ $i = 1;
 add_filter('woocommerce_email_order_meta_keys', 'my_custom_checkout_field_order_meta_keys');
 function my_custom_checkout_field_order_meta_keys( $keys ) {
 	$i = 0;
-	for($k=1; $k<= 50; $k++) {
-	$i++;
-    echo '<div class="ndia-managed-funding-text Attendee-group"><h3>Name of Attendee' .$i. '</h3>';
-	$keys[] = 'First of Attendee';
-	$keys[] = 'Last of Attendee';
-    echo '</div>';
-}	
+    for($k=1; $k<= 50; $k++) {
+        $i++;
+        echo '<div class="ndia-managed-funding-text Attendee-group"><h3>Name of Attendee' .$i. '</h3>';
+        $keys[] = 'First of Attendee';
+        $keys[] = 'Last of Attendee';
+        echo '</div>';
+    }	
 return $keys;
 
 

@@ -2,7 +2,7 @@
  * External dependencies
  */
 import { Story, Meta } from '@storybook/react';
-import { currencies, currencyControl } from '@woocommerce/storybook-controls';
+import { currencyControl } from '@woocommerce/storybook-controls';
 
 /**
  * Internal dependencies
@@ -14,9 +14,6 @@ export default {
 	component: Taxes,
 	argTypes: {
 		currency: currencyControl,
-		showRateAfterTaxName: {
-			table: { disable: true },
-		},
 	},
 	args: {
 		values: {
@@ -35,6 +32,6 @@ export default {
 const Template: Story< TotalsTaxesProps > = ( args ) => <Taxes { ...args } />;
 
 export const Default = Template.bind( {} );
-Default.args = {
-	currency: currencies.USD,
-};
+Default.args = {};
+
+// @todo Revise Storybook entries for `Checkout Blocks/totals` components

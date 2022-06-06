@@ -68,7 +68,7 @@ if ( ! class_exists( 'VillaThemeDeactivateSurvey' ) ) :
             <div class="villatheme-deactivate-modal" id="villatheme-deactivate-survey-modal">
                 <div class="villatheme-deactivate-modal-wrap">
                     <div class="villatheme-deactivate-modal-header">
-                        <h3><?php _e( 'If you have a moment, please let us know why you are deactivating:', 'viwec-email-template-customizer' ); ?></h3>
+                        <h3><?php esc_html_e( 'If you have a moment, please let us know why you are deactivating:', 'viwec-email-template-customizer' ); ?></h3>
                     </div>
                     <div class="villatheme-deactivate-modal-body">
                         <ul class="reasons">
@@ -83,9 +83,9 @@ if ( ! class_exists( 'VillaThemeDeactivateSurvey' ) ) :
                         </ul>
                     </div>
                     <div class="villatheme-deactivate-modal-footer">
-                        <a href="#" class="dont-bother-me"><?php _e( 'I rather wouldn\'t say', 'viwec-email-template-customizer' ); ?></a>
-                        <button class="button-primary villatheme-deactivate-submit"><?php _e( 'Submit & Deactivate', 'viwec-email-template-customizer' ); ?></button>
-                        <button class="button-secondary villatheme-model-cancel"><?php _e( 'Cancel', 'viwec-email-template-customizer' ); ?></button>
+                        <a href="#" class="dont-bother-me"><?php esc_html_e( 'I rather wouldn\'t say', 'viwec-email-template-customizer' ); ?></a>
+                        <button class="button-primary villatheme-deactivate-submit"><?php esc_html_e( 'Submit & Deactivate', 'viwec-email-template-customizer' ); ?></button>
+                        <button class="button-secondary villatheme-model-cancel"><?php esc_html_e( 'Cancel', 'viwec-email-template-customizer' ); ?></button>
                     </div>
                 </div>
             </div>

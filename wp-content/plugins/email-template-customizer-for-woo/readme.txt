@@ -4,7 +4,7 @@ Donate link: http://www.villatheme.com/donate
 Tags: wordpress, woocommerce, email, email template, email customizer, woocommerce email
 Requires PHP: 7.0
 Requires at least: 5.0
-Tested up to: 5.9
+Tested up to: 6.0
 Stable tag: 1.1.4
 License: GPLv2 or later
 
@@ -114,6 +114,12 @@ In addition, Email Template Customizer for WooCommerce is integrated with some a
 
 ###MAY BE YOU NEED
 
+[9MAIL – WordPress Email Templates Designer](https://bit.ly/9mail-wp-email-templates-designers): A useful tool for creating and customizing WordPress emails
+
+[EPOI – WP Points and Rewards](https://bit.ly/epoi-wordpress-points-and-rewards): Points and Rewards system for a WordPress website
+
+[WebPOS – Point of Sale for WooCommerce](https://bit.ly/webpos-point-of-sale-for-woocommerce): Point of Sale solution for WooCommerce stores
+
 [Jagif – WooCommerce Free Gift](https://bit.ly/jagif): Giving gifts to your customers can never be more easier
 
 [Coreem – Coupon Reminder for WooCommerce](http://bit.ly/woo-coupon-reminder): Send emails to customers to remind them of their coupons, especially ones which are about to expire
@@ -211,6 +217,10 @@ In addition, Email Template Customizer for WooCommerce is integrated with some a
 == Screenshots ==
 
 == Changelog ==
+/**1.1.9 - 2022.06.06**/
+– Updated: Check with WordPress 6.0
+– Fix: Email invoice subject
+
 /**1.1.8 - 2022.04.06**/
 - Fix: Fix minify content on Outlook
 

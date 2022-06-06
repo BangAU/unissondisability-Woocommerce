@@ -1,7 +1,7 @@
 /**
  * External dependencies
  */
-import { controls } from '@wordpress/data';
+import { select, dispatch } from '@wordpress/data-controls';
 import { addQueryArgs } from '@wordpress/url';
 
 /**
@@ -18,16 +18,13 @@ import { apiFetchWithHeaders } from '../shared-controls';
  * @param {number} timestamp Last update timestamp.
  */
 function* invalidateModifiedCollection( timestamp ) {
-	const lastModified = yield controls.resolveSelect(
-		STORE_KEY,
-		'getCollectionLastModified'
-	);
+	const lastModified = yield select( STORE_KEY, 'getCollectionLastModified' );
 
 	if ( ! lastModified ) {
-		yield controls.dispatch( STORE_KEY, 'receiveLastModified', timestamp );
+		yield dispatch( STORE_KEY, 'receiveLastModified', timestamp );
 	} else if ( timestamp > lastModified ) {
-		yield controls.dispatch( STORE_KEY, 'invalidateResolutionForStore' );
-		yield controls.dispatch( STORE_KEY, 'receiveLastModified', timestamp );
+		yield dispatch( STORE_KEY, 'invalidateResolutionForStore' );
+		yield dispatch( STORE_KEY, 'receiveLastModified', timestamp );
 	}
 }
 
@@ -40,7 +37,7 @@ function* invalidateModifiedCollection( timestamp ) {
  * @param {Array}  ids
  */
 export function* getCollection( namespace, resourceName, query, ids ) {
-	const route = yield controls.resolveSelect(
+	const route = yield select(
 		SCHEMA_STORE_KEY,
 		'getRoute',
 		namespace,
@@ -107,6 +104,6 @@ export function* getCollectionHeader(
 	const args = [ namespace, resourceName, query, ids ].filter(
 		( arg ) => typeof arg !== 'undefined'
 	);
-	// we call this simply to do any resolution of the collection if necessary.
-	yield controls.resolveSelect( STORE_KEY, 'getCollection', ...args );
+	//we call this simply to do any resolution of the collection if necessary.
+	yield select( STORE_KEY, 'getCollection', ...args );
 }

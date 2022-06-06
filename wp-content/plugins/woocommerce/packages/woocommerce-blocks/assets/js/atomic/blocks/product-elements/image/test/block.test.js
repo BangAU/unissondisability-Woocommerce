@@ -14,20 +14,6 @@ jest.mock( '@woocommerce/block-settings', () => ( {
 	PLACEHOLDER_IMG_SRC: 'placeholder.jpg',
 } ) );
 
-jest.mock( '../../../../../hooks/style-attributes', () => ( {
-	__esModule: true,
-	useBorderProps: jest.fn( () => ( {
-		className: '',
-		style: {},
-	} ) ),
-	useTypographyProps: jest.fn( () => ( {
-		style: {},
-	} ) ),
-	useSpacingProps: jest.fn( () => ( {
-		style: {},
-	} ) ),
-} ) );
-
 const productWithoutImages = {
 	name: 'Test product',
 	id: 1,

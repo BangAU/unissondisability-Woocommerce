@@ -1,10 +1,12 @@
 <?php
-namespace Automattic\WooCommerce\StoreApi\Formatters;
+namespace Automattic\WooCommerce\Blocks\StoreApi\Formatters;
 
 /**
  * Money Formatter.
  *
  * Formats monetary values using store settings.
+ *
+ * @internal This API is used internally by Blocks--it is still in flux and may be subject to revisions.
  */
 class MoneyFormatter implements FormatterInterface {
 	/**

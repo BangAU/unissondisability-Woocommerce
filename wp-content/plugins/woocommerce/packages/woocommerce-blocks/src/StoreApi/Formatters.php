@@ -1,13 +1,13 @@
 <?php
-namespace Automattic\WooCommerce\StoreApi;
+namespace Automattic\WooCommerce\Blocks\StoreApi;
 
 use \Exception;
-use Automattic\WooCommerce\StoreApi\Formatters\DefaultFormatter;
+use Automattic\WooCommerce\Blocks\StoreApi\Formatters\DefaultFormatter;
 
 /**
  * Formatters class.
  *
- * Allows formatter classes to be registered. Formatters are exposed to extensions via the ExtendSchema class.
+ * Allows formatter classes to be registered. Formatters are exposed to extensions via the ExtendRestApi class.
  */
 class Formatters {
 	/**

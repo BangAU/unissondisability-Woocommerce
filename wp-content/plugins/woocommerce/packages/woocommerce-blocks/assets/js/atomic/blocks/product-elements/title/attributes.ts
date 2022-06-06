@@ -12,9 +12,6 @@ let blockAttributes: Record< string, Record< string, unknown > > = {
 		type: 'boolean',
 		default: true,
 	},
-	linkTarget: {
-		type: 'string',
-	},
 	productId: {
 		type: 'number',
 		default: 0,
@@ -26,6 +23,18 @@ if ( isFeaturePluginBuild() ) {
 		...blockAttributes,
 		align: {
 			type: 'string',
+		},
+		color: {
+			type: 'string',
+		},
+		customColor: {
+			type: 'string',
+		},
+		fontSize: {
+			type: 'string',
+		},
+		customFontSize: {
+			type: 'number',
 		},
 	};
 }

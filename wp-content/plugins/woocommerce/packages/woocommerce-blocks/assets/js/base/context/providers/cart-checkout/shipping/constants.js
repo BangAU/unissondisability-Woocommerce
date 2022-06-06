@@ -47,7 +47,7 @@ export const DEFAULT_SHIPPING_CONTEXT_DATA = {
 	dispatchErrorStatus: () => null,
 	shippingErrorTypes: ERROR_TYPES,
 	shippingRates: [],
-	isLoadingRates: false,
+	shippingRatesLoading: false,
 	selectedRates: [],
 	setSelectedRates: () => null,
 	shippingAddress: DEFAULT_SHIPPING_ADDRESS,

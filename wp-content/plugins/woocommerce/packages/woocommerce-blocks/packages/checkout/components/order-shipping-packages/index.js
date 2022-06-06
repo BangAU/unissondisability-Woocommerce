@@ -22,7 +22,6 @@ const Slot = ( {
 	extensions,
 	cart,
 	components,
-	context,
 } ) => {
 	const { fills } = useSlot( slotName );
 	const hasMultiplePackages = fills.length > 1;
@@ -41,7 +40,6 @@ const Slot = ( {
 				extensions,
 				cart,
 				components,
-				context,
 			} }
 		/>
 	);

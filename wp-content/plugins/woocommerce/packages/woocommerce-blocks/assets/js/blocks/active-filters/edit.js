@@ -3,17 +3,10 @@
  */
 import { __ } from '@wordpress/i18n';
 import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
+import { Disabled, PanelBody, withSpokenMessages } from '@wordpress/components';
 import HeadingToolbar from '@woocommerce/editor-components/heading-toolbar';
 import BlockTitle from '@woocommerce/editor-components/block-title';
-import {
-	Disabled,
-	PanelBody,
-	withSpokenMessages,
-	// eslint-disable-next-line @wordpress/no-unsafe-wp-apis
-	__experimentalToggleGroupControl as ToggleGroupControl,
-	// eslint-disable-next-line @wordpress/no-unsafe-wp-apis
-	__experimentalToggleGroupControlOption as ToggleGroupControlOption,
-} from '@wordpress/components';
+import ToggleButtonControl from '@woocommerce/editor-components/toggle-button-control';
 
 /**
  * Internal dependencies
@@ -36,33 +29,35 @@ const Edit = ( { attributes, setAttributes } ) => {
 						'woocommerce'
 					) }
 				>
-					<ToggleGroupControl
+					<ToggleButtonControl
 						label={ __(
 							'Display Style',
 							'woocommerce'
 						) }
 						value={ displayStyle }
+						options={ [
+							{
+								label: __(
+									'List',
+									'woocommerce'
+								),
+								value: 'list',
+							},
+							{
+								/* translators: "Chips" is a tag-like display style for chosen attributes. */
+								label: __(
+									'Chips',
+									'woocommerce'
+								),
+								value: 'chips',
+							},
+						] }
 						onChange={ ( value ) =>
 							setAttributes( {
 								displayStyle: value,
 							} )
 						}
-					>
-						<ToggleGroupControlOption
-							value="list"
-							label={ __(
-								'List',
-								'woocommerce'
-							) }
-						/>
-						<ToggleGroupControlOption
-							value="chips"
-							label={ __(
-								'Chips',
-								'woocommerce'
-							) }
-						/>
-					</ToggleGroupControl>
+					/>
 					<p>
 						{ __(
 							'Heading Level',

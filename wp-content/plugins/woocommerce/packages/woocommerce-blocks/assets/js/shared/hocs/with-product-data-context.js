@@ -29,7 +29,7 @@ const OriginalComponentWithContext = ( props ) => {
 		if ( productId > 0 ) {
 			setIsLoading( true );
 			apiFetch( {
-				path: `/wc/store/v1/products/${ productId }`,
+				path: `/wc/store/products/${ productId }`,
 			} )
 				.then( ( receivedProduct ) => {
 					setProduct( receivedProduct );

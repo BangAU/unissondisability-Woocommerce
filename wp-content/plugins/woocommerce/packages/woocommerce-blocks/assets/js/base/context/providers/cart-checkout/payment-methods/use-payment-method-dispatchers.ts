@@ -8,11 +8,12 @@ import { useCallback, useMemo } from '@wordpress/element';
  */
 import { actions, ActionType } from './actions';
 import { STATUS } from './constants';
+import { useCustomerDataContext } from '../customer';
+import { useShippingDataContext } from '../shipping';
 import type {
 	PaymentStatusDispatchers,
 	PaymentMethodDispatchers,
 } from './types';
-import { useCustomerData } from '../../../hooks/use-customer-data';
 
 export const usePaymentMethodDataDispatchers = (
 	dispatch: React.Dispatch< ActionType >
@@ -20,7 +21,8 @@ export const usePaymentMethodDataDispatchers = (
 	dispatchActions: PaymentMethodDispatchers;
 	setPaymentStatus: () => PaymentStatusDispatchers;
 } => {
-	const { setBillingData, setShippingAddress } = useCustomerData();
+	const { setBillingData } = useCustomerDataContext();
+	const { setShippingAddress } = useShippingDataContext();
 
 	const dispatchActions = useMemo(
 		(): PaymentMethodDispatchers => ( {

@@ -2,12 +2,14 @@
  * External dependencies
  */
 import { __ } from '@wordpress/i18n';
-import { barcode } from '@woocommerce/icons';
-import { Icon } from '@wordpress/icons';
+import { barcode, Icon } from '@woocommerce/icons';
 
 export const BLOCK_TITLE = __( 'Product SKU', 'woocommerce' );
 export const BLOCK_ICON = (
-	<Icon icon={ barcode } className="wc-block-editor-components-block-icon" />
+	<Icon
+		srcElement={ barcode }
+		className="wc-block-editor-components-block-icon"
+	/>
 );
 export const BLOCK_DESCRIPTION = __(
 	'Display the SKU of a product.',

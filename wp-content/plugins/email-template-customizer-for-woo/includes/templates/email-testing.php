@@ -9,14 +9,14 @@ if ( ! defined( 'ABSPATH' ) ) {
         <select class="viwec-order-id-test">
 			<?php
 			if ( ! empty( $orders ) ) {
-				foreach ( $orders as $order ) {
-					$name   = method_exists( $order, 'get_formatted_billing_full_name' ) ? $order->get_formatted_billing_full_name() : '';
-					$name   = trim( $name ) ? ' - ' . $name : '';
-					$status = $order->get_status();
-					$status = trim( $status ) ? ' - ' . $status : '';
+				foreach ( $orders as $_order ) {
+					$name = method_exists( $_order, 'get_formatted_billing_full_name' ) ? $_order->get_formatted_billing_full_name() : '';
+					$name = trim( $name ) ? ' - ' . $name : '';
+					$stt  = $_order->get_status();
+					$stt  = trim( $stt ) ? ' - ' . $stt : '';
 					?>
-                    <option value='<?php echo esc_attr( $order->get_id() ); ?>'>
-                        #<?php echo esc_html( $order->get_id() . $name . $status ) ?>
+                    <option value='<?php echo esc_attr( $_order->get_id() ); ?>'>
+                        #<?php echo esc_html( $_order->get_id() . $name . $stt ) ?>
                     </option>
 					<?php
 				}

@@ -233,7 +233,6 @@ class WC_Gateway_BACS extends WC_Payment_Gateway {
 		}
 		// phpcs:enable
 
-		do_action( 'woocommerce_update_option', array( 'id' => 'woocommerce_bacs_accounts' ) );
 		update_option( 'woocommerce_bacs_accounts', $accounts );
 	}
 

@@ -1,5 +1,5 @@
 <?php
-namespace Automattic\WooCommerce\StoreApi\Utilities;
+namespace Automattic\WooCommerce\Blocks\StoreApi\Utilities;
 
 /**
  * DraftOrderTrait

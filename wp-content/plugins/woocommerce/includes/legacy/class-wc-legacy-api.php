@@ -274,14 +274,14 @@ class WC_Legacy_API {
 	/**
 	 * Rest API Init.
 	 *
-	 * @deprecated 3.7.0 - REST API classes autoload.
+	 * @deprecated 3.7.0 - REST API clases autoload.
 	 */
 	public function rest_api_init() {}
 
 	/**
 	 * Include REST API classes.
 	 *
-	 * @deprecated 3.7.0 - REST API classes autoload.
+	 * @deprecated 3.7.0 - REST API clases autoload.
 	 */
 	public function rest_api_includes() {
 		$this->rest_api_init();

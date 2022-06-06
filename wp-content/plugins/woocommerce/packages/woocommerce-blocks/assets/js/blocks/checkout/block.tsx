@@ -4,17 +4,15 @@
 import { __ } from '@wordpress/i18n';
 import classnames from 'classnames';
 import { createInterpolateElement, useEffect } from '@wordpress/element';
-import { useStoreCart } from '@woocommerce/base-context/hooks';
+import { useStoreCart, useStoreNotices } from '@woocommerce/base-context/hooks';
 import {
 	useCheckoutContext,
 	useValidationContext,
 	ValidationContextProvider,
+	StoreNoticesProvider,
 	CheckoutProvider,
 } from '@woocommerce/base-context';
-import {
-	StoreSnackbarNoticesProvider,
-	StoreNoticesContainer,
-} from '@woocommerce/base-context/providers';
+import { StoreSnackbarNoticesProvider } from '@woocommerce/base-context/providers';
 import BlockErrorBoundary from '@woocommerce/base-components/block-error-boundary';
 import { SidebarLayout } from '@woocommerce/base-components/sidebar-layout';
 import { CURRENT_USER_IS_ADMIN, getSetting } from '@woocommerce/settings';
@@ -30,8 +28,6 @@ import CheckoutOrderError from './checkout-order-error';
 import { LOGIN_TO_CHECKOUT_URL, isLoginRequired, reloadPage } from './utils';
 import type { Attributes } from './types';
 import { CheckoutBlockContext } from './context';
-import { hasNoticesOfType } from '../../utils/notices';
-import { StoreNoticesProvider } from '../../base/context/providers';
 
 const LoginPrompt = () => {
 	return (
@@ -106,6 +102,7 @@ const ScrollOnError = ( {
 }: {
 	scrollToTop: ( props: Record< string, unknown > ) => void;
 } ): null => {
+	const { hasNoticesOfType } = useStoreNotices();
 	const {
 		hasError: checkoutHasError,
 		isIdle: checkoutIsIdle,
@@ -118,7 +115,7 @@ const ScrollOnError = ( {
 	const hasErrorsToDisplay =
 		checkoutIsIdle &&
 		checkoutHasError &&
-		( hasValidationErrors || hasNoticesOfType( 'wc/checkout', 'default' ) );
+		( hasValidationErrors || hasNoticesOfType( 'default' ) );
 
 	useEffect( () => {
 		let scrollToTopTimeout: number;
@@ -147,59 +144,48 @@ const Block = ( {
 	attributes: Attributes;
 	children: React.ReactChildren;
 	scrollToTop: ( props: Record< string, unknown > ) => void;
-} ): JSX.Element => {
-	return (
-		<BlockErrorBoundary
-			header={ __(
-				'Something went wrong…',
+} ): JSX.Element => (
+	<BlockErrorBoundary
+		header={ __( 'Something went wrong…', 'woo-gutenberg-products-block' ) }
+		text={ createInterpolateElement(
+			__(
+				'The checkout has encountered an unexpected error. <button>Try reloading the page</button>. If the error persists, please get in touch with us so we can assist.',
 				'woo-gutenberg-products-block'
-			) }
-			text={ createInterpolateElement(
-				__(
-					'The checkout has encountered an unexpected error. <button>Try reloading the page</button>. If the error persists, please get in touch with us so we can assist.',
-					'woo-gutenberg-products-block'
+			),
+			{
+				button: (
+					<button
+						className="wc-block-link-button"
+						onClick={ reloadPage }
+					/>
 				),
-				{
-					button: (
-						<button
-							className="wc-block-link-button"
-							onClick={ reloadPage }
-						/>
-					),
-				}
-			) }
-			showErrorMessage={ CURRENT_USER_IS_ADMIN }
-		>
-			<StoreSnackbarNoticesProvider context="wc/checkout">
-				<StoreNoticesProvider>
-					<StoreNoticesContainer context="wc/checkout" />
-					<ValidationContextProvider>
-						{ /* SlotFillProvider need to be defined before CheckoutProvider so fills have the SlotFill context ready when they mount. */ }
-						<SlotFillProvider>
-							<CheckoutProvider>
-								<SidebarLayout
-									className={ classnames(
-										'wc-block-checkout',
-										{
-											'has-dark-controls':
-												attributes.hasDarkControls,
-										}
-									) }
-								>
-									<Checkout attributes={ attributes }>
-										{ children }
-									</Checkout>
-									<ScrollOnError
-										scrollToTop={ scrollToTop }
-									/>
-								</SidebarLayout>
-							</CheckoutProvider>
-						</SlotFillProvider>
-					</ValidationContextProvider>
-				</StoreNoticesProvider>
-			</StoreSnackbarNoticesProvider>
-		</BlockErrorBoundary>
-	);
-};
+			}
+		) }
+		showErrorMessage={ CURRENT_USER_IS_ADMIN }
+	>
+		<StoreSnackbarNoticesProvider context="wc/checkout">
+			<StoreNoticesProvider context="wc/checkout">
+				<ValidationContextProvider>
+					{ /* SlotFillProvider need to be defined before CheckoutProvider so fills have the SlotFill context ready when they mount. */ }
+					<SlotFillProvider>
+						<CheckoutProvider>
+							<SidebarLayout
+								className={ classnames( 'wc-block-checkout', {
+									'has-dark-controls':
+										attributes.hasDarkControls,
+								} ) }
+							>
+								<Checkout attributes={ attributes }>
+									{ children }
+								</Checkout>
+								<ScrollOnError scrollToTop={ scrollToTop } />
+							</SidebarLayout>
+						</CheckoutProvider>
+					</SlotFillProvider>
+				</ValidationContextProvider>
+			</StoreNoticesProvider>
+		</StoreSnackbarNoticesProvider>
+	</BlockErrorBoundary>
+);
 
 export default withScrollToTop( Block );

@@ -83,26 +83,26 @@ describe( 'AddressForm Component', () => {
 	const WrappedAddressForm = ( { type } ) => {
 		const {
 			defaultAddressFields,
-			setShippingAddress,
-			shippingAddress,
+			setShippingFields,
+			shippingFields,
 		} = useCheckoutAddress();
 
 		return (
 			<AddressForm
 				type={ type }
-				onChange={ setShippingAddress }
-				values={ shippingAddress }
+				onChange={ setShippingFields }
+				values={ shippingFields }
 				fields={ Object.keys( defaultAddressFields ) }
 			/>
 		);
 	};
 	const ShippingFields = () => {
-		const { shippingAddress } = useCheckoutAddress();
+		const { shippingFields } = useCheckoutAddress();
 
 		return (
 			<ul>
-				{ Object.keys( shippingAddress ).map( ( key ) => (
-					<li key={ key }>{ key + ': ' + shippingAddress[ key ] }</li>
+				{ Object.keys( shippingFields ).map( ( key ) => (
+					<li key={ key }>{ key + ': ' + shippingFields[ key ] }</li>
 				) ) }
 			</ul>
 		);

@@ -46,11 +46,11 @@ if ( post_password_required() ) {
                 </div>
                 <?php } ?>
             </div>
-            <div class="slider-navwrap">
+            <!-- <div class="slider-navwrap">
                 <span class="slidenav-prev"></span>
                 <span class="slidenav-next"></span>
                 <div class="num">1/4</div>
-            </div>
+            </div> -->
         </div>
         <div class="productsec--media-secondary dis-md">
             <div class="productsec--media-secondary-slider">
@@ -62,6 +62,11 @@ if ( post_password_required() ) {
                     </div>
                 </div>
                 <?php } ?>
+            </div>
+            <div class="slider-navwrap">
+                <span class="slidenav-prev"></span>
+                <span class="slidenav-next"></span>
+                <div class="num">1/4</div>
             </div>
         </div>
     </div>
@@ -101,9 +106,9 @@ if ( post_password_required() ) {
             <p>Total cost</p>
             <?php 
              if ($product->is_type( 'simple' )) { ?>
-                 <p class="price-num"><?php echo $product->get_price_html(); ?></p>
-             <?php } ?>
-             <?php 
+            <p class="price-num"><?php echo $product->get_price_html(); ?></p>
+            <?php } ?>
+            <?php 
              if($product->product_type=='variable') {
                  $available_variations = $product->get_available_variations();
                  $count = count($available_variations)-1;
@@ -111,12 +116,12 @@ if ( post_password_required() ) {
                  $variable_product1= new WC_Product_Variation( $variation_id );
                  $regular_price = $variable_product1 ->regular_price;
                  $sales_price = $variable_product1 ->sale_price; ?>
-                 <p class="price-num"><?php echo $regular_price;?></p>
-               <?php   } ?>
+            <p class="price-num"><?php echo $regular_price;?></p>
+            <?php   } ?>
         </div>
-       
+
         <?php do_action( 'woocommerce_single_product_summary' ); ?>
-           
+
     </div>
 </div>
 <div id="product-<?php the_ID(); ?>" <?php wc_product_class( '', $product ); ?>>

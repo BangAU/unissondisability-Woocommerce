@@ -26,6 +26,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     isotopeInitv3()
 
+    preventClick()
+
     loginRegister()
     
     fundingType()
@@ -46,15 +48,7 @@ function bannerSlider() {
         navWrap = sliderWrap.find('.homebanner-slider-navwrap'),
         $num = navWrap.find('.num');
 
-    $('.homebanner-slider').slick({
-        dots: false,
-        infinite: true,
-        speed: 300,
-        slidesToShow: 1,
-        adaptiveHeight: true,
-        prevArrow: $('.slidenav-prev'),
-        nextArrow: $('.slidenav-next'),
-    }).on('init reInit beforeChange', function (event, slick, currentSlide, nextSlide) {
+    slider.on('init reInit beforeChange', function (event, slick, currentSlide, nextSlide) {
         let textBox = $(slick.$slides[nextSlide]).find('.text');
         if ($(window).width() > 991) {
             navWrap.css('top', textBox.height() + 31)
@@ -66,6 +60,16 @@ function bannerSlider() {
 
         var i = (nextSlide ? nextSlide : 0) + 1;
         $num.html('<span>' + i + '</span>/' + slick.slideCount);
+    })
+
+    slider.slick({
+        dots: false,
+        infinite: true,
+        speed: 300,
+        slidesToShow: 1,
+        adaptiveHeight: true,
+        prevArrow: $('.slidenav-prev'),
+        nextArrow: $('.slidenav-next'),
     });
 }
 
@@ -207,42 +211,51 @@ function productsecSlider() {
     $('.productsec--media').each(function () {
         const $this = $(this);
 
-        const sliderPrimary = $this.find('.productsec--media-primary-slider'),
-            primaryNavWrap = sliderPrimary.siblings('.slider-navwrap'),
-            primaryNavPrev = primaryNavWrap.find('.slidenav-prev'),
-            primaryNavNext = primaryNavWrap.find('.slidenav-next'),
-            $num = primaryNavWrap.find('.num');
+        const sliderPrimary = $this.find('.productsec--media-primary-slider');
 
-        const sliderSecondary = $this.find('.productsec--media-secondary-slider');
+        const sliderSecondary = $this.find('.productsec--media-secondary-slider'),
+            secondaryNavWrap = sliderSecondary.siblings('.slider-navwrap'),
+            secondaryNavPrev = secondaryNavWrap.find('.slidenav-prev'),
+            secondaryNavNext = secondaryNavWrap.find('.slidenav-next'),
+            $num = secondaryNavWrap.find('.num');
 
-        // console.log(sliderSecondary)
+        let maximumSecondarySlides = 3;
+
+        // console.log('Slider Secondary:', sliderSecondary)
+        // console.log('Secondary Nav Wrap:', secondaryNavWrap)
+        // console.log('Secondary Nav Prev:', secondaryNavPrev)
+        // console.log('Secondary Nav Next:', secondaryNavNext)
+        // console.log('Num:', $num)
+
+        sliderPrimary.on('init reInit beforeChange', function (event, slick, currentSlide, nextSlide) {
+            if (slick.$slides.length < maximumSecondarySlides) {
+                secondaryNavWrap.hide()
+            }
+            var i = (currentSlide ? currentSlide : 0) + 1;
+            $num.html('<span>' + i + '</span>/' + slick.slideCount);
+        })
 
         sliderPrimary.slick({
             dots: false,
             infinite: true,
             speed: 300,
             slidesToShow: 1,
-            prevArrow: primaryNavPrev,
-            nextArrow: primaryNavNext,
             asNavFor: sliderSecondary
-        }).on('init reInit afterChange', function (event, slick, currentSlide, nextSlide) {
-            let textBox = $(slick.$slides[currentSlide]).find('.text');
-            // if ($(window).width() > 991) {
-            //     navWrap.css('top', textBox.height() + 31)
-            // }
-            var i = (currentSlide ? currentSlide : 0) + 1;
-            $num.html('<span>' + i + '</span>/' + slick.slideCount);
         });
 
         sliderSecondary.slick({
             dots: false,
             nav: false,
-            slidesToShow: 3,
+            loop: true,
+            slidesToShow: maximumSecondarySlides,
             slidesToScroll: 1,
             infinite: true,
             speed: 300,
             margin: 25,
             focusOnSelect: true,
+            // centerMode: true,
+            prevArrow: secondaryNavPrev,
+            nextArrow: secondaryNavNext,
             asNavFor: sliderPrimary
         });
     })
@@ -288,6 +301,14 @@ function productNum() {
 }
 
 function customTabs() {
+    $('.customtab').each(function () {
+        $(this).find('.customtab--nav-list li').removeClass('active');
+        $(this).find('.customtab--nav-list li:first-child').addClass('active');
+
+        $(this).find('.customtab--content .customtab--content-item').removeClass('active');
+        $(this).find('.customtab--content .customtab--content-item:first-child').addClass('active');
+    })
+
     $('.customtab--nav-list li').click(function (event) {
         event.preventDefault();
 
@@ -688,7 +709,7 @@ function isotopeInitv3() {
             })
             goToPage(activeNth + 1);
             $('html, body').animate({
-                scrollTop: $('.programfilter').offset().top
+                scrollTop: $('.homefilter').offset().top
             }, 1000)
         })
     }
@@ -764,7 +785,11 @@ function isotopeInitv3() {
             $container.after($isotopePager);
         }();
 
-
+        $('.homefilter .pagination .pager').click(function () {
+            $('html, body').animate({
+                scrollTop: $('.homefilter').offset().top
+            }, 1000)
+        })
     }
 
     // remove checks from all boxes and refilter
@@ -802,6 +827,11 @@ function isotopeInitv3() {
     });
 }
 
+function preventClick() {
+    $('#gtranslate_selector').parents('a').removeAttr('href')
+}
+
+
 function loginRegister() {
     var url = window.location.href;
     url = url.split("/");
@@ -814,29 +844,58 @@ function loginRegister() {
     }
 }
 
+// function fundingType() {
+//     $('.self_manage_funding_text').hide();
+//     $('.plan-managed-funding-text').hide();
+//     $('.ndia-managed-funding-text').hide();
+   
+//         $('input:radio[name="_funding_type_radio_"]').each(
+//             function () {
+//                 if ($(this).is(':checked') && $(this).val() == 'Self_managed') {
+//                     $('.self_manage_funding_text').show();
+//                     $('.plan-managed-funding-text').hide();
+//                     $('.ndia-managed-funding-text').hide();
+//                 } else if ($(this).is(':checked') && $(this).val() == 'Plan_managed') {
+//                     $('.self_manage_funding_text').hide();
+//                     $('.plan-managed-funding-text').show();
+//                     $('.ndia-managed-funding-text').hide();
+//                 }
+//                 // FINISH FROM HERE
+//                 else if ($(this).is(':checked') && $(this).val() == 'Ndia_managed') {
+//                     $('.self_manage_funding_text').hide();
+//                     $('.plan-managed-funding-text').hide();
+//                     $('.ndia-managed-funding-text').show();
+//                 }
+
+//             }
+//         );
+// }
+
 function fundingType() {
     $('.self_manage_funding_text').hide();
     $('.plan-managed-funding-text').hide();
     $('.ndia-managed-funding-text').hide();
-    $('input:radio[name="_funding_type_radio_"]').change(
-        function () {
-            if ($(this).is(':checked') && $(this).val() == 'Self_managed') {
-                $('.self_manage_funding_text').show();
-                $('.plan-managed-funding-text').hide();
-                $('.ndia-managed-funding-text').hide();
-            } else if ($(this).is(':checked') && $(this).val() == 'Plan_managed') {
-                $('.self_manage_funding_text').hide();
-                $('.plan-managed-funding-text').show();
-                $('.ndia-managed-funding-text').hide();
+   
+    $('.input-radio').each(function () {
+        var $that = $(this);
+        $that.change(function(){
+            console.log('skdjf');
+            var $closest = $that.closest('.Attendee-group');
+            if ($that.is(':checked') && $that.val() == 'Self_managed') {
+                $closest.find('.self_manage_funding_text').show();
+                $closest.find('.plan-managed-funding-text').hide();
+                $closest.find('.ndia-managed-funding-text').hide();
+            } else if ($that.is(':checked') && $that.val() == 'Plan_managed') {
+                $closest.find('.self_manage_funding_text').hide();
+                $closest.find('.plan-managed-funding-text').show();
+                $closest.find('.ndia-managed-funding-text').hide();
             }
             // FINISH FROM HERE
-            else if ($(this).is(':checked') && $(this).val() == 'Ndia_managed') {
-                $('.self_manage_funding_text').hide();
-                $('.plan-managed-funding-text').hide();
-                $('.ndia-managed-funding-text').show();
+            else if ($that.is(':checked') && $that.val() == 'Ndia_managed') {
+                $closest.find('.self_manage_funding_text').hide();
+                $closest.find('.plan-managed-funding-text').hide();
+                $closest.find('.ndia-managed-funding-text').show();
             }
-
-        }
-    );
-
+        })
+    })
 }

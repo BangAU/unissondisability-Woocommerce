@@ -417,3 +417,20 @@ remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_singl
 //    }
 // }
 
+
+
+// when active acf pro missing custom field this snippet active custom field
+
+add_filter('acf/settings/remove_wp_meta_box', '__return_false');
+
+
+add_filter( 'woocommerce_return_to_shop_redirect', 'st_woocommerce_shop_url' );
+/**
+ * Redirect WooCommerce Shop URL
+ */
+
+function st_woocommerce_shop_url(){
+
+return site_url();
+
+}

@@ -14,18 +14,13 @@ import {
 	BLOCK_ICON as icon,
 	BLOCK_DESCRIPTION as description,
 } from './constants';
-import { Save } from './save';
-import { supports } from './supports';
 
 const blockConfig = {
-	apiVersion: 2,
 	title,
 	description,
 	icon: { src: icon },
 	attributes,
-	supports,
 	edit,
-	save: Save,
 };
 
 registerExperimentalBlockType( 'woocommerce/product-tag-list', {

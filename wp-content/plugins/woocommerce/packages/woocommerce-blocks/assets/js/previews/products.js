@@ -34,14 +34,6 @@ export const previewProducts = [
 			},
 		],
 		average_rating: 5,
-		categories: [
-			{
-				id: 1,
-				name: 'Decor',
-				slug: 'decor',
-				link: 'https://example.org',
-			},
-		],
 		review_count: 1,
 		prices: {
 			currency_code: 'GBP',

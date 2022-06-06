@@ -1,7 +1,7 @@
 /**
  * External dependencies
  */
-import { controls } from '@wordpress/data';
+import { select } from '@wordpress/data-controls';
 
 /**
  * Internal dependencies
@@ -12,7 +12,7 @@ import { STORE_KEY as SCHEMA_STORE_KEY } from '../../schema/constants';
 import { STORE_KEY } from '../constants';
 import { apiFetchWithHeaders } from '../../shared-controls';
 
-jest.mock( '@wordpress/data' );
+jest.mock( '@wordpress/data-controls' );
 
 describe( 'getCollection', () => {
 	describe( 'yields with expected responses', () => {
@@ -27,7 +27,7 @@ describe( 'getCollection', () => {
 		test( 'with getRoute call invoked to retrieve route', () => {
 			rewind();
 			fulfillment.next();
-			expect( controls.resolveSelect ).toHaveBeenCalledWith(
+			expect( select ).toHaveBeenCalledWith(
 				SCHEMA_STORE_KEY,
 				'getRoute',
 				testArgs[ 0 ],
@@ -133,12 +133,7 @@ describe( 'getCollectionHeader', () => {
 		rewind( 'x-wp-total', '/wc/blocks', 'products' );
 		const { value } = fulfillment.next();
 		expect( value ).toEqual(
-			controls.resolveSelect(
-				STORE_KEY,
-				'getCollection',
-				'/wc/blocks',
-				'products'
-			)
+			select( STORE_KEY, 'getCollection', '/wc/blocks', 'products' )
 		);
 	} );
 	it( 'yields expected select control when called with all args', () => {
@@ -152,7 +147,7 @@ describe( 'getCollectionHeader', () => {
 		rewind( ...args );
 		const { value } = fulfillment.next();
 		expect( value ).toEqual(
-			controls.resolveSelect(
+			select(
 				STORE_KEY,
 				'/wc/blocks',
 				'products/attributes',

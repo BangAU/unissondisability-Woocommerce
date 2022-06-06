@@ -1,8 +1,7 @@
 /**
  * External dependencies
  */
-import { getSetting, EnteredAddress } from '@woocommerce/settings';
-import { isSameAddress } from '@woocommerce/base-utils';
+import { getSetting } from '@woocommerce/settings';
 
 /**
  * Internal dependencies
@@ -35,8 +34,6 @@ const preloadedCheckoutData = getSetting( 'checkoutData', {} ) as Record<
 const checkoutData = {
 	order_id: 0,
 	customer_id: 0,
-	billing_address: {} as EnteredAddress,
-	shipping_address: {} as EnteredAddress,
 	...( preloadedCheckoutData || {} ),
 };
 
@@ -71,8 +68,6 @@ export const DEFAULT_CHECKOUT_STATE_DATA: CheckoutStateContextType = {
 	onCheckoutValidationBeforeProcessing: () => () => void null,
 	hasOrder: false,
 	isCart: false,
-	useShippingAsBilling: false,
-	setUseShippingAsBilling: ( value ) => void value,
 	shouldCreateAccount: false,
 	setShouldCreateAccount: ( value ) => void value,
 	extensionData: {},
@@ -86,10 +81,6 @@ export const DEFAULT_STATE: CheckoutStateContextState = {
 	orderId: checkoutData.order_id,
 	orderNotes: '',
 	customerId: checkoutData.customer_id,
-	useShippingAsBilling: isSameAddress(
-		checkoutData.billing_address,
-		checkoutData.shipping_address
-	),
 	shouldCreateAccount: false,
 	processingResponse: null,
 	extensionData: {},

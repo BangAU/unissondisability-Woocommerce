@@ -1,45 +1,32 @@
 /**
  * External dependencies
  */
-import { render, findByText, queryByText } from '@testing-library/react';
+import {
+	render,
+	findByText,
+	screen,
+	queryByText,
+} from '@testing-library/react';
 
 /**
  * Internal dependencies
  */
 import { previewCart as mockPreviewCart } from '../../../../../previews/cart';
+import Block from '../block';
 import {
 	textContentMatcher,
 	textContentMatcherAcrossSiblings,
 } from '../../../../../../../tests/utils/find-by-text';
 const baseContextHooks = jest.requireMock( '@woocommerce/base-context/hooks' );
+const baseContext = jest.requireMock( '@woocommerce/base-context' );
 const woocommerceSettings = jest.requireMock( '@woocommerce/settings' );
-import SummaryBlock from '../frontend';
-import SubtotalBlock from '../../checkout-order-summary-subtotal/frontend';
-import FeeBlock from '../../checkout-order-summary-fee/frontend';
-import TaxesBlock from '../../checkout-order-summary-taxes/frontend';
-import DiscountBlock from '../../checkout-order-summary-discount/frontend';
-import CouponsBlock from '../../checkout-order-summary-coupon-form/frontend';
-import ShippingBlock from '../../checkout-order-summary-shipping/frontend';
-import CartItemsBlock from '../../checkout-order-summary-cart-items/frontend';
-
-const Block = ( { showRateAfterTaxName = false } ) => (
-	<SummaryBlock>
-		<CartItemsBlock />
-		<SubtotalBlock />
-		<FeeBlock />
-		<DiscountBlock />
-		<CouponsBlock />
-		<ShippingBlock />
-		<TaxesBlock showRateAfterTaxName={ showRateAfterTaxName } />
-	</SummaryBlock>
-);
 
 const defaultUseStoreCartValue = {
 	cartItems: mockPreviewCart.items,
 	cartTotals: mockPreviewCart.totals,
 	cartCoupons: mockPreviewCart.coupons,
 	cartFees: mockPreviewCart.fees,
-	cartNeedsShipping: mockPreviewCart.needs_shipping,
+	needsShipping: mockPreviewCart.needs_shipping,
 	shippingRates: mockPreviewCart.shipping_rates,
 	shippingAddress: mockPreviewCart.shipping_address,
 	billingAddress: mockPreviewCart.billing_address,
@@ -58,13 +45,21 @@ jest.mock( '@woocommerce/base-context/hooks', () => ( {
 		cartTotals: mockPreviewCart.totals,
 		cartCoupons: mockPreviewCart.coupons,
 		cartFees: mockPreviewCart.fees,
-		cartNeedsShipping: mockPreviewCart.needs_shipping,
+		needsShipping: mockPreviewCart.needs_shipping,
 		shippingRates: mockPreviewCart.shipping_rates,
 		shippingAddress: mockPreviewCart.shipping_address,
 		billingAddress: mockPreviewCart.billing_address,
 		cartHasCalculatedShipping: mockPreviewCart.has_calculated_shipping,
 	} ),
-	useShippingData: jest.fn().mockReturnValue( {
+} ) );
+
+jest.mock( '@woocommerce/base-context', () => ( {
+	...jest.requireActual( '@woocommerce/base-context' ),
+	useContainerWidthContext: jest.fn().mockReturnValue( {
+		hasContainerWidth: true,
+		isLarge: true,
+	} ),
+	useShippingDataContext: jest.fn().mockReturnValue( {
 		needsShipping: true,
 		shippingRates: [
 			{
@@ -172,14 +167,6 @@ jest.mock( '@woocommerce/base-context/hooks', () => ( {
 	} ),
 } ) );
 
-jest.mock( '@woocommerce/base-context', () => ( {
-	...jest.requireActual( '@woocommerce/base-context' ),
-	useContainerWidthContext: jest.fn().mockReturnValue( {
-		hasContainerWidth: true,
-		isLarge: true,
-	} ),
-} ) );
-
 jest.mock( '@woocommerce/settings', () => {
 	const originalModule = jest.requireActual( '@woocommerce/settings' );
 
@@ -202,14 +189,12 @@ const setGetSettingImplementation = ( implementation ) => {
 	woocommerceSettings.getSetting.mockImplementation( implementation );
 };
 
-const setUseShippingDataReturnValue = ( value ) => {
-	baseContextHooks.useShippingData.mockReturnValue( value );
+const setUseShippingDataContextReturnValue = ( value ) => {
+	baseContext.useShippingDataContext.mockReturnValue( value );
 };
 
 describe( 'Checkout Order Summary', () => {
-	beforeEach( () => {
-		setUseStoreCartReturnValue();
-	} );
+	beforeEach( () => setUseStoreCartReturnValue() );
 
 	it( 'Renders the standard preview items in the sidebar', async () => {
 		const { container } = render( <Block showRateAfterTaxName={ true } /> );
@@ -222,10 +207,10 @@ describe( 'Checkout Order Summary', () => {
 
 		// Checking if variable product is rendered.
 		expect(
-			await findByText( container, textContentMatcher( 'Color: Yellow' ) )
+			await screen.findByText( textContentMatcher( 'Color: Yellow' ) )
 		).toBeInTheDocument();
 		expect(
-			await findByText( container, textContentMatcher( 'Size: Small' ) )
+			await screen.findByText( textContentMatcher( 'Size: Small' ) )
 		).toBeInTheDocument();
 	} );
 
@@ -348,9 +333,9 @@ describe( 'Checkout Order Summary', () => {
 	it( 'Does not show the shipping section if needsShipping is false on the cart', () => {
 		setUseStoreCartReturnValue( {
 			...defaultUseStoreCartValue,
-			cartNeedsShipping: false,
+			needsShipping: false,
 		} );
-
+		setUseShippingDataContextReturnValue( { needsShipping: false } );
 		const { container } = render( <Block showRateAfterTaxName={ true } /> );
 		expect( queryByText( container, 'Shipping' ) ).not.toBeInTheDocument();
 	} );
@@ -364,6 +349,7 @@ describe( 'Checkout Order Summary', () => {
 				tax_lines: [ { name: 'Tax', price: '1000', rate: '5%' } ],
 			},
 		} );
+		setUseShippingDataContextReturnValue( { needsShipping: false } );
 		setGetSettingImplementation( ( setting, ...rest ) => {
 			if ( setting === 'displayCartPricesIncludingTax' ) {
 				return true;
@@ -392,7 +378,7 @@ describe( 'Checkout Order Summary', () => {
 				tax_lines: [ { name: 'Tax', price: '1000', rate: '5%' } ],
 			},
 		} );
-		setUseShippingDataReturnValue( { needsShipping: false } );
+		setUseShippingDataContextReturnValue( { needsShipping: false } );
 		setGetSettingImplementation( ( setting, ...rest ) => {
 			if ( setting === 'displayCartPricesIncludingTax' ) {
 				return false;
@@ -420,13 +406,13 @@ describe( 'Checkout Order Summary', () => {
 			cartTotals: {
 				...mockPreviewCart.totals,
 			},
-			cartNeedsShipping: false,
 		} );
+		setUseShippingDataContextReturnValue( { needsShipping: false } );
 		const { container } = render( <Block showRateAfterTaxName={ true } /> );
 		expect(
 			await findByText(
 				container,
-				textContentMatcherAcrossSiblings( 'Total $49.20' )
+				textContentMatcherAcrossSiblings( 'Total $48.00' )
 			)
 		).toBeInTheDocument();
 	} );
@@ -438,7 +424,9 @@ describe( 'Checkout Order Summary', () => {
 				...defaultUseStoreCartValue.cartTotals,
 				total_shipping: '4000',
 			},
-			cartNeedsShipping: true,
+		} );
+		setUseShippingDataContextReturnValue( {
+			needsShipping: true,
 			shippingRates: [
 				{
 					package_id: 0,
@@ -493,7 +481,6 @@ describe( 'Checkout Order Summary', () => {
 				},
 			],
 		} );
-
 		const { container } = render( <Block showRateAfterTaxName={ true } /> );
 		expect(
 			await findByText(

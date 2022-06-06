@@ -3,9 +3,7 @@
  */
 import { __ } from '@wordpress/i18n';
 import { registerBlockType } from '@wordpress/blocks';
-import { useBlockProps } from '@wordpress/block-editor';
-import { isFeaturePluginBuild } from '@woocommerce/block-settings';
-import { Icon, category } from '@wordpress/icons';
+import { Icon, server } from '@woocommerce/icons';
 import classNames from 'classnames';
 
 /**
@@ -14,12 +12,11 @@ import classNames from 'classnames';
 import edit from './edit.js';
 
 registerBlockType( 'woocommerce/attribute-filter', {
-	apiVersion: 2,
 	title: __( 'Filter Products by Attribute', 'woocommerce' ),
 	icon: {
 		src: (
 			<Icon
-				icon={ category }
+				srcElement={ server }
 				className="wc-block-editor-components-block-icon"
 			/>
 		),
@@ -32,17 +29,6 @@ registerBlockType( 'woocommerce/attribute-filter', {
 	),
 	supports: {
 		html: false,
-		color: {
-			text: true,
-			background: false,
-		},
-		...( isFeaturePluginBuild() && {
-			__experimentalBorder: {
-				radius: true,
-				color: true,
-				width: false,
-			},
-		} ),
 	},
 	example: {
 		attributes: {
@@ -117,9 +103,7 @@ registerBlockType( 'woocommerce/attribute-filter', {
 		}
 		return (
 			<div
-				{ ...useBlockProps.save( {
-					className: classNames( 'is-loading', className ),
-				} ) }
+				className={ classNames( 'is-loading', className ) }
 				{ ...data }
 			>
 				<span

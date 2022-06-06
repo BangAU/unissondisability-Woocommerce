@@ -1,3 +1,7 @@
+/**1.1.9 - 2022.06.06**/
+– Updated: Check with WordPress 6.0
+– Fix: Email invoice subject
+
 /**1.1.8 - 2022.04.06**/
 - Fix: Fix minify content on Outlook
 

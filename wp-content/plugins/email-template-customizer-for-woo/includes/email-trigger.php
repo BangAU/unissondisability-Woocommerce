@@ -88,7 +88,10 @@ class Email_Trigger {
 				add_filter( 'woocommerce_email_subject_' . $email->id, array( $this, 'replace_subject' ), 10, 2 );
 			}
 		}
+
 		add_filter( 'woocommerce_email_recipient_customer_partially_refunded_order', array( $this, 'trigger_recipient' ), 10, 3 );
+		add_filter( 'woocommerce_email_recipient_customer_invoice_pending', array( $this, 'trigger_recipient' ), 10, 3 );
+		add_filter( 'woocommerce_email_subject_customer_invoice_paid', array( $this, 'replace_subject' ), 10, 3 );
 	}
 
 	public function trigger_recipient( $recipient, $object, $class_email ) {
@@ -264,7 +267,7 @@ class Email_Trigger {
 	public function get_template_id_no_order( $type ) {
 
 		if ( ! empty( $_POST['billing_country'] ) ) {
-			$country_code = sanitize_text_field( $_POST['billing_country'] );
+			$country_code = sanitize_text_field( wp_unslash( $_POST['billing_country'] ) );
 		} else {
 			$locate       = \WC_Geolocation::geolocate_ip();
 			$country_code = $locate['country'];
@@ -326,8 +329,8 @@ class Email_Trigger {
 		if ( $this->template_id ) {
 
 			$register_data = [];
-			if ( isset( $_POST['action'] ) && $_POST['action'] == 'uael_register_user' ) {
-				$data = wc_clean( $_POST['data'] );
+			if ( isset( $_POST['action'] ) && $_POST['action'] == 'uael_register_user' && isset( $_POST['data'] ) ) {
+				$data = wc_clean( wp_unslash( $_POST['data'] ) );
 			} else {
 				$data = wc_clean( $_POST );
 			}
@@ -426,10 +429,11 @@ class Email_Trigger {
 	public function item_thumbnail_end() {
 		if ( $this->fix_default_thumbnail ) {
 			?>
-			</td>
-			</tr>
-			</table>
+            </td>
+            </tr>
+            </table>
 			<?php
+			$this->fix_default_thumbnail = false;
 		}
 	}
 

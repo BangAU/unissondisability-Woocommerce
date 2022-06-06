@@ -4,7 +4,7 @@
 import { __ } from '@wordpress/i18n';
 import { InnerBlocks } from '@wordpress/block-editor';
 import { registerBlockType } from '@wordpress/blocks';
-import { Icon, grid } from '@wordpress/icons';
+import { Icon, grid } from '@woocommerce/icons';
 import '@woocommerce/atomic-blocks';
 
 /**
@@ -19,7 +19,7 @@ export const blockSettings = {
 	icon: {
 		src: (
 			<Icon
-				icon={ grid }
+				srcElement={ grid }
 				className="wc-block-editor-components-block-icon"
 			/>
 		),

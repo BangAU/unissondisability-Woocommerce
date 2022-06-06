@@ -155,7 +155,6 @@ class Email_Render {
 			}
 		}
 
-
 		return esc_attr( $style );
 	}
 
@@ -185,7 +184,7 @@ class Email_Render {
 		$this->direction = get_post_meta( $this->template_id, 'viwec_settings_direction', true );
 
 		if ( $this->preview ) {
-			$this->direction = isset( $_POST['direction'] ) ? sanitize_text_field( $_POST['direction'] ) : 'ltr';
+			$this->direction = isset( $_POST['direction'] ) ? sanitize_text_field( wp_unslash( $_POST['direction'] ) ) : 'ltr';
 		}
 
 		$this->email_header( $bg_style, $width, $responsive );
@@ -371,7 +370,7 @@ class Email_Render {
 			$preview = $this->demo ? 'pre-' : '';
 
 			if ( $preview ) {
-				$this->direction = isset( $_POST['direction'] ) ? sanitize_text_field( $_POST['direction'] ) : 'ltr';
+				$this->direction = isset( $_POST['direction'] ) ? sanitize_text_field( wp_unslash( $_POST['direction'] ) ) : 'ltr';
 			}
 
 			if ( is_file( VIWEC_TEMPLATES . "order-items/{$preview}style-{$temp}.php" ) ) {
@@ -888,10 +887,11 @@ class Email_Render {
 
 			$content = $class_email->style_inline( "<div class='{$hook}'>" . $content . '</div>' );
 			echo str_replace( [ 'margin-bottom: 40px;' ], [ '' ], $content );
+
 		} else {
 			$args = $this->template_args;
 
-			echo "<div class='{$hook}'>";
+			printf( "<div class='%s'>", esc_attr( $hook ) );
 			switch ( $hook ) {
 				case '':
 				case 'woocommerce_email_before_order_table':
@@ -959,11 +959,16 @@ class Email_Render {
 			add_filter( 'woocommerce_email_order_items_args', [ $this, 'show_image' ] );
 			wc()->mailer();
 			$class_email = new \WC_Email();
+
 			ob_start();
-			printf( "<p>Hi %s, Just to let you know — we've received your order #%s, and it is now being processed:</p>", $this->order->get_billing_first_name(), $this->order->get_id() );
+			printf( "<p>Hi %s, Just to let you know — we've received your order #%s, and it is now being processed:</p>",
+				esc_html( $this->order->get_billing_first_name() ),
+				absint( $this->order->get_id() ) );
+
 			do_action( 'woocommerce_email_order_details', $this->order, false, false, '' );
 			do_action( 'woocommerce_email_order_meta', $this->order, false, false, '' );
 			do_action( 'woocommerce_email_customer_details', $this->order, false, false, '' );
+
 			$content = ob_get_clean();
 			$content = preg_replace( '/border=[\'\"]\d+[\'\"]/', 'border="0"', $content );
 			$content = '<div id="viwec-transferred-content">' . wp_kses_post( $content ) . '</div>';
@@ -1038,134 +1043,6 @@ class Email_Render {
 		return $args;
 	}
 
-	public function render_html_wc_subscriptions( $props ) {
-
-		$border  = $props['childStyle']['.viwec-subscription-border'] ? $this->parse_styles( $props['childStyle']['.viwec-subscription-border'] ) : '';
-		$headers = [
-			'ID',
-			$props['content']['start_date'] ?? esc_html__( 'Start date', 'viwec-email-template-customizer' ),
-			$props['content']['end_date'] ?? esc_html__( 'End date', 'viwec-email-template-customizer' ),
-			$props['content']['recurring_total'] ?? esc_html__( 'Recurring total', 'viwec-email-template-customizer' ),
-		];
-
-		$header_style = $props['childStyle']['.viwec-subscription-header'] ? $this->parse_styles( $props['childStyle']['.viwec-subscription-header'] ) : '';
-		$header_style .= 'padding:10px;' . $border;
-
-
-		ob_start();
-
-		$subscriptions         = $is_parent_order = '';
-		$has_automatic_renewal = false;
-		$args                  = $this->template_args;
-		$is_admin_email        = $args['sent_to_admin'] ?? '';
-
-		if ( function_exists( 'wcs_get_subscriptions_for_order' ) ) {
-			$subscriptions   = wcs_get_subscriptions_for_order( $this->order, array( 'order_type' => 'any' ) );
-			$is_parent_order = wcs_order_contains_subscription( $this->order, 'parent' );
-		}
-
-
-		if ( ! empty( $subscriptions && is_array( $subscriptions ) ) ) {
-			?>
-            <tr>
-				<?php
-				foreach ( $headers as $header ) {
-					printf( "<th style='%s'>%s</th>", esc_attr( $header_style ), esc_html( $header ) );
-				}
-				?>
-            </tr>
-			<?php
-
-			$i = 0;
-			foreach ( $subscriptions as $subscription ) {
-				$has_automatic_renewal = $has_automatic_renewal || ! $subscription->is_manual();
-
-				$next_payment = '';
-				if ( $is_parent_order && $subscription->get_time( 'next_payment' ) > 0 ) {
-					$next_payment = sprintf( "<br><small>%s %s</small>", esc_html__( 'Next payment:', 'viwec-email-template-customizer' ), esc_html( date_i18n( wc_date_format(), $subscription->get_time( 'next_payment', 'site' ) ) ) );
-				}
-
-				$cells = [
-					sprintf( "<a style='color:inherit; text-decoration: underline;' href='%s'>#%s</a>", esc_url( ( $is_admin_email ) ? wcs_get_edit_post_link( $subscription->get_id() ) : $subscription->get_view_order_url() ), esc_html( $subscription->get_order_number() ) ),
-					esc_html( date_i18n( wc_date_format(), $subscription->get_time( 'start_date', 'site' ) ) ),
-					esc_html( ( 0 < $subscription->get_time( 'end' ) ) ? date_i18n( wc_date_format(), $subscription->get_time( 'end', 'site' ) ) : _x( 'When cancelled', 'Used as end date for an indefinite subscription', 'woocommerce-subscriptions' ) ),
-					wp_kses_post( $subscription->get_formatted_order_total() ) . $next_payment
-				];
-
-				$bg_color = $i % 2 ? ( $props['childStyle']['.viwec-subscription-body-even']['background-color'] ?? 'transparent' ) : ( $props['childStyle']['.viwec-subscription-body-odd']['background-color'] ?? 'transparent' );
-				$style    = ! empty( $props['childStyle']['.viwec-subscription-body'] ) ? $this->parse_styles( $props['childStyle']['.viwec-subscription-body'] ) : '';
-				$style    .= "padding:10px;text-align:center;background-color:{$bg_color};" . $border;
-				?>
-                <tr>
-					<?php
-					foreach ( $cells as $cell_content ) {
-						printf( "<td style='%s'>%s</td>", esc_attr( $style ), $cell_content );
-					}
-					?>
-                </tr>
-				<?php
-				$i ++;
-			}
-		}
-
-		$content = ob_get_clean();
-		if ( $content ) {
-			$outer_style = ! empty( $props['childStyle']['.viwec-wc-subscriptions-outer'] ) ? $this->parse_styles( $props['childStyle']['.viwec-wc-subscriptions-outer'] ) : '';
-			$outer_style .= 'overflow:hidden;';
-			printf( "<table  width='100%%' border='0' cellpadding='0' cellspacing='0'><tr><td style='%s'>", esc_attr( $outer_style ) );
-			$this->table( $content );
-			echo '</td></tr></table>';
-		}
-	}
-
-	public function render_html_wc_subscriptions_switched( $props ) {
-		$subscriptions = ! empty( $this->template_args['subscriptions'] ) ? $this->template_args['subscriptions'] : '';
-		if ( ! $subscriptions ) {
-			return;
-		}
-		foreach ( $subscriptions as $subscription ) {
-
-			if ( is_file( VIWEC_TEMPLATES . "order-items/subscriptions-switched-items.php" ) ) {
-				$title = ! empty( $props['content']['title'] ) ? esc_html( $props['content']['title'] ) : '';
-				if ( $title ) {
-					$title .= $subscription->get_id();
-					$style = $this->get_style( $props, 'childStyle', '.viwec-wc-subscriptions-title' );
-					$style .= 'font-weight:bold;padding-bottom:6px;';
-					printf( '<div style="%s">%s</div>', $style, $title );
-				}
-				?>
-                <table width='100%' border='0' cellpadding='0' cellspacing='0' align='center'>
-                    <tr>
-                        <td valign='top'>
-							<?php
-							$sent_to_admin          = $this->template_args['sent_to_admin'] ?? '';
-							$order_items_table_args = array(
-								'show_download_links' => ( $sent_to_admin ) ? false : $subscription->is_download_permitted(),
-								'show_sku'            => $sent_to_admin,
-								'show_purchase_note'  => ( $sent_to_admin ) ? false : $subscription->has_status( apply_filters( 'woocommerce_order_is_paid_statuses', array(
-									'processing',
-									'completed'
-								) ) ),
-							);
-							wc_get_template( "order-items/subscriptions-switched-items.php", [
-								'order'                  => $subscription,
-								'items'                  => $subscription->get_items(),
-								'order_type'             => 'subscription',
-								'order_items_table_args' => $order_items_table_args,
-								'sent_to_admin'          => $sent_to_admin,
-								'plain_text'             => $this->template_args['plain_text'],
-								'props'                  => $props,
-								'render'                 => $this
-							], '', VIWEC_TEMPLATES );
-							?>
-                        </td>
-                    </tr>
-                </table>
-				<?php
-			}
-		}
-	}
-
 	public function table( $content, $style = '', $width = '100%', $attr = [] ) {
 		?>
         <table width='<?php echo esc_attr( $width ) ?>' border='0' cellpadding='0' cellspacing='0' align='left'
@@ -1180,7 +1057,7 @@ class Email_Render {
 		$character_arr = array_merge( range( 'a', 'z' ), range( 0, 9 ) );
 
 		for ( $i = 0; $i < 8; $i ++ ) {
-			$rand = rand( 0, count( $character_arr ) - 1 );
+			$rand = wp_rand( 0, count( $character_arr ) - 1 );
 			$code .= $character_arr[ $rand ];
 		}
 
@@ -1217,12 +1094,12 @@ class Email_Render {
 				$display = esc_html( $download['download_name'] );
 				$expires = '';
 				if ( ! empty( $download['access_expires'] ) ) {
-					$datetime     = esc_attr( date( 'Y-m-d', strtotime( $download['access_expires'] ) ) );
+					$datetime     = esc_attr( date_i18n( 'Y-m-d', strtotime( $download['access_expires'] ) ) );
 					$title        = esc_attr( strtotime( $download['access_expires'] ) );
 					$display_time = esc_html( date_i18n( get_option( 'date_format' ), strtotime( $download['access_expires'] ) ) );
 					$expires      = "- <time datetime='$datetime' title='$title'>$display_time</time>";
 				}
-				echo "<p><a href='$href'>$display</a> $expires</p>";
+				printf( "<p><a href='%s'>%s</a> %s</p>", esc_url( $href ), esc_html( $display ), esc_html( $expires ) );
 			}
 		}
 	}

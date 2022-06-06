@@ -4,7 +4,7 @@
 import { __ } from '@wordpress/i18n';
 import { createBlock, registerBlockType } from '@wordpress/blocks';
 import { without } from 'lodash';
-import { Icon, file } from '@wordpress/icons';
+import { Icon, folder } from '@woocommerce/icons';
 
 /**
  * Internal dependencies
@@ -23,7 +23,7 @@ registerBlockType( 'woocommerce/product-category', {
 	icon: {
 		src: (
 			<Icon
-				icon={ file }
+				srcElement={ folder }
 				className="wc-block-editor-components-block-icon"
 			/>
 		),

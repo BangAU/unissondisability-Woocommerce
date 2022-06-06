@@ -38,7 +38,6 @@ class TestErrorBoundary extends ReactComponent {
 describe( 'useCollection', () => {
 	let registry, mocks, renderer;
 	const getProps = ( testRenderer ) => {
-		//eslint-disable-next-line testing-library/await-async-query
 		const { results, isLoading } = testRenderer.root.findByType(
 			'div'
 		).props;
@@ -98,7 +97,6 @@ describe( 'useCollection', () => {
 					} )
 				);
 			} );
-			//eslint-disable-next-line testing-library/await-async-query
 			const props = renderer.root.findByType( 'div' ).props;
 			expect( props.error.message ).toMatch( /options object/ );
 			expect( console ).toHaveErrored( /your React components:/ );
@@ -120,7 +118,6 @@ describe( 'useCollection', () => {
 					} )
 				);
 			} );
-			//eslint-disable-next-line testing-library/await-async-query
 			const props = renderer.root.findByType( 'div' ).props;
 			expect( props.error.message ).toMatch( /options object/ );
 			expect( console ).toHaveErrored( /your React components:/ );

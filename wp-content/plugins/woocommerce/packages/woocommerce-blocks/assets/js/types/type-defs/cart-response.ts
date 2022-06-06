@@ -2,7 +2,7 @@
  * Internal dependencies
  */
 import { CurrencyResponse } from './currency';
-import type { CartItem } from './cart';
+import { CartItem } from './cart';
 
 export interface CartResponseTotalsItem extends CurrencyResponse {
 	total_discount: string;

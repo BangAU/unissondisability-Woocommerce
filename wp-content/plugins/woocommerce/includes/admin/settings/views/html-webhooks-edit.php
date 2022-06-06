@@ -152,14 +152,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</tbody>
 	</table>
 
-	<?php
-	/**
-	 * Fires within the webhook editor, after the Webhook Data fields have rendered.
-	 *
-	 * @param WC_Webhook $webhook
-	 */
-	do_action( 'woocommerce_webhook_options', $webhook );
-	?>
+	<?php do_action( 'woocommerce_webhook_options' ); ?>
 </div>
 
 <div id="webhook-actions" class="settings-panel">

@@ -3,8 +3,7 @@
  */
 import { __ } from '@wordpress/i18n';
 import { registerBlockType } from '@wordpress/blocks';
-import { toggle } from '@woocommerce/icons';
-import { Icon } from '@wordpress/icons';
+import { Icon, toggle } from '@woocommerce/icons';
 import classNames from 'classnames';
 import { useBlockProps } from '@wordpress/block-editor';
 
@@ -19,7 +18,7 @@ registerBlockType( 'woocommerce/active-filters', {
 	icon: {
 		src: (
 			<Icon
-				icon={ toggle }
+				srcElement={ toggle }
 				className="wc-block-editor-components-block-icon"
 			/>
 		),

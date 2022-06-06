@@ -24,7 +24,7 @@ class Compatible {
 
 	public static function init() {
 		if ( null == self::$instance ) {
-			self::$instance = new self;
+			self::$instance = new self();
 		}
 
 		return self::$instance;
@@ -64,8 +64,8 @@ class Compatible {
 		}
 
 		if ( isset( $args['email'] ) && is_a( $args['email'], 'WC_Correios_Tracking_Email' ) ) {
-
-			$tracking_code = ! empty( $_POST['tracking_code'] ) ? sanitize_text_field( $_POST['tracking_code'] ) : $this->correios_tracking_code;
+			// phpcs:ignore WordPress.Security.NonceVerification
+			$tracking_code = ! empty( $_POST['tracking_code'] ) ? sanitize_text_field( wp_unslash( $_POST['tracking_code'] ) ) : $this->correios_tracking_code;
 
 			if ( empty( $tracking_code ) ) {
 				$tracking_codes = wc_correios_get_tracking_codes( $object );

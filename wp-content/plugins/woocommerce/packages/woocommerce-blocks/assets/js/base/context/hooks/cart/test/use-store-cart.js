@@ -66,7 +66,7 @@ describe( 'useStoreCart', () => {
 		},
 		shippingRates: previewCart.shipping_rates,
 		extensions: {},
-		isLoadingRates: false,
+		shippingRatesLoading: false,
 		cartHasCalculatedShipping: true,
 	};
 
@@ -112,7 +112,7 @@ describe( 'useStoreCart', () => {
 		shippingAddress: mockShippingAddress,
 		shippingRates: [],
 		extensions: {},
-		isLoadingRates: false,
+		shippingRatesLoading: false,
 		cartHasCalculatedShipping: true,
 		receiveCart: undefined,
 		paymentRequirements: [],
@@ -165,9 +165,7 @@ describe( 'useStoreCart', () => {
 		} );
 
 		it( 'return default data when shouldSelect is false', () => {
-			const TestComponent = getTestComponent( {
-				shouldSelect: false,
-			} );
+			const TestComponent = getTestComponent( { shouldSelect: false } );
 
 			act( () => {
 				renderer = TestRenderer.create(
@@ -175,7 +173,6 @@ describe( 'useStoreCart', () => {
 				);
 			} );
 
-			//eslint-disable-next-line testing-library/await-async-query
 			const { results, receiveCart } = renderer.root.findByType(
 				'div'
 			).props;
@@ -188,9 +185,7 @@ describe( 'useStoreCart', () => {
 		} );
 
 		it( 'return store data when shouldSelect is true', () => {
-			const TestComponent = getTestComponent( {
-				shouldSelect: true,
-			} );
+			const TestComponent = getTestComponent( { shouldSelect: true } );
 
 			act( () => {
 				renderer = TestRenderer.create(
@@ -198,7 +193,6 @@ describe( 'useStoreCart', () => {
 				);
 			} );
 
-			//eslint-disable-next-line testing-library/await-async-query
 			const { results, receiveCart } = renderer.root.findByType(
 				'div'
 			).props;
@@ -230,7 +224,6 @@ describe( 'useStoreCart', () => {
 				);
 			} );
 
-			//eslint-disable-next-line testing-library/await-async-query
 			const { results, receiveCart } = renderer.root.findByType(
 				'div'
 			).props;

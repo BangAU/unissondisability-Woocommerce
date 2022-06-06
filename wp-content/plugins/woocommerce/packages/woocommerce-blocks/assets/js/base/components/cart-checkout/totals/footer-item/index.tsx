@@ -2,7 +2,6 @@
  * External dependencies
  */
 import { __ } from '@wordpress/i18n';
-import classNames from 'classnames';
 import { createInterpolateElement } from '@wordpress/element';
 import FormattedMonetaryAmount from '@woocommerce/base-components/formatted-monetary-amount';
 import {
@@ -31,7 +30,6 @@ export interface TotalsFooterItemProps {
 	 * convenience, but will use only these two properties.
 	 */
 	values: LooselyMustHave< CartResponseTotals, 'total_price' | 'total_tax' >;
-	className?: string;
 }
 
 /**
@@ -44,7 +42,6 @@ export interface TotalsFooterItemProps {
 const TotalsFooterItem = ( {
 	currency,
 	values,
-	className,
 }: TotalsFooterItemProps ): JSX.Element => {
 	const SHOW_TAXES =
 		getSetting< boolean >( 'taxesEnabled', true ) &&
@@ -67,10 +64,7 @@ const TotalsFooterItem = ( {
 
 	return (
 		<TotalsItem
-			className={ classNames(
-				'wc-block-components-totals-footer-item',
-				className
-			) }
+			className="wc-block-components-totals-footer-item"
 			currency={ currency }
 			label={ label }
 			value={ parseInt( totalPrice, 10 ) }

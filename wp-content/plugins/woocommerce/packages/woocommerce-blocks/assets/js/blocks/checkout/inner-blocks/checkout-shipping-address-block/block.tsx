@@ -11,12 +11,6 @@ import {
 } from '@woocommerce/base-context';
 import { CheckboxControl } from '@woocommerce/blocks-checkout';
 import Noninteractive from '@woocommerce/base-components/noninteractive';
-import type {
-	BillingAddress,
-	ShippingAddress,
-	AddressField,
-	AddressFields,
-} from '@woocommerce/settings';
 
 /**
  * Internal dependencies
@@ -38,12 +32,11 @@ const Block = ( {
 } ): JSX.Element => {
 	const {
 		defaultAddressFields,
-		setShippingAddress,
-		setBillingData,
-		shippingAddress,
+		setShippingFields,
+		shippingFields,
+		setShippingAsBilling,
+		shippingAsBilling,
 		setShippingPhone,
-		useShippingAsBilling,
-		setUseShippingAsBilling,
 	} = useCheckoutAddress();
 	const { dispatchCheckoutEvent } = useStoreEvents();
 	const { isEditor } = useEditorContext();
@@ -65,11 +58,7 @@ const Block = ( {
 				hidden: ! showApartmentField,
 			},
 		};
-	}, [
-		showCompanyField,
-		requireCompanyField,
-		showApartmentField,
-	] ) as Record< keyof AddressFields, Partial< AddressField > >;
+	}, [ showCompanyField, requireCompanyField, showApartmentField ] );
 
 	const AddressFormWrapperComponent = isEditor ? Noninteractive : Fragment;
 
@@ -79,26 +68,19 @@ const Block = ( {
 				<AddressForm
 					id="shipping"
 					type="shipping"
-					onChange={ ( values: Partial< ShippingAddress > ) => {
-						setShippingAddress( values );
-						if ( useShippingAsBilling ) {
-							setBillingData( values );
-						}
+					onChange={ ( values: Record< string, unknown > ) => {
+						setShippingFields( values );
 						dispatchCheckoutEvent( 'set-shipping-address' );
 					} }
-					values={ shippingAddress }
-					fields={
-						Object.keys(
-							defaultAddressFields
-						) as ( keyof AddressFields )[]
-					}
+					values={ shippingFields }
+					fields={ Object.keys( defaultAddressFields ) }
 					fieldConfig={ addressFieldsConfig }
 				/>
 				{ showPhoneField && (
 					<PhoneNumber
 						id="shipping-phone"
 						isRequired={ requirePhoneField }
-						value={ shippingAddress.phone }
+						value={ shippingFields.phone }
 						onChange={ ( value ) => {
 							setShippingPhone( value );
 							dispatchCheckoutEvent( 'set-phone-number', {
@@ -114,13 +96,10 @@ const Block = ( {
 					'Use same address for billing',
 					'woo-gutenberg-products-block'
 				) }
-				checked={ useShippingAsBilling }
-				onChange={ ( checked: boolean ) => {
-					setUseShippingAsBilling( checked );
-					if ( checked ) {
-						setBillingData( shippingAddress as BillingAddress );
-					}
-				} }
+				checked={ shippingAsBilling }
+				onChange={ ( checked: boolean ) =>
+					setShippingAsBilling( checked )
+				}
 			/>
 		</>
 	);

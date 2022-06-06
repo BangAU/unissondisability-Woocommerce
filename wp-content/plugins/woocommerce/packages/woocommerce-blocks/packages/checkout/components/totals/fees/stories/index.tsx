@@ -3,8 +3,7 @@
  */
 import { Story, Meta } from '@storybook/react';
 import {
-	currenciesAPIShape,
-	currencies,
+	currenciesAPIShape as currencies,
 	currencyControl,
 } from '@woocommerce/storybook-controls';
 
@@ -20,13 +19,12 @@ export default {
 		currency: currencyControl,
 	},
 	args: {
-		total: '',
 		cartFees: [
 			{
 				id: 'my-id',
 				name: 'Storybook fee',
 				totals: {
-					...currenciesAPIShape.USD,
+					...currencies.USD,
 					total: '1000',
 					total_tax: '200',
 				},
@@ -35,33 +33,9 @@ export default {
 	},
 } as Meta< TotalsFeesProps >;
 
-type StorybookTotalFeesProps = TotalsFeesProps & { total: string };
-
-const Template: Story< StorybookTotalFeesProps > = ( args ) => {
-	return (
-		<Fees
-			{ ...args }
-			cartFees={ [
-				{
-					...args.cartFees[ 0 ],
-					totals: {
-						...args.cartFees[ 0 ].totals,
-						total: args.total,
-					},
-				},
-			] }
-		/>
-	);
-};
+const Template: Story< TotalsFeesProps > = ( args ) => <Fees { ...args } />;
 
 export const Default = Template.bind( {} );
-Default.args = {
-	currency: currencies.USD,
-	total: '1000',
-};
+Default.args = {};
 
-export const AlternativeCurrency = Template.bind( {} );
-AlternativeCurrency.args = {
-	currency: currencies.EUR,
-	total: '1000',
-};
+// @todo Revise Storybook entries for `Checkout Blocks/totals` components

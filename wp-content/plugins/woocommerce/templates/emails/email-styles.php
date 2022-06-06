@@ -224,5 +224,6 @@ img {
 	vertical-align: middle;
 	margin-<?php echo is_rtl() ? 'left' : 'right'; ?>: 10px;
 	max-width: 100%;
+	height: auto;
 }
 <?php

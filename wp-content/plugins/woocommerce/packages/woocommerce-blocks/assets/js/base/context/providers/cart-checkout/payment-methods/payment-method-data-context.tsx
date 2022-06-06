@@ -11,7 +11,6 @@ import {
 	useMemo,
 } from '@wordpress/element';
 import { objectHasProp } from '@woocommerce/types';
-import { useDispatch } from '@wordpress/data';
 
 /**
  * Internal dependencies
@@ -40,6 +39,7 @@ import {
 	reducer as emitReducer,
 } from './event-emit';
 import { useValidationContext } from '../../validation';
+import { useStoreNotices } from '../../../hooks/use-store-notices';
 import { useEmitResponse } from '../../../hooks/use-emit-response';
 import { getCustomerPaymentMethods } from './utils';
 
@@ -70,9 +70,7 @@ export const PaymentMethodDataProvider = ( {
 	} = useCheckoutContext();
 	const { isEditor, getPreviewData } = useEditorContext();
 	const { setValidationErrors } = useValidationContext();
-	const { createErrorNotice: addErrorNotice, removeNotice } = useDispatch(
-		'core/notices'
-	);
+	const { addErrorNotice, removeNotice } = useStoreNotices();
 	const {
 		isSuccessResponse,
 		isErrorResponse,

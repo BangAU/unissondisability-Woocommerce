@@ -1,7 +1,7 @@
 /**
  * Internal dependencies
  */
-import { getIndexes } from '../utils';
+import { getIndexes } from '../utils.js';
 
 describe( 'getIndexes', () => {
 	describe( 'when on the first page', () => {

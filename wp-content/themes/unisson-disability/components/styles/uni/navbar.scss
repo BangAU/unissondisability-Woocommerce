@@ -25,7 +25,7 @@
 
         &.list-programs {
             >a {
-                color: $color-yellow;
+                color: $color-yellow !important;
                 text-decoration: underline;
             }
         }
@@ -42,6 +42,7 @@
             ul {
                 display: flex;
                 flex-wrap: wrap;
+                align-items: flex-start;
                 margin: 0 -26px;
 
                 @media (max-width: 991px) {
@@ -51,7 +52,7 @@
                 li {
                     width: 33.33333%;
                     width: calc(33.33333% - (32px * 2));
-                    margin: 0 32px;
+                    margin: 0 32px 16px;
                     padding-left: 0;
                     padding-bottom: 10px;
                     border-bottom: 1px solid $color-border;
@@ -60,14 +61,11 @@
                         width: 100%;
                     }
 
-                    &:not(:last-child) {
-                        margin-bottom: 6px;
-                    }
-
                     a {
                         display: block;
                         font-size: 1.4rem;
                         font-weight: 500;
+                        line-height: 1.286;
                         color: $color-purple;
                         text-transform: uppercase;
                     }

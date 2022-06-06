@@ -3,8 +3,7 @@
  */
 import { __ } from '@wordpress/i18n';
 import { CART_URL } from '@woocommerce/block-settings';
-import { removeCart } from '@woocommerce/icons';
-import { Icon } from '@wordpress/icons';
+import { Icon, removeCart } from '@woocommerce/icons';
 import { getSetting } from '@woocommerce/settings';
 import { decodeEntities } from '@wordpress/html-entities';
 
@@ -58,7 +57,8 @@ const CheckoutOrderError = () => {
 		<div className="wc-block-checkout-error">
 			<Icon
 				className="wc-block-checkout-error__image"
-				icon={ removeCart }
+				alt=""
+				srcElement={ removeCart }
 				size={ 100 }
 			/>
 			<ErrorTitle errorData={ errorData } />
@@ -71,7 +71,7 @@ const CheckoutOrderError = () => {
 /**
  * Get the error message to display.
  *
- * @param {Object} props           Incoming props for the component.
+ * @param {Object} props Incoming props for the component.
  * @param {Object} props.errorData Object containing code and message.
  */
 const ErrorTitle = ( { errorData } ) => {
@@ -92,7 +92,7 @@ const ErrorTitle = ( { errorData } ) => {
 /**
  * Get the error message to display.
  *
- * @param {Object} props           Incoming props for the component.
+ * @param {Object} props Incoming props for the component.
  * @param {Object} props.errorData Object containing code and message.
  */
 const ErrorMessage = ( { errorData } ) => {
@@ -114,7 +114,7 @@ const ErrorMessage = ( { errorData } ) => {
 /**
  * Get the CTA button to display.
  *
- * @param {Object} props           Incoming props for the component.
+ * @param {Object} props Incoming props for the component.
  * @param {Object} props.errorData Object containing code and message.
  */
 const ErrorButton = ( { errorData } ) => {

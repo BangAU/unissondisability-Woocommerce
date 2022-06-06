@@ -2,7 +2,20 @@
  * External dependencies
  */
 import PropTypes from 'prop-types';
-import { createContext, useContext, useState } from '@wordpress/element';
+import {
+	createContext,
+	useContext,
+	useCallback,
+	useState,
+} from '@wordpress/element';
+import { useSelect, useDispatch } from '@wordpress/data';
+
+/**
+ * Internal dependencies
+ */
+import { useStoreEvents } from '../../hooks/use-store-events';
+import { useEditorContext } from '../editor-context';
+import StoreNoticesContainer from './components/store-notices-container';
 
 /**
  * @typedef {import('@woocommerce/type-defs/contexts').NoticeContext} NoticeContext
@@ -10,8 +23,11 @@ import { createContext, useContext, useState } from '@wordpress/element';
  */
 
 const StoreNoticesContext = createContext( {
+	notices: [],
+	createNotice: ( status, text, props ) => void { status, text, props },
+	removeNotice: ( id, ctxt ) => void { id, ctxt },
 	setIsSuppressed: ( val ) => void { val },
-	isSuppressed: false,
+	context: 'wc/core',
 } );
 
 /**
@@ -33,24 +49,82 @@ export const useStoreNoticesContext = () => {
  *  - Info
  *  - Success
  *
- * @param {Object}      props          Incoming props for the component.
+ * @param {Object} props Incoming props for the component.
  * @param {JSX.Element} props.children The Elements wrapped by this component.
+ * @param {string} [props.className] CSS class used.
+ * @param {boolean} [props.createNoticeContainer] Whether to create a notice container or not.
+ * @param {string} [props.context] The notice context for notices being rendered.
  */
-export const StoreNoticesProvider = ( { children } ) => {
+export const StoreNoticesProvider = ( {
+	children,
+	className = '',
+	createNoticeContainer = true,
+	context = 'wc/core',
+} ) => {
+	const { createNotice, removeNotice } = useDispatch( 'core/notices' );
 	const [ isSuppressed, setIsSuppressed ] = useState( false );
+	const { dispatchStoreEvent } = useStoreEvents();
+	const { isEditor } = useEditorContext();
+
+	const createNoticeWithContext = useCallback(
+		( status = 'default', content = '', options = {} ) => {
+			createNotice( status, content, {
+				...options,
+				context: options.context || context,
+			} );
+			dispatchStoreEvent( 'store-notice-create', {
+				status,
+				content,
+				options,
+			} );
+		},
+		[ createNotice, dispatchStoreEvent, context ]
+	);
+
+	const removeNoticeWithContext = useCallback(
+		( id, ctxt = context ) => {
+			removeNotice( id, ctxt );
+		},
+		[ removeNotice, context ]
+	);
+
+	const { notices } = useSelect(
+		( select ) => {
+			return {
+				notices: select( 'core/notices' ).getNotices( context ),
+			};
+		},
+		[ context ]
+	);
 
 	const contextValue = {
+		notices,
+		createNotice: createNoticeWithContext,
+		removeNotice: removeNoticeWithContext,
+		context,
 		setIsSuppressed,
-		isSuppressed,
 	};
+
+	const noticeOutput = isSuppressed ? null : (
+		<StoreNoticesContainer
+			className={ className }
+			notices={ contextValue.notices }
+			removeNotice={ contextValue.removeNotice }
+			isEditor={ isEditor }
+		/>
+	);
 
 	return (
 		<StoreNoticesContext.Provider value={ contextValue }>
+			{ createNoticeContainer && noticeOutput }
 			{ children }
 		</StoreNoticesContext.Provider>
 	);
 };
 
 StoreNoticesProvider.propTypes = {
+	className: PropTypes.string,
+	createNoticeContainer: PropTypes.bool,
 	children: PropTypes.node,
+	context: PropTypes.string,
 };

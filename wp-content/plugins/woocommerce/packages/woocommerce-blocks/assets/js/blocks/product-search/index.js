@@ -3,7 +3,7 @@
  */
 import { __ } from '@wordpress/i18n';
 import { createBlock, registerBlockType } from '@wordpress/blocks';
-import { Icon, search } from '@wordpress/icons';
+import { Icon, search } from '@woocommerce/icons';
 /**
  * Internal dependencies
  */
@@ -51,7 +51,7 @@ registerBlockType( 'woocommerce/product-search', {
 	icon: {
 		src: (
 			<Icon
-				icon={ search }
+				srcElement={ search }
 				className="wc-block-editor-components-block-icon"
 			/>
 		),

@@ -1,7 +1,7 @@
 /**
  * External dependencies
  */
-import { Icon, atSymbol } from '@wordpress/icons';
+import { Icon, contact } from '@woocommerce/icons';
 import { registerFeaturePluginBlockType } from '@woocommerce/block-settings';
 
 /**
@@ -15,7 +15,7 @@ registerFeaturePluginBlockType( metadata, {
 	icon: {
 		src: (
 			<Icon
-				icon={ atSymbol }
+				srcElement={ contact }
 				className="wc-block-editor-components-block-icon"
 			/>
 		),

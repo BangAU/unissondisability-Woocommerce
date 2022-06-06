@@ -73,6 +73,10 @@ body.high-contrast {
         color: #000;
     }
 
+    .navul>li.list-programs>a {
+        color: $color-black !important;
+    }
+
     section.main-nav ul.primary>li.active a,
     section.main-nav ul.primary>li.menu-item--active-trail a {
         color: #000;

@@ -68,7 +68,7 @@ const setNonceOnFetch = ( headers: Headers ): void => {
  */
 const triggerBatchFetch = ( keys: readonly APIFetchOptions[] ) => {
 	return triggerFetch( {
-		path: `/wc/store/v1/batch`,
+		path: `/wc/store/batch`,
 		method: 'POST',
 		data: {
 			requests: keys.map( ( request: APIFetchOptions ) => {

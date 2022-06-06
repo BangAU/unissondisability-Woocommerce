@@ -3,16 +3,16 @@
  * Plugin Name: Email Template Customizer for WooCommerce
  * Plugin URI: https://villatheme.com/extensions/woocommerce-email-template-customizer/
  * Description: Make your WooCommerce emails become professional.
- * Version: 1.1.8
+ * Version: 1.1.9
  * Author: VillaTheme
  * Author URI: https://villatheme.com
  * Text Domain: viwec-email-template-customizer
  * Domain Path: /languages
  * Copyright 2019-2022 VillaTheme.com. All rights reserved.
  * Requires at least: 5.0
- * Tested up to: 5.9
+ * Tested up to: 6.0
  * WC requires at least: 5.0
- * WC tested up to: 6.2
+ * WC tested up to: 6.5
  * Requires PHP: 7.0
  **/
 
@@ -26,7 +26,7 @@ if ( is_plugin_active( 'woocommerce-email-template-customizer/woocommerce-email-
 	return;
 }
 
-define( 'VIWEC_VER', '1.1.8' );
+define( 'VIWEC_VER', '1.1.9' );
 define( 'VIWEC_NAME', 'WooCommerce Email Template Customizer' );
 
 if ( ! class_exists( 'Woo_Email_Template_Customizer' ) ) {
@@ -45,20 +45,20 @@ if ( ! class_exists( 'Woo_Email_Template_Customizer' ) ) {
 		public function condition_init() {
 			global $wp_version;
 			if ( version_compare( $this->wp_version_require, $wp_version, '>' ) ) {
-				$this->err_message = __( 'Please upgrade WordPress version to', 'viwec-email-template-customizer' ) . ' ' . $this->wp_version_require . ' ' . __( 'to use', 'viwec-email-template-customizer' );
+				$this->err_message = __( 'Please upgrade WordPress version to', 'viwec-email-template-customizer' ) . ' ' . $this->wp_version_require;
 
 				return;
 			}
 
 			if ( version_compare( $this->php_version_require, phpversion(), '>' ) ) {
-				$this->err_message = __( 'Please upgrade php version to', 'viwec-email-template-customizer' ) . ' ' . $this->php_version_require . ' ' . __( 'to use', 'viwec-email-template-customizer' );
+				$this->err_message = __( 'Please upgrade php version to', 'viwec-email-template-customizer' ) . ' ' . $this->php_version_require;
 
 				return;
 			}
 
 			if ( ! is_plugin_active( 'woocommerce/woocommerce.php' ) ) {
 				$this->err_message = __( 'Please install and activate WooCommerce to use', 'viwec-email-template-customizer' );
-				unset( $_GET['activate'] );
+				unset( $_GET['activate'] );  // phpcs:ignore WordPress.Security.NonceVerification
 				deactivate_plugins( plugin_basename( __FILE__ ) );
 
 				return;
@@ -66,7 +66,7 @@ if ( ! class_exists( 'Woo_Email_Template_Customizer' ) ) {
 
 			$wc_version = get_option( 'woocommerce_version' );
 			if ( version_compare( $this->wc_version_require, $wc_version, '>' ) ) {
-				$this->err_message = __( 'Please upgrade WooCommerce version to', 'viwec-email-template-customizer' ) . ' ' . $this->wc_version_require . ' ' . __( 'to use', 'viwec-email-template-customizer' );
+				$this->err_message = __( 'Please upgrade WooCommerce version to', 'viwec-email-template-customizer' ) . ' ' . $this->wc_version_require;
 
 				return;
 			}
@@ -121,7 +121,7 @@ if ( ! class_exists( 'Woo_Email_Template_Customizer' ) ) {
 			if ( $this->err_message ) {
 				?>
                 <div id="message" class="error">
-                    <p><?php echo esc_html( $this->err_message ) . ' ' . VIWEC_NAME; ?></p>
+                    <p><?php echo esc_html( $this->err_message . ' ' . __( 'to use', 'viwec-email-template-customizer' ) . ' ' . VIWEC_NAME ); ?></p>
                 </div>
 				<?php
 			}

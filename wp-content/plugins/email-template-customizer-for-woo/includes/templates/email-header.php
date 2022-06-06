@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!DOCTYPE html>
 <html <?php language_attributes(); ?> xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title><?php echo get_bloginfo( 'name', 'display' ); ?></title>
+    <title><?php echo esc_html( get_bloginfo( 'name', 'display' ) ); ?></title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -108,8 +108,6 @@ if ( ! defined( 'ABSPATH' ) ) {
     </style>
     <![endif]-->
 
-    <link href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Oswald:300,400,500,700&display=swap" rel="stylesheet" type="text/css">
     <style type="text/css">
         @import url(https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700);
         @import url(https://fonts.googleapis.com/css?family=Oswald:300,400,500,700);

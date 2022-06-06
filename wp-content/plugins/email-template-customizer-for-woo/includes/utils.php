@@ -16,7 +16,7 @@ class Utils {
 
 	public static function init() {
 		if ( null == self::$instance ) {
-			self::$instance = new self;
+			self::$instance = new self();
 		}
 
 		return self::$instance;
@@ -547,9 +547,9 @@ class Utils {
 
 	public static function minify_html( $message ) {
 		$replace = [
-			'/\>[^\S ]+/s'      => '>',     // strip whitespaces after tags, except space
-			'/[^\S ]+\</s'      => '<',     // strip whitespaces before tags, except space
-			'/(\s)+/s'          => '\\1',         // shorten multiple whitespace sequences
+			'/\>[^\S ]+/s' => '>',     // strip whitespaces after tags, except space
+			'/[^\S ]+\</s' => '<',     // strip whitespaces before tags, except space
+			'/(\s)+/s'     => '\\1',         // shorten multiple whitespace sequences
 //			'/<!--(.|\s)*?-->/' => '' // Remove HTML comments
 		];
 

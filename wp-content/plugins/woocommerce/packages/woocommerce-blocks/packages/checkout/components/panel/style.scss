@@ -50,6 +50,8 @@
 }
 
 .wc-block-components-panel__content {
+	padding-bottom: em($gap);
+
 	// Ensures the panel contents are not visible for any theme that tweaked the
 	// `display` property of div elements.
 	&[hidden] {

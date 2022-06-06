@@ -14,7 +14,7 @@ import {
 	productIsPurchasable,
 	productSupportsAddToCartForm,
 } from '@woocommerce/base-utils';
-import { useDispatch } from '@wordpress/data';
+
 /**
  * Internal dependencies
  */
@@ -29,8 +29,8 @@ import {
 	reducer as emitReducer,
 } from './event-emit';
 import { useValidationContext } from '../../validation';
+import { useStoreNotices } from '../../../hooks/use-store-notices';
 import { useEmitResponse } from '../../../hooks/use-emit-response';
-import { removeNoticesByStatus } from '../../../../../utils/notices';
 
 /**
  * @typedef {import('@woocommerce/type-defs/add-to-cart-form').AddToCartFormDispatchActions} AddToCartFormDispatchActions
@@ -85,7 +85,7 @@ export const useAddToCartFormContext = () => {
  *
  * @param {Object}  props                    Incoming props for the provider.
  * @param {Object}  props.children           The children being wrapped.
- * @param {Object}  [props.product]          The product for which the form belongs to.
+ * @param {Object} [props.product]           The product for which the form belongs to.
  * @param {boolean} [props.showFormElements] Should form elements be shown.
  */
 export const AddToCartFormStateContextProvider = ( {
@@ -99,7 +99,7 @@ export const AddToCartFormStateContextProvider = ( {
 	);
 	const [ observers, observerDispatch ] = useReducer( emitReducer, {} );
 	const currentObservers = useShallowEqual( observers );
-	const { createErrorNotice } = useDispatch( 'core/notices' );
+	const { addErrorNotice, removeNotices } = useStoreNotices();
 	const { setValidationErrors } = useValidationContext();
 	const {
 		isSuccessResponse,
@@ -167,7 +167,7 @@ export const AddToCartFormStateContextProvider = ( {
 		const status = addToCartFormState.status;
 
 		if ( status === STATUS.BEFORE_PROCESSING ) {
-			removeNoticesByStatus( 'error', 'wc/add-to-cart' );
+			removeNotices( 'error' );
 			emitEvent(
 				currentObservers,
 				EMIT_TYPES.ADD_TO_CART_BEFORE_PROCESSING,
@@ -178,9 +178,7 @@ export const AddToCartFormStateContextProvider = ( {
 						response.forEach(
 							( { errorMessage, validationErrors } ) => {
 								if ( errorMessage ) {
-									createErrorNotice( errorMessage, {
-										context: 'wc/add-to-cart',
-									} );
+									addErrorNotice( errorMessage );
 								}
 								if ( validationErrors ) {
 									setValidationErrors( validationErrors );
@@ -197,10 +195,10 @@ export const AddToCartFormStateContextProvider = ( {
 	}, [
 		addToCartFormState.status,
 		setValidationErrors,
-		createErrorNotice,
+		addErrorNotice,
+		removeNotices,
 		dispatch,
 		currentObservers,
-		product?.id,
 	] );
 
 	/**
@@ -229,7 +227,7 @@ export const AddToCartFormStateContextProvider = ( {
 							? { context: messageContext }
 							: undefined;
 						handled = true;
-						createErrorNotice( message, errorOptions );
+						addErrorNotice( message, errorOptions );
 					}
 				} );
 				return handled;
@@ -250,11 +248,8 @@ export const AddToCartFormStateContextProvider = ( {
 								'Something went wrong. Please contact us to get assistance.',
 								'woocommerce'
 							);
-						createErrorNotice( message, {
+						addErrorNotice( message, {
 							id: 'add-to-cart',
-							context: `woocommerce/single-product/${
-								product?.id || 0
-							}`,
 						} );
 					}
 					dispatch( actions.setIdle() );
@@ -282,12 +277,11 @@ export const AddToCartFormStateContextProvider = ( {
 		addToCartFormState.hasError,
 		addToCartFormState.processingResponse,
 		dispatchActions,
-		createErrorNotice,
+		addErrorNotice,
 		isErrorResponse,
 		isFailResponse,
 		isSuccessResponse,
 		currentObservers,
-		product?.id,
 	] );
 
 	const supportsFormElements = productSupportsAddToCartForm( product );

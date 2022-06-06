@@ -3,7 +3,7 @@
  */
 import { __ } from '@wordpress/i18n';
 import { createBlock, registerBlockType } from '@wordpress/blocks';
-import { Icon, postComments } from '@wordpress/icons';
+import { Icon, discussion } from '@woocommerce/icons';
 
 /**
  * Internal dependencies
@@ -24,7 +24,7 @@ registerBlockType( 'woocommerce/all-reviews', {
 	icon: {
 		src: (
 			<Icon
-				icon={ postComments }
+				srcElement={ discussion }
 				className="wc-block-editor-components-block-icon"
 			/>
 		),

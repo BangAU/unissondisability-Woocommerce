@@ -1,7 +1,7 @@
 /**
  * External dependencies
  */
-import { Icon, mapMarker } from '@wordpress/icons';
+import { Icon, address } from '@woocommerce/icons';
 import { registerFeaturePluginBlockType } from '@woocommerce/block-settings';
 
 /**
@@ -15,7 +15,7 @@ registerFeaturePluginBlockType( metadata, {
 	icon: {
 		src: (
 			<Icon
-				icon={ mapMarker }
+				srcElement={ address }
 				className="wc-block-editor-components-block-icon"
 			/>
 		),

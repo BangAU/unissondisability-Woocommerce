@@ -581,6 +581,17 @@
         padding: 10px 24px;
     }
 
+    .woocommerce-error {
+        font-size: 14px;
+        font-weight: 500;
+        color: $color-red;
+
+        li {
+            padding-left: 0;
+            font-size: inherit;
+        }
+    }
+
     .woocommerce-billing-fields__field-wrapper {
         display: flex;
         flex-wrap: wrap;
@@ -629,7 +640,6 @@
         background-color: $color-gray;
         padding: 50px 50px 75px;
     }
-
 
     .checkout-coupon-toggle {
         display: inline-block;
@@ -700,6 +710,72 @@
             border-radius: 30px;
         }
     }
+
+    .woocommerce-form-login {
+        padding-top: 30px;
+        max-width: 573px;
+
+        p {
+            font-size: 16px;
+        }
+
+        .woocommerce-form__label-for-checkbox {
+            display: flex;
+            align-items: center;
+            @include unselect;
+            cursor: pointer;
+
+            input {
+                width: 30px;
+                height: 30px;
+                padding: 0;
+                margin: 0;
+                margin-right: 15px;
+                background-color: #fff;
+                border-radius: 50%;
+                vertical-align: middle;
+                border: 1px solid $color-black-1;
+                appearance: none;
+                -webkit-appearance: none;
+                outline: none;
+                cursor: pointer;
+                transition: all .3s ease-out;
+
+                &:checked {
+                    // background-color: $color-orange;
+                    background-image: radial-gradient($color-orange 58%, #fff 58%, #fff);
+                }
+            }
+
+            span {}
+        }
+
+        .woocommerce-form-login__submit {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 207px;
+            max-width: 100%;
+            height: 50px;
+            border-radius: 225px;
+            font-family: inherit;
+            font-size: 18px;
+            font-weight: 500;
+            color: #fff;
+            background-color: $color-orange;
+            border: 0;
+            margin: 25px 0;
+            cursor: pointer;
+        }
+
+        .lost_password {
+            a {
+                font-size: 14px;
+                font-weight: 500;
+                text-decoration: underline;
+            }
+        }
+    }
 }
 
 .woocommerce-additional-fields {
@@ -712,7 +788,7 @@
         background-color: $color-gray-1;
 
         &+.Attendee-group {
-            margin-top: 5px;
+            margin-top: 50px;
         }
 
         .Attendee-group {
@@ -734,6 +810,10 @@
         h4 {
             font-size: 1.6rem;
             font-weight: 700;
+        }
+
+        .attendee-title {
+            color: $color-purple;
         }
 
         .plan-managed-funding-text,
@@ -963,6 +1043,7 @@
                 color: $color-black-light;
                 font-size: 1.4rem;
                 font-weight: 400;
+                margin-bottom: 0;
             }
 
             .variation {
@@ -1201,6 +1282,7 @@
                         th,
                         td {
                             font-size: 1.6rem;
+                            padding: 18px;
                         }
                     }
                 }
@@ -1468,5 +1550,269 @@
     .col-1,
     .col-2 {
         padding: 0;
+    }
+}
+
+.woocommerce-order-received {
+    .woocommerce-order {
+        position: relative;
+        padding: 25px 40px;
+        background-color: $color-gray;
+        max-width: 776px;
+        @include margin-auto;
+        margin-top: 120px;
+
+        .woocommerce-notice {
+            width: 100%;
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 43px;
+            font-weight: 700;
+            color: $color-orange;
+            line-height: normal;
+            text-align: center;
+        }
+
+        .woocommerce-order-overview {
+            li {
+                padding-left: 0;
+                border-bottom: 1px solid $color-yellow;
+                padding-bottom: 20px;
+                margin-bottom: 20px;
+                font-size: 14px;
+                font-weight: 400;
+                line-height: normal;
+
+                >strong {
+                    display: block;
+                    margin-top: 6px;
+                    font-size: 16px;
+                }
+            }
+        }
+
+        .woocommerce-order-details {
+            margin-top: 10px;
+
+            p {
+                margin-bottom: 0;
+            }
+
+            .woocommerce-order-details__title {
+                color: $color-black-light;
+                font-size: 14px;
+                font-weight: 400;
+            }
+
+            .woocommerce-table--order-details {
+                width: 100%;
+
+                thead {
+                    display: none;
+                }
+
+                tbody {
+                    td {
+                        padding-bottom: 28px;
+                    }
+
+                    .product {
+                        &-name {
+
+                            >a,
+                            .product-quantity {
+                                font-size: 16px;
+                                font-weight: 700;
+                            }
+
+                            p {
+                                font-size: 14px;
+                                line-height: normal;
+
+                                small {
+                                    font-size: inherit;
+                                }
+                            }
+
+                            .yith-wcdp-order-actions {
+                                display: inline-block;
+                                font-size: 13px;
+                                font-weight: 500;
+                                color: #fff;
+                                background-color: $color-orange;
+                                padding: 3px 12px;
+                                text-align: center;
+                                border: 0;
+                                border-radius: 30px;
+                                cursor: pointer;
+                                white-space: nowrap;
+                                margin-top: 12px;
+                            }
+                        }
+
+                        &-total {
+                            text-align: right;
+
+                            .amount {
+                                color: $color-purple;
+                                font-size: 16px;
+                                font-weight: 700;
+                            }
+                        }
+                    }
+                }
+
+                tfoot {
+                    tr {
+
+                        th,
+                        td {
+                            font-size: 16px;
+                            font-weight: 500;
+                            padding: 10px 0;
+                        }
+
+                        th {
+                            color: $color-black-light;
+                            text-align: left;
+                        }
+
+                        td {
+                            color: $color-black;
+                            text-align: right;
+                        }
+
+                        &:last-child {
+
+                            th,
+                            td {
+                                padding-bottom: 20px;
+                                margin-bottom: 18px;
+                                border-bottom: 1px solid $color-yellow;
+                            }
+
+                            th {
+                                color: $color-black;
+                            }
+
+                            td {
+                                color: $color-purple;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .order-again {
+                margin-top: 20px;
+                margin-bottom: 20px;
+
+                .button {
+                    display: inline-block;
+                    font-size: 13px;
+                    font-weight: 500;
+                    color: #fff;
+                    background-color: #FF6926;
+                    padding: 3px 12px;
+                    text-align: center;
+                    border: 0;
+                    border-radius: 30px;
+                    cursor: pointer;
+                    white-space: nowrap;
+                    margin-top: 12px;
+                }
+            }
+
+            .yith-wcdp-my-deposits {
+                >p {
+                    font-size: 14px;
+                    line-height: normal;
+                    margin-bottom: 20px;
+                }
+
+                .shop_table {
+                    width: 100%;
+                    margin: 30px 0;
+
+                    thead {
+                        tr {
+                            th {
+                                font-size: 14px;
+                                text-align: left;
+                            }
+                        }
+                    }
+
+                    tbody {
+                        td {
+                            font-size: 14px;
+                            text-align: left;
+                            padding: 10px 5px;
+                            vertical-align: top;
+
+                            ul {
+                                margin: 0;
+                                padding: 0;
+
+                                li {
+                                    font-size: inherit;
+                                    margin: 0;
+                                    padding: 0;
+                                    line-height: normal;
+                                }
+                            }
+
+                            &.order-actions {
+                                white-space: nowrap;
+
+                                a {
+                                    display: inline-block;
+                                    font-size: 13px;
+                                    font-weight: 500;
+                                    color: #fff;
+                                    background-color: #FF6926;
+                                    padding: 3px 12px;
+                                    text-align: center;
+                                    border: 0;
+                                    border-radius: 30px;
+                                    cursor: pointer;
+                                    white-space: nowrap;
+
+                                    +a {
+                                        margin-left: 10px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .woocommerce-customer-details {
+            .woocommerce-column__title {
+                color: $color-black-light;
+                font-size: 14px;
+                margin-bottom: 8px;
+            }
+
+            address {
+                font-size: 14px;
+                font-weight: 400;
+                font-style: normal;
+
+                strong {
+                    font-size: 16px;
+                }
+
+                p {
+                    margin: 0;
+                    font-size: inherit;
+                    line-height: normal;
+                }
+            }
+        }
     }
 }

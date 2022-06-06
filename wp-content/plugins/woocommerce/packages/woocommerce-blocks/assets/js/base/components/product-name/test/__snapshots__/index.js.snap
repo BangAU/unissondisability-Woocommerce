@@ -9,6 +9,7 @@ exports[`ProductName should merge classes and props 1`] = `
     }
   }
   href="/"
+  rel="nofollow"
 />
 `;
 

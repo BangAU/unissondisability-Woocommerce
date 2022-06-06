@@ -111,7 +111,7 @@ $arrow = $admin_bar_stt ? 'left' : 'right';
                 <span><?php esc_html_e( 'Background', 'viwec-email-template-customizer' ); ?></span>
             </span>
         </div>
-        <div id="viwec-email-editor-content"  class="viwec-sortable viwec-direction-<?php echo esc_attr( $direction ) ?>">
+        <div id="viwec-email-editor-content" class="viwec-sortable viwec-direction-<?php echo esc_attr( $direction ) ?>">
         </div>
         <div id="viwec-quick-add-layout">
             <div class="dashicons dashicons-plus viwec-quick-add-layout-btn"
@@ -375,7 +375,9 @@ $arrow = $admin_bar_stt ? 'left' : 'right';
                 <tr>
                     <td class="viwec-p-name" style=" border:1px solid #dddddd; text-align: left; padding: 10px">Sample product</td>
                     <td class="" style=" border:1px solid #dddddd; text-align: center; padding: 10px">1</td>
-                    <td class="viwec-p-price" style=" border:1px solid #dddddd; text-align: right;padding: 10px;"><?php echo wc_price( 25 ); ?></td>
+                    <td class="viwec-p-price" style=" border:1px solid #dddddd; text-align: right;padding: 10px;">
+                        <?php echo wc_price( 25 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped?>
+                    </td>
                 </tr>
 				<?php
 			}
@@ -392,12 +394,12 @@ $arrow = $admin_bar_stt ? 'left' : 'right';
                        style="border-collapse:separate;border-style:solid;">
                     <tr>
                         <td class="viwec-product-img" style="width: 150px;border-collapse:collapse;" border="0">
-                            <img src="<?php echo VIWEC_IMAGES . 'product.png' ?>" style="width: 100%">
+                            <img src="<?php echo esc_url( VIWEC_IMAGES . 'product.png' ) ?>" style="width: 100%">
                         </td>
                         <td class="" style="vertical-align: middle; padding-left: 15px;padding-top: 5px;">
                             <p class="viwec-product-name">Product name</p>
                             <p class="viwec-product-quantity"><span class="viwec-text-quantity">x</span> 1</p>
-                            <p class="viwec-product-price"><?php echo wc_price( 25 ); ?></p>
+                            <p class="viwec-product-price"><?php echo wc_price( 25 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped?></p>
                         </td>
                     </tr>
                 </table>
@@ -421,14 +423,16 @@ $arrow = $admin_bar_stt ? 'left' : 'right';
                        style="border-collapse:collapse;border-style:solid; ">
                     <tr>
                         <td class="viwec-product-img" style="width: 150px;border-collapse:collapse;" border="0">
-                            <img src="<?php echo VIWEC_IMAGES . 'product.png' ?>" style="width: 100%;vertical-align: middle;">
+                            <img src="<?php echo esc_url( VIWEC_IMAGES . 'product.png' ); ?>" style="width: 100%;vertical-align: middle;">
                         </td>
                         <td valign="middle" style="padding:0 15px">
                             <p class="viwec-product-name">Sample product</p>
                             <p class="viwec-product-quantity"><span class="viwec-text-quantity">x</span> 1</p>
                         </td>
                         <td style="text-align: right;">
-                            <p style="white-space: nowrap;" class="viwec-product-price"><?php echo wc_price( 25 ); ?></p>
+                            <p style="white-space: nowrap;" class="viwec-product-price">
+								<?php echo wc_price( 25 );// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+                            </p>
                         </td>
                     </tr>
                 </table>
@@ -479,7 +483,7 @@ $arrow = $admin_bar_stt ? 'left' : 'right';
                     <div class="viwec-text-total">Total</div>
                 </td>
                 <td class="viwec-td-right viwec-order-total-style" style="text-align: right;border-style: solid; border-width: 0; width: 30%;">
-					<?php echo wc_price( 55 ) ?>
+					<?php echo wc_price( 55 ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
                 </td>
             </tr>
         </table>
@@ -531,132 +535,12 @@ $arrow = $admin_bar_stt ? 'left' : 'right';
         </table>
     </script>
 
-
-    <!--    Subscriptions information-->
-
-    <script id="viwec-wc-subscriptions" type="text/html">
-
-        <div class="viwec-wc-subscriptions-outer" style="overflow: hidden;border: 0px solid transparent;">
-            <table width="100%" cellspacing="0" cellpadding="0" border="0" style="border-collapse: collapse">
-                <tr>
-					<?php
-					$headers = [
-						'id'              => 'ID',
-						'start_date'      => esc_html__( 'Start date', 'viwec-email-template-customizer' ),
-						'end_date'        => esc_html__( 'End date', 'viwec-email-template-customizer' ),
-						'recurring_total' => esc_html__( 'Recurring total', 'viwec-email-template-customizer' ),
-					];
-					$style   = 'padding:6px;background-color:#ddd;';
-					foreach ( $headers as $class => $header ) {
-						printf( '<th style="%s" class=" %s">%s</th>', esc_attr( $style ), esc_attr( 'viwec-subscription-header viwec-subscription-border viwec-subscription-' . $class ), $header );
-					}
-					?>
-                </tr>
-				<?php
-				for ( $i = 1; $i <= 4; $i ++ ) {
-					$style = 'padding:6px;text-align:center;border-width:0;';
-					$style = $i % 2 ? $style : $style . 'background-color:#f5f5f5;';
-					$class = $i % 2 ? 'viwec-subscription-body-odd' : 'viwec-subscription-body-even';
-
-					$tds = [
-						'<a style="text-decoration: underline;">#00' . $i . '</a>',
-						date_i18n( wc_date_format(), current_time( 'U' ) ),
-						esc_html__( 'When cancelled', 'viwec-email-template-customizer' ),
-						wc_price( 10 ) . esc_html__( '/ month', 'viwec-email-template-customizer' ) . "<br><small>" . esc_html__( 'Next payment:', 'viwec-email-template-customizer' ) . ' ' . date_i18n( wc_date_format(), current_time( 'U' ) + MONTH_IN_SECONDS ) . "</small>"
-					];
-
-					echo '<tr>';
-					foreach ( $tds as $td_content ) {
-						printf( '<td class="viwec-subscription-body viwec-subscription-border %s" style="%s">%s</td>', esc_attr( $class ), esc_attr( $style ), $td_content );
-					}
-					echo '</tr>';
-				}
-				?>
-            </table>
-        </div>
-    </script>
-
-    <!--    New subscriptions detail after switched-->
-    <script id="viwec-wc-subscriptions-switched" type="text/html">
-        <div class="viwec-wc-subscriptions-outer" style="overflow: hidden;border: 0px solid transparent;">
-            <div class="viwec-wc-subscriptions-title" style="padding-bottom: 6px;display: flex;font-weight: 700;">
-                <span class="viwec-wc-subscriptions-trans-title"><?php esc_html_e( 'Subscription #', 'viwec-email-template-customizer' ) ?></span>
-                <span>123</span>
-            </div>
-            <table width="100%" border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse;">
-                <thead>
-                <tr>
-					<?php
-					$headers = [
-						'product'  => esc_html__( 'Product', 'viwec-email-template-customizer' ),
-						'quantity' => esc_html__( 'Quantity', 'viwec-email-template-customizer' ),
-						'price'    => esc_html__( 'Price', 'viwec-email-template-customizer' ),
-					];
-					$style   = 'text-align: left; background-color: #ddd;padding:6px;';
-					foreach ( $headers as $class => $header ) {
-						printf( '<th class="viwec-subscription-%s viwec-subscription-header viwec-subscription-border" style="%s">%s</th>', $class, $style, $header );
-					}
-					?>
-                </tr>
-                </thead>
-
-                <tbody>
-                <tr>
-					<?php
-					$headers = [
-						esc_html__( 'Subscription product', 'viwec-email-template-customizer' ),
-						1,
-						wc_price( 30 ) . ' / month'
-					];
-					$style   = 'text-align: left;padding:6px;';
-					foreach ( $headers as $header ) {
-						printf( '<td class="viwec-subscription-body viwec-subscription-body-odd viwec-subscription-border" style="%s">%s</td>', $style, $header );
-					}
-					?>
-                </tr>
-                </tbody>
-
-                <tfoot>
-				<?php
-				$footers = [
-					[ 'subtotal' => esc_html__( 'Subtotal:', 'viwec-email-template-customizer' ), 'value' => wc_price( 30 ) ],
-					[ 'discount' => esc_html__( 'Discount:', 'viwec-email-template-customizer' ), 'value' => '-' . wc_price( 0 ) ],
-					[ 'shipping' => esc_html__( 'Shipping:', 'viwec-email-template-customizer' ), 'value' => esc_html__( 'Free shipping', 'viwec-email-template-customizer' ) ],
-					[
-						'payment_method' => esc_html__( 'Payment method:', 'viwec-email-template-customizer' ),
-						'value'          => esc_html__( 'Via Manual Renewal', 'viwec-email-template-customizer' )
-					],
-					[ 'total' => esc_html__( 'Total:', 'viwec-email-template-customizer' ), 'value' => wc_price( 30 ) . ' / month' ],
-				];
-
-				$style = 'text-align:left;padding:6px;';
-
-				$i = 0;
-				foreach ( $footers as $footer ) {
-					$class = $i % 2 ? 'viwec-subscription-body-odd' : 'viwec-subscription-body-even';
-					echo '<tr>';
-					foreach ( $footer as $key => $text ) {
-						if ( $key == 'value' ) {
-							printf( '<td class="viwec-subscription-body viwec-subscription-border %s" style="%s">%s</td>', $class, $style, $text );
-						} else {
-							printf( '<th colspan="2" class="%s viwec-subscription-%s viwec-subscription-body viwec-subscription-border" style="%s">%s</th>', $class, $key, $style, $text );
-						}
-					}
-					echo '</tr>';
-					$i ++;
-				}
-				?>
-                </tfoot>
-            </table>
-        </div>
-    </script>
-
     <script id="viwec-recover-email-content" type="text/html">
         <p><?php esc_html_e( 'Hi John, Just to let you know — we\'ve received your order #859, and it is now being processed:', 'viwec-email-customizer' ); ?></p>
         <h2 style="margin: 0; padding: 20px 0; font-size: 18px">
 			<?php
 			esc_html_e( '[Order #123]', 'viwec-email-customizer' );
-			echo ' (' . date_i18n( wc_date_format(), current_time( 'U' ) ) . ')';
+			printf( "(%s)", esc_html( date_i18n( wc_date_format(), current_time( 'U' ) ) ) );
 			?>
         </h2>
 
@@ -676,14 +560,22 @@ $arrow = $admin_bar_stt ? 'left' : 'right';
                         <img style="width: 50px;display: none;" src="<?php echo esc_url( VIWEC_IMAGES . 'product.png' ) ?>">
 						<?php esc_html_e( 'Product name', 'viwec-email-customizer' ); ?></td>
                     <td class="body td">1</td>
-                    <td class="body td"><?php echo wc_price( 20 ) ?></td>
+                    <td class="body td">
+						<?php
+						echo wc_price( 20 );// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+						?>
+                    </td>
                 </tr>
                 </tbody>
 
                 <tfoot>
                 <tr>
                     <th class="body td" colspan="2"><?php esc_html_e( 'Subtotal:', 'viwec-email-customizer' ); ?></th>
-                    <td class="body td"><?php echo wc_price( 20 ) ?></td>
+                    <td class="body td">
+						<?php
+						echo wc_price( 20 );// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+						?>
+                    </td>
                 </tr>
                 <tr>
                     <th class="body td" colspan="2"><?php esc_html_e( 'Shipping:', 'viwec-email-customizer' ); ?></th>
@@ -695,7 +587,11 @@ $arrow = $admin_bar_stt ? 'left' : 'right';
                 </tr>
                 <tr>
                     <th class="body td" colspan="2"><?php esc_html_e( 'Total:', 'viwec-email-customizer' ); ?></th>
-                    <td class="body td"><?php echo wc_price( 20 ) ?></td>
+                    <td class="body td">
+						<?php
+						echo wc_price( 20 );// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+						?>
+                    </td>
                 </tr>
                 </tfoot>
             </table>

@@ -29,7 +29,7 @@ interface Props {
 
 const TitleEdit = ( { attributes, setAttributes }: Props ): JSX.Element => {
 	const blockProps = useBlockProps();
-	const { headingLevel, showProductLink, align, linkTarget } = attributes;
+	const { headingLevel, showProductLink, align } = attributes;
 	return (
 		<div { ...blockProps }>
 			<BlockControls>
@@ -53,14 +53,15 @@ const TitleEdit = ( { attributes, setAttributes }: Props ): JSX.Element => {
 			</BlockControls>
 			<InspectorControls>
 				<PanelBody
-					title={ __(
-						'Link settings',
-						'woo-gutenberg-products-block'
-					) }
+					title={ __( 'Content', 'woo-gutenberg-products-block' ) }
 				>
 					<ToggleControl
 						label={ __(
-							'Make title a link',
+							'Link to Product Page',
+							'woo-gutenberg-products-block'
+						) }
+						help={ __(
+							'Links the image to the single product listing.',
 							'woo-gutenberg-products-block'
 						) }
 						checked={ showProductLink }
@@ -70,22 +71,6 @@ const TitleEdit = ( { attributes, setAttributes }: Props ): JSX.Element => {
 							} )
 						}
 					/>
-					{ showProductLink && (
-						<>
-							<ToggleControl
-								label={ __(
-									'Open in new tab',
-									'woo-gutenberg-products-block'
-								) }
-								onChange={ ( value ) =>
-									setAttributes( {
-										linkTarget: value ? '_blank' : '_self',
-									} )
-								}
-								checked={ linkTarget === '_blank' }
-							/>
-						</>
-					) }
 				</PanelBody>
 			</InspectorControls>
 			<Disabled>

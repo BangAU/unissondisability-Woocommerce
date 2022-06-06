@@ -23,7 +23,6 @@ import { usePaymentMethodDataContext } from '../../providers/cart-checkout/payme
 import { useShippingDataContext } from '../../providers/cart-checkout/shipping';
 import { useCustomerDataContext } from '../../providers/cart-checkout/customer';
 import { prepareTotalItems } from './utils';
-import { useShippingData } from '../shipping/use-shipping-data';
 
 /**
  * Returns am interface to use as payment method props.
@@ -51,19 +50,17 @@ export const usePaymentMethodInterface = (): PaymentMethodInterface => {
 	const {
 		shippingErrorStatus,
 		shippingErrorTypes,
+		shippingRates,
+		shippingRatesLoading,
+		selectedRates,
+		setSelectedRates,
+		isSelectingRate,
 		onShippingRateSuccess,
 		onShippingRateFail,
 		onShippingRateSelectSuccess,
 		onShippingRateSelectFail,
-	} = useShippingDataContext();
-	const {
-		shippingRates,
-		isLoadingRates,
-		selectedRates,
-		isSelectingRate,
-		selectShippingRate,
 		needsShipping,
-	} = useShippingData();
+	} = useShippingDataContext();
 	const {
 		billingData,
 		shippingAddress,
@@ -160,11 +157,11 @@ export const usePaymentMethodInterface = (): PaymentMethodInterface => {
 			isSelectingRate,
 			needsShipping,
 			selectedRates,
-			setSelectedRates: selectShippingRate,
+			setSelectedRates,
 			setShippingAddress,
 			shippingAddress,
 			shippingRates,
-			shippingRatesLoading: isLoadingRates,
+			shippingRatesLoading,
 		},
 		shippingStatus: {
 			shippingErrorStatus,

@@ -11,7 +11,7 @@ import { Currency } from '@woocommerce/types';
 import FooterItem, { TotalsFooterItemProps } from '..';
 
 const NZD: Currency = {
-	code: 'NZD',
+	code: 'nzd',
 	symbol: '$',
 	thousandSeparator: ' ',
 	decimalSeparator: '.',

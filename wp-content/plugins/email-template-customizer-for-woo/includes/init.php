@@ -51,7 +51,7 @@ class Init {
 
 	public static function init() {
 		if ( null == self::$instance ) {
-			self::$instance = new self;
+			self::$instance = new self();
 		}
 
 		return self::$instance;
@@ -247,11 +247,7 @@ class Init {
 				wp_enqueue_editor();
 				wp_enqueue_media();
 				wp_enqueue_script( 'wc-enhanced-select' );
-				wp_enqueue_script( 'iris', admin_url( 'js/iris.min.js' ), array(
-					'jquery-ui-draggable',
-					'jquery-ui-slider',
-					'jquery-touch-punch'
-				), false, 1 );
+				wp_enqueue_script( 'iris' );
 
 				Utils::enqueue_admin_script_libs( $scripts_lib, [ 'jquery' ] );
 				Utils::enqueue_admin_scripts( $scripts, [ 'jquery', 'jquery-ui-sortable', 'jquery-ui-draggable', 'wp-color-picker' ] );
@@ -356,8 +352,8 @@ class Init {
 
 				if ( ! empty( $_GET['sample'] ) ) {
 					if ( ! isset( $_GET['action'] ) || $_GET['action'] !== 'edit' ) {
-						$style            = ! empty( $_GET['style'] ) ? sanitize_text_field( $_GET['style'] ) : 'basic';
-						$params['addNew'] = [ 'type' => sanitize_text_field( $_GET['sample'] ), 'style' => $style ];
+						$style            = ! empty( $_GET['style'] ) ? sanitize_text_field( wp_unslash( $_GET['style'] ) ) : 'basic';
+						$params['addNew'] = [ 'type' => sanitize_text_field( wp_unslash( $_GET['sample'] ) ), 'style' => $style ];
 					}
 				}
 
@@ -415,7 +411,7 @@ class Init {
 		if ( get_current_screen()->id === 'edit-viwec_template' ) {
 			?>
             <div id="viwec-in-all-email-page">
-				<?php do_action( 'villatheme_support_' . VIWEC_SLUG ); ?>
+				<?php do_action( 'villatheme_support_email-template-customizer-for-woo' ); ?>
             </div>
 		<?php }
 	}

@@ -15,7 +15,7 @@ const { Fill: ExperimentalOrderMeta, Slot: OrderMetaSlot } = createSlotFill(
 	slotName
 );
 
-const Slot = ( { className, extensions, cart, context } ) => {
+const Slot = ( { className, extensions, cart } ) => {
 	const { fills } = useSlot( slotName );
 	return (
 		hasValidFills( fills ) && (
@@ -25,7 +25,7 @@ const Slot = ( { className, extensions, cart, context } ) => {
 						className,
 						'wc-block-components-order-meta'
 					) }
-					fillProps={ { extensions, cart, context } }
+					fillProps={ { extensions, cart } }
 				/>
 			</TotalsWrapper>
 		)

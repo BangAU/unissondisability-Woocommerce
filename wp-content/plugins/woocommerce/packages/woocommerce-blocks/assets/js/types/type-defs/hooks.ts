@@ -47,16 +47,8 @@ export interface StoreCart {
 	shippingAddress: CartResponseShippingAddress;
 	shippingRates: Array< CartResponseShippingRate >;
 	extensions: Record< string, unknown >;
-	isLoadingRates: boolean;
+	shippingRatesLoading: boolean;
 	cartHasCalculatedShipping: boolean;
 	paymentRequirements: Array< string >;
 	receiveCart: ( cart: CartResponse ) => void;
 }
-
-export type Query = {
-	catalog_visibility: 'catalog';
-	per_page: number;
-	page: number;
-	orderby: string;
-	order: string;
-};

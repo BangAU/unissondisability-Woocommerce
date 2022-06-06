@@ -1,8 +1,11 @@
 <?php
-namespace Automattic\WooCommerce\StoreApi\Utilities;
+namespace Automattic\WooCommerce\Blocks\StoreApi\Utilities;
 
 /**
  * Pagination class.
+ *
+ * @internal This API is used internally by Blocks--it is still in flux and may be subject to revisions.
+ * @since 2.5.0
  */
 class Pagination {
 

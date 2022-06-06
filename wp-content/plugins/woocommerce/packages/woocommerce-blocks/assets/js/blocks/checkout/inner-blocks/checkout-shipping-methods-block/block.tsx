@@ -2,12 +2,14 @@
  * External dependencies
  */
 import { __ } from '@wordpress/i18n';
-import { useShippingData } from '@woocommerce/base-context/hooks';
 import { ShippingRatesControl } from '@woocommerce/base-components/cart-checkout';
 import { getShippingRatesPackageCount } from '@woocommerce/base-utils';
 import { getCurrencyFromPriceResponse } from '@woocommerce/price-format';
 import FormattedMonetaryAmount from '@woocommerce/base-components/formatted-monetary-amount';
-import { useEditorContext } from '@woocommerce/base-context';
+import {
+	useEditorContext,
+	useShippingDataContext,
+} from '@woocommerce/base-context';
 import { decodeEntities } from '@wordpress/html-entities';
 import { Notice } from 'wordpress-components';
 import classnames from 'classnames';
@@ -48,13 +50,12 @@ const renderShippingRatesControlOption = (
 
 const Block = (): JSX.Element | null => {
 	const { isEditor } = useEditorContext();
-
 	const {
 		shippingRates,
+		shippingRatesLoading,
 		needsShipping,
-		isLoadingRates,
 		hasCalculatedShipping,
-	} = useShippingData();
+	} = useShippingDataContext();
 
 	if ( ! needsShipping ) {
 		return null;
@@ -101,8 +102,7 @@ const Block = (): JSX.Element | null => {
 					}
 					renderOption={ renderShippingRatesControlOption }
 					shippingRates={ shippingRates }
-					isLoadingRates={ isLoadingRates }
-					context="woocommerce/checkout"
+					shippingRatesLoading={ shippingRatesLoading }
 				/>
 			) }
 		</>

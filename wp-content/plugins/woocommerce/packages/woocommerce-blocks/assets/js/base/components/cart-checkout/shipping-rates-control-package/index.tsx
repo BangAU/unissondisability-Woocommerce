@@ -57,7 +57,7 @@ interface PackageProps {
 
 export const ShippingRatesControlPackage = ( {
 	packageId,
-	className = '',
+	className,
 	noResultsMessage,
 	renderOption,
 	packageData,
@@ -65,7 +65,10 @@ export const ShippingRatesControlPackage = ( {
 	collapse = false,
 	showItems = false,
 }: PackageProps ): ReactElement => {
-	const { selectShippingRate } = useSelectShippingRate();
+	const { selectShippingRate, selectedShippingRate } = useSelectShippingRate(
+		packageId,
+		packageData.shipping_rates
+	);
 
 	const header = (
 		<>
@@ -114,12 +117,8 @@ export const ShippingRatesControlPackage = ( {
 			className={ className }
 			noResultsMessage={ noResultsMessage }
 			rates={ packageData.shipping_rates }
-			onSelectRate={ ( newShippingRateId ) =>
-				selectShippingRate( newShippingRateId, packageId )
-			}
-			selectedRate={ packageData.shipping_rates.find(
-				( rate ) => rate.selected
-			) }
+			onSelectRate={ selectShippingRate }
+			selected={ selectedShippingRate }
 			renderOption={ renderOption }
 		/>
 	);

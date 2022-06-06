@@ -4,7 +4,7 @@
  * External dependencies
  */
 import { __, sprintf } from '@wordpress/i18n';
-import { useDispatch, useSelect } from '@wordpress/data';
+import { useSelect } from '@wordpress/data';
 import { CART_STORE_KEY as storeKey } from '@woocommerce/block-data';
 import { decodeEntities } from '@wordpress/html-entities';
 import type { StoreCartCoupon } from '@woocommerce/types';
@@ -15,6 +15,7 @@ import type { StoreCartCoupon } from '@woocommerce/types';
 import { useStoreCart } from './use-store-cart';
 import { useStoreSnackbarNotices } from '../use-store-snackbar-notices';
 import { useValidationContext } from '../../providers/validation';
+import { useStoreNotices } from '../use-store-notices';
 
 /**
  * This is a custom hook for loading the Store API /cart/coupons endpoint and an
@@ -24,9 +25,9 @@ import { useValidationContext } from '../../providers/validation';
  * @return {StoreCartCoupon} An object exposing data and actions from/for the
  * store api /cart/coupons endpoint.
  */
-export const useStoreCartCoupons = ( context = '' ): StoreCartCoupon => {
+export const useStoreCartCoupons = (): StoreCartCoupon => {
 	const { cartCoupons, cartIsLoading } = useStoreCart();
-	const { createErrorNotice } = useDispatch( 'core/notices' );
+	const { addErrorNotice } = useStoreNotices();
 	const { addSnackbarNotice } = useStoreSnackbarNotices();
 	const { setValidationErrors } = useValidationContext();
 
@@ -99,9 +100,8 @@ export const useStoreCartCoupons = ( context = '' ): StoreCartCoupon => {
 						}
 					} )
 					.catch( ( error ) => {
-						createErrorNotice( error.message, {
+						addErrorNotice( error.message, {
 							id: 'coupon-form',
-							context,
 						} );
 						// Finished handling the coupon.
 						receiveApplyingCoupon( '' );
@@ -115,7 +115,7 @@ export const useStoreCartCoupons = ( context = '' ): StoreCartCoupon => {
 				isRemovingCoupon,
 			};
 		},
-		[ createErrorNotice, addSnackbarNotice ]
+		[ addErrorNotice, addSnackbarNotice ]
 	);
 
 	return {

@@ -30,7 +30,7 @@ for ( $i = 0; $i < 2; $i ++ ) {
         </td>
 
         <td style='<?php echo esc_attr( $th_style_right ) ?>'>
-			<?php echo wc_price( 25 ); ?>
+			<?php echo wp_kses_post( wc_price( 25 ) ); ?>
         </td>
     </tr>
 	<?php

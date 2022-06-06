@@ -13,12 +13,12 @@ import ProductCategoryControl from '@woocommerce/editor-components/product-categ
 import ProductOrderbyControl from '@woocommerce/editor-components/product-orderby-control';
 import ProductStockControl from '@woocommerce/editor-components/product-stock-control';
 import { gridBlockPreview } from '@woocommerce/resource-previews';
-import { Icon, percent } from '@wordpress/icons';
+import { Icon, tag } from '@woocommerce/icons';
 import { getSetting } from '@woocommerce/settings';
 
 const EmptyPlaceholder = () => (
 	<Placeholder
-		icon={ <Icon icon={ percent } /> }
+		icon={ <Icon srcElement={ tag } /> }
 		label={ __( 'On Sale Products', 'woocommerce' ) }
 		className="wc-block-product-on-sale"
 	>

@@ -15,10 +15,6 @@ import { withProductDataContext } from '@woocommerce/shared-hocs';
  * Internal dependencies
  */
 import './style.scss';
-import {
-	useColorProps,
-	useTypographyProps,
-} from '../../../../hooks/style-attributes';
 
 /**
  * Product Tag List Block Component.
@@ -27,12 +23,9 @@ import {
  * @param {string} [props.className] CSS Class name for the component.
  * @return {*} The component.
  */
-const Block = ( props ) => {
-	const { className } = props;
+const Block = ( { className } ) => {
 	const { parentClassName } = useInnerBlockLayoutContext();
 	const { product } = useProductDataContext();
-	const colorProps = useColorProps( props );
-	const typographyProps = useTypographyProps( props );
 
 	if ( isEmpty( product.tags ) ) {
 		return null;
@@ -42,13 +35,11 @@ const Block = ( props ) => {
 		<div
 			className={ classnames(
 				className,
-				colorProps.className,
 				'wc-block-components-product-tag-list',
 				{
 					[ `${ parentClassName }__product-tag-list` ]: parentClassName,
 				}
 			) }
-			style={ { ...colorProps.style, ...typographyProps.style } }
 		>
 			{ __( 'Tags:', 'woocommerce' ) }{ ' ' }
 			<ul>

@@ -2,11 +2,9 @@
  * External dependencies
  */
 import classnames from 'classnames';
-import { fields } from '@woocommerce/icons';
-import { Icon } from '@wordpress/icons';
+import { Icon, fields } from '@woocommerce/icons';
 import { registerFeaturePluginBlockType } from '@woocommerce/block-settings';
-import { createBlock } from '@wordpress/blocks';
-import type { BlockInstance } from '@wordpress/blocks';
+import { BlockInstance, createBlock } from '@wordpress/blocks';
 
 /**
  * Internal dependencies
@@ -20,7 +18,7 @@ const settings = {
 	icon: {
 		src: (
 			<Icon
-				icon={ fields }
+				srcElement={ fields }
 				className="wc-block-editor-components-block-icon"
 			/>
 		),

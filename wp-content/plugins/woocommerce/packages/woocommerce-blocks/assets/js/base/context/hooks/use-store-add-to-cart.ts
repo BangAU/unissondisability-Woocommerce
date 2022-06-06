@@ -11,6 +11,7 @@ import type { CartItem } from '@woocommerce/types';
  * Internal dependencies
  */
 import { useStoreCart } from './cart/use-store-cart';
+import { useStoreNotices } from './use-store-notices';
 
 /**
  * @typedef {import('@woocommerce/type-defs/hooks').StoreCartItemAddToCart} StoreCartItemAddToCart
@@ -26,7 +27,7 @@ interface StoreAddToCart {
  * Get the quantity of a product in the cart.
  *
  * @param {Object} cartItems Array of items.
- * @param {number} productId The product id to look for.
+ * @param {number} productId  The product id to look for.
  * @return {number} Quantity in the cart.
  */
 const getQuantityFromCartItems = (
@@ -43,7 +44,7 @@ const getQuantityFromCartItems = (
  * action for adding a single quantity of the product _to_ the cart.
  *
  *
- * @param {number} productId The product id to be added to the cart.
+ * @param {number} productId  The product id to be added to the cart.
  *
  * @return {StoreCartItemAddToCart} An object exposing data and actions relating
  *                                  to add to cart functionality.
@@ -51,7 +52,7 @@ const getQuantityFromCartItems = (
 export const useStoreAddToCart = ( productId: number ): StoreAddToCart => {
 	const { addItemToCart } = useDispatch( storeKey );
 	const { cartItems, cartIsLoading } = useStoreCart();
-	const { createErrorNotice, removeNotice } = useDispatch( 'core/notices' );
+	const { addErrorNotice, removeNotice } = useStoreNotices();
 
 	const [ addingToCart, setAddingToCart ] = useState( false );
 	const currentCartItemQuantity = useRef(
@@ -65,9 +66,9 @@ export const useStoreAddToCart = ( productId: number ): StoreAddToCart => {
 				removeNotice( 'add-to-cart' );
 			} )
 			.catch( ( error ) => {
-				createErrorNotice( decodeEntities( error.message ), {
-					id: 'add-to-cart',
+				addErrorNotice( decodeEntities( error.message ), {
 					context: 'wc/all-products',
+					id: 'add-to-cart',
 					isDismissible: true,
 				} );
 			} )

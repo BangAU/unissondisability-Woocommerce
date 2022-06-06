@@ -4,7 +4,7 @@
 import { useState } from '@wordpress/element';
 import type { ReactNode, ReactElement } from 'react';
 import classNames from 'classnames';
-import { Icon, chevronUp, chevronDown } from '@wordpress/icons';
+import { Icon, chevronUp, chevronDown } from '@woocommerce/icons';
 
 /**
  * Internal dependencies
@@ -45,7 +45,7 @@ const Panel = ( {
 					<Icon
 						aria-hidden="true"
 						className="wc-block-components-panel__button-icon"
-						icon={ isOpen ? chevronUp : chevronDown }
+						srcElement={ isOpen ? chevronUp : chevronDown }
 					/>
 					{ title }
 				</button>

@@ -1,12 +1,14 @@
 <?php
-namespace Automattic\WooCommerce\StoreApi\Utilities;
+namespace Automattic\WooCommerce\Blocks\StoreApi\Utilities;
 
 use \Exception;
-use Automattic\WooCommerce\StoreApi\Exceptions\RouteException;
+use Automattic\WooCommerce\Blocks\StoreApi\Routes\RouteException;
 
 /**
  * OrderController class.
  * Helper class which creates and syncs orders with the cart.
+ *
+ * @internal This API is used internally by Blocks--it is still in flux and may be subject to revisions.
  */
 class OrderController {
 

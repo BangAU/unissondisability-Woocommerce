@@ -2,13 +2,7 @@
  * External dependencies
  */
 import classnames from 'classnames';
-import { checkPayment } from '@woocommerce/icons';
-import {
-	Icon,
-	institution as bank,
-	currencyDollar as bill,
-	payment as card,
-} from '@wordpress/icons';
+import { Icon, bank, bill, card, checkPayment } from '@woocommerce/icons';
 import { isString, objectHasProp } from '@woocommerce/types';
 import { useCallback } from '@wordpress/element';
 
@@ -40,9 +34,9 @@ interface PaymentMethodLabelProps {
  * Exposed to payment methods for the label shown on checkout. Allows icons to be added as well as
  * text.
  *
- * @param {Object} props      Component props.
- * @param {*}      props.icon Show an icon beside the text if provided. Can be a string to use a named
- *                            icon, or an SVG element.
+ * @param {Object} props Component props.
+ * @param {*} props.icon Show an icon beside the text if provided. Can be a string to use a named
+ *                       icon, or an SVG element.
  * @param {string} props.text Text shown next to icon.
  */
 export const PaymentMethodLabel = ( {
@@ -66,7 +60,7 @@ export const PaymentMethodLabel = ( {
 	return (
 		<span className={ className }>
 			{ hasNamedIcon( icon ) ? (
-				<Icon icon={ namedIcons[ icon ] } />
+				<Icon srcElement={ namedIcons[ icon ] } />
 			) : (
 				icon
 			) }

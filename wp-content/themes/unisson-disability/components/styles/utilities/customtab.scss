@@ -75,7 +75,6 @@
 
             li {
                 padding-left: 0;
-                max-width: 145px;
                 color: $color-black-light;
                 font-size: 22px;
                 font-weight: 700;
@@ -83,6 +82,10 @@
                 margin-bottom: -3px;
                 transition: all .3s ease-out;
                 cursor: pointer;
+
+                @media (min-width: 992px) {
+                    flex: 1;
+                }
 
                 @media (max-width: 991px) {
                     width: 100%;
@@ -96,7 +99,7 @@
                 }
 
                 &:not(:last-child) {
-                    margin-right: 52px;
+                    margin-right: 36px;
                 }
 
                 &::before {
@@ -113,6 +116,11 @@
                         width: 3px;
                         height: 0%;
                     }
+                }
+
+                a {
+                    display: block;
+                    white-space: nowrap;
                 }
 
                 &.active {

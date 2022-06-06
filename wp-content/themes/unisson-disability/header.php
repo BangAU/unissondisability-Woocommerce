@@ -107,8 +107,9 @@
                                                     alt="">
                                             </div>
                                             <div class="text">
-                                                Google translate
+                                             <?php echo do_shortcode('[gtranslate]'); ?>
                                             </div>
+                                           
                                         </a>
                                     </li>
                                     <li>

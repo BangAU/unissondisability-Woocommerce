@@ -1,9 +1,4 @@
 /**
- * External dependencies
- */
-import { CurrencyCode } from '@woocommerce/type-defs/currency';
-
-/**
  * Internal dependencies
  */
 import {
@@ -15,7 +10,7 @@ import {
 import { ProductResponseItemData } from './product-response';
 
 export interface CurrencyInfo {
-	currency_code: CurrencyCode;
+	currency_code: string;
 	currency_symbol: string;
 	currency_minor_unit: number;
 	currency_decimal_separator: string;
