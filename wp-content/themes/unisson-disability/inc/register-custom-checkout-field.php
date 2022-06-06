@@ -527,8 +527,10 @@ function customise_checkout_field_update_order_meta($order_id) {
  **/
 add_filter('woocommerce_email_order_meta_keys', 'my_custom_checkout_field_order_meta_keys');
 function my_custom_checkout_field_order_meta_keys( $keys ) {
-	$i = 0;
-    for($k=1; $k<= 50; $k++) {
+	global $woocommerce;
+    $count = $woocommerce->cart->cart_contents_count;
+    $i = 0;
+    for($k=1; $k<= $count; $k++) {
         $i++;
         echo '<div class="Attendee-group"><h4>Attendee Details </h4>';
         $keys[] = 'First Name of Attendee'.$i;
