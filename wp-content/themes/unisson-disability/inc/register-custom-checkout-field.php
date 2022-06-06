@@ -530,10 +530,8 @@ function my_custom_checkout_field_order_meta_keys( $keys ) {
 	$i = 0;
     for($k=1; $k<= 50; $k++) {
         $i++;
-        echo '<div class="ndia-managed-funding-text Attendee-group"><h3>Name of Attendee' .$i. '</h3>';
-        $keys[] = 'First of Attendee';
-        $keys[] = 'Last of Attendee';
-        echo '</div>';
+        $keys[] = 'First Name of Attendee'.$i;
+        $keys[] = 'Last Name of Attendee'.$i;
     }	
 return $keys;
 
