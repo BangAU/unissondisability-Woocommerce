@@ -530,8 +530,10 @@ function my_custom_checkout_field_order_meta_keys( $keys ) {
 	$i = 0;
     for($k=1; $k<= 50; $k++) {
         $i++;
+        echo '<div class="Attendee-group"><h4>Attendee Details </h4>';
         $keys[] = 'First Name of Attendee'.$i;
         $keys[] = 'Last Name of Attendee'.$i;
+        echo '</div>';
     }	
 return $keys;
 
