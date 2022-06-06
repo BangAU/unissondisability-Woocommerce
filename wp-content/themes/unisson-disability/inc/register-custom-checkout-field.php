@@ -531,11 +531,19 @@ function my_custom_checkout_field_order_meta_keys( $keys ) {
     $count = $woocommerce->cart->cart_contents_count;
     $i = 0;
     for($k=1; $k<= $count; $k++) {
-        $i++;
-        echo '<div style="display: flex;"><h4>Attendee Details' . $i .'</h4>';
-        $keys[] = 'First Name of Attendee'.$i; $keys[] = 'Last Name of Attendee'.$i;
+        
+    $_product = $values['data']->post;
+    $quantity = $values['quantity'];
+    $x = 1;
+    $i++;
+    while ($x <= $quantity) {
+        echo '<div class="Attendee-group"><h4>'.  __('<span class="attendee-title">Attendee ' . $i . ' - </span>' )  . $_product->post_title .'</h4>';
+        echo '<div style="display: flex;" >';
+        $keys[] = 'First Name of Attendee'.$i; 
+        $keys[] = 'Last Name of Attendee'.$i;
         echo '</div>';
-    }	
+    }
+}	
 return $keys;
 
 
