@@ -545,10 +545,10 @@ function my_custom_checkout_field_order_meta_keys( $keys ) {
         echo '</div>'; -->
 
         
-        <table class="demo">
+        <table>
             <thead>
             <tr>
-                <th><?php echo '<div class="Attendee-group"><h4>'.  __('<span class="attendee-title">Attendee ' . $x . ' - </span>' )  . $_product->post_title .'</h4>'; echo '</div>';  ?></th>
+                <th><?php echo '<h4>'.  __('<span class="attendee-title">Attendee ' . $x . ' - </span>' )  . $_product->post_title .'</h4>';  ?></th>
             </tr>
             </thead>
             <tbody>
