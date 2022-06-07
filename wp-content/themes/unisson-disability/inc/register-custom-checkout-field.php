@@ -538,9 +538,9 @@ function my_custom_checkout_field_order_meta_keys( $keys ) {
         $x = 1;
          while ($x <= $quantity) { 
         echo '<table class="Attendee-group"><h4>'.  __('<span class="attendee-title">Attendee ' . $x . ' - </span>' )  . $_product->post_title .'</h4>';
-        echo '<tr><td>' . $keys['attendee_first_name_'] = 'First Name of Attendee'.$x .'<td></tr>'; 
-        echo '</tr><td>' . $keys['attendee_first_name_'] = 'Last Name of Attendee'.$x .'<td></tr>'; 
-        //echo '<td>' . $keys[] = 'Funding Type of Attendee'.$x .'<td>'; 
+         '<tr><td>' . $keys['attendee_first_name_'] = 'First Name of Attendee'.$x .'<td></tr>'; 
+         '<tr><td>' . $keys['attendee_first_name_'] = 'Last Name of Attendee'.$x .'<td></tr>'; 
+         '<tr><td>' . $keys[] = 'Funding Type of Attendee'.$x .'<td>'; 
         echo '</table>';
          $x++;
     }
