@@ -537,7 +537,7 @@ function my_custom_checkout_field_order_meta_keys( $keys ) {
         // $end_date = get_field('tour_end_date' , $_product);
         // $terms = get_the_terms( $_product, 'location' );
         
-        while ($x <= $quantity) {
+         while ($x <= $quantity) {
         echo '<div class="Attendee-group"><h4>'.  __('<span class="attendee-title">Attendee ' . $x . ' - </span>' )  . $_product->post_title .'</h4>';
             $keys[] = 'First Name of Attendee'.$x; 
             $keys[] = 'Last Name of Attendee'.$x;
@@ -546,12 +546,13 @@ function my_custom_checkout_field_order_meta_keys( $keys ) {
         $x++;
         
          }
+         return $keys;
     
 
     } 
 
 
-}	return $keys;
+}	
 
 
 
