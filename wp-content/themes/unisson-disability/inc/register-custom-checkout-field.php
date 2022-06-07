@@ -541,7 +541,7 @@ function my_custom_checkout_field_order_meta_keys( $keys ) {
          <tr><td> <?php $keys['attendee_last_name_'] = 'First Name of Attendee'.$x; ?></td></tr>
           <!-- $keys['attendee_first_name_'] = 'Last Name of Attendee'.$x; 
           $keys['_funding_type_radio_'] = 'Funding Type of Attendee'.$x;  -->
-        echo '</table>';
+      <?php  echo '</table>';
          $x++;
         }
 
