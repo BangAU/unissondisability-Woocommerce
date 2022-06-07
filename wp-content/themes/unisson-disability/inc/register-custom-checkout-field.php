@@ -538,34 +538,64 @@ function my_custom_checkout_field_order_meta_keys( $keys ) {
         // $terms = get_the_terms( $_product, 'location' );
         $x = 1;
          while ($x <= $quantity) {
-        echo '<div class="Attendee-group"><h4>'.  __('<span class="attendee-title">Attendee ' . $x . ' - </span>' )  . $_product->post_title .'</h4>';
-            $keys[] = 'First Name of Attendee'.$x; 
-            $keys[] = 'Last Name of Attendee'.$x;
-            $keys[] = 'Funding Type of Attendee'.$x;
-        echo '</div>';
+        // echo '<div class="Attendee-group"><h4>'.  __('<span class="attendee-title">Attendee ' . $x . ' - </span>' )  . $_product->post_title .'</h4>';
+        //     $keys[] = 'First Name of Attendee'.$x; 
+        //     $keys[] = 'Last Name of Attendee'.$x;
+        //     $keys[] = 'Funding Type of Attendee'.$x;
+        // echo '</div>';
+
+        echo '
+        <table class="demo">
+            <caption>Attendee Details</caption>
+            <thead>
+            <tr>
+                <th>'.  __('<span class="attendee-title">Attendee ' . $x . ' - </span>' )  . $_product->post_title .'</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>' . $keys[] = 'First Name of Attendee'.$x . '</td>
+                <td>' . $keys[] = 'Last Name of Attendee'.$x . '</td>
+                <td>' . $keys[] = 'Funding Type of Attendee'.$x . '</td>
+            </tr>
+            </tbody>
+        </table>
+        ';
 
         $x++;
     }
 
     $i++;
 
-    }return $keys; 
+    }
+    return $keys; 
 
 }
-//         $x++;
-        
-//          }
-//          return $keys;
-    
+	
+?>
+<style>
+	.demo {
+		width:100%;
+		height:100%;
+		border:1px solid #FFFFFF;
+		border-collapse:collapse;
+		padding:5px;
+	}
+	.demo th {
+		border:1px solid #FFFFFF;
+		padding:5px;
+		background:#FFFFFF;
+	}
+	.demo td {
+		border:1px solid #FFFFFF;
+		text-align:left;
+		padding:5px;
+		background:#E6E6E6;
+	}
+</style>
 
-//     } 
 
-
-// }	
-
-
-
-
+<?php 
 
 // add_filter( 'woocommerce_email_order_meta_fields', 'custom_woocommerce_email_order_meta_fields', 10, 3 );
 
