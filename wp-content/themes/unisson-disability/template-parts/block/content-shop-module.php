@@ -168,7 +168,7 @@
                                 </div>
                                 <div class="text">
                                     <h6 class="heading-location">
-                                        <?php print implode(', ',$locations_name) ;?>
+                                        <?php print implode(' - ',$locations_name) ;?>
                                     </h6>
                                     <h3 class="heading-title"><?php the_title(); ?></h3>
                                     <span class="heading-date"><?php echo $start_date; ?> -

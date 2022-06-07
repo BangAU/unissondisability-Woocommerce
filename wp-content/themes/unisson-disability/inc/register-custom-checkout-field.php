@@ -4,7 +4,7 @@ add_action( 'woocommerce_before_order_notes', 'person_details' );
 
 function person_details($checkout) {
 global $woocommerce;
-$items = $woocommerce->cart->cart_contents_count;
+//$items = $woocommerce->cart->cart_contents_count;
 $i = 1;
 foreach(WC()->cart->get_cart() as $item => $values) { 
     $_product = $values['data']->post;
@@ -122,7 +122,7 @@ foreach(WC()->cart->get_cart() as $item => $values) {
 
             echo '<div class="Attendee-group-funding-type"><h4>Funding Type*</h4>';  echo '</div>';
 
-            woocommerce_form_field( '_funding_type_radio_'. $x, array(
+            woocommerce_form_field( '_funding_type_radio_'. $i, array(
                 'type' => 'radio',
                 'class' => array('funding-type-radio'),
                 'required' => 'required',
@@ -133,7 +133,7 @@ foreach(WC()->cart->get_cart() as $item => $values) {
                 ),
                // 'default'  => 'Self_managed',
 
-            ), $checkout->get_value( '_funding_type_radio_' . $x ));
+            ), $checkout->get_value( '_funding_type_radio_' . $i ));
 
             echo '<div class=" funding-type-description"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut               enim ad minim veniam, quis nostrud exercitation ullamco labori</p></div>';
 
@@ -524,35 +524,46 @@ function customise_checkout_field_update_order_meta($order_id) {
 /**
  * Add fields to order emails
  **/
-add_filter('woocommerce_email_order_meta_keys', 'my_custom_checkout_field_order_meta_keys');
+
+add_action('woocommerce_email_order_meta_keys', 'my_custom_checkout_field_order_meta_keys');
+
 function my_custom_checkout_field_order_meta_keys( $keys ) {
 	global $woocommerce;
-    $i = 1;
-    $items = $woocommerce->cart->cart_contents_count;
-    foreach(WC()->cart->get_cart() as $item => $values) { 
-        $_product = $values['data']->post;
-        $quantity = $values['quantity'];
-        // $start_date = get_field('tour_start_date' , $_product);
-        // $end_date = get_field('tour_end_date' , $_product);
-        // $terms = get_the_terms( $_product, 'location' );
-        $x = 1;
-         while ($x <= $quantity) { 
-        echo '<div class="Attendee-group"><tr><h4>'.  __('<span class="attendee-title">Attendee ' . $x . ' - </span>' )  . $_product->post_title .'</h4>';
+//$items = $woocommerce->cart->cart_contents_count;
+$i = 0;
+foreach(WC()->cart->get_cart() as $item => $values) { 
+    $_product = $values['data']->post;
+    $quantity = $values['quantity'];
+    // $start_date = get_field('tour_start_date' , $_product);
+    // $end_date = get_field('tour_end_date' , $_product);
+    // $terms = get_the_terms( $_product, 'location' );
+    $x = 1;
+    
+    while ($x <= $quantity) {
+        echo '<div class="Attendee-group"><h4>'.  __('<span class="attendee-title">Attendee ' . $x . ' - </span>' )  . $_product->post_title .'</h4>';
             $keys[] = 'First Name of Attendee'.$x; 
             $keys[] = 'Last Name of Attendee'.$x;
             $keys[] = 'Funding Type of Attendee'.$x;
         echo '</div>';
 
-        
-         $x++;
+
+        $x++;
     }
 
     $i++;
 
-    }
-    return $keys; 
+    } return $keys; 
 
-}
+ }
+
+//          $x++;
+//     }
+
+
+//     }
+//     return $keys; 
+
+// }
 
 
 // add_filter( 'woocommerce_email_order_meta_fields', 'custom_woocommerce_email_order_meta_fields', 10, 3 );
