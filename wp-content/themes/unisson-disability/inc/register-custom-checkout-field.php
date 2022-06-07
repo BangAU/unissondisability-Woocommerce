@@ -521,7 +521,6 @@ function customise_checkout_field_update_order_meta($order_id) {
 
 }
 
-
 /**
  * Add fields to order emails
  **/
@@ -537,31 +536,13 @@ function my_custom_checkout_field_order_meta_keys( $keys ) {
         // $end_date = get_field('tour_end_date' , $_product);
         // $terms = get_the_terms( $_product, 'location' );
         $x = 1;
-         while ($x <= $quantity) { ?>
-        <!-- echo '<div class="Attendee-group"><h4>'.  __('<span class="attendee-title">Attendee ' . $x . ' - </span>' )  . $_product->post_title .'</h4>';
-            $keys[] = 'First Name of Attendee'.$x; 
-            $keys[] = 'Last Name of Attendee'.$x;
-            $keys[] = 'Funding Type of Attendee'.$x;
-        echo '</div>'; -->
-
-        
-        <table>
-            <thead>
-            <tr>
-                <th><?php echo '<h4>'.  __('<span class="attendee-title">Attendee ' . $x . ' - </span>' )  . $_product->post_title .'</h4>';  ?></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td><?php $keys[] = 'First Name of Attendee'.$x; ?></td>
-                <td><?php $keys[] = 'Last Name of Attendee'.$x; ?></td>
-                <td><?php $keys[] = 'Funding Type of Attendee'.$x; ?></td>
-            </tr>
-            </tbody>
-        </table>
-        
-
-       <?php  $x++;
+         while ($x <= $quantity) { 
+        echo '<table class="Attendee-group"><tr><h4>'.  __('<span class="attendee-title">Attendee ' . $x . ' - </span>' )  . $_product->post_title .'</h4>';
+        echo '<td>' . $keys[] = 'First Name of Attendee'.$x .'<td>'; 
+        echo '<td>' . $keys[] = 'Last Name of Attendee'.$x .'<td>'; 
+        echo '<td>' . $keys[] = 'Funding Type of Attendee'.$x .'<td>'; 
+        echo '</tr></table>';
+         $x++;
     }
 
     $i++;
@@ -570,9 +551,6 @@ function my_custom_checkout_field_order_meta_keys( $keys ) {
     return $keys; 
 
 }
-
-
-
 
 
 // add_filter( 'woocommerce_email_order_meta_fields', 'custom_woocommerce_email_order_meta_fields', 10, 3 );
