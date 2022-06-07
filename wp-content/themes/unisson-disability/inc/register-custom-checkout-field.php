@@ -529,7 +529,6 @@ add_filter('woocommerce_email_order_meta_keys', 'my_custom_checkout_field_order_
 function my_custom_checkout_field_order_meta_keys( $keys ) {
 	global $woocommerce;
     $items = $woocommerce->cart->cart_contents_count;
-    $i = 1;
     foreach(WC()->cart->get_cart() as $item => $values) { 
         $_product = $values['data']->post;
         $quantity = $values['quantity'];
@@ -540,14 +539,13 @@ function my_custom_checkout_field_order_meta_keys( $keys ) {
         
         while ($x <= $quantity) {
         echo '<div class="Attendee-group"><h4>'.  __('<span class="attendee-title">Attendee ' . $x . ' - </span>' )  . $_product->post_title .'</h4>';
-        $keys[] = 'First Name of Attendee'.$x; 
-        $keys[] = 'Last Name of Attendee'.$x;
-        $keys[] = 'Funding Type of Attendee'.$x;
+            $keys[] = 'First Name of Attendee'.$x; 
+            $keys[] = 'Last Name of Attendee'.$x;
+            $keys[] = 'Funding Type of Attendee'.$x;
         echo '</div>';
         $x++;
     }
 
-    $i++;
 
     } return $keys;
 
