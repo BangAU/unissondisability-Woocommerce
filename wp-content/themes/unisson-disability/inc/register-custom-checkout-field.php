@@ -400,7 +400,7 @@ function customise_checkout_field_update_order_meta($order_id) {
     for($k=1; $k<= $count; $k++) {
 		    $i++;
         if (!empty($_POST['attendee_first_name_'.$i])) {
-            update_post_meta($order_id, 'First Name of Attendee'.$i, sanitize_text_field($_POST['attendee_first_name_'.$i][2]) );
+            update_post_meta($order_id, 'First Name of Attendee'.$i, sanitize_text_field($_POST['attendee_first_name_'.$i]) );
         }
         if (!empty($_POST['attendee_last_name_'.$i])) {
             update_post_meta($order_id, 'Last Name of Attendee'.$i, sanitize_text_field($_POST['attendee_last_name_'.$i]));
