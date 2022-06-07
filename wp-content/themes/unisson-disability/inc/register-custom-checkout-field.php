@@ -528,7 +528,7 @@ function customise_checkout_field_update_order_meta($order_id) {
 add_filter('woocommerce_email_order_meta_keys', 'my_custom_checkout_field_order_meta_keys');
 function my_custom_checkout_field_order_meta_keys( $keys ) {
 	global $woocommerce;
-    $x = 1;
+    $i = 1;
     $items = $woocommerce->cart->cart_contents_count;
     foreach(WC()->cart->get_cart() as $item => $values) { 
         $_product = $values['data']->post;
@@ -536,23 +536,32 @@ function my_custom_checkout_field_order_meta_keys( $keys ) {
         // $start_date = get_field('tour_start_date' , $_product);
         // $end_date = get_field('tour_end_date' , $_product);
         // $terms = get_the_terms( $_product, 'location' );
-        
+        $x = 1;
          while ($x <= $quantity) {
         echo '<div class="Attendee-group"><h4>'.  __('<span class="attendee-title">Attendee ' . $x . ' - </span>' )  . $_product->post_title .'</h4>';
             $keys[] = 'First Name of Attendee'.$x; 
             $keys[] = 'Last Name of Attendee'.$x;
             $keys[] = 'Funding Type of Attendee'.$x;
         echo '</div>';
+
         $x++;
+    }
+
+    $i++;
+
+    }return $keys; 
+
+}
+//         $x++;
         
-         }
-         return $keys;
+//          }
+//          return $keys;
     
 
-    } 
+//     } 
 
 
-}	
+// }	
 
 
 
