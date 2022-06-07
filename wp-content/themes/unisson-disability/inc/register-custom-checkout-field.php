@@ -544,9 +544,9 @@ function my_custom_checkout_field_order_meta_keys( $keys ) {
             $keys[] = 'Funding Type of Attendee'.$x;
         echo '</div>';
         $x++;
-        return $keys;
+        
     }
-
+    return $keys;
 
     } 
 
