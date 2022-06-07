@@ -570,31 +570,10 @@ function my_custom_checkout_field_order_meta_keys( $keys ) {
     return $keys; 
 
 }
-	
-?>
-<style>
-	.demo {
-		width:100%;
-		height:100%;
-		border:1px solid #FFFFFF;
-		border-collapse:collapse;
-		padding:5px;
-	}
-	.demo th {
-		border:1px solid #FFFFFF;
-		padding:5px;
-		background:#FFFFFF;
-	}
-	.demo td {
-		border:1px solid #FFFFFF;
-		text-align:left;
-		padding:5px;
-		background:#E6E6E6;
-	}
-</style>
 
 
-<?php 
+
+
 
 // add_filter( 'woocommerce_email_order_meta_fields', 'custom_woocommerce_email_order_meta_fields', 10, 3 );
 
