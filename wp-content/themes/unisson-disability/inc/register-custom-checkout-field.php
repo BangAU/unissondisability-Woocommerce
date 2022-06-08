@@ -9,14 +9,15 @@ $i = 1;
 foreach(WC()->cart->get_cart() as $item => $values) { 
     $_product = $values['data']->post;
     $quantity = $values['quantity'];
-    // $start_date = get_field('tour_start_date' , $_product);
-    // $end_date = get_field('tour_end_date' , $_product);
+     $start_date = get_field('tour_start_date', $product_id, $_product);
+     $end_date = get_field('tour_end_date', $product_id, $_product);
     // $terms = get_the_terms( $_product, 'location' );
     $x = 1;
     
     while ($x <= $quantity) {
         
          echo '<div class="Attendee-group"><h4>'.  __('<span class="attendee-title">Attendee ' . $x . ' - </span>' )  . $_product->post_title .'</h4>';
+        echo $start_date;
        //firstname
         woocommerce_form_field( 'attendee_first_name_' . $x, array(
             'type'          => 'text',

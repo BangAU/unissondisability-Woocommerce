@@ -49,7 +49,7 @@ if ( post_password_required() ) {
             <!-- <div class="slider-navwrap">
                 <span class="slidenav-prev"></span>
                 <span class="slidenav-next"></span>
-                <div class="num">1/4</div>
+                <div class="num"></div>
             </div> -->
         </div>
         <div class="productsec--media-secondary dis-md">

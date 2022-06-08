@@ -101,6 +101,25 @@ function aipm_acf_init() {
 			),
 		));
 
+		acf_register_block(array(
+			'name'				=> 'free-text-module',
+			'title'				=> __('Free Text Module'),
+			'description'		=> __('Free Text Module'),
+			'render_callback'	=> 'aipm_acf_module_template_block_render_callback',
+			'icon'              => 'superhero',
+			'keywords'          => array( 'free text', 'text', 'content' ),
+			'mode'				=> 'edit',
+			'category'			=> 'custom_modules',
+			'example' => array(
+				'attributes' => array(
+					'mode' => 'preview', // Important!
+					'data' => array(
+						'image' => '<img src="' . get_template_directory_uri() . '/images/module-preview/hero-header-module.png' . '" style="width:100%; height:auto;">'
+					),
+				),
+			),
+		));
+
 	
 
 	}

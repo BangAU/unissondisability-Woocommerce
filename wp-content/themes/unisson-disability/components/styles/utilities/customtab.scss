@@ -56,6 +56,10 @@
             display: flex;
             border-bottom: 3px solid $color-black-light;
 
+            @media (min-width: 992px) {
+                justify-content: space-between;
+            }
+
             @media (max-width: 991px) {
                 z-index: 1;
                 position: absolute;
@@ -84,7 +88,7 @@
                 cursor: pointer;
 
                 @media (min-width: 992px) {
-                    flex: 1;
+                    flex: auto;
                 }
 
                 @media (max-width: 991px) {

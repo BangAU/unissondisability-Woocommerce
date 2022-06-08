@@ -28,9 +28,21 @@ global $product;
 						if($type == 'product') {
 							
 							$image = wp_get_attachment_image_src( get_post_thumbnail_id( $product_id ), '' );
-
+                            $post_id = get_the_ID();
 							$start_date = get_field('tour_start_date');
 							$end_date = get_field('tour_end_date');
+
+                            //product location
+                            $locations = array();
+                            $locations_name = array();
+                            $location_term_list = wp_get_post_terms($post_id, 'location', array("fields" => "all"));
+                            foreach($location_term_list as $location_term_single) {
+                            array_push($locations, $location_term_single->slug);
+                            array_push($locations_name, $location_term_single->name);
+                            }
+                            //location tags merge
+                            $locations_data = array_merge($locations);
+                            $locations_name = array_merge($locations_name);
 
 							
     
@@ -43,7 +55,7 @@ global $product;
                         </div>
                         <div class="text">
                             <h6 class="heading-location">
-                                <?php echo $size = $product->get_attribute( 'pa_location' );	?>
+                                 <?php print implode(' - ',$locations_name) ;?>
                             </h6>
                             <h3 class="heading-title"><?php the_title(); ?></h3>
                             <?php if(!empty($start_date || $end_date )): ?>

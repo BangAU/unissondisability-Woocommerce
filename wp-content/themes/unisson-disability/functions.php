@@ -151,6 +151,11 @@ add_action( 'wp_enqueue_scripts', 'unisson_disability_scripts' );
 
 
 /**
+ * restriction module
+ */
+ require get_template_directory() . '/inc/module-restriction.php';
+
+/**
  * acf data sync.
  */
  require get_template_directory() . '/inc/register-taxonomy.php';
@@ -311,6 +316,8 @@ function ts_woocommerce_breadcrumbs_change() {
 }
 
 
+
+
 function wpse_131562_redirect() {
     if (
         ! is_user_logged_in()
@@ -322,6 +329,15 @@ function wpse_131562_redirect() {
     }
 }
 add_action('template_redirect', 'wpse_131562_redirect');
+
+
+
+// function woocommerce_new_pass_redirect( $user ) {
+//     wc_add_notice( __( 'Your password has been changed successfully! Please login to continue.', 'woocommerce' ), 'success' );
+//     wp_redirect( home_url() . "/login/?new-password-created=true" );
+//     exit;
+// }
+// add_action( 'woocommerce_customer_reset_password', 'woocommerce_new_pass_redirect' );
 
 
 // add_filter( 'woocommerce_order_item_name', 'display_product_title_as_link', 10, 2 );
@@ -383,43 +399,7 @@ remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_singl
 remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 10 );
 remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_excerpt', 20 );
 
-/* Change Product Quantity Input to Dropdown */
-// function woocommerce_quantity_input() {
-// 	global $product;
-//    if(is_product()){
-// 	$defaults = array(
-// 	 'input_name' => 'quantity',
-// 	 'input_value' => '1',
-// 	 'max_value'  => apply_filters( 'woocommerce_quantity_input_max', '', $product ),
-// 	 'min_value'  => apply_filters( 'woocommerce_quantity_input_min', '', $product ),
-// 	 'step'   => apply_filters( 'woocommerce_quantity_input_step', '1', $product ),
-// 	 'style'   => apply_filters( 'woocommerce_quantity_style', 'float:left; margin-right:10px;', $product )
-// 	);
-   
-// 	if (!empty($defaults['min_value']))
-// 	 $min = $defaults['min_value'];
-// 	 else $min = 1;
-   
-// 	if (!empty($defaults['max_value']))
-// 	 $max = $defaults['max_value'];
-// 	 else $max = 20;
-   
-// 	if (!empty($defaults['step']))
-// 	 $step = $defaults['step'];
-// 	 else $step = 1;
-   
-// 	$options = '';
-// 	for($count = $min;$count <= $max;$count = $count+$step){
-// 	 $options .= '<option value="' . $count . '">' . $count . '</option>';
-// 	}
-   
-// 	echo '<div class="quantity_select" style="' . $defaults['style'] . '"><select name="' . esc_attr( $defaults['input_name'] ) . '" title="' . _x( 'Qty', 'Product quantity input tooltip', 'woocommerce' ) . '" class="qty">' . $options . '</select></div>';
-//    }
-// }
 
-
-
-// when active acf pro missing custom field this snippet active custom field
 
 add_filter('acf/settings/remove_wp_meta_box', '__return_false');
 
@@ -434,3 +414,14 @@ function st_woocommerce_shop_url(){
 return site_url();
 
 }
+
+
+function remove_woocommerce_default_shop( $args, $post_type ) {
+    if (class_exists('WooCommerce')) {
+        if ( $post_type == "product" ) {
+            $args['has_archive'] = false;
+        }
+        return $args;
+    }
+}
+add_filter('register_post_type_args', 'remove_woocommerce_default_shop', 20, 2);

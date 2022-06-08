@@ -639,6 +639,10 @@
     .woocommerce-additional-fields__field-wrapper {
         background-color: $color-gray;
         padding: 50px 50px 75px;
+
+        @media (max-width: 767px) {
+            padding: 20px;
+        }
     }
 
     .checkout-coupon-toggle {
@@ -776,6 +780,60 @@
             }
         }
     }
+
+    .create-account {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 -10px;
+
+        >.form-row {
+            width: 100%;
+            padding: 0 10px;
+
+            @media (min-width: 992px) {
+                width: 50%;
+            }
+        }
+    }
+
+    .select2-container--default .select2-selection--single .select2-selection__arrow {
+        height: 47px;
+    }
+
+    #yith_wcdp_deposits_details {
+        .shop_table {
+            display: block;
+
+            thead {
+                display: none;
+            }
+
+            tbody {
+                display: block;
+
+                tr {
+                    display: flex;
+                    flex-wrap: wrap;
+
+                    &:not(:first-child) {
+                        border-bottom: 1px solid $color-yellow;
+                        padding-bottom: 10px;
+                        margin-bottom: 10px;
+                    }
+
+                    td {
+                        &::before {
+                            content: attr(data-title);
+                            display: block;
+                            font-size: 14px;
+                            margin-bottom: 10px;
+                            font-weight: 700;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 .woocommerce-additional-fields {
@@ -786,6 +844,10 @@
         margin-right: -15px;
         padding: 30px 50px 72px;
         background-color: $color-gray-1;
+
+        @media (max-width: 991px) {
+            padding: 20px 10px;
+        }
 
         &+.Attendee-group {
             margin-top: 50px;
@@ -829,35 +891,32 @@
             width: 100%;
         }
 
-        .funding_type_radio {
+        .funding-type-radio {
             .woocommerce-input-wrapper {
                 display: flex;
                 align-items: center;
                 flex-wrap: wrap;
 
-                .input-radio,
-                label {
-                    // width: auto;
-                    // display: inline-block;
-                    // vertical-align: middle;
-                }
-
                 .input-radio {
-                    // width: 30px;
-                    // flex: 0 0 30px;
                     margin: 0;
+
+                    @media (max-width: 767px) {
+                        margin-right: 15px;
+                        margin-bottom: 15px;
+                    }
                 }
 
                 label {
-                    // flex: calc(100% - 30px);
-                    // padding-left: 19px;
                     margin-bottom: 0;
 
-                    // &::after {
-                    //     content: "";
-                    //     display: table;
-                    //     clear: both;
-                    // }
+                    @media (max-width: 767px) {
+                        width: calc(100% - 45px);
+                        margin-bottom: 15px;
+
+                        +input {
+                            margin-left: 0 !important;
+                        }
+                    }
                 }
             }
         }
@@ -1097,6 +1156,15 @@
                 display: block;
                 margin-top: 4px;
             }
+
+            @media (max-width: 991px) {
+                &[for="payment_method_woocommerce_securepay_p_gateway"] {
+                    img {
+                        width: 100%;
+                        max-width: 200px;
+                    }
+                }
+            }
         }
 
         .payment_box {
@@ -1108,6 +1176,10 @@
                 padding: 50px 50px 75px;
                 background-color: $color-gray;
                 margin-top: 20px;
+
+                @media (max-width: 767px) {
+                    padding: 20px;
+                }
             }
         }
     }
@@ -1561,6 +1633,10 @@
         max-width: 776px;
         @include margin-auto;
         margin-top: 120px;
+
+        @media (max-width: 767px) {
+            padding: 20px;
+        }
 
         .woocommerce-notice {
             width: 100%;

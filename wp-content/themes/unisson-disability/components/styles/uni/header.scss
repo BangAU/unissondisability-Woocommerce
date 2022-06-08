@@ -103,11 +103,17 @@
                         }
 
                         #gtranslate_selector {
-                            padding: 0;
-                            background-color: transparent;
-                            font-size: 14px;
+                            color: $color-black;
+                            font-size: 1.4rem;
+                            font-weight: 400;
+                            text-transform: uppercase;
                             height: auto;
                             margin-left: -5px;
+                            padding: 0;
+                            border: 0;
+                            background-color: transparent;
+                            background-image: none;
+                            cursor: pointer;
                         }
                     }
                 }

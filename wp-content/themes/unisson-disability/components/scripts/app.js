@@ -163,20 +163,35 @@ function customCheckboxDropdown() {
 function megamenu() {
     $('.megamenu').each(function () {
         const $this = $(this),
-            parentList = $this.parents('li');
+            parentList = $this.parents('li'),
+            parentListLink = parentList.children('a');
 
         parentList.addClass('has-megamenu');
 
-        parentList.click(function (event) {
-            event.preventDefault()
-            if ($(this).hasClass('open')) {
-                $(this).removeClass('open');
-                $this.slideUp();
-            } else {
-                $(this).addClass('open');
-                $this.slideDown();
-            }
-        })
+        if ($(window).width() > 991) {
+            parentList.click(function (event) {
+                event.preventDefault()
+                if ($(this).hasClass('open')) {
+                    $(this).removeClass('open');
+                    $this.slideUp();
+                } else {
+                    $(this).addClass('open');
+                    $this.slideDown();
+                }
+            })
+        } else {
+            parentListLink.click(function (event) {
+                event.preventDefault()
+                if ($(this).hasClass('open')) {
+                    $(this).removeClass('open');
+                    $this.slideUp();
+                } else {
+                    $(this).addClass('open');
+                    $this.slideDown();
+                }
+            })
+        }
+
 
         $(document).mouseup(function (e) {
             var container = parentList;

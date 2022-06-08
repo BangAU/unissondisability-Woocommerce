@@ -51,79 +51,81 @@
                         
                         ?>
                     </div>
+                  
                     <div class="tools">
                         <div class="access-dropdown custom-dropdown">
                             <div class="custom-dropdown-btn btn btn-yellow">Accessibility</div>
                             <div class="custom-dropdown-list">
-                                <ul>
-                                    <li>
-                                        <a href="#">
-                                            <div class="icon">
-                                                <img src="https://unissondisability.org.au/themes/unisson_disability_v2/css/images/icon-contrast.png"
-                                                    alt="">
-                                            </div>
-                                            <div class="text">
-                                                High Contrast
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <div class="icon">
-                                                <img src="https://unissondisability.org.au/themes/unisson_disability_v2/css/images/icon-large-text.png"
-                                                    alt="">
-                                            </div>
-                                            <div class="text">
-                                                Text larger
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <div class="icon">
-                                                <img src="https://unissondisability.org.au/themes/unisson_disability_v2/css/images/icon-small-text.png"
-                                                    alt="">
-                                            </div>
-                                            <div class="text">
-                                                Text smaller
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <div class="icon">
-                                                <img src="https://unissondisability.org.au/themes/unisson_disability_v2/css/images/icon-dyslexic.png"
-                                                    alt="">
-                                            </div>
-                                            <div class="text">
-                                                Dyslexic font
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <div class="icon">
-                                                <img src="https://unissondisability.org.au/themes/unisson_disability_v2/css/images/icon-translate.png"
-                                                    alt="">
-                                            </div>
-                                            <div class="text">
-                                             <?php echo do_shortcode('[gtranslate]'); ?>
-                                            </div>
-                                           
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <div class="icon">
-                                                <img src="https://unissondisability.org.au/themes/unisson_disability_v2/css/images/icon-reset.png"
-                                                    alt="">
-                                            </div>
-                                            <div class="text">
-                                                Reset view
-                                            </div>
-                                        </a>
-                                    </li>
-                                </ul>
+                                <div class="accessibility-row">
+                                    <ul>
+                                        <li class="high-contrast">
+                                            <a href="#">
+                                                <div class="icon">
+                                                    <img src="https://unissondisability.org.au/themes/unisson_disability_v2/css/images/icon-contrast.png"
+                                                        alt="">
+                                                </div>
+                                                <div class="text">
+                                                    High Contrast
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="">
+                                            <a href="#" class="larger-text">
+                                                <div class="icon">
+                                                    <img src="https://unissondisability.org.au/themes/unisson_disability_v2/css/images/icon-large-text.png"
+                                                        alt="">
+                                                </div>
+                                                <div class="text">
+                                                    Text larger
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="smaller-text">
+                                            <a href="#">
+                                                <div class="icon">
+                                                    <img src="https://unissondisability.org.au/themes/unisson_disability_v2/css/images/icon-small-text.png"
+                                                        alt="">
+                                                </div>
+                                                <div class="text">
+                                                    Text smaller
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="dyslexic-font">
+                                            <a href="#">
+                                                <div class="icon">
+                                                    <img src="https://unissondisability.org.au/themes/unisson_disability_v2/css/images/icon-dyslexic.png"
+                                                        alt="">
+                                                </div>
+                                                <div class="text">
+                                                    Dyslexic font
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <div class="icon">
+                                                    <img src="https://unissondisability.org.au/themes/unisson_disability_v2/css/images/icon-translate.png"
+                                                        alt="">
+                                                </div>
+                                                <div class="text">
+                                                <?php echo do_shortcode('[gtranslate]'); ?>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="accessibility-reset">
+                                            <a href="#" class="btn-reset">
+                                                <div class="icon">
+                                                    <img src="https://unissondisability.org.au/themes/unisson_disability_v2/css/images/icon-reset.png"
+                                                        alt="">
+                                                </div>
+                                                <div class="text">
+                                                    Reset view
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -178,11 +180,9 @@
                             </div>
                             <div class="custom-dropdown-list">
                                 <ul>
-                                    <li><a
-                                            href="<?php echo esc_url( get_page_link( 406 ) ); ?>">Login</a>
+                                    <li><a href="<?php echo esc_url( get_page_link( 406 ) ); ?>">Login</a>
                                     </li>
-                                    <li><a
-                                            href="<?php echo esc_url( get_page_link( 408 ) ); ?>">Register</a>
+                                    <li><a href="<?php echo esc_url( get_page_link( 408 ) ); ?>">Register</a>
                                     </li>
                                 </ul>
                             </div>
@@ -291,19 +291,40 @@
         </div>
     </div>
 
-<main class="sitecontent">
- <?php if(!is_front_page()): ?>   
- <?php if(!is_product()): ?>   
-<section class="section pageheader--section">
-    <div class="container">
-        <div class="pageheader">
-            <ul class="breadcrumb">
-                <li><a href="<?php echo esc_url( home_url( '/' ) ) ?>">Home</a></li>
-                <li><?php the_title(); ?></li>
-            </ul>
-            <h5 class="search-term"><?php the_title(); ?></h5>
-        </div>
-    </div>
-</section>
-<?php endif; ?>
-<?php endif; ?>
+    <main class="sitecontent">
+        <?php if(!is_front_page()): ?>
+        <?php if(!is_product()): ?>
+        <?php if(!is_page()): ?>
+        <section class="section pageheader--section">
+            <div class="container">
+                <div class="pageheader">
+                <?php if(!is_404()): ?>
+                    <ul class="breadcrumb">
+                        <li><a href="<?php echo esc_url( home_url( '/' ) ) ?>">Home</a></li>
+                        <li><?php the_title(); ?></li>
+                    </ul>
+                    <?php if(!is_search()): ?>
+                    <h5 class="search-term"><?php the_title(); ?></h5>
+                    <?php endif; ?>
+                    <?php endif; ?>
+
+                </div>
+            </div>
+        </section>
+        <?php endif; ?>
+        <?php endif; ?>
+        <?php endif; ?>
+        <?php if(!is_front_page()): ?>
+        <?php if(is_page()): ?>
+        <section class="section pageheader--section pageheader--section-none">
+            <div class="container">
+                <div class="pageheader">
+                    <ul class="breadcrumb">
+                        <li><a href="<?php echo esc_url( home_url( '/' ) ) ?>">Home</a></li>
+                        <li><?php the_title(); ?></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <?php endif; ?>
+        <?php endif; ?>

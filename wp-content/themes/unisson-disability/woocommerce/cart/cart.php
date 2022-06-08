@@ -42,10 +42,19 @@ do_action( 'woocommerce_before_cart' ); ?>
 				$product_id = apply_filters( 'woocommerce_cart_item_product_id', $cart_item['product_id'], $cart_item, $cart_item_key );
 				$start_date = get_field('tour_start_date' , $_product->id);
 				$end_date = get_field('tour_end_date' , $_product->id);
-				$terms = get_the_terms( $product_id, 'location' );
-				foreach ($terms as $term) {
-				$product_cat = $term->name;
+				//product location
+				$locations = array();
+				$locations_name = array();
+				$location_term_list = wp_get_post_terms($product_id, 'location', array("fields" => "all"));
+				foreach($location_term_list as $location_term_single) {
+				array_push($locations, $location_term_single->slug);
+				array_push($locations_name, $location_term_single->name);
 				}
+				//location tags merge
+				$locations_data = array_merge($locations);
+				$locations_name = array_merge($locations_name);
+
+
 				if ( $_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters( 'woocommerce_cart_item_visible', true, $cart_item, $cart_item_key ) ) {
 					$product_permalink = apply_filters( 'woocommerce_cart_item_permalink', $_product->is_visible() ? $_product->get_permalink( $cart_item ) : '', $cart_item, $cart_item_key );
 					?>
@@ -89,8 +98,9 @@ do_action( 'woocommerce_before_cart' ); ?>
 						} else {
 							echo wp_kses_post( apply_filters( 'woocommerce_cart_item_name', sprintf( '<a href="%s">%s</a>', esc_url( $product_permalink ), $_product->get_name() ), $cart_item, $cart_item_key ) );
 						} ?>
+						<!-- //product custom field -->
 						<div class="custom-field-group">
-							<h5 class="field-location"><?php 	echo $product_cat; ?></h5>
+							<h5 class="field-location"><?php print implode(' - ',$locations_name) ;?></h5>
 							<h5 class="field-date"><?php echo $start_date; ?> - <?php echo $end_date; ?></h5>
 						</div>
 						<?php 
