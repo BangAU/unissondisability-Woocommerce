@@ -404,6 +404,21 @@ body.high-contrast {
         background: $color-black;
     }
 
+    .homebanner--section {
+        &::before {
+            background-color: $color-black;
+        }
+
+        .homebanner-slider-navwrap .slidenav-prev,
+        .homebanner-slider-navwrap .slidenav-next {
+            background-color: #fff !important;
+
+            &::before {
+                filter: brightness(0);
+            }
+        }
+    }
+
     footer {
         a {
             color: #fff;

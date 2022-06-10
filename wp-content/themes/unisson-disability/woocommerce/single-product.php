@@ -70,7 +70,7 @@ get_header( 'shop' ); ?>
                         ?>
                     </ul>
                 </div>
-                <div class="customtab--content">                   
+                <div class="customtab--content">
                     <?php
                     $x = 1; // Set the increment variable
                     // loop through the rows of data for the tab header
@@ -89,7 +89,7 @@ get_header( 'shop' ); ?>
                         <p><?php echo $blurb; ?></p>
                         <?php endif; ?>
                         <div class="customaccord">
-                        <?php
+                            <?php
                         $z = 1; // Set the increment variable
                             // loop through the rows of data for the tab header
                             while ( have_rows('accordion') ) : the_row();
@@ -109,14 +109,13 @@ get_header( 'shop' ); ?>
                                         <?php if($image): ?>
                                         <div class="col-lg-5">
                                             <div class="media">
-                                                <img src="<?php echo $image['url']; ?>"
-                                                    alt="">
+                                                <img src="<?php echo $image['url']; ?>" alt="">
                                             </div>
                                         </div>
                                         <?php endif; ?>
                                         <?php if($blurb): ?>
                                         <div class="col-lg-7">
-                                        <?php echo $blurb; ?>
+                                            <?php echo $blurb; ?>
                                         </div>
                                         <?php endif; ?>
                                     </div>
@@ -132,7 +131,7 @@ get_header( 'shop' ); ?>
                     $x++; // Increment the increment variable
                     endwhile; //End the loop 
                     ?>
-                    
+
                 </div>
             </div>
         </div>

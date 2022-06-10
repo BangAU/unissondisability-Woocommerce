@@ -150,34 +150,140 @@ function unisson_disability_scripts() {
 add_action( 'wp_enqueue_scripts', 'unisson_disability_scripts' );
 
 
+
+/** Custom Search for Library */
+function my_search_filter($query) {
+    if ( $query->is_search && ! is_admin() ) {
+        $query->set( 'post_type', 'product' );
+        $query->is_post_type_archive = false;
+    }
+}
+add_filter('pre_get_posts','my_search_filter', 9);
+
+function search_filter($query) {
+	if ( !is_admin() && $query->is_main_query() ) {
+	  if ($query->is_search) {
+		$query->set('paged', ( get_query_var('paged') ) ? get_query_var('paged') : 1 );
+		$query->set('posts_per_page',6);
+	  }
+	}
+  }
+
+
+  if( function_exists('acf_add_options_page') ) {
+	
+	acf_add_options_page(array(
+		'page_title' 	=> 'Unisson General Settings',
+		'menu_title'	=> 'Unisson Settings',
+		'menu_slug' 	=> 'unisson-general-settings',
+		'capability'	=> 'edit_posts',
+		'redirect'		=> true
+	));
+	
+	acf_add_options_sub_page(array(
+		'page_title' 	=> 'Unisson Header Settings',
+		'menu_title'	=> 'Header',
+		'parent_slug'	=> 'unisson-general-settings',
+	));
+	
+	acf_add_options_sub_page(array(
+		'page_title' 	=> 'Unisson Footer Settings',
+		'menu_title'	=> 'Footer',
+		'parent_slug'	=> 'unisson-general-settings',
+	));
+	
+}
+
+
+
+add_filter( 'woocommerce_breadcrumb_defaults', 'ts_woocommerce_breadcrumbs_change' );
+function ts_woocommerce_breadcrumbs_change() {
+    return array(
+            'delimiter'   => '  ',
+            'wrap_before' => '<ul class="breadcrumb">',
+            'wrap_after'  => '</ul>',
+            'before'      => '<li> ',
+            'after'       => '</li>',
+            'home'        => _x( 'Home', 'breadcrumb', 'woocommerce' ),
+            
+        );
+}
+
+
+
+function wpse_131562_redirect() {
+    if (
+        ! is_user_logged_in()
+        && (is_page('my-account'))
+    ) {
+        // feel free to customize the following line to suit your needs
+        wp_redirect(home_url());
+        exit;
+    }
+}
+add_action('template_redirect', 'wpse_131562_redirect');
+
+
+
+
+
+remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_title', 5 );
+remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_rating', 10 );
+remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 10 );
+remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_excerpt', 20 );
+
+
+
+add_filter('acf/settings/remove_wp_meta_box', '__return_false');
+
+
+
+
+function remove_woocommerce_default_shop( $args, $post_type ) {
+    if (class_exists('WooCommerce')) {
+        if ( $post_type == "product" ) {
+            $args['has_archive'] = false;
+        }
+        return $args;
+    }
+}
+add_filter('register_post_type_args', 'remove_woocommerce_default_shop', 20, 2);
+
+
+
+
 /**
  * restriction module
  */
- require get_template_directory() . '/inc/module-restriction.php';
+require get_template_directory() . '/inc/module-restriction.php';
+/**
+ * email notification
+ */
+ require get_template_directory() . '/inc/custom-field-in-email.php';
 
 /**
- * acf data sync.
+ * register location taxonomy
  */
  require get_template_directory() . '/inc/register-taxonomy.php';
 // /**
 /**
- * acf data sync.
+ * remove some field in checkout
  */
  require get_template_directory() . '/inc/remove_checkout_fields.php';
 /**
- * acf data sync.
+ * get custom description in cart page
  */
  require get_template_directory() . '/inc/custom-description-cart-page.php';
 /**
- * acf data sync.
+ * make variation selected
  */
  require get_template_directory() . '/inc/choose_variation_default.php';
 // /**
-//  * acf data sync.
+//  * checkout repeater field
 //  */
  require get_template_directory() . '/inc/register-custom-checkout-field.php';
 // /**
-//  * acf data sync.
+//  * remove unnecessary item using hook
 //  */
  require get_template_directory() . '/inc/remove-hooks.php';
 
@@ -242,186 +348,3 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 if ( class_exists( 'WooCommerce' ) ) {
 	require get_template_directory() . '/inc/woocommerce.php';
 }
-
-
-
-
-//add_filter( 'woocommerce_enqueue_styles', '__return_false' );
-
-
-
-
-// function mytheme_add_woocommerce_support() {
-//     add_theme_support( 'woocommerce' );
-// }
-// add_action( 'after_setup_theme', 'mytheme_add_woocommerce_support' );
-
-
-/** Custom Search for Library */
-function my_search_filter($query) {
-    if ( $query->is_search && ! is_admin() ) {
-        $query->set( 'post_type', 'product' );
-        $query->is_post_type_archive = false;
-    }
-}
-add_filter('pre_get_posts','my_search_filter', 9);
-
-function search_filter($query) {
-	if ( !is_admin() && $query->is_main_query() ) {
-	  if ($query->is_search) {
-		$query->set('paged', ( get_query_var('paged') ) ? get_query_var('paged') : 1 );
-		$query->set('posts_per_page',6);
-	  }
-	}
-  }
-
-
-  if( function_exists('acf_add_options_page') ) {
-	
-	acf_add_options_page(array(
-		'page_title' 	=> 'Unisson General Settings',
-		'menu_title'	=> 'Unisson Settings',
-		'menu_slug' 	=> 'unisson-general-settings',
-		'capability'	=> 'edit_posts',
-		'redirect'		=> true
-	));
-	
-	acf_add_options_sub_page(array(
-		'page_title' 	=> 'Unisson Header Settings',
-		'menu_title'	=> 'Header',
-		'parent_slug'	=> 'unisson-general-settings',
-	));
-	
-	acf_add_options_sub_page(array(
-		'page_title' 	=> 'Unisson Footer Settings',
-		'menu_title'	=> 'Footer',
-		'parent_slug'	=> 'unisson-general-settings',
-	));
-	
-}
-
-
-
-add_filter( 'woocommerce_breadcrumb_defaults', 'ts_woocommerce_breadcrumbs_change' );
-function ts_woocommerce_breadcrumbs_change() {
-    return array(
-            'delimiter'   => '  ',
-            'wrap_before' => '<ul class="breadcrumb">',
-            'wrap_after'  => '</ul>',
-            'before'      => '<li> ',
-            'after'       => '</li>',
-            'home'        => _x( 'Home', 'breadcrumb', 'woocommerce' ),
-            
-        );
-}
-
-
-
-
-function wpse_131562_redirect() {
-    if (
-        ! is_user_logged_in()
-        && (is_page('my-account'))
-    ) {
-        // feel free to customize the following line to suit your needs
-        wp_redirect(home_url());
-        exit;
-    }
-}
-add_action('template_redirect', 'wpse_131562_redirect');
-
-
-
-// function woocommerce_new_pass_redirect( $user ) {
-//     wc_add_notice( __( 'Your password has been changed successfully! Please login to continue.', 'woocommerce' ), 'success' );
-//     wp_redirect( home_url() . "/login/?new-password-created=true" );
-//     exit;
-// }
-// add_action( 'woocommerce_customer_reset_password', 'woocommerce_new_pass_redirect' );
-
-
-// add_filter( 'woocommerce_order_item_name', 'display_product_title_as_link', 10, 2 );
-// 	function display_product_title_as_link( $item_name, $item ) {
-
-// 		$_product = get_product( $item['variation_id'] ? $item['variation_id'] : $item['product_id'] );
-		
-// 		$link = get_permalink( $_product->id );
-
-// 		$_var_description ='';
-
-// 		if ( $item['variation_id'] ) {
-// 			$_var_description = $_product->get_variation_description();
-// 		}
-
-// 		return '<a href="'. $link .'"  rel="nofollow">'. $item_name .'</a><br>'. $_var_description ;
-// 	}
-
-// Cart page (and mini cart)
-// add_filter( 'woocommerce_cart_item_name', 'cart_item_product_description', 20, 3);
-// function cart_item_product_description( $item_name, $cart_item, $cart_item_key ) {
-//     if ( ! is_checkout() ) {
-//         if( $cart_item['variation_id'] > 0 ) {
-//             $description = $cart_item['data']->get_variation_description(); // variation description
-//         } else {
-//             $description = $cart_item['data']->get_variation_description(); // product short description (for others)
-//         }
-
-//         if ( ! empty($description) ) {
-//             return $item_name . '<br><div class="description">
-//                 <strong>' . __( 'Description', 'woocommerce' ) . '</strong>: '. $description . '
-//             </div>';
-//         }
-//     }
-//     return $item_name;
-// }
-
-// // Checkout page
-// add_filter( 'woocommerce_checkout_cart_item_quantity', 'cart_item_checkout_product_description', 20, 3);
-// function cart_item_checkout_product_description( $item_quantity, $cart_item, $cart_item_key ) {
-//     if( $cart_item['variation_id'] > 0 ) {
-//         $description = $cart_item['data']->get_description(); // variation description
-//     } else {
-//         $description = $cart_item['data']->get_short_description(); // product short description (for others)
-//     }
-
-//     if ( ! empty($description) ) {
-//         return $item_quantity . '<br><div class="description">
-//             <strong>' . __( 'Description', 'woocommerce' ) . '</strong>: '. $description . '
-//         </div>';
-//     }
-
-//     return $item_quantity;
-// }
-
-
-remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_title', 5 );
-remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_rating', 10 );
-remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 10 );
-remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_excerpt', 20 );
-
-
-
-add_filter('acf/settings/remove_wp_meta_box', '__return_false');
-
-
-add_filter( 'woocommerce_return_to_shop_redirect', 'st_woocommerce_shop_url' );
-/**
- * Redirect WooCommerce Shop URL
- */
-
-function st_woocommerce_shop_url(){
-
-return site_url();
-
-}
-
-
-function remove_woocommerce_default_shop( $args, $post_type ) {
-    if (class_exists('WooCommerce')) {
-        if ( $post_type == "product" ) {
-            $args['has_archive'] = false;
-        }
-        return $args;
-    }
-}
-add_filter('register_post_type_args', 'remove_woocommerce_default_shop', 20, 2);

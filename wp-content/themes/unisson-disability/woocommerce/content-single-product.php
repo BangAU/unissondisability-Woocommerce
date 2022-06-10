@@ -32,6 +32,8 @@ if ( post_password_required() ) {
 }
 ?>
 
+
+
 <div class="col-lg-6 productsec--col-media">
     <div class="productsec--media">
         <div class="productsec--media-primary">
@@ -46,11 +48,11 @@ if ( post_password_required() ) {
                 </div>
                 <?php } ?>
             </div>
-            <!-- <div class="slider-navwrap">
+            <div class="slider-navwrap">
                 <span class="slidenav-prev"></span>
                 <span class="slidenav-next"></span>
-                <div class="num"></div>
-            </div> -->
+                <div class="num">1/4</div>
+            </div>
         </div>
         <div class="productsec--media-secondary dis-md">
             <div class="productsec--media-secondary-slider">
@@ -63,17 +65,28 @@ if ( post_password_required() ) {
                 </div>
                 <?php } ?>
             </div>
-            <div class="slider-navwrap">
+            <!-- <div class="slider-navwrap">
                 <span class="slidenav-prev"></span>
                 <span class="slidenav-next"></span>
                 <div class="num">1/4</div>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>
 <div class="col-lg-6 productsec--col-text">
     <div class="productsec--text">
-        <h6 class="heading-location"><?php echo $size = $product->get_attribute( 'pa_location' );	?></h6>
+        <h6 class="heading-location">
+            <?php 
+               $terms = wp_get_post_terms($product_id, 'location');
+
+               foreach ($terms as $term) {
+                echo get_term_link( $term ); // get the child term url
+                echo get_term_link( $term->parent ); // get parent term url
+                $parent = get_term($term->parent, 'location');
+                echo $parent->name;
+               }
+            ?>
+        </h6>
         <?php 
         // If the WC_product Object is not defined globally
             if ( ! is_a( $product, 'WC_Product' ) ) {
@@ -110,13 +123,21 @@ if ( post_password_required() ) {
             <?php } ?>
             <?php 
              if($product->product_type=='variable') {
-                 $available_variations = $product->get_available_variations();
-                 $count = count($available_variations)-1;
-                 $variation_id=$available_variations[$count]['variation_id']; // Getting the variable id of just the 1st product. You can loop $available_variations to get info about each variation.
-                 $variable_product1= new WC_Product_Variation( $variation_id );
-                 $regular_price = $variable_product1 ->regular_price;
-                 $sales_price = $variable_product1 ->sale_price; ?>
-            <p class="price-num"><?php echo $regular_price;?></p>
+                //  $available_variations = $product->get_available_variations();
+                //  $count = count($available_variations)-1;
+                //  $variation_id=$available_variations[$count]['variation_id']; // Getting the variable id of just the 1st product. You can loop $available_variations to get info about each variation.
+                //  $variable_product1= new WC_Product_Variation( $variation_id );
+                //  $regular_price = $variable_product1 ->regular_price;
+                //  $sales_price = $variable_product1 ->sale_price; 
+                $prices = $product->get_variation_prices('min', true );
+                $maxprices = $product->get_variation_price( 'max', true ) ;
+                $min_price = current( $prices['price'] );
+                //$max_price = current( $maxprices['price'] );
+                $minPrice = sprintf( __( '%1$s', 'woocommerce' ), wc_price( $min_price ) );
+                $maxPrice = sprintf( __( '%1$s', 'woocommerce' ), wc_price( $maxprices ) );
+                
+                ?>
+            <p class="price-num"><?php echo $maxPrice;?></p>
             <?php   } ?>
         </div>
 

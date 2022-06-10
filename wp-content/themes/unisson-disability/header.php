@@ -51,7 +51,7 @@
                         
                         ?>
                     </div>
-                  
+
                     <div class="tools">
                         <div class="access-dropdown custom-dropdown">
                             <div class="custom-dropdown-btn btn btn-yellow">Accessibility</div>
@@ -109,7 +109,7 @@
                                                         alt="">
                                                 </div>
                                                 <div class="text">
-                                                <?php echo do_shortcode('[gtranslate]'); ?>
+                                                    <?php echo do_shortcode('[gtranslate]'); ?>
                                                 </div>
                                             </a>
                                         </li>
@@ -292,13 +292,34 @@
     </div>
 
     <main class="sitecontent">
+        <?php  
+        $type = get_field('type'); 
+        if ($type == 'light-background') { ?>
+
         <?php if(!is_front_page()): ?>
         <?php if(!is_product()): ?>
-        <?php if(!is_page()): ?>
+        <section class="section pageheader--section pageheader--section-none">
+            <div class="container">
+                <div class="pageheader">
+                    <ul class="breadcrumb">
+                        <li><a href="<?php echo esc_url( home_url( '/' ) ) ?>">Home</a></li>
+                        <li><?php the_title(); ?></li>
+                    </ul>
+                    <h5 class="search-term"><?php the_title(); ?></h5>
+                </div>
+            </div>
+        </section>
+        <?php endif; ?>
+        <?php endif; ?>
+        <?php } else { ?>
+
+        <?php if(!is_front_page()): ?>
+        <?php if(!is_product()): ?>
+
         <section class="section pageheader--section">
             <div class="container">
                 <div class="pageheader">
-                <?php if(!is_404()): ?>
+                    <?php if(!is_404()): ?>
                     <ul class="breadcrumb">
                         <li><a href="<?php echo esc_url( home_url( '/' ) ) ?>">Home</a></li>
                         <li><?php the_title(); ?></li>
@@ -313,18 +334,4 @@
         </section>
         <?php endif; ?>
         <?php endif; ?>
-        <?php endif; ?>
-        <?php if(!is_front_page()): ?>
-        <?php if(is_page()): ?>
-        <section class="section pageheader--section pageheader--section-none">
-            <div class="container">
-                <div class="pageheader">
-                    <ul class="breadcrumb">
-                        <li><a href="<?php echo esc_url( home_url( '/' ) ) ?>">Home</a></li>
-                        <li><?php the_title(); ?></li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-        <?php endif; ?>
-        <?php endif; ?>
+        <?php }

@@ -31,6 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
     loginRegister()
     
     fundingType()
+    
 });
 
 //function called on window resize
@@ -226,52 +227,80 @@ function productsecSlider() {
     $('.productsec--media').each(function () {
         const $this = $(this);
 
-        const sliderPrimary = $this.find('.productsec--media-primary-slider');
+        const primarySlider = $this.find('.productsec--media-primary-slider'),
+            primaryNavWrap = primarySlider.siblings('.slider-navwrap'),
+            primaryNavPrev = primaryNavWrap.find('.slidenav-prev'),
+            primaryNavNext = primaryNavWrap.find('.slidenav-next'),
+            $primaryNum = primaryNavWrap.find('.num');
 
-        const sliderSecondary = $this.find('.productsec--media-secondary-slider'),
-            secondaryNavWrap = sliderSecondary.siblings('.slider-navwrap'),
+        const secondarySlider = $this.find('.productsec--media-secondary-slider'),
+            secondaryNavWrap = secondarySlider.siblings('.slider-navwrap'),
             secondaryNavPrev = secondaryNavWrap.find('.slidenav-prev'),
             secondaryNavNext = secondaryNavWrap.find('.slidenav-next'),
-            $num = secondaryNavWrap.find('.num');
+            $secondaryNum = secondaryNavWrap.find('.num');
 
         let maximumSecondarySlides = 3;
 
-        // console.log('Slider Secondary:', sliderSecondary)
+        // console.log('Slider Secondary:', secondarySlider)
         // console.log('Secondary Nav Wrap:', secondaryNavWrap)
         // console.log('Secondary Nav Prev:', secondaryNavPrev)
         // console.log('Secondary Nav Next:', secondaryNavNext)
         // console.log('Num:', $num)
 
-        sliderPrimary.on('init reInit beforeChange', function (event, slick, currentSlide, nextSlide) {
+        primarySlider.on('init reInit afterChange', function (event, slick, currentSlide, prevSlide) {
             if (slick.$slides.length < maximumSecondarySlides) {
-                secondaryNavWrap.hide()
+                // primaryNavPrev.hide()
+                // primaryNavNext.hide()
+                primarySlider.addClass('less-slides')
             }
+
+            // console.log('currentSlide', currentSlide);
+            // console.log('prevSlide', prevSlide);
+
             var i = (currentSlide ? currentSlide : 0) + 1;
-            $num.html('<span>' + i + '</span>/' + slick.slideCount);
+            $primaryNum.html('<span>' + i + '</span>/' + slick.slideCount);
         })
 
-        sliderPrimary.slick({
+        secondarySlider.on('init reInit afterChange', function (event, slick, currentSlide, prevSlide) {
+            if (slick.$slides.length < maximumSecondarySlides) {
+                // secondaryNavPrev.hide()
+                // secondaryNavNext.hide()
+                secondarySlider.addClass('less-slides')
+            }
+
+            // console.log('currentSlide', currentSlide);
+            // console.log('prevSlide', prevSlide);
+
+            var i = (currentSlide ? currentSlide : 0) + 1;
+            $secondaryNum.html('<span>' + i + '</span>/' + slick.slideCount);
+        })
+
+        primarySlider.slick({
             dots: false,
-            infinite: true,
+            // loop: true,
+            infinite: false,
             speed: 300,
             slidesToShow: 1,
-            asNavFor: sliderSecondary
+            // draggable: false,
+            prevArrow: primaryNavPrev,
+            nextArrow: primaryNavNext,
+            asNavFor: secondarySlider
         });
 
-        sliderSecondary.slick({
+        secondarySlider.slick({
             dots: false,
             nav: false,
-            loop: true,
+            // loop: true,
+            infinite: false,
             slidesToShow: maximumSecondarySlides,
             slidesToScroll: 1,
-            infinite: true,
             speed: 300,
             margin: 25,
             focusOnSelect: true,
             // centerMode: true,
             prevArrow: secondaryNavPrev,
             nextArrow: secondaryNavNext,
-            asNavFor: sliderPrimary
+            asNavFor: primarySlider
         });
     })
 }
@@ -387,7 +416,8 @@ function customTabs() {
 
 function customAccord() {
     $('.customaccord--item-header').click(function () {
-        const parentObj = $(this).parents('.customaccord--item'),
+        const $this = $(this),
+            parentObj = $(this).parents('.customaccord--item'),
             bodyObj = $(this).siblings('.customaccord--item-body'),
             siblingItems = parentObj.siblings(),
             otherBodyObjs = siblingItems.find('.customaccord--item-body');
@@ -403,16 +433,23 @@ function customAccord() {
                     parentObj.addClass('active')
                 })
                 $('html, body').animate({
-                    scrollTop: bodyObj.offset().top - 60
-                }, 250);
+                    scrollTop: $this.offset().top - 60
+                }, 200);
             })
-
         }
 
     })
 }
 
 function accessibility() {
+
+    $('.accessibility-row li').click(function () {
+        setTimeout(function () {
+            $('.slick-slider')[0].slick.refresh();
+            $('.programfilter-listing').isotope('reloadItems').isotope();
+        }, 150);
+    })
+
     // function to hide/show the accesssibility menu when clicking on the button
     // $('.button-accessibility').click(function (ev) {
     //     ev.preventDefault();
@@ -431,7 +468,7 @@ function accessibility() {
         ev.preventDefault();
         var fontCheck = 0;
         var fontSize = parseInt($("html").css("font-size"));
-        console.log(fontSize);
+        // console.log(fontSize);
         if (fontSize < 13) {
             fontCheck = fontSize + 1;
             $.cookie('font-size', fontCheck);
@@ -455,6 +492,7 @@ function accessibility() {
             }
         }
     });
+
     $('.accessibility-row .smaller-text').click(function (ev) {
         ev.preventDefault();
         var fontCheck = 0;
@@ -577,7 +615,7 @@ function accessibility() {
         $.cookie('dyslexic-font', 0);
         $.cookie('font-size', "10");
         //reset google translate
-        $('#\\:1\\.container').contents().find('#\\:1\\.restore').click();
+        // $('#\\:1\\.container').contents().find('#\\:1\\.restore').click();
     });
 }
 

@@ -165,6 +165,10 @@
                                 height: 8px;
                                 border: 2px solid #fff;
                             }
+
+                            &.slick-disabled {
+                                // filter: grayscale(100%);
+                            }
                         }
 
                         &-prev {
@@ -195,6 +199,14 @@
             }
 
             .slick {
+                &-slider {
+                    &.less-slides {
+                        .slick-track {
+                            transform: none !important;
+                        }
+                    }
+                }
+
                 &-list {
                     padding: 0 !important;
                     // overflow: visible !important;
