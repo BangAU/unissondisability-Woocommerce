@@ -198,7 +198,7 @@
         margin-bottom: 9px;
 
         @media (max-width: 767px) {
-            font-size: .8rem;
+            font-size: 1.3rem;
             line-height: normal;
         }
     }
@@ -208,9 +208,10 @@
         font-size: 3rem;
         margin-bottom: 0;
 
-        @media (max-width: 767px) {
-            font-size: 1.8rem;
-        }
+        // @media (max-width: 767px) {
+        //     font-size: 3rem;
+        // }
+   
     }
 }
 
@@ -313,7 +314,6 @@
 
     .footer,
     .footer-bot-list {
-
         h4,
         li,
         a {
@@ -349,7 +349,6 @@
 
     .customaccord--item {
         .customaccord--item-header {
-
             &::before,
             &::after {
                 background-color: $color-black !important;

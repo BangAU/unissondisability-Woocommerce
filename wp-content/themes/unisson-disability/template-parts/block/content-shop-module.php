@@ -161,7 +161,7 @@
 
                         ?>
                         <div
-                            class="col-lg-4 col-6 homefilter-item <?php print implode(', ',$locations) ;?> <?php print implode(' ', $taxonomies) ;?> ">
+                            class="col-lg-4 col-md-6 homefilter-item <?php print implode(', ',$locations) ;?> <?php print implode(' ', $taxonomies) ;?> ">
                             <div class="programfilter-card">
                                 <div class="media">
                                     <img src="<?php echo esc_url( $thumbnail_url[0] ); ?>" alt="">

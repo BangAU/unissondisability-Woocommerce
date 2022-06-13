@@ -59,7 +59,6 @@
 
         thead,
         tbody {
-
             th,
             td {
                 padding: 24px;
@@ -97,7 +96,6 @@
 
                 tr {
                     &:last-child {
-
                         &,
                         td {
                             display: block;
@@ -161,6 +159,7 @@
                     &-thumbnail {
                         img {
                             @include imgfit;
+
                             width: 126px;
                             height: 94px;
                             border-radius: 10px;
@@ -215,6 +214,7 @@
 
                             [class^="data-item"] {
                                 // display: flex;
+                           
                             }
 
                             dt,
@@ -261,7 +261,6 @@
                                     margin-bottom: 5px;
                                 }
                             }
-
                         }
                     }
 
@@ -279,7 +278,6 @@
                     }
 
                     &-quantity {
-
                         .quantity {
                             .input-text {
                                 width: 61px;
@@ -321,7 +319,7 @@
         padding-top: 60px;
 
         @media (max-width: 991px) {
-            padding-top: 32px;
+            padding: 32px 0 0 !important;
         }
 
         .cart-footer {
@@ -338,7 +336,6 @@
         .coupon {
             @media (max-width: 991px) {
                 display: flex;
-                flex-wrap: wrap;
                 margin-bottom: 37px;
             }
 
@@ -361,7 +358,7 @@
                 padding: 12px 14px;
 
                 @media (max-width: 991px) {
-                    width: auto;
+                    width: 100%;
                     flex: auto;
                 }
             }
@@ -381,6 +378,7 @@
         }
 
         .button[name="update_cart"] {
+            font-family: inherit;
             font-size: 1.8rem;
             font-weight: 500;
             min-width: 195px;
@@ -407,6 +405,7 @@
 
     @media (max-width: 991px) {
         margin-top: 48px;
+        padding: 24px;
     }
 
     @media (max-width: 567px) {
@@ -522,7 +521,6 @@
         justify-content: center;
 
         .button {
-
             &-prev,
             &-next {
                 width: 195px;
@@ -598,7 +596,7 @@
         margin-left: -10px;
         margin-right: -10px;
 
-        >.form-row {
+        > .form-row {
             width: 100%;
             margin-bottom: 17px;
             padding-left: 10px;
@@ -606,7 +604,6 @@
         }
 
         @media (min-width: 768px) {
-
             #billing_first_name_field,
             #billing_last_name_field {
                 width: 50%;
@@ -621,7 +618,6 @@
 
         .select2-container--default {
             .select2-selection--single {
-
                 &,
                 .select2-selection__rendered {
                     height: 47px;
@@ -668,7 +664,7 @@
                 margin-right: 16px;
                 width: 18px;
                 height: 18px;
-                background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOCIgaGVpZ2h0PSIxOCIgdmlld0JveD0iMCAwIDE4IDE4Ij4NCiAgPGcgaWQ9Ikdyb3VwXzIyNCIgZGF0YS1uYW1lPSJHcm91cCAyMjQiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAgMCkiPg0KICAgIDxjaXJjbGUgaWQ9IkVsbGlwc2VfNzciIGRhdGEtbmFtZT0iRWxsaXBzZSA3NyIgY3g9IjkiIGN5PSI5IiByPSI5IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwIDApIiBmaWxsPSIjNjUwZDZiIi8+DQogICAgPGcgaWQ9Indhcm5pbmctc3ZncmVwby1jb20iIHRyYW5zZm9ybT0idHJhbnNsYXRlKDguMTM4IDMuOTA2KSI+DQogICAgICA8cGF0aCBpZD0iUGF0aF8xNjkiIGRhdGEtbmFtZT0iUGF0aCAxNjkiIGQ9Ik00My40ODIsNy4yNTFhMSwxLDAsMCwxLTEtMVYxYTEsMSwwLDEsMSwxLjk5LDB2NS4yNkExLDEsMCwwLDEsNDMuNDgyLDcuMjUxWiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTQyLjQ4NykiIGZpbGw9IiNmZmYiLz4NCiAgICAgIDxjaXJjbGUgaWQ9IkVsbGlwc2VfNzYiIGRhdGEtbmFtZT0iRWxsaXBzZSA3NiIgY3g9IjAuODUzIiBjeT0iMC44NTMiIHI9IjAuODUzIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLjA3OCA4LjMxNykiIGZpbGw9IiNmZmYiLz4NCiAgICA8L2c+DQogIDwvZz4NCjwvc3ZnPg0K")
+                background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOCIgaGVpZ2h0PSIxOCIgdmlld0JveD0iMCAwIDE4IDE4Ij4NCiAgPGcgaWQ9Ikdyb3VwXzIyNCIgZGF0YS1uYW1lPSJHcm91cCAyMjQiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAgMCkiPg0KICAgIDxjaXJjbGUgaWQ9IkVsbGlwc2VfNzciIGRhdGEtbmFtZT0iRWxsaXBzZSA3NyIgY3g9IjkiIGN5PSI5IiByPSI5IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwIDApIiBmaWxsPSIjNjUwZDZiIi8+DQogICAgPGcgaWQ9Indhcm5pbmctc3ZncmVwby1jb20iIHRyYW5zZm9ybT0idHJhbnNsYXRlKDguMTM4IDMuOTA2KSI+DQogICAgICA8cGF0aCBpZD0iUGF0aF8xNjkiIGRhdGEtbmFtZT0iUGF0aCAxNjkiIGQ9Ik00My40ODIsNy4yNTFhMSwxLDAsMCwxLTEtMVYxYTEsMSwwLDEsMSwxLjk5LDB2NS4yNkExLDEsMCwwLDEsNDMuNDgyLDcuMjUxWiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTQyLjQ4NykiIGZpbGw9IiNmZmYiLz4NCiAgICAgIDxjaXJjbGUgaWQ9IkVsbGlwc2VfNzYiIGRhdGEtbmFtZT0iRWxsaXBzZSA3NiIgY3g9IjAuODUzIiBjeT0iMC44NTMiIHI9IjAuODUzIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLjA3OCA4LjMxNykiIGZpbGw9IiNmZmYiLz4NCiAgICA8L2c+DQogIDwvZz4NCjwvc3ZnPg0K");
             }
         }
     }
@@ -726,7 +722,9 @@
         .woocommerce-form__label-for-checkbox {
             display: flex;
             align-items: center;
+
             @include unselect;
+
             cursor: pointer;
 
             input {
@@ -786,7 +784,7 @@
         flex-wrap: wrap;
         margin: 0 -10px;
 
-        >.form-row {
+        > .form-row {
             width: 100%;
             padding: 0 10px;
 
@@ -849,7 +847,7 @@
             padding: 20px 10px;
         }
 
-        &+.Attendee-group {
+        & + .Attendee-group {
             margin-top: 50px;
         }
 
@@ -858,7 +856,7 @@
             padding-bottom: 0;
         }
 
-        >* {
+        > * {
             width: 100%;
             padding-left: 15px;
             padding-right: 15px;
@@ -900,7 +898,7 @@
                 .input-radio {
                     margin: 0;
 
-                    +label {
+                    + label {
                         margin-left: 10px;
                     }
 
@@ -913,7 +911,7 @@
                 label {
                     margin-bottom: 0;
 
-                    +input {
+                    + input {
                         margin-left: 20px !important;
                     }
 
@@ -921,7 +919,7 @@
                         width: calc(100% - 45px);
                         margin-bottom: 15px;
 
-                        +input {
+                        + input {
                             margin-left: 0 !important;
                         }
                     }
@@ -931,7 +929,6 @@
 
         @media (min-width: 768px) {
             .form-row {
-
                 &[id^="attendee_first_name"],
                 &[id^="attendee_last_name"],
                 &[id^="attendee_dob"],
@@ -1006,7 +1003,7 @@
             cursor: pointer;
         }
 
-        label+input {
+        label + input {
             margin-left: 30px;
         }
     }
@@ -1018,7 +1015,6 @@
     border-collapse: collapse;
 
     thead {
-
         th,
         td {
             color: #fff;
@@ -1032,7 +1028,6 @@
 
     tbody,
     tfoot {
-
         th,
         td {
             font-size: 1.6rem;
@@ -1056,7 +1051,6 @@
         }
 
         .cart_item {
-
             &:not(:last-child) {
                 border-bottom: 1px solid $color-yellow;
             }
@@ -1077,7 +1071,6 @@
 
     tfoot {
         tr:not(.order-total) {
-
             td,
             th {
                 &:first-child {
@@ -1114,7 +1107,6 @@
             }
 
             .variation {
-
                 dt,
                 dd,
                 p {
@@ -1157,10 +1149,10 @@
             margin-right: 16px;
         }
 
-        >label {
+        > label {
             margin-bottom: 0;
 
-            >img {
+            > img {
                 display: block;
                 margin-top: 4px;
             }
@@ -1205,6 +1197,7 @@
         cursor: pointer;
         text-align: center;
         border-radius: 44px;
+
         @include margin-auto;
     }
 }
@@ -1219,7 +1212,6 @@
         }
 
         &-MyAccount {
-
             &-navigation {
                 flex: 0 0 254px;
 
@@ -1249,27 +1241,27 @@
                     }
 
                     &--dashboard {
-                        background-image: url('https://blog.redzonegroup.com.au/wp-content/uploads/2022/05/dashboard-speedometer.svg');
+                        background-image: url("https://blog.redzonegroup.com.au/wp-content/uploads/2022/05/dashboard-speedometer.svg");
                     }
 
                     &--orders {
-                        background-image: url('https://blog.redzonegroup.com.au/wp-content/uploads/2022/05/dashboard-cart.svg');
+                        background-image: url("https://blog.redzonegroup.com.au/wp-content/uploads/2022/05/dashboard-cart.svg");
                     }
 
                     &--downloads {
-                        background-image: url('https://blog.redzonegroup.com.au/wp-content/uploads/2022/05/dashboard-cart.svg');
+                        background-image: url("https://blog.redzonegroup.com.au/wp-content/uploads/2022/05/dashboard-cart.svg");
                     }
 
                     &--edit-address {
-                        background-image: url('https://blog.redzonegroup.com.au/wp-content/uploads/2022/05/dashboard-address-book.svg');
+                        background-image: url("https://blog.redzonegroup.com.au/wp-content/uploads/2022/05/dashboard-address-book.svg");
                     }
 
                     &--edit-account {
-                        background-image: url('https://blog.redzonegroup.com.au/wp-content/uploads/2022/05/dashboard-account.svg');
+                        background-image: url("https://blog.redzonegroup.com.au/wp-content/uploads/2022/05/dashboard-account.svg");
                     }
 
                     &--customer-logout {
-                        background-image: url('https://blog.redzonegroup.com.au/wp-content/uploads/2022/05/dashboard-logout.svg');
+                        background-image: url("https://blog.redzonegroup.com.au/wp-content/uploads/2022/05/dashboard-logout.svg");
                     }
                 }
             }
@@ -1288,7 +1280,6 @@
 
                 .select2-container--default {
                     .select2-selection--single {
-
                         &,
                         .select2-selection__rendered {
                             height: 47px;
@@ -1325,7 +1316,6 @@
                     thead,
                     tbody,
                     tfoot {
-
                         th,
                         td {
                             padding: 12px;
@@ -1336,7 +1326,6 @@
                     }
 
                     thead {
-
                         th,
                         td {
                             color: $color-black;
@@ -1348,7 +1337,6 @@
 
                     tbody,
                     tfoot {
-
                         th,
                         td {
                             color: $color-black-light;
@@ -1358,7 +1346,6 @@
                     }
 
                     tfoot {
-
                         th,
                         td {
                             font-size: 1.6rem;
@@ -1371,7 +1358,6 @@
                     &__cell {
                         &-order {
                             &-actions {
-
                                 .button {
                                     font-size: 1.4rem;
                                     font-weight: 700;
@@ -1386,7 +1372,7 @@
                                         background-color: darken($color-orange, 6%);
                                     }
 
-                                    +.button {
+                                    + .button {
                                         margin-left: 10px;
                                     }
                                 }
@@ -1443,7 +1429,7 @@
                                     background-color: darken($color-orange, 6%);
                                 }
 
-                                +.button {
+                                + .button {
                                     margin-left: 10px;
                                 }
                             }
@@ -1463,7 +1449,7 @@
                         padding: 5px 13px;
                         transition: all .15s ease-out;
 
-                        +.button {
+                        + .button {
                             margin-left: 20px;
                         }
 
@@ -1513,7 +1499,7 @@
                         transition: all .15s ease-out;
                         cursor: pointer;
 
-                        +.button {
+                        + .button {
                             margin-left: 10px;
                         }
 
@@ -1582,7 +1568,7 @@
                         transition: all .15s ease-out;
                         cursor: pointer;
 
-                        +.button {
+                        + .button {
                             margin-left: 20px;
                         }
 
@@ -1626,7 +1612,6 @@
 }
 
 #customer_login {
-
     .col-1,
     .col-2 {
         padding: 0;
@@ -1639,7 +1624,9 @@
         padding: 25px 40px;
         background-color: $color-gray;
         max-width: 776px;
+
         @include margin-auto;
+
         margin-top: 120px;
 
         @media (max-width: 767px) {
@@ -1669,7 +1656,7 @@
                 font-weight: 400;
                 line-height: normal;
 
-                >strong {
+                > strong {
                     display: block;
                     margin-top: 6px;
                     font-size: 16px;
@@ -1704,8 +1691,7 @@
 
                     .product {
                         &-name {
-
-                            >a,
+                            > a,
                             .product-quantity {
                                 font-size: 16px;
                                 font-weight: 700;
@@ -1750,7 +1736,6 @@
 
                 tfoot {
                     tr {
-
                         th,
                         td {
                             font-size: 16px;
@@ -1769,7 +1754,6 @@
                         }
 
                         &:last-child {
-
                             th,
                             td {
                                 padding-bottom: 20px;
@@ -1810,7 +1794,7 @@
             }
 
             .yith-wcdp-my-deposits {
-                >p {
+                > p {
                     font-size: 14px;
                     line-height: normal;
                     margin-bottom: 20px;
@@ -1864,7 +1848,7 @@
                                     cursor: pointer;
                                     white-space: nowrap;
 
-                                    +a {
+                                    + a {
                                         margin-left: 10px;
                                     }
                                 }

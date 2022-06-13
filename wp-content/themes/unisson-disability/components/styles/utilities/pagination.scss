@@ -24,8 +24,15 @@
         background-color: #fff;
         cursor: pointer;
 
+        @media (max-width: 991px) {
+            width: 40px;
+            height: 40px;
+            font-size: 18px;
+            margin: 0 5px 10px;
+        }
+
         &:hover {
-            background-color: rgba($color-purple, .15);
+            background-color: rgba($color-purple, 0.15);
         }
 
         &.active {
@@ -77,5 +84,4 @@
             border-width: 2px 2px 0 0;
         }
     }
-
 }
