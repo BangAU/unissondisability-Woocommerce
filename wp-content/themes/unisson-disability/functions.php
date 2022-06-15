@@ -211,17 +211,17 @@ function ts_woocommerce_breadcrumbs_change() {
 
 
 
-function wpse_131562_redirect() {
-    if (
-        ! is_user_logged_in()
-        && (is_page('my-account'))
-    ) {
-        // feel free to customize the following line to suit your needs
-        wp_redirect(home_url());
-        exit;
-    }
-}
-add_action('template_redirect', 'wpse_131562_redirect');
+// function wpse_131562_redirect() {
+//     if (
+//         ! is_user_logged_in()
+//         && (is_page('my-account'))
+//     ) {
+//         // feel free to customize the following line to suit your needs
+//         wp_redirect(home_url());
+//         exit;
+//     }
+// }
+// add_action('template_redirect', 'wpse_131562_redirect');
 
 
 
@@ -251,6 +251,12 @@ add_filter('register_post_type_args', 'remove_woocommerce_default_shop', 20, 2);
 
 
 
+// add_action( 'wp_logout', 'auto_redirect_external_after_logout');
+add_action('wp_logout','go_home');
+function go_home(){
+  wp_redirect( home_url() );
+  exit();
+}
 
 /**
  * restriction module
