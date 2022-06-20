@@ -32,7 +32,7 @@
         }
 
         &:hover {
-            background-color: rgba($color-purple, 0.15);
+            background-color: rgba($color-purple, .15);
         }
 
         &.active {
@@ -84,4 +84,5 @@
             border-width: 2px 2px 0 0;
         }
     }
+
 }

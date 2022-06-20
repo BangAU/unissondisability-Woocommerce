@@ -25,6 +25,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"
         integrity="sha512-17EgCFERpgZKcm0j0fEq1YCJuyAWdz9KUtv1EjVuaOz8pDnh/0nZxmU6BBXwaaxqoi9PQXnRWqlcDB027hgv9A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="<?php echo get_template_directory_uri();?>/css/vendor/datagrid.min.css">
+
     <link rel="stylesheet" href="<?php echo get_template_directory_uri();?>/css/index.css">
 
     <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png" />
@@ -145,13 +147,19 @@
                                 <div class="text">My Account</div>
                             </div>
                             <div class="custom-dropdown-list">
-                                <ul>
-                                    <li>Hi, <?php 
+                                <?php 
                                         $user_info = get_userdata(get_current_user_id());
                                         $first_name = $user_info->first_name;
-                                        $last_name = $user_info->last_name;
-                                        echo "$first_name $last_name";
+                                        //$last_name = $user_info->last_name;
                                     ?>
+                                <ul>
+                                    <li>Hi <?php if(($first_name)){
+                                        echo $first_name;
+                                    }else{
+                                        echo "There" ;
+                                    }
+                                    
+                                     ?>
 
                                     </li>
                                     <li><a
@@ -320,13 +328,30 @@
             <div class="container">
                 <div class="pageheader">
                     <?php if(!is_404()): ?>
+                    <?php if(!is_search()): ?>
                     <ul class="breadcrumb">
                         <li><a href="<?php echo esc_url( home_url( '/' ) ) ?>">Home</a></li>
                         <li><?php the_title(); ?></li>
                     </ul>
-                    <?php if(!is_search()): ?>
+
                     <h5 class="search-term"><?php the_title(); ?></h5>
                     <?php endif; ?>
+                    <?php endif; ?>
+                    <?php if(is_search()): ?>
+
+                    <ul class="breadcrumb">
+                        <li><a href="<?php echo esc_url( home_url( '/' ) ) ?>">Home</a></li>
+                        <li>Search Results</li>
+                    </ul>
+                    <!-- <h5 class="search-term">Search results: <span class="term">Flights</span></h5> -->
+                    <?php
+                                $s=get_search_query();
+                                $tax_term = $_GET['tax_term'];
+                                $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
+                                if($s != NULL) {
+                                    _e("<h5 class='search-term'>Search results: <span class='term'> ".$s."</span></h5>");
+                                }
+                                ?>
                     <?php endif; ?>
 
                 </div>

@@ -1,6 +1,7 @@
 <section class="section homefilter--section">
     <div class="container">
         <div class="homefilter">
+            <?php //echo do_shortcode('[searchandfilter id="horizontal_product_filter"]'); ?>
             <div class="homefilter-selects">
                 <div class="custom-dropdown">
                     <div class="custom-dropdown-btn">Program</div>
@@ -91,14 +92,17 @@
                     <div class="sortby">
                         <div class="custom-dropdown">
                             <div class="custom-dropdown-btn">
-                                <div class="text"><strong>Sort by -</strong> <span class="preview-text">Price
-                                        low to high</span></div>
+                                <div class="text"><strong>Sort by -</strong> <span class="preview-text">Default</span>
+                                </div>
                             </div>
                             <div class="custom-dropdown-list">
                                 <ul>
                                     <li>
-                                        <button class="is-checked" data-sort-direction="asc"
-                                            data-sort-value="priceLow">Price low to
+                                        <button class="reset-btn">Default</button>
+                                    </li>
+                                    <li>
+                                        <button data-sort-direction="asc" data-sort-value="priceLow">Price low
+                                            to
                                             high</button>
                                     </li>
                                     <li><button data-sort-direction="desc" data-sort-value="priceHigh">Price

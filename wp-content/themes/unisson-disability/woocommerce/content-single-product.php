@@ -77,14 +77,21 @@ if ( post_password_required() ) {
     <div class="productsec--text">
         <h6 class="heading-location">
             <?php 
-               $terms = wp_get_post_terms($product_id, 'location');
-
-               foreach ($terms as $term) {
-                echo get_term_link( $term ); // get the child term url
-                echo get_term_link( $term->parent ); // get parent term url
-                $parent = get_term($term->parent, 'location');
-                echo $parent->name;
-               }
+            global $product;
+            $id = $product->get_id();
+              $locations = array();
+              $locations_name = array();
+              $location_term_list = wp_get_post_terms($id, 'location', array("fields" => "all"));
+              foreach($location_term_list as $location_term_single) {
+              array_push($locations, $location_term_single->slug);
+              array_push($locations_name, $location_term_single->name);
+              }
+              //location tags merge
+              $locations_data = array_merge($locations);
+              $locations_name = array_merge($locations_name);
+            ?>
+            <?php print implode(' - ',$locations_name) ;
+            //var_dump($locations_name);
             ?>
         </h6>
         <?php 

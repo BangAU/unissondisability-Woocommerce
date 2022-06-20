@@ -212,7 +212,6 @@
         // @media (max-width: 767px) {
         //     font-size: 3rem;
         // }
-   
     }
 }
 
@@ -315,6 +314,7 @@
 
     .footer,
     .footer-bot-list {
+
         h4,
         li,
         a {
@@ -350,6 +350,7 @@
 
     .customaccord--item {
         .customaccord--item-header {
+
             &::before,
             &::after {
                 background-color: $color-black !important;

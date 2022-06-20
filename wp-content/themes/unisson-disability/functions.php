@@ -354,3 +354,9 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 if ( class_exists( 'WooCommerce' ) ) {
 	require get_template_directory() . '/inc/woocommerce.php';
 }
+
+function wpse_wc_disable_shop_archive( $post_type_args ) {
+    $post_type_args['has_archive'] = false;
+    return $post_type_args;
+}
+add_filter( 'woocommerce_register_post_type_product', 'wpse_wc_disable_shop_archive' );

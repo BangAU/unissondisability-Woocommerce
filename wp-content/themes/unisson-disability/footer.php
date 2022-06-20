@@ -19,17 +19,17 @@
                 <img src="<?php echo get_template_directory_uri();?>/./images/logo.svg" alt="">
             </div>
             <div class="row">
-            <?php if(have_rows('menu','options')): ?>
+                <?php if(have_rows('menu','options')): ?>
                 <div class="col-lg-3">
-                   
+
                     <ul class="footer-top-list">
-                       <?php 
+                        <?php 
                         while(have_rows('menu','options')): the_row(); 
                         $menu = get_sub_field('link_item','options'); ?>
                         <li><a href="<?php echo $menu['url'] ?>"><?php echo $menu['title'] ?></a></li>
-                       <?php endwhile; ?>
+                        <?php endwhile; ?>
                     </ul>
-                   
+
                 </div>
                 <?php endif; ?>
                 <?php $contact_info = get_field('contact_info','options'); ?>
@@ -43,14 +43,14 @@
                     <div class="lets-connect">
                         <h4>Let's connect</h4>
                         <div class="social-icons">
-                        <?php 
+                            <?php 
                             while(have_rows('social_links','options')): the_row(); 
                             $svg_icon = get_sub_field('svg_icon','options'); 
                             $link = get_sub_field('link','options'); ?>
                             <a href="<?php echo $link; ?>">
                                 <img src="<?php echo $svg_icon['url'] ?>" alt="">
                             </a>
-                           <?php endwhile; ?>
+                            <?php endwhile; ?>
                         </div>
                     </div>
                 </div>
@@ -68,7 +68,7 @@
         <div class="container">
             <div class="footer-logos dis-md">
                 <div class="footer-ndis">
-                     <?php if(!empty($ndis_logo)): ?>
+                    <?php if(!empty($ndis_logo)): ?>
                     <div class="logo">
                         <img src="<?php echo $ndis_logo['url'] ?>" alt="">
                     </div>
@@ -85,14 +85,14 @@
             </div>
             <div class="footer-bot-text">
                 <div class="footer-ndis app-md">
-                <?php if(!empty($ndis_logo)): ?>
+                    <?php if(!empty($ndis_logo)): ?>
                     <div class="logo">
                         <img src="<?php echo $ndis_logo['url'] ?>" alt="">
                     </div>
-                <?php endif; ?>
-                <?php if(!empty($ndis_text)): ?>
+                    <?php endif; ?>
+                    <?php if(!empty($ndis_text)): ?>
                     <p class="text"><?php echo $ndis_text; ?></p>
-                <?php endif; ?>
+                    <?php endif; ?>
                 </div>
                 <?php if(!empty($copyright_text)): ?>
                 <h2 class="copyright">&copy; <?php echo $copyright_text; ?></h2>
@@ -119,8 +119,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"
     integrity="sha512-XtmMtDEcNz2j7ekrtHvOVR4iwwaD6o/FUJe6+Zq+HgcCsk3kj4uSQQR8weQ2QVj1o0Pk6PwYLohm206ZzNfubg=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.2.2/isotope.pkgd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.2.2/isotope.pkgd.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" crossorigin="anonymous"></script>
+<script src="<?php echo get_template_directory_uri();?>/js/vendor/datagrid.min.js"></script>
 <script src="<?php echo get_template_directory_uri();?>/js/app.js"></script>
 <?php wp_footer(); ?>
 </body>
