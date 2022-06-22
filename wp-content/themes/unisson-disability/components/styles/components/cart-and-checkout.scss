@@ -1646,13 +1646,15 @@
 }
 
 .woocommerce-account.page-login,
+.woocommerce-lost-password,
 .woocommerce-account.page-register {
     .accountlogin--section {
         width: 100%;
     }
 }
 
-.woocommerce-account.page-login {
+.woocommerce-account.page-login,
+.woocommerce-lost-password {
     .woocommerce {
         position: relative;
         flex-flow: column;

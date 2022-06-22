@@ -24,15 +24,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
     accessibility()
 
-    isotopeInitv3()
+    // isotopeInitv3()
 
     preventClick()
 
+    // dataGridInit()
+
     attendeeCheckbox()
 
-    loginRegister()
-    
-    fundingType()
+    filterScroll()
 });
 
 //function called on window resize
@@ -889,284 +889,315 @@ function attendeeCheckbox() {
 //     });
 // }
 
-function isotopeInitv3() {
-    if (!$('.programfilter-listing').length) {
-        return;
-    }
+// function isotopeInitv3() {
+//     if (!$('.programfilter-listing').length) {
+//         return;
+//     }
 
-    var itemSelector = ".homefilter-item";
-    var $checkboxes = $('.homefilter-selects .checkbox input');
-    var $container = $('.programfilter-listing').isotope({
-        itemSelector: itemSelector,
-        getSortData: {
-            ascending: '.heading-title',
-            descending: '.heading-title',
-            priceLow: function (itemElem) {
-                var price = $(itemElem).find('.price-num').text().replace(/[^0-9]/g, '');
-                return parseInt(price);
-            },
-            priceHigh: function (itemElem) {
-                var price = $(itemElem).find('.price-num').text().replace(/[^0-9]/g, '');
-                return parseInt(price);
-            }
-        }
-    });
+//     var itemSelector = ".homefilter-item";
+//     var $checkboxes = $('.homefilter-selects .checkbox input');
+//     var $container = $('.programfilter-listing').isotope({
+//         itemSelector: itemSelector,
+//         getSortData: {
+//             ascending: '.heading-title',
+//             descending: '.heading-title',
+//             priceLow: function (itemElem) {
+//                 var price = $(itemElem).find('.price-num').text().replace(/[^0-9]/g, '');
+//                 return parseInt(price);
+//             },
+//             priceHigh: function (itemElem) {
+//                 var price = $(itemElem).find('.price-num').text().replace(/[^0-9]/g, '');
+//                 return parseInt(price);
+//             }
+//         }
+//     });
 
-    console.log($checkboxes)
+//     console.log($checkboxes)
 
-    // bind sort button click
-    $('.sortby .custom-dropdown').on('click', 'button', function () {
-        const parentList = $(this).parents('.custom-dropdown'),
-            allButtons = parentList.find('button'),
-            previewText = parentList.find('.preview-text');
+//     // bind sort button click
+//     $('.sortby .custom-dropdown').on('click', 'button', function () {
+//         const parentList = $(this).parents('.custom-dropdown'),
+//             allButtons = parentList.find('button'),
+//             previewText = parentList.find('.preview-text');
 
-        /* Get the element name to sort */
-        var sortValue = $(this).attr('data-sort-value');
+//         /* Get the element name to sort */
+//         var sortValue = $(this).attr('data-sort-value');
 
-        // /* Get the sorting direction: asc||desc */
-        var direction = $(this).attr('data-sort-direction');
+//         // /* Get the sorting direction: asc||desc */
+//         var direction = $(this).attr('data-sort-direction');
 
-        // /* convert it to a boolean */
-        var isAscending = (direction == 'asc');
+//         // /* convert it to a boolean */
+//         var isAscending = (direction == 'asc');
 
-        $('.homefilter-item').show();
-        $('.homefilter-item').removeClass('2');
-        $('.homefilter-item').addClass('1');
-        $('.pagination').hide();
-        setTimeout(function () {
-            $('.programfilter-listing').isotope('reloadItems').isotope();
-        }, 150);
+//         // $('.homefilter-item').show();
+//         // $('.homefilter-item').removeClass('2');
+//         // $('.homefilter-item').addClass('1');
+//         // $('.pagination').hide();
+//         // setTimeout(function () {
+//         //     $('.programfilter-listing').isotope('reloadItems').isotope();
+//         // }, 150);
 
-        /* pass it to isotope */
-        $container.isotope({
-            sortBy: sortValue,
-            sortAscending: isAscending
-        });
+//         /* pass it to isotope */
+//         $container.isotope({
+//             sortBy: sortValue,
+//             sortAscending: isAscending
+//         });
 
-        previewText.text($(this).text())
-    });
+//         previewText.text($(this).text())
+//     });
 
-    // setTimeout(function () {
-    //     $('.sortby .custom-dropdown li:first-child button').trigger('click');
-    // }, 150);
+//     // setTimeout(function () {
+//     //     $('.sortby .custom-dropdown li:first-child button').trigger('click');
+//     // }, 150);
 
-    //Ascending order
-    var responsiveIsotope = [
-        [767, 6]
-    ];
-    var itemsPerPageDefault = 6;
-    var itemsPerPage = defineItemsPerPage(itemsPerPageDefault);
-    var currentNumberPages = 1;
-    var currentPage = 1;
-    var currentFilter = '*';
-    var filterAttribute = 'data-filter';
-    var filterValue = "";
-    var pageAttribute = 'data-page';
-    var pagerClass = 'pagination';
+//     //Ascending order
+//     var responsiveIsotope = [
+//         [767, 6]
+//     ];
+//     var itemsPerPageDefault = 6;
+//     var itemsPerPage = defineItemsPerPage(itemsPerPageDefault);
+//     var currentNumberPages = 1;
+//     var currentPage = 1;
+//     var currentFilter = '*';
+//     var filterAttribute = 'data-filter';
+//     var filterValue = "";
+//     var pageAttribute = 'data-page';
+//     var pagerClass = 'pagination';
 
-    // update items based on current filters    
-    function changeFilter(selector) {
-        $container.isotope({
-            filter: selector
-        });
-    }
-    console.log(filterAttribute);
-    //grab all checked filters and goto page on fresh isotope output
-    function goToPage(n) {
-        currentPage = n;
-        var selector = itemSelector;
-        var inclusives = [];
-        var exclusives = [];
+//     // update items based on current filters    
+//     function changeFilter(selector) {
+//         $container.isotope({
+//             filter: selector
+//         });
+//     }
 
-        // console.log('n', n)
-        $('.pagination li').removeClass('active')
-        $('.pagination li:nth-child(' + n + ')').addClass('active')
+//     //grab all checked filters and goto page on fresh isotope output
+//     function goToPage(n) {
+//         currentPage = n;
+//         var selector = itemSelector;
+//         var inclusives = [];
+//         var exclusives = [];
 
-        // for each box checked, add its value and push to array
-        // for each box checked, add its value and push to array
-        $checkboxes.each(function (i, elem) {
-            // if checkbox, use value if checked
-            if (elem.checked) {
-                inclusives.push(elem.value);
-            }
-        });
-        // smash all values back together for 'and' filtering and add page number to the string of filters
-        filterValue = inclusives.length ?
-            inclusives.map(f => `.${f}.${currentPage}`).join(', ') :
-            `*.${currentPage}`;
-        changeFilter(filterValue);
-        $('.pagination').show();
+//         // console.log('n', n)
+//         $('.pagination li').removeClass('active')
+//         $('.pagination li:nth-child(' + n + ')').addClass('active')
 
-        $('.sortby .custom-dropdown').trigger('click')
-    }
+//         // for each box checked, add its value and push to array
+//         // for each box checked, add its value and push to array
+//         $checkboxes.each(function (i, elem) {
+//             // if checkbox, use value if checked
+//             if (elem.checked) {
+//                 inclusives.push(elem.value);
+//             }
+//         });
+//         // smash all values back together for 'and' filtering and add page number to the string of filters
+//         filterValue = inclusives.length ?
+//             inclusives.map(f => `.${f}.${currentPage}`).join(', ') :
+//             `*.${currentPage}`;
+//         changeFilter(filterValue);
+//         $('.pagination').show();
 
-    // determine page breaks based on window width and preset values
-    function defineItemsPerPage(itemsPerPageDefault) {
-        var pages = itemsPerPageDefault;
+//         $('.sortby .custom-dropdown').trigger('click')
+//     }
 
-        for (var i = 0; i < responsiveIsotope.length; i++) {
-            if ($(window).width() <= responsiveIsotope[i][0]) {
-                pages = responsiveIsotope[i][1];
-                break;
-            }
-        }
-        return pages;
-    }
+//     // determine page breaks based on window width and preset values
+//     function defineItemsPerPage(itemsPerPageDefault) {
+//         var pages = itemsPerPageDefault;
 
-    function nextPage() {
-        $('.pagination .prev').click(function () {
-            var siblingPagers = $(this).siblings('.pager');
-            var activeNth;
-            if (siblingPagers.first().hasClass('active')) {
-                return;
-            }
-            siblingPagers.each(function (i) {
-                if ($(this).hasClass('active')) {
-                    activeNth = i + 1
-                }
-            })
-            goToPage(activeNth - 1);
-            $('html, body').animate({
-                scrollTop: $('.programfilter').offset().top
-            }, 1000)
-        })
-        $('.pagination .next').click(function () {
-            var siblingPagers = $(this).siblings('.pager');
-            var activeNth;
-            if (siblingPagers.last().hasClass('active')) {
-                return;
-            }
-            siblingPagers.each(function (i) {
-                if ($(this).hasClass('active')) {
-                    activeNth = i + 1
-                }
-            })
-            goToPage(activeNth + 1);
-            $('html, body').animate({
-                scrollTop: $('.homefilter').offset().top
-            }, 1000)
-        })
-    }
+//         for (var i = 0; i < responsiveIsotope.length; i++) {
+//             if ($(window).width() <= responsiveIsotope[i][0]) {
+//                 pages = responsiveIsotope[i][1];
+//                 break;
+//             }
+//         }
+//         return pages;
+//     }
 
-    function setPagination() {
-        var SettingsPagesOnItems = function () {
-            var itemsLength = $container.children(itemSelector).length;
-            var pages = Math.ceil(itemsLength / itemsPerPage);
-            var item = 1;
-            var page = 1;
-            var selector = itemSelector;
-            var inclusives = [];
-            // for each box checked, add its value and push to array
-            $checkboxes.each(function (i, elem) {
-                if (elem.checked) {
-                    var selector = `${itemSelector}.${elem.value}`;
-                    inclusives.push(selector);
-                }
-            });
-            // smash all values back together for 'OR' filtering
-            filterValue = inclusives.length ? inclusives.join(',') : '*';
+//     function nextPage() {
+//         $('.pagination .prev').click(function () {
+//             var siblingPagers = $(this).siblings('.pager');
+//             var activeNth;
+//             if (siblingPagers.first().hasClass('active')) {
+//                 return;
+//             }
+//             siblingPagers.each(function (i) {
+//                 if ($(this).hasClass('active')) {
+//                     activeNth = i + 1
+//                 }
+//             })
+//             goToPage(activeNth - 1);
+//             $('html, body').animate({
+//                 scrollTop: $('.programfilter').offset().top
+//             }, 1000)
+//         })
+//         $('.pagination .next').click(function () {
+//             var siblingPagers = $(this).siblings('.pager');
+//             var activeNth;
+//             if (siblingPagers.last().hasClass('active')) {
+//                 return;
+//             }
+//             siblingPagers.each(function (i) {
+//                 if ($(this).hasClass('active')) {
+//                     activeNth = i + 1
+//                 }
+//             })
+//             goToPage(activeNth + 1);
+//             $('html, body').animate({
+//                 scrollTop: $('.homefilter').offset().top
+//             }, 1000)
+//         })
+//     }
 
-            // find each child element with current filter values
-            $container.children(filterValue).each(function () {
-                // increment page if a new one is needed
-                if (item > itemsPerPage) {
-                    page++;
-                    item = 1;
-                }
-                // add page number to element as a class
-                wordPage = page.toString();
+//     function setPagination() {
+//         var SettingsPagesOnItems = function () {
+//             var itemsLength = $container.children(itemSelector).length;
+//             var pages = Math.ceil(itemsLength / itemsPerPage);
+//             var item = 1;
+//             var page = 1;
+//             var selector = itemSelector;
+//             var inclusives = [];
+//             // for each box checked, add its value and push to array
+//             $checkboxes.each(function (i, elem) {
+//                 if (elem.checked) {
+//                     var selector = `${itemSelector}.${elem.value}`;
+//                     inclusives.push(selector);
+//                 }
+//             });
+//             // smash all values back together for 'OR' filtering
+//             filterValue = inclusives.length ? inclusives.join(',') : '*';
 
-                var classes = $(this).attr('class').split(' ');
-                var lastClass = classes[classes.length - 1];
-                // last class shorter than 4 will be a page number, if so, grab and replace
-                if (lastClass.length < 4) {
-                    $(this).removeClass();
-                    classes.pop();
-                    classes.push(wordPage);
-                    classes = classes.join(' ');
-                    $(this).addClass(classes);
-                } else {
-                    // if there was no page number, add it
-                    $(this).addClass(wordPage);
-                }
-                item++;
-            });
-            currentNumberPages = page;
+//             // find each child element with current filter values
+//             $container.children(filterValue).each(function () {
+//                 // increment page if a new one is needed
+//                 if (item > itemsPerPage) {
+//                     page++;
+//                     item = 1;
+//                 }
+//                 // add page number to element as a class
+//                 wordPage = page.toString();
 
-        }();
+//                 var classes = $(this).attr('class').split(' ');
+//                 var lastClass = classes[classes.length - 1];
+//                 // last class shorter than 4 will be a page number, if so, grab and replace
+//                 if (lastClass.length < 4) {
+//                     $(this).removeClass();
+//                     classes.pop();
+//                     classes.push(wordPage);
+//                     classes = classes.join(' ');
+//                     $(this).addClass(classes);
+//                 } else {
+//                     // if there was no page number, add it
+//                     $(this).addClass(wordPage);
+//                 }
+//                 item++;
+//             });
+//             currentNumberPages = page;
 
-        // create page number navigation
-        var CreatePagers = function () {
+//         }();
 
-            var $isotopePager = ($('.' + pagerClass).length == 0) ? $('<ul class="' + pagerClass + '"></ul>') : $('.' + pagerClass);
+//         // create page number navigation
+//         var CreatePagers = function () {
 
-            $isotopePager.html('');
-            if (currentNumberPages > 1) {
-                for (var i = 0; i < currentNumberPages; i++) {
-                    var $pager = $('<li href="javascript:void(0);" class="pager" data-page="' + (i + 1) + '"></li>');
-                    $pager.html(i + 1);
+//             var $isotopePager = ($('.' + pagerClass).length == 0) ? $('<ul class="' + pagerClass + '"></ul>') : $('.' + pagerClass);
 
-                    $pager.click(function () {
-                        var page = $(this).eq(0).attr(pageAttribute);
-                        goToPage(page);
-                    });
-                    $pager.appendTo($isotopePager);
-                }
-                $('<li class="prev"></li><li class="next"></li>').appendTo($isotopePager);
-                // $('').appendTo($isotopePager);
-                nextPage()
-            }
-            $container.after($isotopePager);
-        }();
+//             $isotopePager.html('');
+//             if (currentNumberPages > 1) {
+//                 for (var i = 0; i < currentNumberPages; i++) {
+//                     var $pager = $('<li href="javascript:void(0);" class="pager" data-page="' + (i + 1) + '"></li>');
+//                     $pager.html(i + 1);
 
-        $('.homefilter .pagination .pager').click(function () {
-            $('html, body').animate({
-                scrollTop: $('.homefilter').offset().top
-            }, 1000)
-        })
-    }
+//                     $pager.click(function () {
+//                         var page = $(this).eq(0).attr(pageAttribute);
+//                         goToPage(page);
+//                     });
+//                     $pager.appendTo($isotopePager);
+//                 }
+//                 $('<li class="prev"></li><li class="next"></li>').appendTo($isotopePager);
+//                 // $('').appendTo($isotopePager);
+//                 nextPage()
+//             }
+//             $container.after($isotopePager);
+//         }();
 
-    // remove checks from all boxes and refilter
-    function clearAll() {
-        $container.isotope({
-            filter: '*',
-            sortBy: ''
-        });
-        $('.sortby .custom-dropdown-btn .preview-text').text($('.sortby .custom-dropdown-list li:first-child button').text())
+//         $('.homefilter .pagination .pager').click(function () {
+//             $('html, body').animate({
+//                 scrollTop: $('.homefilter').offset().top
+//             }, 1000)
+//         })
+//     }
 
-        $checkboxes.each(function (i, elem) {
-            if (elem.checked) {
-                elem.checked = null;
-            }
-        });
-        currentFilter = '*';
-        setPagination();
-        goToPage(1);
-    }
+//     // remove checks from all boxes and refilter
+//     function clearAll() {
+//         $container.isotope({
+//             filter: '*',
+//             sortBy: ''
+//         });
+//         $('.sortby .custom-dropdown-btn .preview-text').text($('.sortby .custom-dropdown-list li:first-child button').text())
 
-    setPagination();
-    goToPage(1);
+//         $checkboxes.each(function (i, elem) {
+//             if (elem.checked) {
+//                 elem.checked = null;
+//             }
+//         });
+//         currentFilter = '*';
+//         setPagination();
+//         goToPage(1);
+//     }
 
-    //event handlers
-    $checkboxes.change(function () {
-        var filter = $(this).attr(filterAttribute);
-        currentFilter = filter;
-        setPagination();
-        goToPage(1);
-    });
+//     setPagination();
+//     goToPage(1);
 
-    $('#clear-filters').click(function () {
-        clearAll()
-        // filterSelectActive()
-    });
-}
+//     //event handlers
+//     $checkboxes.change(function () {
+//         var filter = $(this).attr(filterAttribute);
+//         currentFilter = filter;
+//         setPagination();
+//         goToPage(1);
+//     });
+
+//     $('#clear-filters').click(function () {
+//         clearAll()
+//         // filterSelectActive()
+//     });
+// }
+
 
 function preventClick() {
     $('#gtranslate_selector').parents('a').removeAttr('href')
 }
 
+function dataGridInit() {
+    datagrid({
+        currentPage: 0,
+        pageSize: 6,
+        pagesRange: 4,
+        // deepLink: true
+    })
 
-function loginRegister() {
+    $('.homefilter .pagination').click(function () {
+        $('html, body').animate({
+            scrollTop: $('.homefilter').offset().top
+        }, 1000)
+    })
+
+    $('#clear-filters').click(function () {
+        // $('.homefilter-selects input').prop('checked', false);
+        $('.sortby select').prop('selectedIndex', 0);
+        $('.homefilter-selects input:checked').trigger('click');
+    })
+}
+
+function filterScroll() {
+    if ($('.homefilter').length > 0) {
+        if (window.location.href.indexOf("page/") > -1) {
+            $('html, body').animate({
+                scrollTop: $('.homefilter').offset().top - 60
+            }, 200);
+        }
+    }
+}
+
+jQuery(document).ready(function ($) {
     var url = window.location.href;
     url = url.split("/");
     url = url[url.length - 2];
@@ -1176,71 +1207,31 @@ function loginRegister() {
     if (url == "register") {
         $("#customer_login .u-column1").remove(); // Remove Login Div
     }
-}
+})
 
-// function fundingType() {
-//     $('.self_manage_funding_text').hide();
-//     $('.plan-managed-funding-text').hide();
-//     $('.ndia-managed-funding-text').hide();
-   
-//         $('input:radio[name="_funding_type_radio_"]').each(
-//             function () {
-//                 if ($(this).is(':checked') && $(this).val() == 'Self_managed') {
-//                     $('.self_manage_funding_text').show();
-//                     $('.plan-managed-funding-text').hide();
-//                     $('.ndia-managed-funding-text').hide();
-//                 } else if ($(this).is(':checked') && $(this).val() == 'Plan_managed') {
-//                     $('.self_manage_funding_text').hide();
-//                     $('.plan-managed-funding-text').show();
-//                     $('.ndia-managed-funding-text').hide();
-//                 }
-//                 // FINISH FROM HERE
-//                 else if ($(this).is(':checked') && $(this).val() == 'Ndia_managed') {
-//                     $('.self_manage_funding_text').hide();
-//                     $('.plan-managed-funding-text').hide();
-//                     $('.ndia-managed-funding-text').show();
-//                 }
-
-//             }
-//         );
-// }
-
-function fundingType() {
+$(document).ready(function () {
     $('.self_manage_funding_text').hide();
     $('.plan-managed-funding-text').hide();
     $('.ndia-managed-funding-text').hide();
-   
-    $('.input-radio').each(function () {
-        var $that = $(this);
-        $that.change(function(){
-            var $closest = $that.closest('.Attendee-group');
-            if ($that.is(':checked') && $that.val() == 'Self_managed') {
-                $closest.find('.self_manage_funding_text').show();
-                $closest.find('.plan-managed-funding-text').hide();
-                $closest.find('.ndia-managed-funding-text').hide();
-            } else if ($that.is(':checked') && $that.val() == 'Plan_managed') {
-                $closest.find('.self_manage_funding_text').hide();
-                $closest.find('.plan-managed-funding-text').show();
-                $closest.find('.ndia-managed-funding-text').hide();
+    $('input:radio[name="_funding_type_radio_1"]').change(
+        function () {
+            if ($(this).is(':checked') && $(this).val() == 'Self_managed') {
+                $('.self_manage_funding_text').show();
+                $('.plan-managed-funding-text').hide();
+                $('.ndia-managed-funding-text').hide();
+            } else if ($(this).is(':checked') && $(this).val() == 'Plan_managed') {
+                $('.self_manage_funding_text').hide();
+                $('.plan-managed-funding-text').show();
+                $('.ndia-managed-funding-text').hide();
             }
             // FINISH FROM HERE
-            else if ($that.is(':checked') && $that.val() == 'Ndia_managed') {
-                $closest.find('.self_manage_funding_text').hide();
-                $closest.find('.plan-managed-funding-text').hide();
-                $closest.find('.ndia-managed-funding-text').show();
+            else if ($(this).is(':checked') && $(this).val() == 'Ndia_managed') {
+                $('.self_manage_funding_text').hide();
+                $('.plan-managed-funding-text').hide();
+                $('.ndia-managed-funding-text').show();
             }
-        })
-    })
-}
 
-// $(document).ready(function(){
-     
-//     $('.Attendee-group').click(function(){
-//             var count = 1;
-//     $('.funding-type-radio .woocommerce-input-wrapper').each(function () {
-//                 $(this).find('input:radio[name="_funding_type_radio_1"]').attr('name', 'xRay'+count);
-				
-//                 count++;
-//             });
-//          });
-//  });
+        }
+    );
+
+});

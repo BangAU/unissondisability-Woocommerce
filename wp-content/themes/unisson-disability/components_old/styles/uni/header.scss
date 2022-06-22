@@ -67,26 +67,8 @@
                             width: 66.66666%;
                         }
 
-                        &.large {
-                            pointer-events: none;
-                            cursor: none;
-
-                            a {
-                                opacity: .5;
-                            }
-
-                            &::after {
-                                width: 100%;
-                            }
-                        }
-
-                        &.smaller-text.min {
-                            pointer-events: none;
-                            cursor: none;
-
-                            a {
-                                opacity: .5;
-                            }
+                        &.large::after {
+                            width: 100%;
                         }
 
                         a {

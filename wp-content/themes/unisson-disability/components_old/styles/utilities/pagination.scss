@@ -6,10 +6,6 @@
     margin-top: 77px;
     margin-bottom: 0;
 
-    .pagination {
-        margin-top: 0px;
-    }
-
     &.text-center {
         text-align: center;
         justify-content: center;
@@ -36,83 +32,20 @@
         }
 
         &:hover {
-
-            span,
-            a {
-                background-color: rgba($color-purple, .15);
-            }
+            background-color: rgba($color-purple, .15);
         }
 
-        &.active,
-        .current {
+        &.active {
             color: #fff;
             background-color: $color-purple;
         }
 
-        span,
         a {
             display: flex;
             align-items: center;
             justify-content: center;
             width: 100%;
             height: 100%;
-        }
-
-        .sr-only {
-            display: none;
-        }
-
-        &.page {
-
-            &-first,
-            &-last {
-                display: none;
-            }
-
-            &-prev,
-            &-next {
-                color: $color-purple;
-                background-color: transparent;
-
-                &.disabled {
-                    cursor: default;
-                    opacity: .35;
-                }
-
-                .page-link {
-                    color: transparent;
-                }
-
-                &::before {
-                    content: "";
-                    position: absolute;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-50%, -50%) rotate(45deg);
-                    width: 8px;
-                    height: 8px;
-                    border: 2px solid $color-purple;
-                }
-            }
-
-            &-prev {
-                margin-left: 0;
-                order: -1;
-
-                &::before {
-                    transform: translate(-25%, -50%) rotate(45deg);
-                    border-width: 0 0 2px 2px;
-                }
-            }
-
-            &-next {
-                margin-right: 0;
-
-                &::before {
-                    transform: translate(-65%, -50%) rotate(45deg);
-                    border-width: 2px 2px 0 0;
-                }
-            }
         }
     }
 
@@ -151,4 +84,5 @@
             border-width: 2px 2px 0 0;
         }
     }
+
 }

@@ -23,6 +23,7 @@ if ($post->post_type === 'page') {
         'acf/hero-slider-module',
         'acf/cta-module',
         'acf/shop-module',
+        'acf/shop-module-ajax',
         
     );
 

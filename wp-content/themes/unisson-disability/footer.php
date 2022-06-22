@@ -110,7 +110,39 @@
         </div>
     </div>
 </footer>
+<style>
+.cvf_pag_loading {
+    padding: 20px;
+}
 
+.cvf-universal-pagination ul {
+    margin: 0;
+    padding: 0;
+}
+
+.cvf-universal-pagination ul li {
+    display: inline;
+    margin: 3px;
+    padding: 4px 8px;
+    background: #FFF;
+    color: black;
+}
+
+.cvf-universal-pagination ul li.active:hover {
+    cursor: pointer;
+    background: #1E8CBE;
+    color: white;
+}
+
+.cvf-universal-pagination ul li.inactive {
+    background: #7E7E7E;
+}
+
+.cvf-universal-pagination ul li.selected {
+    background: #1E8CBE;
+    color: white;
+}
+</style>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"
     integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"
