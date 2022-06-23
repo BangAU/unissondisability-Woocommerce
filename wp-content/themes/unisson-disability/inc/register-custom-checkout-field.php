@@ -556,68 +556,14 @@ function my_custom_checkout_field_order_meta_keys( $keys ) {
     }
 
 
+    add_action('woocommerce_admin_order_data_after_billing_address', 'display_billing_options_value_in_admin_order', 10, 1);
 
-// Display additional billing fields values
-// add_action('woocommerce_order_details_after_order_table', 'display_additional_billing_fields_values' ); // Order received and view
-// add_action( 'woocommerce_email_after_order_table', 'display_additional_billing_fields_values' ); // Email notifications
-// //add_action( 'woocommerce_admin_order_data_after_billing_address', 'display_additional_billing_fields_values' ); // Admin edit Order
-// function display_additional_billing_fields_values( $order ) {
+function display_billing_options_value_in_admin_order($order) {
+    echo '<h2>' . __( 'Attendee details', 'woocommerce' ) . '</h2>';
 
-//         // Only for email notifications
-//         if( ! ( is_wc_endpoint_url() || is_checkout() || is_admin() ) ){
-//             echo '<style>
-//             table.customer-details {width: 100%; font-family: \'Helvetica Neue\', Helvetica, Roboto, Arial, sans-serif;
-//                 color: #737373; border: 1px solid #e4e4e4; margin-bottom:40px;}
-//             table.customer-details td{text-align: left; border-top-width: 4px; color: #737373; border: 1px solid #e4e4e4;
-//                 padding: 12px; padding-bottom: 4px;}
-//             </style>';
-//         }
-//         // Others
-//         else {
-//             echo '<style> table.customer-details, table.customer-details td { border: none; } </style>';
-//         }
-
-//         echo '<h2>' . __( 'Customer details', 'woocommerce' ) . '</h2>';
-//         echo '<div><table class="customer-details" cellspacing="0">';
-
-//         // Loop through order items
-//         $count = $woocommerce->cart->cart_contents_count;
-//                 // Loop through item quantity
-//                 for( $i = 0, $x = 1; $i < $count; $i++, $x++ ){
-//                     foreach( $order->get_items() as $item ){
-//                     // Name
-//                     echo '<tr><td><strong>' . __("First Name of Attendee", "woocommerce") . ' ' . $x;
-//                     echo ': </strong>' . $order->get_meta('attendee_first_name_'.$x) . '</td>';
-//                     // Email
-//                     echo '<td><strong>' . __("Last Name of Attendee", "woocommerce") . ' ' . $x;
-//                     echo ': </strong>' . $order->get_meta('attendee_last_name_'.$x) . '</td></tr>';
-//                 } break;
-//                 }
-               
-            
-        
-//         echo '</table></div>';
-//}    
-
-       
-
-
-// add_filter( 'woocommerce_email_order_meta_fields', 'custom_woocommerce_email_order_meta_fields', 10, 3 );
-
-// function custom_woocommerce_email_order_meta_fields( $keys, $sent_to_admin, $order ) {
-//     $i = 0;
-// 	for($k=1; $k<= 50; $k++) {
-//         $i++;
-//     echo '<div class="ndia-managed-funding-text Attendee-group"><h3>Name of Attendee' .$i. '</h3>';
-//     $keys['attendee_first_name_'] = array(
-//         'label' => __( 'First of Attendee' ),
-//         'value' => get_post_meta( $order->id, 'attendee_first_name_', true ),
-//     );
-//     $keys['attendee_first_name_'] = array(
-//         'label' => __( 'Last of Attendee' ),
-//         'value' => get_post_meta( $order->id, 'attendee_last_name_', true ),
-//     );
-//     echo '</div>';
-//  }
-//     return $keys;
-// }
+    if ($value = get_post_meta($order->get_id(), 'attendee_first_name_', true))
+        echo '<p><strong>' . __('First Name of Attendee', 'woocommerce') . ':</strong> ' . $value . '</p>';
+    if ($value = get_post_meta($order->get_id(), 'attendee_last_name_', true))
+        echo '<p><strong>' . __('Last Name of Attendee', 'woocommerce') . ':</strong> ' . $value . '</p>';
+   
+}
