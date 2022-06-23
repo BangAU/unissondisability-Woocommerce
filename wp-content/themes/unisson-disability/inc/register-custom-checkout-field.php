@@ -535,7 +535,9 @@ function customise_checkout_field_update_order_meta($order_id) {
 /**
  * Add fields to order emails
  **/
-
+add_action('woocommerce_order_details_after_order_table', 'my_custom_checkout_field_order_meta_keys' ); // Order received and view
+// add_action( 'woocommerce_email_after_order_table', 'my_custom_checkout_field_order_meta_keys' ); // Email notifications
+add_action( 'woocommerce_admin_order_data_after_billing_address', 'my_custom_checkout_field_order_meta_keys' ); // Admin edit Order
 add_action('woocommerce_email_order_meta_keys', 'my_custom_checkout_field_order_meta_keys');
 
 function my_custom_checkout_field_order_meta_keys( $keys ) {
@@ -554,16 +556,3 @@ function my_custom_checkout_field_order_meta_keys( $keys ) {
     }	
     return $keys;
     }
-
-
-    add_action('woocommerce_admin_order_data_after_billing_address', 'display_billing_options_value_in_admin_order', 10, 1);
-
-function display_billing_options_value_in_admin_order($order) {
-    echo '<h2>' . __( 'Attendee details', 'woocommerce' ) . '</h2>';
-
-    if ($value = get_post_meta($order->get_id(), 'attendee_first_name_', true))
-        echo '<p><strong>' . __('First Name of Attendee', 'woocommerce') . ':</strong> ' . $value . '</p>';
-    if ($value = get_post_meta($order->get_id(), 'attendee_last_name_', true))
-        echo '<p><strong>' . __('Last Name of Attendee', 'woocommerce') . ':</strong> ' . $value . '</p>';
-   
-}
