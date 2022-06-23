@@ -321,7 +321,9 @@
                     <?php endif; ?>
 
                 </div>
-                <?php ic_custom_posts_pagination($loop, $paged); ?>
+                <?php ic_custom_posts_pagination($loop, $paged); 
+                
+                ?>
 
 
             </div>

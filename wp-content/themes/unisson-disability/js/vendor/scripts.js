@@ -92,3 +92,35 @@ $('#clear-filters').click(function () {
 
 })(jQuery);
 
+
+// Wrap the AJAX call to `test_function` in a `function`.
+function ajaxTestFunction( page_num ) {
+   
+    jQuery.ajax({           
+
+        url : wpAjax.ajax_url,
+        type : 'post',
+        data : {
+            action : 'test_function',
+            security : rml_obj.check_nonce,
+            test_data : checkboxes,
+            paged: page_num || 1
+        },
+        success : function( response ) {
+
+            jQuery('[result').html(response);
+
+        }
+    });
+}
+
+
+
+// And add a listener/callback for the pagination clicks.
+jQuery( '#result' ).on( 'click', '.pagination a', function( e ){
+    e.preventDefault();
+
+    var paged = /[\?&]paged=(\d+)/.test( this.href ) && RegExp.$1;
+
+    ajaxTestFunction( paged );
+});
