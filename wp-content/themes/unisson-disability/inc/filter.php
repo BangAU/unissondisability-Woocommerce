@@ -6,25 +6,29 @@ add_action( 'wp_ajax_filter', 'filter_ajax' );
 
 function filter_ajax() {
 
-
+    
+    
     $program_category = $_POST['program-category'];
     $program_location = $_POST['program-location'];
     $program_suburb = $_POST['program-suburb'];
     $sort_by = $_POST['sort_by'];
-    
-    
+    $paged = $_POST['paged'];
 
-    $property_per_page = 6;
-    if ( get_query_var( 'paged' ) ) { 
-      $paged = get_query_var( 'paged' ); 
-    } elseif ( get_query_var( 'page' ) ) { 
-      $paged = get_query_var( 'page' ); 
-    } else { 
-      $paged = 1; 
-    }
+    print_r($_POST);
+
+    echo $paged;
+
+    // $property_per_page = 6;
+    // if ( get_query_var( 'paged' ) ) { 
+    //   $paged = get_query_var( 'paged' ); 
+    // } elseif ( get_query_var( 'page' ) ) { 
+    //   $paged = get_query_var( 'page' ); 
+    // } else { 
+    //   $paged = 1; 
+    // }
     $args = array(
       'post_type'        	=> 'product',
-      'posts_per_page'  	=> $property_per_page ? (int)$property_per_page : 6,
+      'posts_per_page'  	=> 6, //$property_per_page ? (int)$property_per_page : 6,
       'paged' 		=> $paged,
       
     );
@@ -180,28 +184,13 @@ $end_date = get_field('tour_end_date', $post_id);
     </div>
 
     <?php endwhile; ?>
-    <?php ic_custom_posts_pagination($loop, $paged); 
+    <?php ic_custom_posts_pagination($loop, $paged); ?>
 
-// $total_pages = $loop->max_num_pages;
-// if($total_pages > 1) {
-//     $current_page = max(1, get_query_var('page')); ?>
-    <!-- <ul class="pagination text-center"> -->
-    <!-- <?php //echo paginate_links(array(
-        'base'// => get_pagenum_link(1) . '%_%',
-        // 'format'// => 'page/%#%',
-      //  'current' //=> $current_page,
-        //'total' //=> $total_pages,
-        //'prev_text' //=> __('<< prev'),
-       // 'next_text' //=>__('next >>'), 
-//));?>
-</ul>
-<?php// } ?>
+    <?php wp_reset_postdata(); ?>
 
-<?php wp_reset_postdata(); ?>
-
-<?php else : ?>
-<p class="text-warning"><?php esc_html_e( 'Sorry, no property matched your criteria.', 'ichelper' ); ?></p>
-<?php endif; ?>
-<?php
+    <?php else : ?>
+    <p class="text-warning"><?php esc_html_e( 'Sorry, no property matched your criteria.', 'ichelper' ); ?></p>
+    <?php endif; ?>
+    <?php
     die();
 }

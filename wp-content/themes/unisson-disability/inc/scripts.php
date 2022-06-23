@@ -6,8 +6,9 @@ function load_scripts() {
 
 	wp_enqueue_script('ajax', get_template_directory_uri() . '/js/vendor/scripts.js', array('jquery'), NULL, true);
 
-	wp_localize_script('ajax' , 'wpAjax', 
-		array('ajaxUrl' => admin_url('admin-ajax.php'))
+	wp_localize_script('ajax' ,'bobz', 'wpAjax', 
+		array('nonce'    => wp_create_nonce( 'bobz' ),
+            'ajaxUrl' => admin_url('admin-ajax.php'))
 	);
 
 }

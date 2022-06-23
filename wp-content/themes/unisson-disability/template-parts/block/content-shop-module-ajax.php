@@ -312,6 +312,7 @@
 
                     <?php endwhile; ?>
 
+                    <?php ic_custom_posts_pagination($loop, $paged); ?>
 
                     <?php wp_reset_postdata(); ?>
 
@@ -321,9 +322,6 @@
                     <?php endif; ?>
 
                 </div>
-                <?php ic_custom_posts_pagination($loop, $paged); 
-                
-                ?>
 
 
             </div>
@@ -331,4 +329,7 @@
 
     </div>
     </div>
+</section>
+<section class="section homefilter--section">
+    <?php echo do_shortcode('[ajax_filter_posts per_page="6"]'); ?>
 </section>
