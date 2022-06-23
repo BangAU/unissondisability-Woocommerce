@@ -180,28 +180,14 @@ $end_date = get_field('tour_end_date', $post_id);
     </div>
 
     <?php endwhile; ?>
-    <?php ic_custom_posts_pagination($loop, $paged); 
+    <?php //ic_custom_posts_pagination($loop, $paged); ?>
 
-// $total_pages = $loop->max_num_pages;
-// if($total_pages > 1) {
-//     $current_page = max(1, get_query_var('page')); ?>
-    <!-- <ul class="pagination text-center"> -->
-    <!-- <?php //echo paginate_links(array(
-        'base'// => get_pagenum_link(1) . '%_%',
-        // 'format'// => 'page/%#%',
-      //  'current' //=> $current_page,
-        //'total' //=> $total_pages,
-        //'prev_text' //=> __('<< prev'),
-       // 'next_text' //=>__('next >>'), 
-//));?>
-</ul>
-<?php// } ?>
 
-<?php wp_reset_postdata(); ?>
+    <?php wp_reset_postdata(); ?>
 
-<?php else : ?>
-<p class="text-warning"><?php esc_html_e( 'Sorry, no property matched your criteria.', 'ichelper' ); ?></p>
-<?php endif; ?>
-<?php
+    <?php else : ?>
+    <p class="text-warning"><?php esc_html_e( 'Sorry, no property matched your criteria.', 'ichelper' ); ?></p>
+    <?php endif; ?>
+    <?php
     die();
 }
