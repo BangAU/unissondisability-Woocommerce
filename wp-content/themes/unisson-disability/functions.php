@@ -262,6 +262,7 @@ function go_home(){
  * restriction module
  */
 require get_template_directory() . '/inc/scripts.php';
+
 require get_template_directory() . '/inc/filter.php';
 require get_template_directory() . '/inc/module-restriction.php';
 /**
@@ -362,3 +363,18 @@ function wpse_wc_disable_shop_archive( $post_type_args ) {
     return $post_type_args;
 }
 add_filter( 'woocommerce_register_post_type_product', 'wpse_wc_disable_shop_archive' );
+
+function thecodehubs_enqueue_script_style() {
+    wp_register_script( 'custom-script', get_stylesheet_directory_uri(). '/js/vendor/custom.js', array('jquery'), false, true );
+    // Localize the script with new data
+    $script_data_array = array(
+      'ajaxurl' => admin_url( 'admin-ajax.php' ),
+      'security' => wp_create_nonce( 'load_more_posts' ),
+    );
+    wp_localize_script( 'custom-script', 'blog', $script_data_array );
+    // Enqueued script with localized data.
+    wp_enqueue_script( 'custom-script' ); 
+  }
+  add_action( 'wp_enqueue_scripts', 'thecodehubs_enqueue_script_style' );
+  
+  

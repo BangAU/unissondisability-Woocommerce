@@ -121,6 +121,7 @@
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" crossorigin="anonymous"></script>
 <script src="<?php echo get_template_directory_uri();?>/js/app.js"></script>
+
 <?php wp_footer(); ?>
 </body>
 

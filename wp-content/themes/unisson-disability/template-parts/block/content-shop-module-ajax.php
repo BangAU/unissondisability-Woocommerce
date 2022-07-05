@@ -104,35 +104,8 @@
                                     <option value="program-asc">Ascending
                                         A to Z</option>
                                 </select>
-                                <!-- <div class="custom-dropdown-btn"> -->
 
-
-                                <!-- <div class="text"><strong>Sort by -</strong>
-                                        <span class="preview-text">Price
-                                            low to high</span>
-                                    </div>-->
                             </div>
-
-                            <!-- <div class="custom-dropdown-list">
-                                    <ul>
-                                        <li>
-                                            <button class="is-checked" data-sort-direction="asc"
-                                                data-sort-value="priceLow">Price low to
-                                                high</button>
-                                        </li>
-                                        <li><button data-sort-direction="desc" data-sort-value="priceHigh">Price
-                                                high to low</button></li>
-                                        <li><button id="program-asc" name="program-asc">Ascending
-                                                A to Z</button></li>
-                                        <li><button data-sort-direction="desc" data-sort-value="descending">Descending Z
-                                                to
-                                                A</button></li>
-                                        </li>
-
-                                    </ul>
-
-                                </div> -->
-                            <!-- </div> -->
                         </div>
                     </div>
                     <fieldset data-css-form="group right" style="display:none;">
@@ -149,20 +122,10 @@
                             $program_suburb = $_POST['program-suburb'];
                             $sort_by = $_POST['sort_by'];
                             
-                            // echo $sort_by;
-                            //  print_r($_POST);
-                            
-                            $property_per_page = 6;
-                            if ( get_query_var( 'paged' ) ) { 
-                                $paged = get_query_var( 'paged' ); 
-                            } elseif ( get_query_var( 'page' ) ) { 
-                                $paged = get_query_var( 'page' ); 
-                            } else { 
-                                $paged = 1; 
-                            }
+                          
                             $args = array(
                                 'post_type'        	=> 'product',
-                                'posts_per_page'  	=> $property_per_page ? (int)$property_per_page : 6,
+                                'posts_per_page'  	=>  6,
                                 'paged' 		=> $paged,
                                 
                             );
@@ -310,9 +273,9 @@
                         </div>
                     </div>
 
-                    <?php endwhile; ?>
-
-                    <?php ic_custom_posts_pagination($loop, $paged); ?>
+                    <?php endwhile; 
+                    
+                    ?>
 
                     <?php wp_reset_postdata(); ?>
 
@@ -322,14 +285,12 @@
                     <?php endif; ?>
 
                 </div>
-
+                <div class="loadmore">Load More</div>
+                <span class="no-more-post"></span>
 
             </div>
         </div>
 
     </div>
     </div>
-</section>
-<section class="section homefilter--section">
-    <?php echo do_shortcode('[ajax_filter_posts per_page="6"]'); ?>
 </section>

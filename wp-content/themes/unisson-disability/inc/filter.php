@@ -5,30 +5,22 @@ add_action( 'wp_ajax_nopriv_filter', 'filter_ajax' );
 add_action( 'wp_ajax_filter', 'filter_ajax' );
 
 function filter_ajax() {
+    // check_ajax_referer('load_more_posts', 'security');
+    check_ajax_referer( 'load_more_posts', $_POST['security'], false );
 
-    
+
+    $paged = $_POST['page'];
     
     $program_category = $_POST['program-category'];
     $program_location = $_POST['program-location'];
     $program_suburb = $_POST['program-suburb'];
     $sort_by = $_POST['sort_by'];
-    $paged = $_POST['paged'];
+    
+   
 
-    print_r($_POST);
-
-    echo $paged;
-
-    // $property_per_page = 6;
-    // if ( get_query_var( 'paged' ) ) { 
-    //   $paged = get_query_var( 'paged' ); 
-    // } elseif ( get_query_var( 'page' ) ) { 
-    //   $paged = get_query_var( 'page' ); 
-    // } else { 
-    //   $paged = 1; 
-    // }
     $args = array(
       'post_type'        	=> 'product',
-      'posts_per_page'  	=> 6, //$property_per_page ? (int)$property_per_page : 6,
+      'posts_per_page'  	=>  6,
       'paged' 		=> $paged,
       
     );
@@ -94,8 +86,6 @@ function filter_ajax() {
   }
 
 
-   
-
 global $product;
 $loop = new WP_Query($args );
 if ( $loop->have_posts() ) :
@@ -159,12 +149,7 @@ $end_date = get_field('tour_end_date', $post_id);
                         <?php } ?>
                         <?php 
                         if($product->product_type=='variable') {
-                            // $available_variations = $product->get_available_variations();
-                            // $count = count($available_variations)-1;
-                            // $variation_id=$available_variations[$count]['variation_id']; // Getting the variable id of just the 1st product. You can loop $available_variations to get info about each variation.
-                            // $variable_product1= new WC_Product_Variation( $variation_id );
-                            // $regular_price = $variable_product1 ->regular_price;
-                            // $sales_price = $variable_product1 ->sale_price; 
+                            
                             $prices = $product->get_variation_prices('min', true );
                             $maxprices = $product->get_variation_price( 'max', true ) ;
                             $min_price = current( $prices['price'] );
@@ -184,13 +169,17 @@ $end_date = get_field('tour_end_date', $post_id);
     </div>
 
     <?php endwhile; ?>
-    <?php ic_custom_posts_pagination($loop, $paged); ?>
+    <?php 
+             
+   ?>
+
 
     <?php wp_reset_postdata(); ?>
 
     <?php else : ?>
-    <p class="text-warning"><?php esc_html_e( 'Sorry, no property matched your criteria.', 'ichelper' ); ?></p>
+    <p class="text-warning"><?php esc_html_e( 'Sorry, no product matched your criteria.', 'ichelper' ); ?></p>
     <?php endif; ?>
+
     <?php
-    die();
+    wp_die();
 }
