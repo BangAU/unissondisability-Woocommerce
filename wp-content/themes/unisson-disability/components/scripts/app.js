@@ -1174,11 +1174,11 @@ function dataGridInit() {
         // deepLink: true
     })
 
-    $('.homefilter .pagination').click(function () {
-        $('html, body').animate({
-            scrollTop: $('.homefilter').offset().top
-        }, 1000)
-    })
+    // $('.homefilter .pagination').click(function () {
+    //     $('html, body').animate({
+    //         scrollTop: $('.homefilter').offset().top
+    //     }, 1000)
+    // })
 
     $('#clear-filters').click(function () {
         // $('.homefilter-selects input').prop('checked', false);
@@ -1235,4 +1235,3 @@ $(document).ready(function () {
     );
 
 });
-

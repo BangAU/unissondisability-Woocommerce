@@ -40,5 +40,8 @@ $('#clear-filters').click(function () {
 })
 
 
+
 })(jQuery);
+
+
 

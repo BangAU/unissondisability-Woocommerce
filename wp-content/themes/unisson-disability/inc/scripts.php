@@ -4,7 +4,7 @@
 */
 function load_scripts() {
 
-	wp_enqueue_script('ajax', get_template_directory_uri() . '/js/vendor/scripts.js', array('jquery'), NULL, true);
+	wp_enqueue_script('ajax', get_template_directory_uri() . '/js/scripts.js', array('jquery'), NULL, true);
 
 	wp_localize_script('ajax', 'wpAjax', 
 		array('ajaxUrl' => admin_url('admin-ajax.php'))

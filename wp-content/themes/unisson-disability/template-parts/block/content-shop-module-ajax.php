@@ -117,79 +117,12 @@
             <div class="programfilter-body">
                 <div class="row programfilter-listing" data-js-filter="target">
                     <?php
-                            $program_category = $_POST['program-category'];
-                            $program_location = $_POST['program-location'];
-                            $program_suburb = $_POST['program-suburb'];
-                            $sort_by = $_POST['sort_by'];
-                            
-                          
-                            $args = array(
-                                'post_type'        	=> 'product',
-                                'posts_per_page'  	=>  6,
-                                'paged' 		=> $paged,
-                                
-                            );
-                        
-                        
-                            if(!empty($program_category)){
-                                $args[tax_query] = array(
-                                    array(
-                                        'taxonomy' => 'product_cat',
-                                        'field' => 'term_id',
-                                        'terms' => $program_category
-                                    )
-                                    );
-                            }
-                            if(!empty($program_location)){
-                                $args[tax_query] = array(
-                                    array(
-                                        'taxonomy' => 'location',
-                                        'field' => 'term_id',
-                                        'terms' => $program_location
-                                    )
-                                    );
-                            }
-                            if(!empty($program_suburb)){
-                                $args[tax_query] = array(
-                                    array(
-                                        'taxonomy' => 'location',
-                                        'field' => 'term_id',
-                                        'terms' => $program_suburb
-                                    )
-                                    );
-                            }
-
-                            if(!empty($sort_by)){
-
-                            $order_param = '';
-
-                            if($sort_by == 'dateposted-desc'){
-                                $order_param = 'date';
-                            }
-                            elseif($sort_by == 'price-desc'){
-                                $order_param = 'meta_value_num';
-                                $args['meta_key'] = '_price';
-                                $args['order'] = 'DESC';
-                            }
-                            elseif($sort_by == 'price-asc'){
-                                $order_param = 'meta_value_num';
-                                $args['meta_key'] = '_price';
-                                $args['order'] = 'ASC';
-                            }elseif($sort_by == 'program-asc'){
-                                // $order_param = 'meta_value_num';
-                                //$args['meta_key'] = '_price';
-                                $args['order'] = 'ASC';
-                            }elseif($sort_by == 'program-asc'){
-                                // $order_param = 'meta_value_num';
-                                // $args['meta_key'] = '_price';
-                                $args['order'] = 'ASC';
-                            } else {
-                                $order_param = 'date';
-                            }
-                            $args['orderby'] = $order_param;
-                            }
-
-                        
+                       
+                        $args = array(
+                            'post_type'        	=> 'product',
+                            'posts_per_page' => '6',
+                            'paged' => 1,
+                        );
                         global $product;
                         $loop = new WP_Query($args );
                         if ( $loop->have_posts() ) :
@@ -272,23 +205,16 @@
                             </div>
                         </div>
                     </div>
-
-                    <?php endwhile; 
-                    
+                    <?php endwhile;                     
                     ?>
-
                     <?php wp_reset_postdata(); ?>
-
-                    <?php else : ?>
-                    <p class="text-warning">
-                        <?php esc_html_e( 'Sorry, no property matched your criteria.', 'ichelper' ); ?></p>
                     <?php endif; ?>
-
                 </div>
-                <div class="loadmore">Load More</div>
-                <span class="no-more-post"></span>
-
             </div>
+            <!-- <p class="para"></p> -->
+            <!-- <button id="more_posts">Load More</button> -->
+            <div class="loadmore">Load More...</div>
+
         </div>
 
     </div>
