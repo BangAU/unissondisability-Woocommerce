@@ -36,15 +36,16 @@ function filter_ajax() {
           )
           );
   }
-  if(!empty($program_suburb)){
-      $args[tax_query] = array(
-          array(
-              'taxonomy' => 'location',
-              'field' => 'term_id',
-              'terms' => $program_suburb
-          )
-          );
-  }
+
+//   if(!empty($program_suburb)){
+//       $args[tax_query] = array(
+//           array(
+//               'taxonomy' => 'location',
+//               'field' => 'term_id',
+//               'terms' => $program_suburb
+//           )
+//           );
+//   }
 
   if(!empty($sort_by)){
 

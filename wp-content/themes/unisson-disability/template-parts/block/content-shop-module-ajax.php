@@ -68,7 +68,7 @@
                                                 <li>
                                                     <div class="checkbox">
                                                         <input id="<?php echo $value->slug; ?>" type="checkbox"
-                                                            name="program-suburb[]" value="<?= $value->term_id; ?>">
+                                                            name="program-location[]" value="<?= $value->term_id; ?>">
                                                         <label
                                                             for="<?php echo $value->slug; ?>"><?php echo $value->name; ?></label>
                                                     </div>
