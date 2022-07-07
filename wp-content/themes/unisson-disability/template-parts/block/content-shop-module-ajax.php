@@ -119,8 +119,7 @@
                     <?php
                        
                         $args = array(
-                            'post_type'        	=> 'product',
-                            'posts_per_page' => '6',
+                            'post_type'  => 'product',
                             'paged' => 1,
                         );
                         global $product;
@@ -211,9 +210,7 @@
                     <?php endif; ?>
                 </div>
             </div>
-            <!-- <p class="para"></p> -->
-            <!-- <button id="more_posts">Load More</button> -->
-            <div class="loadmore">Load More...</div>
+
 
         </div>
 

@@ -53,7 +53,7 @@ input[type="email"] {
         display: flex;
         flex-wrap: wrap;
 
-        >*:not(:last-child) {
+        > *:not(:last-child) {
             margin-right: 32px;
         }
     }
@@ -99,7 +99,7 @@ input:not([type="submit"]) {
     }
 }
 
-.formfield+.forgot-password {
+.formfield + .forgot-password {
     margin-top: -20px;
     margin-bottom: 28px;
 }
@@ -149,6 +149,11 @@ select {
 .sortby {
     display: flex;
     align-items: center;
+
+    select {
+        min-width: 320px;
+        padding-left: 12px;
+    }
 
     .custom-dropdown {
         &-btn {

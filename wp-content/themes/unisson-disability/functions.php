@@ -365,37 +365,16 @@ function wpse_wc_disable_shop_archive( $post_type_args ) {
 add_filter( 'woocommerce_register_post_type_product', 'wpse_wc_disable_shop_archive' );
 
 
-// add_action('wp_enqueue_scripts', 'myscripts');
-// function myscripts() { 
-// wp_register_script('functions', get_template_directory_uri() .'/js/custom.js');
-// wp_localize_script( 'functions', 'ajax_posts', array(
-// 'ajaxurl' => admin_url( 'admin-ajax.php' ),
-// ));
-//  wp_enqueue_script('functions');
-// }
-// if (isset($_REQUEST['posts_per_page'])) {
-// $pageCount = $_REQUEST['posts_per_page'];
-// $wp_query->set("posts_per_page", $pageCount);
-// $wp_query->get_posts();
-// }
-
-function blog_scripts() {
-    // Register the script
-    wp_register_script( 'custom-script', get_stylesheet_directory_uri(). '/js/custom.js', array('jquery'), false, true );
-  
-    // Localize the script with new data
-    $script_data_array = array(
-        'ajaxurl' => admin_url( 'admin-ajax.php' ),
-        'security' => wp_create_nonce( 'load_more_posts' ),
-    );
-    wp_localize_script( 'custom-script', 'blog', $script_data_array );
-  
-    // Enqueued script with localized data.
-    wp_enqueue_script( 'custom-script' );
+add_action('wp_enqueue_scripts', 'myscripts');
+function myscripts() { 
+wp_register_script('functions', get_template_directory_uri() .'/js/custom.js');
+wp_localize_script( 'functions', 'ajax_posts', array(
+'ajaxurl' => admin_url( 'admin-ajax.php' ),
+));
+ wp_enqueue_script('functions');
 }
-add_action( 'wp_enqueue_scripts', 'blog_scripts' );
-
-
-
-add_action('wp_ajax_load_posts_by_ajax', 'load_posts_by_ajax_callback');
-add_action('wp_ajax_nopriv_load_posts_by_ajax', 'load_posts_by_ajax_callback');
+if (isset($_REQUEST['posts_per_page'])) {
+$pageCount = $_REQUEST['posts_per_page'];
+$wp_query->set("posts_per_page", $pageCount);
+$wp_query->get_posts();
+}

@@ -1,22 +1,20 @@
-    <?php
+<?php
 
 
 add_action( 'wp_ajax_nopriv_filter', 'filter_ajax' );
 add_action( 'wp_ajax_filter', 'filter_ajax' );
 
 function filter_ajax() {
-    //check_ajax_referer('load_more_posts', 'security');
+
     $program_category = $_POST['program-category'];
     $program_location = $_POST['program-location'];
     $program_suburb = $_POST['program-suburb'];
     $sort_by = $_POST['sort_by'];
-    //$page = (isset($_POST['pageNumber'])) ? $_POST['pageNumber'] : 0;
+    $page = (isset($_POST['pageNumber'])) ? $_POST['pageNumber'] : 0;
 
     $args = array(
       'post_type'        	=> 'product',
-     // 'paged'    => $page,
-     'posts_per_page' => '6',
-     'paged' => $_POST['page'],
+      'post_per_page'    => -1,
       
     );
 
@@ -117,30 +115,30 @@ $start_date = get_field('tour_start_date', $post_id);
 $end_date = get_field('tour_end_date', $post_id);
 
 ?>
-    <div class="col-lg-4 col-md-6 homefilter-item">
-        <div class="programfilter-card">
-            <div class="media">
-                <img src="<?php echo esc_url( $thumbnail_url[0] ); ?>" alt="">
-            </div>
-            <div class="text">
-                <h6 class="heading-location">
-                    <?php print implode(' - ',$locations_name) ;?>
-                </h6>
-                <h3 class="heading-title"><?php the_title(); ?></h3>
-                <span class="heading-date"><?php echo $start_date; ?> -
-                    <?php echo $end_date; ?></span>
-                <p><?php the_excerpt();  ?>
-                </p>
-                <div class="card-footer">
-                    <div class="price">
-                        <p>Total Cost</p>
-                        <?php 
+<div class="col-lg-4 col-md-6 homefilter-item">
+    <div class="programfilter-card">
+        <div class="media">
+            <img src="<?php echo esc_url( $thumbnail_url[0] ); ?>" alt="">
+        </div>
+        <div class="text">
+            <h6 class="heading-location">
+                <?php print implode(' - ',$locations_name) ;?>
+            </h6>
+            <h3 class="heading-title"><?php the_title(); ?></h3>
+            <span class="heading-date"><?php echo $start_date; ?> -
+                <?php echo $end_date; ?></span>
+            <p><?php the_excerpt();  ?>
+            </p>
+            <div class="card-footer">
+                <div class="price">
+                    <p>Total Cost</p>
+                    <?php 
                          global $product;
 
                         if ($product->is_type( 'simple' )) { ?>
-                        <p class="price-num"><?php echo $product->get_price_html(); ?></p>
-                        <?php } ?>
-                        <?php 
+                    <p class="price-num"><?php echo $product->get_price_html(); ?></p>
+                    <?php } ?>
+                    <?php 
                         if($product->product_type=='variable') {
                            
                             $prices = $product->get_variation_prices('min', true );
@@ -151,20 +149,20 @@ $end_date = get_field('tour_end_date', $post_id);
                             $maxPrice = sprintf( __( '%1$s', 'woocommerce' ), wc_price( $maxprices ) );
                                                     
                                                     ?>
-                        <p class="price-num"><?php echo $maxPrice;?></p>
-                        <?php   } ?>
+                    <p class="price-num"><?php echo $maxPrice;?></p>
+                    <?php   } ?>
 
-                    </div>
-                    <a href="<?php the_permalink(); ?>" class="btn btn-yellow">View more</a>
                 </div>
+                <a href="<?php the_permalink(); ?>" class="btn btn-yellow">View more</a>
             </div>
         </div>
     </div>
+</div>
 
-    <?php endwhile; ?>
-    <?php wp_reset_postdata(); ?>
-    <?php endif; ?>
+<?php endwhile; ?>
+<?php wp_reset_postdata(); ?>
+<?php endif; ?>
 
-    <?php
-    wp_die();
+<?php
+    // die();
 }
