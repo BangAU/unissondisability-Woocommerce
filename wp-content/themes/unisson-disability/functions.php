@@ -365,16 +365,16 @@ function wpse_wc_disable_shop_archive( $post_type_args ) {
 add_filter( 'woocommerce_register_post_type_product', 'wpse_wc_disable_shop_archive' );
 
 
-add_action('wp_enqueue_scripts', 'myscripts');
-function myscripts() { 
-wp_register_script('functions', get_template_directory_uri() .'/js/custom.js');
-wp_localize_script( 'functions', 'ajax_posts', array(
-'ajaxurl' => admin_url( 'admin-ajax.php' ),
-));
- wp_enqueue_script('functions');
-}
-if (isset($_REQUEST['posts_per_page'])) {
-$pageCount = $_REQUEST['posts_per_page'];
-$wp_query->set("posts_per_page", $pageCount);
-$wp_query->get_posts();
-}
+// add_action('wp_enqueue_scripts', 'myscripts');
+// function myscripts() { 
+// wp_register_script('functions', get_template_directory_uri() .'/js/custom.js');
+// wp_localize_script( 'functions', 'ajax_posts', array(
+// 'ajaxurl' => admin_url( 'admin-ajax.php' ),
+// ));
+//  wp_enqueue_script('functions');
+// }
+// if (isset($_REQUEST['posts_per_page'])) {
+// $pageCount = $_REQUEST['posts_per_page'];
+// $wp_query->set("posts_per_page", $pageCount);
+// $wp_query->get_posts();
+// }

@@ -119,8 +119,8 @@
                     <?php
                        
                         $args = array(
-                            'post_type'  => 'product',
-                            'paged' => 1,
+                            'post_type'        	=> 'product',
+                            'paged'    => 1,
                         );
                         global $product;
                         $loop = new WP_Query($args );
@@ -210,7 +210,6 @@
                     <?php endif; ?>
                 </div>
             </div>
-
 
         </div>
 

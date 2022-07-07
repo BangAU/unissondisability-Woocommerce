@@ -10,7 +10,7 @@ function filter_ajax() {
     $program_location = $_POST['program-location'];
     $program_suburb = $_POST['program-suburb'];
     $sort_by = $_POST['sort_by'];
-    $page = (isset($_POST['pageNumber'])) ? $_POST['pageNumber'] : 0;
+    //$page = (isset($_POST['pageNumber'])) ? $_POST['pageNumber'] : 0;
 
     $args = array(
       'post_type'        	=> 'product',
