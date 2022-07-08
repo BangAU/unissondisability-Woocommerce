@@ -47,11 +47,12 @@
                 url: wpAjax.ajaxUrl,
                 data: data,
                 type: 'post',
-                success: function (result) {
+                success: function (result, data) {
                     // hide loading div show the result body
                     $('[data-js-filter=target]').html(result);
                     $('.loading-div').hide()
                     $('.programfilter-body').show();
+                    
 
 
                     paginationInit()

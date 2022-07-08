@@ -29,3 +29,36 @@ $args = array(
 register_taxonomy( 'location', 'product', $args );
 register_taxonomy_for_object_type( 'location', 'product' );
 }
+
+
+
+add_action( 'init', 'custom_taxonomy_suburb' );
+function custom_taxonomy_suburb()  {
+$labels = array(
+    'name'                       => 'Suburbs',
+    'singular_name'              => 'Suburb',
+    'menu_name'                  => 'Suburb',
+    'all_items'                  => 'All Suburbs',
+    'parent_item'                => 'Parent Suburb',
+    'parent_item_colon'          => 'Parent Suburb:',
+    'new_item_name'              => 'New Suburb Name',
+    'add_new_item'               => 'Add New Suburb',
+    'edit_item'                  => 'Edit Suburb',
+    'update_item'                => 'Update Suburb',
+    'separate_items_with_commas' => 'Separate Suburb with commas',
+    'search_items'               => 'Search Suburb',
+    'add_or_remove_items'        => 'Add or remove Suburb',
+    'choose_from_most_used'      => 'Choose from the most used Suburb',
+);
+$args = array(
+    'labels'                     => $labels,
+    'hierarchical'               => true,
+    'public'                     => true,
+    'show_ui'                    => true,
+    'show_admin_column'          => true,
+    'show_in_nav_menus'          => true,
+    'show_tagcloud'              => false,
+);
+register_taxonomy( 'suburb', 'product', $args );
+register_taxonomy_for_object_type( 'suburb', 'product' );
+}

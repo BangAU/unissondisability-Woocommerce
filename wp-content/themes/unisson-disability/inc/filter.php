@@ -11,13 +11,14 @@ function filter_ajax() {
     $program_suburb = $_POST['program-suburb'];
     $sort_by = $_POST['sort_by'];
     //$page = (isset($_POST['pageNumber'])) ? $_POST['pageNumber'] : 0;
-
+   
     $args = array(
       'post_type'        	=> 'product',
       'post_per_page'    => -1,
       
     );
 
+   
   if(!empty($program_category)){
       $args[tax_query] = array(
           array(
@@ -28,24 +29,66 @@ function filter_ajax() {
           );
   }
   if(!empty($program_location)){
+    
       $args[tax_query] = array(
           array(
               'taxonomy' => 'location',
               'field' => 'term_id',
-              'terms' => $program_location
+              'terms' => $program_location,
           )
           );
   }
 
-//   if(!empty($program_suburb)){
-//       $args[tax_query] = array(
-//           array(
-//               'taxonomy' => 'location',
-//               'field' => 'term_id',
-//               'terms' => $program_suburb
-//           )
-//           );
+  if(!empty($program_suburb)){
+      $args[tax_query] = array(
+        'relation' => 'AND',
+          array(
+              'taxonomy' => 'location',
+              'field' => 'term_id',
+              'terms' => $program_suburb
+          )
+          );
+  }
+
+
+  if( isset( $program_category ) && isset( $program_location ) ){
+    $args[tax_query] = array(
+        array(
+            'taxonomy' => 'product_cat',
+            'field' => 'term_id',
+            'terms' => $program_category
+        ),
+        array(
+            'taxonomy' => 'location',
+            'field' => 'term_id',
+            'terms' => $program_location,
+        )
+        );
+  }
+//   if( isset( $program_location ) && isset( $program_suburb ) ){
+//     $args[tax_query] = array(
+//         'relation' => 'AND',
+
+//         array(
+//             'taxonomy' => 'location',
+//             'field' => 'term_id',
+//             'terms' => $program_location,
+//             'operator' => 'NOT IN',
+            
+//         ),
+//         array(
+//             'taxonomy' => 'location',
+//             'field' => 'term_id',
+//             'terms' => $program_suburb,
+//             //'operator' => 'NOT IN',
+
+//         )
+//         );
 //   }
+
+ // for taxonomies / categories
+
+  
 
   if(!empty($sort_by)){
 
