@@ -12,14 +12,39 @@ function filter_ajax() {
     $sort_by = $_POST['sort_by'];
     //$page = (isset($_POST['pageNumber'])) ? $_POST['pageNumber'] : 0;
    
-    $args = array(
-      'post_type'        	=> 'product',
-      'post_per_page'    => -1,
-      
-    );
+    /* print_r($program_category);
+    print_r($program_location);
+    print_r($program_suburb); */
+
+        $args = array(
+        'post_type'        	=> 'product',
+        'post_per_page'    => -1,
+        'tax_query' => array(
+                'relation' => 'AND',
+                array(
+                    'taxonomy' => 'product_cat',
+                    'field'    => 'term_id',
+                    'terms'    => array(54,56),
+                    'operator' => 'IN',
+                ),
+                array(
+                    'taxonomy' => 'location',
+                    'field'    => 'term_id',
+                    'terms'    => array(67,68),
+                    'operator' => 'IN',
+                ),
+                array(
+                    'taxonomy' => 'location',
+                    'field'    => 'term_id',
+                    'terms'    => array(77,78),
+                    'operator' => 'IN',
+                ),
+            ),
+        
+        );
 
    
-  if(!empty($program_category)){
+ /*  if(!empty($program_category)){
       $args[tax_query] = array(
           array(
               'taxonomy' => 'product_cat',
@@ -37,9 +62,26 @@ function filter_ajax() {
               'terms' => $program_location,
           )
           );
-  }
+  } */
 
-  if(!empty($program_suburb)){
+
+
+   /*  $args[tax_query] = array(
+        'relation' => 'AND',
+        array(
+            'taxonomy' => 'movie_genre',
+            'field'    => 'slug',
+            'terms'    => array( 'action', 'comedy' ),
+        ),
+        array(
+            'taxonomy' => 'actor',
+            'field'    => 'term_id',
+            'terms'    => array( 103, 115, 206 ),
+            'operator' => 'NOT IN',
+        ),
+    ) */
+
+  /* if(!empty($program_suburb)){
       $args[tax_query] = array(
         'relation' => 'AND',
           array(
@@ -64,7 +106,7 @@ function filter_ajax() {
             'terms' => $program_location,
         )
         );
-  }
+  } */
 //   if( isset( $program_location ) && isset( $program_suburb ) ){
 //     $args[tax_query] = array(
 //         'relation' => 'AND',
