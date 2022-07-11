@@ -5,17 +5,40 @@ add_action( 'wp_ajax_nopriv_filter', 'filter_ajax' );
 add_action( 'wp_ajax_filter', 'filter_ajax' );
 
 function filter_ajax() {
+    $program_category_list = get_terms(array(
+        'taxonomy'=> 'product_cat',
+        'field'    => 'term_id',
+        'hide_empty' => false, 
+    )); 
+    $program_location_list = get_terms(array(
+        'taxonomy'=> 'location',
+        'field'    => 'term_id',
+        'hide_empty' => false, 
+    )); 
+    $program_suburb_list = get_terms(array(
+        'taxonomy'=> 'location',
+        'field'    => 'term_id',
+        'hide_empty' => false,
+        'parent'=> $term->term_id,
+    ));
 
-    $program_category = $_POST['program-category'];
-    $program_location = $_POST['program-location'];
-    $program_suburb = $_POST['program-suburb'];
+    print_r($program_category_list);
+    die();
+
+
+    $program_category = isset($_POST['program-category'])?$_POST['program-category']:$program_category_list;
+    $program_location = isset($_POST['program-location'])?$_POST['program-location']:$program_location_list;
+    $program_suburb = isset($_POST['program-suburb'])?$_POST['program-suburb']:$program_suburb_list;
     $sort_by = $_POST['sort_by'];
     //$page = (isset($_POST['pageNumber'])) ? $_POST['pageNumber'] : 0;
    
-    /* print_r($program_category);
+   /*  print_r($program_category);
+    print("\n");
     print_r($program_location);
-    print_r($program_suburb); */
-
+    print("\n");
+    print_r($program_suburb);
+    die();
+ */
         $args = array(
         'post_type'        	=> 'product',
         'post_per_page'    => -1,
@@ -24,19 +47,19 @@ function filter_ajax() {
                 array(
                     'taxonomy' => 'product_cat',
                     'field'    => 'term_id',
-                    'terms'    => array(54,56),
+                    'terms'    => $program_category,
                     'operator' => 'IN',
                 ),
                 array(
                     'taxonomy' => 'location',
                     'field'    => 'term_id',
-                    'terms'    => array(67,68),
+                    'terms'    => $program_location,
                     'operator' => 'IN',
                 ),
                 array(
                     'taxonomy' => 'location',
                     'field'    => 'term_id',
-                    'terms'    => array(77,78),
+                    'terms'    => $program_suburb,
                     'operator' => 'IN',
                 ),
             ),
