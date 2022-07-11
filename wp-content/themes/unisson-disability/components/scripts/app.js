@@ -131,6 +131,7 @@ function customCheckboxDropdown() {
             if (btnCheckbox.is(":checked")) {
                 $this.addClass('open');
                 listObj.slideDown();
+                childCheckbox.prop('checked', true);
             } else {
                 $this.removeClass('open');
                 listObj.slideUp();
