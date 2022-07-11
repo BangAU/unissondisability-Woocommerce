@@ -5,26 +5,30 @@ add_action( 'wp_ajax_nopriv_filter', 'filter_ajax' );
 add_action( 'wp_ajax_filter', 'filter_ajax' );
 
 function filter_ajax() {
-    $program_category_list = get_terms(array(
+   /*  $program_category_list = get_terms(array(
         'taxonomy'=> 'product_cat',
         'field'    => 'term_id',
         'hide_empty' => false, 
-    )); 
-    $program_location_list = get_terms(array(
-        'taxonomy'=> 'location',
-        'field'    => 'term_id',
-        'hide_empty' => false, 
-    )); 
-    $program_suburb_list = get_terms(array(
-        'taxonomy'=> 'location',
-        'field'    => 'term_id',
-        'hide_empty' => false,
-        'parent'=> $term->term_id,
-    ));
-
-    print_r($program_category_list);
-    die();
-
+    ));  */
+    $program_category_list = [];
+    $program_location_list = [];
+    $program_suburb_list = [];
+    
+    $program_category_list = get_terms(
+        array( 'product_cat' ),
+        array( 'fields' => 'ids' )
+    );
+    
+    $terms = get_terms(array('taxonomy'=> 'location','hide_empty' => false, ));  
+    foreach ( $terms as $term ) {
+        if ($term->parent == 0 ) {
+            array_push($program_location_list, $term->term_id);
+            $subterms = get_terms(array('taxonomy'=> 'location','hide_empty' => false,'parent'=> $term->term_id));
+            foreach ($subterms as $key => $value) { 
+                array_push($program_suburb_list, $value->term_id);
+            }
+        }
+    }
 
     $program_category = isset($_POST['program-category'])?$_POST['program-category']:$program_category_list;
     $program_location = isset($_POST['program-location'])?$_POST['program-location']:$program_location_list;
@@ -32,39 +36,33 @@ function filter_ajax() {
     $sort_by = $_POST['sort_by'];
     //$page = (isset($_POST['pageNumber'])) ? $_POST['pageNumber'] : 0;
    
-   /*  print_r($program_category);
-    print("\n");
-    print_r($program_location);
-    print("\n");
-    print_r($program_suburb);
-    die();
- */
-        $args = array(
-        'post_type'        	=> 'product',
-        'post_per_page'    => -1,
-        'tax_query' => array(
-                'relation' => 'AND',
-                array(
-                    'taxonomy' => 'product_cat',
-                    'field'    => 'term_id',
-                    'terms'    => $program_category,
-                    'operator' => 'IN',
-                ),
-                array(
-                    'taxonomy' => 'location',
-                    'field'    => 'term_id',
-                    'terms'    => $program_location,
-                    'operator' => 'IN',
-                ),
-                array(
-                    'taxonomy' => 'location',
-                    'field'    => 'term_id',
-                    'terms'    => $program_suburb,
-                    'operator' => 'IN',
-                ),
+
+    $args = array(
+    'post_type'        	=> 'product',
+    'post_per_page'    => -1,
+    'tax_query' => array(
+            'relation' => 'AND',
+            array(
+                'taxonomy' => 'product_cat',
+                'field'    => 'term_id',
+                'terms'    => $program_category,
+                'operator' => 'IN',
             ),
-        
-        );
+            array(
+                'taxonomy' => 'location',
+                'field'    => 'term_id',
+                'terms'    => $program_location,
+                'operator' => 'IN',
+            ),
+            array(
+                'taxonomy' => 'location',
+                'field'    => 'term_id',
+                'terms'    => $program_suburb,
+                'operator' => 'IN',
+            ),
+        ),
+    
+    );
 
    
  /*  if(!empty($program_category)){
