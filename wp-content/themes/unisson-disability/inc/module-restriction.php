@@ -31,8 +31,6 @@ if ($post->post_type === 'page') {
 
 }
 
-
-
 return $allowed_block_types;
 }
 
