@@ -55,7 +55,7 @@ global $product;
                         </div>
                         <div class="text">
                             <h6 class="heading-location">
-                                 <?php print implode(' - ',$locations_name) ;?>
+                                <?php print implode(' - ',$locations_name) ;?>
                             </h6>
                             <h3 class="heading-title"><?php the_title(); ?></h3>
                             <?php if(!empty($start_date || $end_date )): ?>
@@ -120,6 +120,10 @@ global $product;
                 <li class="next"><a href="#"></a></li>
             </ul> -->
             <?php
+            $args = array(
+                'post_per_page'        	=> 5,
+                
+            );
             if ( $GLOBALS['wp_query']->max_num_pages <= 1 ) {
             return;
             }
@@ -136,15 +140,15 @@ global $product;
             )
             );
             $links = paginate_links( $args ); ?>
-                <ul class="pagination text-center">
-                    <?php
+            <ul class="pagination text-center">
+                <?php
                         foreach ( $links as $key => $link ) {
                         ?>
-                    <li class="page-item <?php echo strpos( $link, 'current' ) ? 'active' : ''; ?>">
-                        <?php echo str_replace( 'page-numbers', 'page-link', $link ); ?>
-                    </li>
-                    <?php } ?>
-                </ul>
+                <li class="page-item <?php echo strpos( $link, 'current' ) ? 'active' : ''; ?>">
+                    <?php echo str_replace( 'page-numbers', 'page-link', $link ); ?>
+                </li>
+                <?php } ?>
+            </ul>
         </div>
     </div>
 </section>
