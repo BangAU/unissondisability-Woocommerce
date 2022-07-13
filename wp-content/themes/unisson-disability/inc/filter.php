@@ -5,11 +5,7 @@ add_action( 'wp_ajax_nopriv_filter', 'filter_ajax' );
 add_action( 'wp_ajax_filter', 'filter_ajax' );
 
 function filter_ajax() {
-   /*  $program_category_list = get_terms(array(
-        'taxonomy'=> 'product_cat',
-        'field'    => 'term_id',
-        'hide_empty' => false, 
-    ));  */
+  
     $program_category_list = [];
     $program_location_list = [];
     $program_suburb_list = [];
@@ -34,7 +30,6 @@ function filter_ajax() {
     $program_location = isset($_POST['program-location'])?$_POST['program-location']:$program_location_list;
     $program_suburb = isset($_POST['program-suburb'])?$_POST['program-suburb']:$program_suburb_list;
     $sort_by = $_POST['sort_by'];
-    //$page = (isset($_POST['pageNumber'])) ? $_POST['pageNumber'] : 0;
    
 
     $args = array(
@@ -65,93 +60,6 @@ function filter_ajax() {
     );
 
    
- /*  if(!empty($program_category)){
-      $args[tax_query] = array(
-          array(
-              'taxonomy' => 'product_cat',
-              'field' => 'term_id',
-              'terms' => $program_category
-          )
-          );
-  }
-  if(!empty($program_location)){
-    
-      $args[tax_query] = array(
-          array(
-              'taxonomy' => 'location',
-              'field' => 'term_id',
-              'terms' => $program_location,
-          )
-          );
-  } */
-
-
-
-   /*  $args[tax_query] = array(
-        'relation' => 'AND',
-        array(
-            'taxonomy' => 'movie_genre',
-            'field'    => 'slug',
-            'terms'    => array( 'action', 'comedy' ),
-        ),
-        array(
-            'taxonomy' => 'actor',
-            'field'    => 'term_id',
-            'terms'    => array( 103, 115, 206 ),
-            'operator' => 'NOT IN',
-        ),
-    ) */
-
-  /* if(!empty($program_suburb)){
-      $args[tax_query] = array(
-        'relation' => 'AND',
-          array(
-              'taxonomy' => 'location',
-              'field' => 'term_id',
-              'terms' => $program_suburb
-          )
-          );
-  }
-
-
-  if( isset( $program_category ) && isset( $program_location ) ){
-    $args[tax_query] = array(
-        array(
-            'taxonomy' => 'product_cat',
-            'field' => 'term_id',
-            'terms' => $program_category
-        ),
-        array(
-            'taxonomy' => 'location',
-            'field' => 'term_id',
-            'terms' => $program_location,
-        )
-        );
-  } */
-//   if( isset( $program_location ) && isset( $program_suburb ) ){
-//     $args[tax_query] = array(
-//         'relation' => 'AND',
-
-//         array(
-//             'taxonomy' => 'location',
-//             'field' => 'term_id',
-//             'terms' => $program_location,
-//             'operator' => 'NOT IN',
-            
-//         ),
-//         array(
-//             'taxonomy' => 'location',
-//             'field' => 'term_id',
-//             'terms' => $program_suburb,
-//             //'operator' => 'NOT IN',
-
-//         )
-//         );
-//   }
-
- // for taxonomies / categories
-
-  
 
   if(!empty($sort_by)){
 
@@ -267,7 +175,7 @@ $end_date = get_field('tour_end_date', $post_id);
 </div>
 
 <?php endwhile; ?>
-<?php wp_reset_postdata(); ?>
+<?php //wp_reset_postdata(); ?>
 <?php endif; ?>
 
 <?php

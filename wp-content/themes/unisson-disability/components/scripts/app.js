@@ -33,6 +33,10 @@ document.addEventListener('DOMContentLoaded', function () {
     attendeeCheckbox()
 
     filterScroll()
+
+    fundingType()
+
+    splitAccount()
 });
 
 //function called on window resize
@@ -1198,7 +1202,7 @@ function filterScroll() {
     }
 }
 
-jQuery(document).ready(function ($) {
+function splitAccount() {
     var url = window.location.href;
     url = url.split("/");
     url = url[url.length - 2];
@@ -1208,31 +1212,33 @@ jQuery(document).ready(function ($) {
     if (url == "register") {
         $("#customer_login .u-column1").remove(); // Remove Login Div
     }
-})
+}
 
-$(document).ready(function () {
+function fundingType() {
     $('.self_manage_funding_text').hide();
     $('.plan-managed-funding-text').hide();
     $('.ndia-managed-funding-text').hide();
-    $('input:radio[name="_funding_type_radio_1"]').change(
-        function () {
-            if ($(this).is(':checked') && $(this).val() == 'Self_managed') {
-                $('.self_manage_funding_text').show();
-                $('.plan-managed-funding-text').hide();
-                $('.ndia-managed-funding-text').hide();
-            } else if ($(this).is(':checked') && $(this).val() == 'Plan_managed') {
-                $('.self_manage_funding_text').hide();
-                $('.plan-managed-funding-text').show();
-                $('.ndia-managed-funding-text').hide();
+   
+    $('.input-radio').each(function () {
+        var $that = $(this);
+        $that.change(function(){
+            console.log('skdjf');
+            var $closest = $that.closest('.Attendee-group');
+            if ($that.is(':checked') && $that.val() == 'Self_managed') {
+                $closest.find('.self_manage_funding_text').show();
+                $closest.find('.plan-managed-funding-text').hide();
+                $closest.find('.ndia-managed-funding-text').hide();
+            } else if ($that.is(':checked') && $that.val() == 'Plan_managed') {
+                $closest.find('.self_manage_funding_text').hide();
+                $closest.find('.plan-managed-funding-text').show();
+                $closest.find('.ndia-managed-funding-text').hide();
             }
             // FINISH FROM HERE
-            else if ($(this).is(':checked') && $(this).val() == 'Ndia_managed') {
-                $('.self_manage_funding_text').hide();
-                $('.plan-managed-funding-text').hide();
-                $('.ndia-managed-funding-text').show();
+            else if ($that.is(':checked') && $that.val() == 'Ndia_managed') {
+                $closest.find('.self_manage_funding_text').hide();
+                $closest.find('.plan-managed-funding-text').hide();
+                $closest.find('.ndia-managed-funding-text').show();
             }
-
-        }
-    );
-
-});
+        })
+    })
+}
