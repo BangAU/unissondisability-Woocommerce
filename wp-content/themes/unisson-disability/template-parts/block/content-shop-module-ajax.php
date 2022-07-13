@@ -187,8 +187,8 @@
                                         <?php 
                                                 if($product->product_type=='variable') {
                                                     
-                                                    $prices = $product->get_variation_prices('min', true );
-                                                    $maxprices = $product->get_variation_price( 'max', true ) ;
+                                                    $prices = $product->get_variation_prices('min', false );
+                                                    $maxprices = $product->get_variation_price( 'max', false ) ;
                                                     $min_price = current( $prices['price'] );
                                                     //$max_price = current( $maxprices['price'] );
                                                     $minPrice = sprintf( __( '%1$s', 'woocommerce' ), wc_price( $min_price ) );

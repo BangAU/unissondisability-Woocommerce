@@ -136,8 +136,8 @@ if ( post_password_required() ) {
                 //  $variable_product1= new WC_Product_Variation( $variation_id );
                 //  $regular_price = $variable_product1 ->regular_price;
                 //  $sales_price = $variable_product1 ->sale_price; 
-                $prices = $product->get_variation_prices('min', true );
-                $maxprices = $product->get_variation_price( 'max', true ) ;
+                $prices = $product->get_variation_prices('min', false );
+                $maxprices = $product->get_variation_price( 'max', false ) ;
                 $min_price = current( $prices['price'] );
                 //$max_price = current( $maxprices['price'] );
                 $minPrice = sprintf( __( '%1$s', 'woocommerce' ), wc_price( $min_price ) );
