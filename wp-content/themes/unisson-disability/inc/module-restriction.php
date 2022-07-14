@@ -1,19 +1,19 @@
 <?php
 // function aipm_allowed_block_types($allowed_block_types, $post) {
 
-// //default modules
+//default modules
 // $allowed_block_types = array(
-//     //adding core modules
-//     'core/block',
-//     // 'core/image',
-//     // 'core/html',
-//     // 'core/video',
-//     // 'core/youtube',
-//     // 'core/vimeo',
-//     // 'core/column',
+    //adding core modules
+    // 'core/block',
+    // 'core/image',
+    // 'core/html',
+    // 'core/video',
+    // 'core/youtube',
+    // 'core/vimeo',
+    // 'core/column',
 // );
 
-// //adding modules to content pages
+//adding modules to content pages
 // if ($post->post_type === 'page') {
 
 //     array_push(
@@ -23,8 +23,7 @@
 //         'acf/hero-slider-module',
 //         'acf/cta-module',
 //         'acf/shop-module',
-//         'acf/shop-module-ajax',
-        
+//         'acf/shop-module-ajax'
 //     );
 
 //     return $allowed_block_types;
