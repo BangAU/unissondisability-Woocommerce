@@ -211,22 +211,6 @@ function ts_woocommerce_breadcrumbs_change() {
 
 
 
-// function wpse_131562_redirect() {
-//     if (
-//         ! is_user_logged_in()
-//         && (is_page('my-account'))
-//     ) {
-//         // feel free to customize the following line to suit your needs
-//         wp_redirect(home_url());
-//         exit;
-//     }
-// }
-// add_action('template_redirect', 'wpse_131562_redirect');
-
-
-
-
-
 remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_title', 5 );
 remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_rating', 10 );
 remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 10 );
@@ -290,7 +274,7 @@ require get_template_directory() . '/inc/module-restriction.php';
 // /**
 //  * checkout repeater field
 //  */
- //require get_template_directory() . '/inc/register-custom-checkout-field.php';
+ require get_template_directory() . '/inc/register-custom-checkout-field.php';
 // /**
 //  * remove unnecessary item using hook
 //  */
@@ -363,18 +347,3 @@ function wpse_wc_disable_shop_archive( $post_type_args ) {
     return $post_type_args;
 }
 add_filter( 'woocommerce_register_post_type_product', 'wpse_wc_disable_shop_archive' );
-
-
-// add_action('wp_enqueue_scripts', 'myscripts');
-// function myscripts() { 
-// wp_register_script('functions', get_template_directory_uri() .'/js/custom.js');
-// wp_localize_script( 'functions', 'ajax_posts', array(
-// 'ajaxurl' => admin_url( 'admin-ajax.php' ),
-// ));
-//  wp_enqueue_script('functions');
-// }
-// if (isset($_REQUEST['posts_per_page'])) {
-// $pageCount = $_REQUEST['posts_per_page'];
-// $wp_query->set("posts_per_page", $pageCount);
-// $wp_query->get_posts();
-// }
