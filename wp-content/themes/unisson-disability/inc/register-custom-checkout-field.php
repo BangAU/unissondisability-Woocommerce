@@ -559,16 +559,24 @@ function my_custom_checkout_field_order_meta_keys( $keys ) {
 
 
 
-    // Save custom checkout fields the data to the order
-add_action( 'woocommerce_order_details_after_order_table', 'custom_checkout_field_update_meta', 10, 2 );
-function custom_checkout_field_update_meta( $order, $data ){
-    global $woocommerce;
-    $count = $woocommerce->cart->cart_contents_count;
-    $i = 0;
-    for($k=1; $k<= $count; $k++) {
-    $i++;
-    if (!empty($_POST['attendee_first_name_'.$i])) {
-        update_post_meta($order_id, 'First Name of Attendee'.$i, sanitize_text_field($_POST['attendee_first_name_'.$i]) );
+
+
+    add_action('woocommerce_order_details_after_order_table', 'custom_checkout_field_update_meta'); 
+    function custom_checkout_field_update_meta($order_id) {
+        global $woocommerce;
+        $count = $woocommerce->cart->cart_contents_count;
+        $i = 0;
+               for($k=1; $k<= $count; $k++) {
+                $i++;
+    
+      
+            if (!empty($_POST['attendee_first_name_'.$i])) {
+                update_post_meta($order_id, 'First Name of Attendee'.$i, sanitize_text_field($_POST['attendee_first_name_'.$i]) );
+            }
+            
+            
+        }
+    
     }
-    }     
-}
+
+  
