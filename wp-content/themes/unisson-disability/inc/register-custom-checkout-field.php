@@ -535,7 +535,7 @@ function customise_checkout_field_update_order_meta($order_id) {
 /**
  * Add fields to order emails
  **/
-add_action('woocommerce_order_details_after_order_table', 'my_custom_checkout_field_order_meta_keys' ); // Order received and view
+//add_action('woocommerce_order_details_after_order_table', 'my_custom_checkout_field_order_meta_keys' ); // Order received and view
 // add_action( 'woocommerce_email_after_order_table', 'my_custom_checkout_field_order_meta_keys' ); // Email notifications
 add_action( 'woocommerce_admin_order_data_after_billing_address', 'my_custom_checkout_field_order_meta_keys' ); // Admin edit Order
 add_action('woocommerce_email_order_meta_keys', 'my_custom_checkout_field_order_meta_keys');
@@ -579,19 +579,19 @@ function my_custom_checkout_field_order_meta_keys( $keys ) {
     
     // }
 
-    add_filter( 'woocommerce_get_order_item_totals', 'display_delivery_on_order_item_totals', 10, 3 );
-    function display_delivery_on_order_item_totals( $total_rows, $order, $tax_display ){
-        global $woocommerce;
-        $count = $woocommerce->cart->cart_contents_count;
-        $i = 0;
-               for($k=1; $k<= $count; $k++) {
-                $i++;
+    // add_filter( 'woocommerce_get_order_item_totals', 'display_delivery_on_order_item_totals', 10, 3 );
+    // function display_delivery_on_order_item_totals( $total_rows, $order, $tax_display ){
+    //     global $woocommerce;
+    //     $count = $woocommerce->cart->cart_contents_count;
+    //     $i = 0;
+    //            for($k=1; $k<= $count; $k++) {
+    //             $i++;
     
       
-            if (!empty($_POST['attendee_first_name_'.$i])) {
-                update_post_meta($order_id, 'First Name of Attendee'.$i, sanitize_text_field($_POST['attendee_first_name_'.$i]) );
-            }
+    //         if (!empty($_POST['attendee_first_name_'.$i])) {
+    //             update_post_meta($order_id, 'First Name of Attendee'.$i, sanitize_text_field($_POST['attendee_first_name_'.$i]) );
+    //         }
             
             
-        }
-    }
+    //     }
+    // }
