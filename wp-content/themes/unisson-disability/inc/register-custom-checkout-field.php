@@ -560,7 +560,7 @@ function my_custom_checkout_field_order_meta_keys( $keys ) {
 
 
     // Save custom checkout fields the data to the order
-add_action( 'woocommerce_checkout_create_order', 'custom_checkout_field_update_meta', 10, 2 );
+add_action( 'woocommerce_order_details_after_order_table', 'custom_checkout_field_update_meta', 10, 2 );
 function custom_checkout_field_update_meta( $order, $data ){
     global $woocommerce;
     $count = $woocommerce->cart->cart_contents_count;
