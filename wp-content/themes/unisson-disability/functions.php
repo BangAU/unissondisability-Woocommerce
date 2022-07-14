@@ -223,24 +223,24 @@ add_filter('acf/settings/remove_wp_meta_box', '__return_false');
 
 
 
-function remove_woocommerce_default_shop( $args, $post_type ) {
-    if (class_exists('WooCommerce')) {
-        if ( $post_type == "product" ) {
-            $args['has_archive'] = false;
-        }
-        return $args;
-    }
-}
-add_filter('register_post_type_args', 'remove_woocommerce_default_shop', 20, 2);
+// function remove_woocommerce_default_shop( $args, $post_type ) {
+//     if (class_exists('WooCommerce')) {
+//         if ( $post_type == "product" ) {
+//             $args['has_archive'] = false;
+//         }
+//         return $args;
+//     }
+// }
+// add_filter('register_post_type_args', 'remove_woocommerce_default_shop', 20, 2);
 
 
 
 // add_action( 'wp_logout', 'auto_redirect_external_after_logout');
-add_action('wp_logout','go_home');
-function go_home(){
-  wp_redirect( home_url() );
-  exit();
-}
+// add_action('wp_logout','go_home');
+// function go_home(){
+//   wp_redirect( home_url() );
+//   exit();
+// }
 
 /**
  * restriction module
