@@ -290,7 +290,7 @@ require get_template_directory() . '/inc/module-restriction.php';
 // /**
 //  * checkout repeater field
 //  */
- require get_template_directory() . '/inc/register-custom-checkout-field.php';
+ //require get_template_directory() . '/inc/register-custom-checkout-field.php';
 // /**
 //  * remove unnecessary item using hook
 //  */
