@@ -537,7 +537,7 @@ function customise_checkout_field_update_order_meta($order_id) {
  **/
 add_action('woocommerce_order_details_after_order_table', 'my_custom_checkout_field_order_meta_keys' ); // Order received and view
 add_action( 'woocommerce_email_after_order_table', 'my_custom_checkout_field_order_meta_keys' ); // Email notifications
-add_action( 'woocommerce_admin_order_data_after_billing_address', 'my_custom_checkout_field_order_meta_keys' ); // Admin edit Order
+//add_action( 'woocommerce_admin_order_data_after_billing_address', 'my_custom_checkout_field_order_meta_keys' ); // Admin edit Order
 add_action('woocommerce_email_order_meta_keys', 'my_custom_checkout_field_order_meta_keys');
 
 function my_custom_checkout_field_order_meta_keys( $keys ) {
