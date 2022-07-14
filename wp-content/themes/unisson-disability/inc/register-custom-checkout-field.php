@@ -567,7 +567,8 @@ function custom_checkout_field_update_meta( $order, $data ){
     $i = 0;
     for($k=1; $k<= $count; $k++) {
     $i++;
-        if( isset($_POST['attendee_first_name_']) && ! empty($_POST['attendee_first_name_']) )
-            $order->update_meta_data( 'attendee_first_name_', sanitize_text_field( $_POST['attendee_first_name_'] ) );
+    if (!empty($_POST['attendee_first_name_'.$i])) {
+        update_post_meta($order_id, 'First Name of Attendee'.$i, sanitize_text_field($_POST['attendee_first_name_'.$i]) );
+    }
     }     
 }
