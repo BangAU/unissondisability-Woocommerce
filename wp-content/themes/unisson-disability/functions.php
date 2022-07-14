@@ -245,68 +245,68 @@ function go_home(){
 /**
  * restriction module
  */
-require get_template_directory() . '/inc/scripts.php';
+// require get_template_directory() . '/inc/scripts.php';
 
-require get_template_directory() . '/inc/filter.php';
-require get_template_directory() . '/inc/module-restriction.php';
-/**
- * email notification
- */
- require get_template_directory() . '/inc/custom-field-in-email.php';
-
-/**
- * register location taxonomy
- */
- require get_template_directory() . '/inc/register-taxonomy.php';
+// require get_template_directory() . '/inc/filter.php';
+// require get_template_directory() . '/inc/module-restriction.php';
 // /**
-/**
- * remove some field in checkout
- */
- require get_template_directory() . '/inc/remove_checkout_fields.php';
-/**
- * get custom description in cart page
- */
- require get_template_directory() . '/inc/custom-description-cart-page.php';
-/**
- * make variation selected
- */
- require get_template_directory() . '/inc/choose_variation_default.php';
-// /**
-//  * checkout repeater field
+//  * email notification
 //  */
- require get_template_directory() . '/inc/register-custom-checkout-field.php';
+//  require get_template_directory() . '/inc/custom-field-in-email.php';
+
 // /**
-//  * remove unnecessary item using hook
+//  * register location taxonomy
 //  */
- require get_template_directory() . '/inc/remove-hooks.php';
+//  require get_template_directory() . '/inc/register-taxonomy.php';
+// // /**
+// /**
+//  * remove some field in checkout
+//  */
+//  require get_template_directory() . '/inc/remove_checkout_fields.php';
+// /**
+//  * get custom description in cart page
+//  */
+//  require get_template_directory() . '/inc/custom-description-cart-page.php';
+// /**
+//  * make variation selected
+//  */
+//  require get_template_directory() . '/inc/choose_variation_default.php';
+// // /**
+// //  * checkout repeater field
+// //  */
+//  require get_template_directory() . '/inc/register-custom-checkout-field.php';
+// // /**
+// //  * remove unnecessary item using hook
+// //  */
+//  require get_template_directory() . '/inc/remove-hooks.php';
 
 
-/**
- * Navwalker specially used for mega menu class include
- */
+// /**
+//  * Navwalker specially used for mega menu class include
+//  */
 
-require get_template_directory() . '/inc/class.walker.php';
+// require get_template_directory() . '/inc/class.walker.php';
 
-/**
- * Implement the Custom Header feature.
- */
-require get_template_directory() . '/inc/custom-header.php';
+// /**
+//  * Implement the Custom Header feature.
+//  */
+// require get_template_directory() . '/inc/custom-header.php';
 
-/**
- * Implement the Custom Header feature.
- */
-require get_template_directory() . '/inc/header-cart.php';
+// /**
+//  * Implement the Custom Header feature.
+//  */
+// require get_template_directory() . '/inc/header-cart.php';
 
-/**
- * register module
- */
+// /**
+//  * register module
+//  */
 
-require get_template_directory() . '/inc/register-module.php';
-/**
- * block categories
- */
+// require get_template_directory() . '/inc/register-module.php';
+// /**
+//  * block categories
+//  */
 
-require get_template_directory() . '/inc/custom-block-categories.php';
+// require get_template_directory() . '/inc/custom-block-categories.php';
 /**
  * custom form
  */
