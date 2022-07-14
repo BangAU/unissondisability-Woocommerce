@@ -77,7 +77,7 @@ function person_details($checkout) {
             'label' => __('Gender'),
             'required' => true,
             'options' => array(
-            'blank'  => __( '--'),
+            // 'blank'  => __( '--'),
             'Male' => __( 'Male'),
             'Female' => __( 'Female'),
             'Others' => __( 'Others' )
