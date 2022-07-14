@@ -285,17 +285,17 @@ function go_home(){
 //  * Navwalker specially used for mega menu class include
 //  */
 
-// require get_template_directory() . '/inc/class.walker.php';
+ require get_template_directory() . '/inc/class.walker.php';
 
 // /**
 //  * Implement the Custom Header feature.
 //  */
-// require get_template_directory() . '/inc/custom-header.php';
+ require get_template_directory() . '/inc/custom-header.php';
 
 // /**
 //  * Implement the Custom Header feature.
 //  */
-// require get_template_directory() . '/inc/header-cart.php';
+ require get_template_directory() . '/inc/header-cart.php';
 
 // /**
 //  * register module
