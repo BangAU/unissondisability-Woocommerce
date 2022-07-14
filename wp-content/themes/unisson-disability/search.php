@@ -120,10 +120,6 @@ global $product;
                 <li class="next"><a href="#"></a></li>
             </ul> -->
             <?php
-            $args = array(
-                'post_per_page'        	=> 5,
-                
-            );
             if ( $GLOBALS['wp_query']->max_num_pages <= 1 ) {
             return;
             }
