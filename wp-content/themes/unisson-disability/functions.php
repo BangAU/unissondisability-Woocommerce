@@ -311,12 +311,12 @@ function go_home(){
  * custom form
  */
 
-require get_template_directory() . '/inc/search-form.php';
+//require get_template_directory() . '/inc/search-form.php';
 
 /**
  * Custom template tags for this theme.
  */
-require get_template_directory() . '/inc/template-tags.php';
+//require get_template_directory() . '/inc/template-tags.php';
 
 /**
  * Functions which enhance the theme by hooking into WordPress.
