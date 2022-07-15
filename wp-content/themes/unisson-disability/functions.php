@@ -347,3 +347,10 @@ if ( class_exists( 'WooCommerce' ) ) {
 //     return $post_type_args;
 // }
 // add_filter( 'woocommerce_register_post_type_product', 'wpse_wc_disable_shop_archive' );
+
+function change_wp_search_size($queryVars) {
+    if ( isset($_REQUEST['s']) ) // Make sure it is a search page
+        $queryVars['posts_per_page'] = 10; // Change 10 to the number of posts you would like to show
+    return $queryVars; // Return our modified query variables
+}
+add_filter('request', 'change_wp_search_size'); // Hook our custom function onto the request filter
