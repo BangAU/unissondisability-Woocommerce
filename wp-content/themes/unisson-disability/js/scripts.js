@@ -66,37 +66,9 @@
     });
 
     $('#clear-filters').click(function () {
-        // $('.homefilter-selects input').prop('checked', false);
         $('.sortby select').prop('selectedIndex', 0);
         $('.homefilter-selects input:checked, .homefilter-selects input:selected').trigger('click');
     })
 
-    // var pageNumber = 2;
-    // $('body').on('click', '#more_posts', function load_posts() {
-    //     var str = '&pageNumber=' + pageNumber + '&action=nopriv_filter';
-    //     $.ajax({
-    //         type: "POST",
-    //         dataType: "html",
-    //         url: ajax_posts.ajaxurl,
-    //         data: str,
-    //         success: function (data) {
-    //             var $data = $(data);
-    //             if ($data.length) {
-    //                 $(".programfilter-body").append($data);
-    //                 $("#more_posts").attr("disabled", false);
-    //             } else {
-    //                 $(".para").text("No More Posts");
-    //                 $("#more_posts").attr("disabled", true);
-    //             }
-    //             pageNumber++;
-    //         },
-    //         error: function (jqXHR, textStatus, errorThrown) {
-    //             $loader.html(jqXHR + " :: " + textStatus + " :: " + errorThrown);
-    //         }
-
-    //     });
-    // });
-
-
-
+   
 })(jQuery);

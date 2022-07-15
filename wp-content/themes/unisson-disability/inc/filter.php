@@ -159,7 +159,6 @@ $end_date = get_field('tour_end_date', $post_id);
                             $prices = $product->get_variation_prices('min', true );
                             $maxprices = $product->get_variation_price( 'max', true ) ;
                             $min_price = current( $prices['price'] );
-                            //$max_price = current( $maxprices['price'] );
                             $minPrice = sprintf( __( '%1$s', 'woocommerce' ), wc_price( $min_price ) );
                             $maxPrice = sprintf( __( '%1$s', 'woocommerce' ), wc_price( $maxprices ) );
                                                     
@@ -175,9 +174,8 @@ $end_date = get_field('tour_end_date', $post_id);
 </div>
 
 <?php endwhile; ?>
-<?php //wp_reset_postdata(); ?>
 <?php endif; ?>
 
 <?php
-    // die();
+  
 }
