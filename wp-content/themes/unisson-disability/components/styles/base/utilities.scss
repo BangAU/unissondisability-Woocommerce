@@ -212,6 +212,7 @@
         // @media (max-width: 767px) {
         //     font-size: 3rem;
         // }
+   
     }
 }
 
@@ -314,7 +315,6 @@
 
     .footer,
     .footer-bot-list {
-
         h4,
         li,
         a {
@@ -323,15 +323,15 @@
     }
 
     .pageheader--section {
-        color: #fff !important;
-        background-color: $color-black !important;
+        color: rgb(0, 0, 0) !important;
+        background-color: $color-white !important;
 
         .breadcrumb li,
         .breadcrumb li a,
         .term,
         h4,
         h5 {
-            color: #fff !important;
+            color: rgb(0, 0, 0) !important;
         }
     }
 
@@ -350,7 +350,6 @@
 
     .customaccord--item {
         .customaccord--item-header {
-
             &::before,
             &::after {
                 background-color: $color-black !important;
@@ -385,4 +384,37 @@
     .thwmscf_time_line_step ul.thwmscf-tabs li a.active {
         border-top-color: $color-medium-gray !important;
     }
+
+    .woocommerce-cart-form .shop_table tbody .cart_item .product-subtotal .amount {
+        color: #333;
+    }
+
+    .woocommerce-cart-form .shop_table tbody .cart_item .product-remove .remove {
+        background-color: #333;
+    }
+
+    .accountlogin .heading-title a:hover {
+        color: #000000 !important;
+    }
+}
+
+.thwmscf-last-next {
+    display: none;
+}
+
+.woocommerce-account.page-login .woocommerce > .woocommerce-notices-wrapper, .woocommerce-lost-password .woocommerce > .woocommerce-notices-wrapper {
+    z-index: 2;
+    position: relative;
+    width: 85vw;
+    max-width: 962px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    color: #fff;
+    background-color: #e0e0e000 !important;
+    padding: 17px 62px;
+    -webkit-transform: translateY(-215px);
+    -ms-transform: translateY(-215px);
+    transform: translateY(-215px);
+    border-radius: 10px;
 }

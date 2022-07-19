@@ -352,3 +352,16 @@ if ( class_exists( 'WooCommerce' ) ) {
 //     return $post_type_args;
 // }
 // add_filter( 'woocommerce_register_post_type_product', 'wpse_wc_disable_shop_archive' );
+
+
+add_filter( 'body_class', 'login_status_body_class' );
+function login_status_body_class( $classes ) {
+	
+  if (is_user_logged_in()) {
+    $classes[] = 'logged-in';
+  } else {
+    $classes[] = 'logged-out';
+  }
+  return $classes;
+	
+}

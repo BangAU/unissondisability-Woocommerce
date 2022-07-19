@@ -1,5 +1,6 @@
 body.high-contrast {
     color: $color-black;
+    filter: grayscale(100) !important;
 
     img {
         -webkit-filter: grayscale(100);
@@ -16,7 +17,7 @@ body.high-contrast {
     }
 
     a {
-        color: $color-black
+        color: $color-black;
     }
 
     .button,
@@ -38,8 +39,8 @@ body.high-contrast {
         filter: grayscale(100);
     }
 
-    .more-block .pager li>a,
-    .more-block .pager li>span,
+    .more-block .pager li > a,
+    .more-block .pager li > span,
     .content-overview .field--type-link a {
         background: $color-black;
         color: #fff;
@@ -73,12 +74,12 @@ body.high-contrast {
         color: #000;
     }
 
-    .navul>li.list-programs>a {
+    .navul > li.list-programs > a {
         color: $color-black !important;
     }
 
-    section.main-nav ul.primary>li.active a,
-    section.main-nav ul.primary>li.menu-item--active-trail a {
+    section.main-nav ul.primary > li.active a,
+    section.main-nav ul.primary > li.menu-item--active-trail a {
         color: #000;
         border-bottom: 3px solid #000;
     }
@@ -91,7 +92,6 @@ body.high-contrast {
 
     section.top-nav .tools .accessibility-bar {
         .button-accessibility {
-
             &:hover,
             &:focus {
                 background: $color-black;
@@ -142,7 +142,7 @@ body.high-contrast {
 
                     &:hover,
                     &.flex-active {
-                        background: $color-black
+                        background: $color-black;
                     }
                 }
             }
@@ -174,7 +174,6 @@ body.high-contrast {
 
         .top-block {
             background: $color-medium-gray;
-            ;
         }
 
         .bottom-block {
@@ -214,22 +213,18 @@ body.high-contrast {
     }
 
     section.quote .quote-text {
-        color: $color-black
+        color: $color-black;
     }
 
     section.faqs .row {
         .question {
-            background: $color-black
+            background: $color-black;
         }
-
-        ;
 
         &.active {
             .question {
-                background: $color-black-light
+                background: $color-black-light;
             }
-
-            ;
         }
     }
 
@@ -240,7 +235,6 @@ body.high-contrast {
 
     section.wide {
         .text-col {
-
             h2,
             h3 {
                 -webkit-filter: grayscale(100);
@@ -347,7 +341,7 @@ body.high-contrast {
         color: $color-black;
     }
 
-    .accomodation-search-form .form-group.bedrooms .form-type-radio .jcf-radio.jcf-checked~label {
+    .accomodation-search-form .form-group.bedrooms .form-type-radio .jcf-radio.jcf-checked ~ label {
         background: $color-black;
         color: #fff;
     }
@@ -367,7 +361,7 @@ body.high-contrast {
     }
 
     section.latest-news .post-content .maincontent-post a {
-        color: $color-black-light
+        color: $color-black-light;
     }
 
     section.latest-news .post-content .image-post.video a {
@@ -379,14 +373,14 @@ body.high-contrast {
         background: $color-medium-gray;
     }
 
-    .pager ul li>a:hover,
-    .pager ul li.pager__item.is-active>a,
+    .pager ul li > a:hover,
+    .pager ul li.pager__item.is-active > a,
     .view-id-articles_overview .pager ul li a:hover {
         background: $color-black;
     }
 
     section.services-icons ul.icons.work li span {
-        color: $color-black
+        color: $color-black;
     }
 
     section.team .profile-info h4,
@@ -394,13 +388,13 @@ body.high-contrast {
         color: #000;
     }
 
-    .nav-tabs>li.active>a,
-    .nav-tabs>li.active>a:focus,
-    .nav-tabs>li.active>a:hover {
+    .nav-tabs > li.active > a,
+    .nav-tabs > li.active > a:focus,
+    .nav-tabs > li.active > a:hover {
         color: $color-black;
     }
 
-    .nav-tabs>li.active::before {
+    .nav-tabs > li.active::before {
         background: $color-black;
     }
 
@@ -435,7 +429,6 @@ body.high-contrast {
 
         .newsletter-form {
             input[type="submit"] {
-
                 &:hover,
                 &:focus {
                     background: $color-black-light;
@@ -449,4 +442,46 @@ body.high-contrast {
             filter: grayscale(100);
         }
     }
+
+    div#pagination-container {
+        -webkit-filter: grayscale(100);
+        filter: grayscale(100) !important;
+    }
+
+    .header.theme-light .navul > li .megamenu {
+        -webkit-filter: grayscale(100);
+        filter: grayscale(100) !important;
+    }
+
+    .header.theme-light .header-myaccount .custom-dropdown-list ul {
+        -webkit-filter: grayscale(100);
+        filter: grayscale(100) !important;
+    }
+
+    .woocommerce-cart .entry-content, .woocommerce-checkout .entry-content, .woocommerce-account.order-pages .entry-content {
+        max-width: 1290px;
+        padding: 26px 36px !important;
+        margin: 0 auto;
+        width: 100%;
+    }
+
+    .woocommerce-checkout .woocommerce-form-login-toggle .woocommerce-info {
+        -webkit-filter: grayscale(100);
+        filter: grayscale(100) !important;
+    }
+
+    .thwmscf-wrapper .thwmscf-buttons .button-prev {
+        color: #fff;
+        background-color: #333;
+    }
+
+    .thwmscf-wrapper .thwmscf-buttons .button-next {
+        color: #fff;
+        background-color: #333;
+    }
+}
+
+body.high-contrast .woocommerce-account .woocommerce-MyAccount-content p a {
+    color: #000000 !important;
+    text-decoration: underline;
 }
