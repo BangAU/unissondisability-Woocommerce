@@ -1,6 +1,9 @@
 body.high-contrast {
     color: $color-black;
-    filter: grayscale(100) !important;
+    -webkit-filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
+    -ms-filter: grayscale(100%);
+    filter: grayscale(100%);
 
     img {
         -webkit-filter: grayscale(100);
