@@ -354,17 +354,17 @@ if ( class_exists( 'WooCommerce' ) ) {
 // add_filter( 'woocommerce_register_post_type_product', 'wpse_wc_disable_shop_archive' );
 
 
-add_filter( 'body_class', 'login_status_body_class' );
-function login_status_body_class( $classes ) {
+// add_filter( 'body_class', 'login_status_body_class' );
+// function login_status_body_class( $classes ) {
 	
-  if (is_user_logged_in()) {
-    $classes[] = 'logged-in';
-  } else {
-    $classes[] = 'logged-out';
-  }
-  return $classes;
+//   if (is_user_logged_in()) {
+//     $classes[] = 'logged-in';
+//   } else {
+//     $classes[] = 'logged-out';
+//   }
+//   return $classes;
 	
-}
+// }
 
 // add_filter( 'woocommerce_countries_tax_or_vat', function( $return ) {
 // 	return 'GST';
