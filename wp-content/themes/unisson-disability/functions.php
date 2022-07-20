@@ -152,22 +152,22 @@ add_action( 'wp_enqueue_scripts', 'unisson_disability_scripts' );
 
 
 /** Custom Search for Library */
-function my_search_filter($query) {
-    if ( $query->is_search && ! is_admin() ) {
-        $query->set( 'post_type', 'product' );
-        $query->is_post_type_archive = false;
-    }
-}
-add_filter('pre_get_posts','my_search_filter', 9);
+// function my_search_filter($query) {
+//     if ( $query->is_search && ! is_admin() ) {
+//         $query->set( 'post_type', 'product' );
+//         $query->is_post_type_archive = false;
+//     }
+// }
+// add_filter('pre_get_posts','my_search_filter', 9);
 
-function search_filter($query) {
-	if ( !is_admin() && $query->is_main_query() ) {
-	  if ($query->is_search) {
-		$query->set('paged', ( get_query_var('paged') ) ? get_query_var('paged') : 1 );
-		$query->set('posts_per_page',6);
-	  }
-	}
-  }
+// function search_filter($query) {
+// 	if ( !is_admin() && $query->is_main_query() ) {
+// 	  if ($query->is_search) {
+// 		$query->set('paged', ( get_query_var('paged') ) ? get_query_var('paged') : 1 );
+// 		$query->set('posts_per_page',6);
+// 	  }
+// 	}
+//   }
 
 
   if( function_exists('acf_add_options_page') ) {
@@ -366,16 +366,16 @@ function login_status_body_class( $classes ) {
 	
 }
 
-add_filter( 'woocommerce_countries_tax_or_vat', function( $return ) {
-	return 'GST';
-}, 10, 1 );
+// add_filter( 'woocommerce_countries_tax_or_vat', function( $return ) {
+// 	return 'GST';
+// }, 10, 1 );
 
-add_filter( 'gettext', function( $translation, $text, $domain ) {
-	if ( $domain == 'woocommerce' ) {
-		if ( $text == '(ex. VAT)' ) { $translation = '(ex. GST)'; }
-	}
-	return $translation;
-}, 10, 3 );
+// add_filter( 'gettext', function( $translation, $text, $domain ) {
+// 	if ( $domain == 'woocommerce' ) {
+// 		if ( $text == '(ex. VAT)' ) { $translation = '(ex. GST)'; }
+// 	}
+// 	return $translation;
+// }, 10, 3 );
 
 add_filter( 'woocommerce_countries_inc_tax_or_vat', function () {
 	return __( 'Includes GST', 'woocommerce' );
