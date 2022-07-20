@@ -365,3 +365,22 @@ function login_status_body_class( $classes ) {
   return $classes;
 	
 }
+
+add_filter( 'woocommerce_countries_tax_or_vat', function( $return ) {
+	return 'GST';
+}, 10, 1 );
+
+add_filter( 'gettext', function( $translation, $text, $domain ) {
+	if ( $domain == 'woocommerce' ) {
+		if ( $text == '(ex. VAT)' ) { $translation = '(ex. GST)'; }
+	}
+	return $translation;
+}, 10, 3 );
+
+add_filter( 'woocommerce_countries_inc_tax_or_vat', function () {
+	return __( 'Includes GST', 'woocommerce' );
+  });
+  
+  add_filter( 'woocommerce_countries_ex_tax_or_vat', function () {
+	return __( 'Includes GST', 'woocommerce' );
+  });
