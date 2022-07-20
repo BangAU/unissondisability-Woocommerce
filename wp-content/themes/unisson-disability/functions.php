@@ -149,7 +149,7 @@ function unisson_disability_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'unisson_disability_scripts' );
 
-//now
+
 
 /** Custom Search for Library */
 // function my_search_filter($query) {
@@ -242,7 +242,6 @@ add_filter('acf/settings/remove_wp_meta_box', '__return_false');
 //   exit();
 // }
 
-//now
 // function change_wp_search_size($queryVars) {
 //     if ( isset($_REQUEST['s']) ) // Make sure it is a search page
 //         $queryVars['posts_per_page'] = 10; // Change 10 to the number of posts you would like to show
