@@ -149,25 +149,25 @@ function unisson_disability_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'unisson_disability_scripts' );
 
-
+//now
 
 /** Custom Search for Library */
-function my_search_filter($query) {
-    if ( $query->is_search && ! is_admin() ) {
-        $query->set( 'post_type', 'product' );
-        $query->is_post_type_archive = false;
-    }
-}
-add_filter('pre_get_posts','my_search_filter', 9);
+// function my_search_filter($query) {
+//     if ( $query->is_search && ! is_admin() ) {
+//         $query->set( 'post_type', 'product' );
+//         $query->is_post_type_archive = false;
+//     }
+// }
+// add_filter('pre_get_posts','my_search_filter', 9);
 
-function search_filter($query) {
-	if ( !is_admin() && $query->is_main_query() ) {
-	  if ($query->is_search) {
-		$query->set('paged', ( get_query_var('paged') ) ? get_query_var('paged') : 1 );
-		$query->set('posts_per_page',6);
-	  }
-	}
-  }
+// function search_filter($query) {
+// 	if ( !is_admin() && $query->is_main_query() ) {
+// 	  if ($query->is_search) {
+// 		$query->set('paged', ( get_query_var('paged') ) ? get_query_var('paged') : 1 );
+// 		$query->set('posts_per_page',6);
+// 	  }
+// 	}
+//   }
 
 
   if( function_exists('acf_add_options_page') ) {
@@ -242,11 +242,12 @@ add_filter('acf/settings/remove_wp_meta_box', '__return_false');
 //   exit();
 // }
 
-function change_wp_search_size($queryVars) {
-    if ( isset($_REQUEST['s']) ) // Make sure it is a search page
-        $queryVars['posts_per_page'] = 10; // Change 10 to the number of posts you would like to show
-    return $queryVars; // Return our modified query variables
-}
+//now
+// function change_wp_search_size($queryVars) {
+//     if ( isset($_REQUEST['s']) ) // Make sure it is a search page
+//         $queryVars['posts_per_page'] = 10; // Change 10 to the number of posts you would like to show
+//     return $queryVars; // Return our modified query variables
+// }
 add_filter('request', 'change_wp_search_size'); // Hook our custom function onto the request filter
 
 require get_template_directory() . '/inc/scripts.php';
@@ -354,33 +355,33 @@ if ( class_exists( 'WooCommerce' ) ) {
 // add_filter( 'woocommerce_register_post_type_product', 'wpse_wc_disable_shop_archive' );
 
 
-add_filter( 'body_class', 'login_status_body_class' );
-function login_status_body_class( $classes ) {
+// add_filter( 'body_class', 'login_status_body_class' );
+// function login_status_body_class( $classes ) {
 	
-  if (is_user_logged_in()) {
-    $classes[] = 'logged-in';
-  } else {
-    $classes[] = 'logged-out';
-  }
-  return $classes;
+//   if (is_user_logged_in()) {
+//     $classes[] = 'logged-in';
+//   } else {
+//     $classes[] = 'logged-out';
+//   }
+//   return $classes;
 	
-}
+// }
 
-add_filter( 'woocommerce_countries_tax_or_vat', function( $return ) {
-	return 'GST';
-}, 10, 1 );
+// add_filter( 'woocommerce_countries_tax_or_vat', function( $return ) {
+// 	return 'GST';
+// }, 10, 1 );
 
-add_filter( 'gettext', function( $translation, $text, $domain ) {
-	if ( $domain == 'woocommerce' ) {
-		if ( $text == '(ex. VAT)' ) { $translation = '(ex. GST)'; }
-	}
-	return $translation;
-}, 10, 3 );
+// add_filter( 'gettext', function( $translation, $text, $domain ) {
+// 	if ( $domain == 'woocommerce' ) {
+// 		if ( $text == '(ex. VAT)' ) { $translation = '(ex. GST)'; }
+// 	}
+// 	return $translation;
+// }, 10, 3 );
 
-add_filter( 'woocommerce_countries_inc_tax_or_vat', function () {
-	return __( 'Includes GST', 'woocommerce' );
-  });
+// add_filter( 'woocommerce_countries_inc_tax_or_vat', function () {
+// 	return __( 'Includes GST', 'woocommerce' );
+//   });
   
-  add_filter( 'woocommerce_countries_ex_tax_or_vat', function () {
-	return __( 'Includes GST', 'woocommerce' );
-  });
+//   add_filter( 'woocommerce_countries_ex_tax_or_vat', function () {
+// 	return __( 'Includes GST', 'woocommerce' );
+//   });
