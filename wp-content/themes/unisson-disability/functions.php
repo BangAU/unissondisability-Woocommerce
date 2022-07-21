@@ -242,11 +242,11 @@ add_filter('acf/settings/remove_wp_meta_box', '__return_false');
 //   exit();
 // }
 
-function change_wp_search_size($queryVars) {
-    if ( isset($_REQUEST['s']) ) // Make sure it is a search page
-        $queryVars['posts_per_page'] = 10; // Change 10 to the number of posts you would like to show
-    return $queryVars; // Return our modified query variables
-}
+// function change_wp_search_size($queryVars) {
+//     if ( isset($_REQUEST['s']) ) // Make sure it is a search page
+//         $queryVars['posts_per_page'] = 10; // Change 10 to the number of posts you would like to show
+//     return $queryVars; // Return our modified query variables
+// }
 add_filter('request', 'change_wp_search_size'); // Hook our custom function onto the request filter
 
 require get_template_directory() . '/inc/scripts.php';
