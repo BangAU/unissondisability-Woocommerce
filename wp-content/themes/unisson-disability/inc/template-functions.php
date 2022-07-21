@@ -23,7 +23,9 @@ function unisson_disability_body_classes( $classes ) {
 	}
 	
 	if (  is_user_logged_in() ) {
-		$classes[] = 'order-pages';
+		$classes[] = 'order-pages logged-in';
+	}else {
+		$classes[] = 'logged-out';
 	}
 	// if (  is_user_logged_in('my-account') ) {
 	// 	$classes[] = 'login-login';
@@ -38,11 +40,11 @@ function unisson_disability_body_classes( $classes ) {
 		$classes[] = 'page-register';
 	}
 
-	if (is_user_logged_in()) {
-    	$classes[] = 'logged-in';
-	} else {
-		$classes[] = 'logged-out';
-	}
+	// if (is_user_logged_in()) {
+    // 	$classes[] = 'logged-in';
+	// } else {
+	// 	$classes[] = 'logged-out';
+	// }
 
 	return $classes;
 }
