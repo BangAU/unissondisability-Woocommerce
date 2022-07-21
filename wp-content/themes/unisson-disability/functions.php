@@ -152,13 +152,13 @@ add_action( 'wp_enqueue_scripts', 'unisson_disability_scripts' );
 
 
 /** Custom Search for Library */
-// function my_search_filter($query) {
-//     if ( $query->is_search && ! is_admin() ) {
-//         $query->set( 'post_type', 'product' );
-//         $query->is_post_type_archive = false;
-//     }
-// }
-// add_filter('pre_get_posts','my_search_filter', 9);
+function my_search_filter($query) {
+    if ( $query->is_search && ! is_admin() ) {
+        $query->set( 'post_type', 'product' );
+        $query->is_post_type_archive = false;
+    }
+}
+add_filter('pre_get_posts','my_search_filter', 9);
 
 function search_filter($query) {
 	if ( !is_admin() && $query->is_main_query() ) {
