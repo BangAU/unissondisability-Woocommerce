@@ -160,14 +160,14 @@ add_action( 'wp_enqueue_scripts', 'unisson_disability_scripts' );
 // }
 // add_filter('pre_get_posts','my_search_filter', 9);
 
-// function search_filter($query) {
-// 	if ( !is_admin() && $query->is_main_query() ) {
-// 	  if ($query->is_search) {
-// 		$query->set('paged', ( get_query_var('paged') ) ? get_query_var('paged') : 1 );
-// 		$query->set('posts_per_page',6);
-// 	  }
-// 	}
-//   }
+function search_filter($query) {
+	if ( !is_admin() && $query->is_main_query() ) {
+	  if ($query->is_search) {
+		$query->set('paged', ( get_query_var('paged') ) ? get_query_var('paged') : 1 );
+		$query->set('posts_per_page',6);
+	  }
+	}
+  }
 
 
   if( function_exists('acf_add_options_page') ) {
