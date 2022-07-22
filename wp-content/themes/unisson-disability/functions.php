@@ -292,7 +292,7 @@ require get_template_directory() . '/inc/custom-header.php';
 /**
  * Implement the Custom Header feature.
  */
-require get_template_directory() . '/inc/header-cart.php';
+//require get_template_directory() . '/inc/header-cart.php';
 
 /**
  * register module
@@ -308,7 +308,7 @@ require get_template_directory() . '/inc/custom-block-categories.php';
  * custom form
  */
 
-require get_template_directory() . '/inc/search-form.php';
+//require get_template_directory() . '/inc/search-form.php';
 
 /**
  * Custom template tags for this theme.
@@ -318,7 +318,7 @@ require get_template_directory() . '/inc/template-tags.php';
 /**
  * Functions which enhance the theme by hooking into WordPress.
  */
-require get_template_directory() . '/inc/template-functions.php';
+//require get_template_directory() . '/inc/template-functions.php';
 
 /**
  * Customizer additions.
@@ -335,9 +335,9 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 /**
  * Load WooCommerce compatibility file.
  */
-if ( class_exists( 'WooCommerce' ) ) {
-	require get_template_directory() . '/inc/woocommerce.php';
-}
+// if ( class_exists( 'WooCommerce' ) ) {
+// 	require get_template_directory() . '/inc/woocommerce.php';
+// }
 
 // function wpse_wc_disable_shop_archive( $post_type_args ) {
 //     $post_type_args['has_archive'] = false;
