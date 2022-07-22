@@ -282,7 +282,7 @@ add_action( 'wp_enqueue_scripts', 'unisson_disability_scripts' );
  * Navwalker specially used for mega menu class include
  */
 
-//require get_template_directory() . '/inc/class.walker.php';
+require get_template_directory() . '/inc/class.walker.php';
 
 /**
  * Implement the Custom Header feature.
