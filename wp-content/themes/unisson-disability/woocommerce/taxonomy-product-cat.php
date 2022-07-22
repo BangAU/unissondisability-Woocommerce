@@ -1,8 +1,8 @@
 <?php
 /**
- * The Template for displaying products in a product tag. Simply includes the archive template
+ * The Template for displaying products in a product category. Simply includes the archive template
  *
- * This template can be overridden by copying it to yourtheme/woocommerce/taxonomy-product-tag.php.
+ * This template can be overridden by copying it to yourtheme/woocommerce/taxonomy-product-cat.php.
  *
  * HOWEVER, on occasion WooCommerce will need to update template files and you
  * (the theme developer) will need to copy the new files to your theme to
