@@ -298,12 +298,12 @@ require get_template_directory() . '/inc/custom-header.php';
  * register module
  */
 
-require get_template_directory() . '/inc/register-module.php';
+//require get_template_directory() . '/inc/register-module.php';
 /**
  * block categories
  */
 
-require get_template_directory() . '/inc/custom-block-categories.php';
+//require get_template_directory() . '/inc/custom-block-categories.php';
 /**
  * custom form
  */
