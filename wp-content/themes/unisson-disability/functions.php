@@ -160,14 +160,14 @@ add_action( 'wp_enqueue_scripts', 'unisson_disability_scripts' );
 // }
 // add_filter('pre_get_posts','my_search_filter', 9);
 
-// function search_filter($query) {
-// 	if ( !is_admin() && $query->is_main_query() ) {
-// 	  if ($query->is_search) {
-// 		$query->set('paged', ( get_query_var('paged') ) ? get_query_var('paged') : 1 );
-// 		$query->set('posts_per_page',6);
-// 	  }
-// 	}
-//   }
+function search_filter($query) {
+	if ( !is_admin() && $query->is_main_query() ) {
+	  if ($query->is_search) {
+		$query->set('paged', ( get_query_var('paged') ) ? get_query_var('paged') : 1 );
+		$query->set('posts_per_page',6);
+	  }
+	}
+  }
 
 
   if( function_exists('acf_add_options_page') ) {
@@ -211,27 +211,19 @@ function ts_woocommerce_breadcrumbs_change() {
 
 
 
-// remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_title', 5 );
-// remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_rating', 10 );
-// remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 10 );
-// remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_excerpt', 20 );
+remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_title', 5 );
+remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_rating', 10 );
+remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 10 );
+remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_excerpt', 20 );
 
 
 
-//add_filter('acf/settings/remove_wp_meta_box', '__return_false');
+add_filter('acf/settings/remove_wp_meta_box', '__return_false');
 
 
 
 
-// function remove_woocommerce_default_shop( $args, $post_type ) {
-//     if (class_exists('WooCommerce')) {
-//         if ( $post_type == "product" ) {
-//             $args['has_archive'] = false;
-//         }
-//         return $args;
-//     }
-// }
-// add_filter('register_post_type_args', 'remove_woocommerce_default_shop', 20, 2);
+
 
 
 
@@ -242,110 +234,110 @@ function ts_woocommerce_breadcrumbs_change() {
 //   exit();
 // }
 
-// function change_wp_search_size($queryVars) {
-//     if ( isset($_REQUEST['s']) ) // Make sure it is a search page
-//         $queryVars['posts_per_page'] = 10; // Change 10 to the number of posts you would like to show
-//     return $queryVars; // Return our modified query variables
-// }
-// add_filter('request', 'change_wp_search_size'); // Hook our custom function onto the request filter
+function change_wp_search_size($queryVars) {
+    if ( isset($_REQUEST['s']) ) // Make sure it is a search page
+        $queryVars['posts_per_page'] = 10; // Change 10 to the number of posts you would like to show
+    return $queryVars; // Return our modified query variables
+}
+add_filter('request', 'change_wp_search_size'); // Hook our custom function onto the request filter
 
-// require get_template_directory() . '/inc/scripts.php';
+//require get_template_directory() . '/inc/scripts.php';
 
-// require get_template_directory() . '/inc/filter.php';
+//require get_template_directory() . '/inc/filter.php';
 
-// require get_template_directory() . '/inc/module-restriction.php';
+//require get_template_directory() . '/inc/module-restriction.php';
+/**
+ * email notification
+ */
+ //require get_template_directory() . '/inc/custom-field-in-email.php';
+
+/**
+ * register location taxonomy
+ */
+ require get_template_directory() . '/inc/register-taxonomy.php';
 // /**
-//  * email notification
-//  */
-//  require get_template_directory() . '/inc/custom-field-in-email.php';
-
+/**
+ * remove some field in checkout
+ */
+ //require get_template_directory() . '/inc/remove_checkout_fields.php';
+/**
+ * get custom description in cart page
+ */
+ //require get_template_directory() . '/inc/custom-description-cart-page.php';
+/**
+ * make variation selected
+ */
+ //require get_template_directory() . '/inc/choose_variation_default.php';
 // /**
-//  * register location taxonomy
+//  * checkout repeater field
 //  */
-//  require get_template_directory() . '/inc/register-taxonomy.php';
-// // /**
+ //require get_template_directory() . '/inc/register-custom-checkout-field.php';
 // /**
-//  * remove some field in checkout
+//  * remove unnecessary item using hook
 //  */
-//  require get_template_directory() . '/inc/remove_checkout_fields.php';
-// /**
-//  * get custom description in cart page
-//  */
-//  require get_template_directory() . '/inc/custom-description-cart-page.php';
-// /**
-//  * make variation selected
-//  */
-//  require get_template_directory() . '/inc/choose_variation_default.php';
-// // /**
-// //  * checkout repeater field
-// //  */
-//  require get_template_directory() . '/inc/register-custom-checkout-field.php';
-// // /**
-// //  * remove unnecessary item using hook
-// //  */
-//  require get_template_directory() . '/inc/remove-hooks.php';
+ //require get_template_directory() . '/inc/remove-hooks.php';
 
 
-// /**
-//  * Navwalker specially used for mega menu class include
-//  */
+/**
+ * Navwalker specially used for mega menu class include
+ */
 
-// require get_template_directory() . '/inc/class.walker.php';
+require get_template_directory() . '/inc/class.walker.php';
 
-// /**
-//  * Implement the Custom Header feature.
-//  */
-// require get_template_directory() . '/inc/custom-header.php';
+/**
+ * Implement the Custom Header feature.
+ */
+require get_template_directory() . '/inc/custom-header.php';
 
-// /**
-//  * Implement the Custom Header feature.
-//  */
-// require get_template_directory() . '/inc/header-cart.php';
+/**
+ * Implement the Custom Header feature.
+ */
+require get_template_directory() . '/inc/header-cart.php';
 
-// /**
-//  * register module
-//  */
+/**
+ * register module
+ */
 
-// require get_template_directory() . '/inc/register-module.php';
-// /**
-//  * block categories
-//  */
+require get_template_directory() . '/inc/register-module.php';
+/**
+ * block categories
+ */
 
-// require get_template_directory() . '/inc/custom-block-categories.php';
-// /**
-//  * custom form
-//  */
+require get_template_directory() . '/inc/custom-block-categories.php';
+/**
+ * custom form
+ */
 
-// require get_template_directory() . '/inc/search-form.php';
+require get_template_directory() . '/inc/search-form.php';
 
-// /**
-//  * Custom template tags for this theme.
-//  */
-// require get_template_directory() . '/inc/template-tags.php';
+/**
+ * Custom template tags for this theme.
+ */
+require get_template_directory() . '/inc/template-tags.php';
 
-// /**
-//  * Functions which enhance the theme by hooking into WordPress.
-//  */
-// require get_template_directory() . '/inc/template-functions.php';
+/**
+ * Functions which enhance the theme by hooking into WordPress.
+ */
+require get_template_directory() . '/inc/template-functions.php';
 
-// /**
-//  * Customizer additions.
-//  */
-// require get_template_directory() . '/inc/customizer.php';
+/**
+ * Customizer additions.
+ */
+require get_template_directory() . '/inc/customizer.php';
 
-// /**
-//  * Load Jetpack compatibility file.
-//  */
-// if ( defined( 'JETPACK__VERSION' ) ) {
-// 	require get_template_directory() . '/inc/jetpack.php';
-// }
+/**
+ * Load Jetpack compatibility file.
+ */
+if ( defined( 'JETPACK__VERSION' ) ) {
+	require get_template_directory() . '/inc/jetpack.php';
+}
 
-// /**
-//  * Load WooCommerce compatibility file.
-//  */
-// if ( class_exists( 'WooCommerce' ) ) {
-// 	require get_template_directory() . '/inc/woocommerce.php';
-//}
+/**
+ * Load WooCommerce compatibility file.
+ */
+if ( class_exists( 'WooCommerce' ) ) {
+	require get_template_directory() . '/inc/woocommerce.php';
+}
 
 // function wpse_wc_disable_shop_archive( $post_type_args ) {
 //     $post_type_args['has_archive'] = false;
@@ -366,21 +358,21 @@ function ts_woocommerce_breadcrumbs_change() {
 	
 // }
 
-// add_filter( 'woocommerce_countries_tax_or_vat', function( $return ) {
-// 	return 'GST';
-// }, 10, 1 );
+add_filter( 'woocommerce_countries_tax_or_vat', function( $return ) {
+	return 'GST';
+}, 10, 1 );
 
-// add_filter( 'gettext', function( $translation, $text, $domain ) {
-// 	if ( $domain == 'woocommerce' ) {
-// 		if ( $text == '(ex. VAT)' ) { $translation = '(ex. GST)'; }
-// 	}
-// 	return $translation;
-// }, 10, 3 );
+add_filter( 'gettext', function( $translation, $text, $domain ) {
+	if ( $domain == 'woocommerce' ) {
+		if ( $text == '(ex. VAT)' ) { $translation = '(ex. GST)'; }
+	}
+	return $translation;
+}, 10, 3 );
 
-// add_filter( 'woocommerce_countries_inc_tax_or_vat', function () {
-// 	return __( 'Includes GST', 'woocommerce' );
-//   });
+add_filter( 'woocommerce_countries_inc_tax_or_vat', function () {
+	return __( 'Includes GST', 'woocommerce' );
+  });
   
-//   add_filter( 'woocommerce_countries_ex_tax_or_vat', function () {
-// 	return __( 'Includes GST', 'woocommerce' );
-//   });
+  add_filter( 'woocommerce_countries_ex_tax_or_vat', function () {
+	return __( 'Includes GST', 'woocommerce' );
+  });
