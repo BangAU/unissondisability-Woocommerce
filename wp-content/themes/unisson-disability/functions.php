@@ -152,22 +152,22 @@ add_action( 'wp_enqueue_scripts', 'unisson_disability_scripts' );
 
 
 /** Custom Search for Library */
-// function my_search_filter($query) {
-//     if ( $query->is_search && ! is_admin() ) {
-//         $query->set( 'post_type', 'product' );
-//         $query->is_post_type_archive = false;
-//     }
-// }
-// add_filter('pre_get_posts','my_search_filter', 9);
+function my_search_filter($query) {
+    if ( $query->is_search && ! is_admin() ) {
+        $query->set( 'post_type', 'product' );
+        $query->is_post_type_archive = false;
+    }
+}
+add_filter('pre_get_posts','my_search_filter', 9);
 
-// function search_filter($query) {
-// 	if ( !is_admin() && $query->is_main_query() ) {
-// 	  if ($query->is_search) {
-// 		$query->set('paged', ( get_query_var('paged') ) ? get_query_var('paged') : 1 );
-// 		$query->set('posts_per_page',6);
-// 	  }
-// 	}
-//   }
+function search_filter($query) {
+	if ( !is_admin() && $query->is_main_query() ) {
+	  if ($query->is_search) {
+		$query->set('paged', ( get_query_var('paged') ) ? get_query_var('paged') : 1 );
+		$query->set('posts_per_page',6);
+	  }
+	}
+  }
 
 
   if( function_exists('acf_add_options_page') ) {
@@ -223,24 +223,24 @@ add_filter('acf/settings/remove_wp_meta_box', '__return_false');
 
 
 
-// function remove_woocommerce_default_shop( $args, $post_type ) {
-//     if (class_exists('WooCommerce')) {
-//         if ( $post_type == "product" ) {
-//             $args['has_archive'] = false;
-//         }
-//         return $args;
-//     }
-// }
-// add_filter('register_post_type_args', 'remove_woocommerce_default_shop', 20, 2);
+function remove_woocommerce_default_shop( $args, $post_type ) {
+    if (class_exists('WooCommerce')) {
+        if ( $post_type == "product" ) {
+            $args['has_archive'] = false;
+        }
+        return $args;
+    }
+}
+add_filter('register_post_type_args', 'remove_woocommerce_default_shop', 20, 2);
 
 
 
-// add_action( 'wp_logout', 'auto_redirect_external_after_logout');
-// add_action('wp_logout','go_home');
-// function go_home(){
-//   wp_redirect( home_url() );
-//   exit();
-// }
+add_action( 'wp_logout', 'auto_redirect_external_after_logout');
+add_action('wp_logout','go_home');
+function go_home(){
+  wp_redirect( home_url() );
+  exit();
+}
 
 function change_wp_search_size($queryVars) {
     if ( isset($_REQUEST['s']) ) // Make sure it is a search page
@@ -347,24 +347,24 @@ if ( class_exists( 'WooCommerce' ) ) {
 	require get_template_directory() . '/inc/woocommerce.php';
 }
 
-// function wpse_wc_disable_shop_archive( $post_type_args ) {
-//     $post_type_args['has_archive'] = false;
-//     return $post_type_args;
-// }
-// add_filter( 'woocommerce_register_post_type_product', 'wpse_wc_disable_shop_archive' );
+function wpse_wc_disable_shop_archive( $post_type_args ) {
+    $post_type_args['has_archive'] = false;
+    return $post_type_args;
+}
+add_filter( 'woocommerce_register_post_type_product', 'wpse_wc_disable_shop_archive' );
 
 
-// add_filter( 'body_class', 'login_status_body_class' );
-// function login_status_body_class( $classes ) {
+add_filter( 'body_class', 'login_status_body_class' );
+function login_status_body_class( $classes ) {
 	
-//   if (is_user_logged_in()) {
-//     $classes[] = 'logged-in';
-//   } else {
-//     $classes[] = 'logged-out';
-//   }
-//   return $classes;
+  if (is_user_logged_in()) {
+    $classes[] = 'logged-in';
+  } else {
+    $classes[] = 'logged-out';
+  }
+  return $classes;
 	
-// }
+}
 
 add_filter( 'woocommerce_countries_tax_or_vat', function( $return ) {
 	return 'GST';
