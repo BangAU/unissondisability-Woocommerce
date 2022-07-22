@@ -282,16 +282,16 @@
 
                 <div class="sidemenu-nav">
                     <?php
-						if ( has_nav_menu( 'menu-1' ) ) :
-							wp_nav_menu(
-								array(
-									'theme_location' => 'menu-1',
-									'menu_class'        => 'navul',
-                                    'walker'          => new wp_bootstrap_navwalker(),
-                                    'fallback_cb'     => 'wp_bootstrap_navwalker::fallback',
-								)
-							);
-						endif;
+						// if ( has_nav_menu( 'menu-1' ) ) :
+						// 	wp_nav_menu(
+						// 		array(
+						// 			'theme_location' => 'menu-1',
+						// 			'menu_class'        => 'navul',
+                        //             'walker'          => new wp_bootstrap_navwalker(),
+                        //             'fallback_cb'     => 'wp_bootstrap_navwalker::fallback',
+						// 		)
+						// 	);
+						// endif;
 						?>
                 </div>
             </div>
