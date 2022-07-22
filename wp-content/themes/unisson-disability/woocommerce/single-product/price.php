@@ -1,8 +1,8 @@
 <?php
 /**
- * Show messages
+ * Single Product Price
  *
- * This template can be overridden by copying it to yourtheme/woocommerce/notices/notice.php.
+ * This template can be overridden by copying it to yourtheme/woocommerce/single-product/price.php.
  *
  * HOWEVER, on occasion WooCommerce will need to update template files and you
  * (the theme developer) will need to copy the new files to your theme to
@@ -12,21 +12,14 @@
  *
  * @see     https://docs.woocommerce.com/document/template-structure/
  * @package WooCommerce\Templates
- * @version 3.9.0
+ * @version 3.0.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly.
+	exit; // Exit if accessed directly
 }
 
-if ( ! $notices ) {
-	return;
-}
+global $product;
 
 ?>
-
-<?php foreach ( $notices as $notice ) : ?>
-	<div class="woocommerce-info"<?php echo wc_get_notice_data_attr( $notice ); ?>>
-		<?php echo wc_kses_notice( $notice['notice'] ); ?>
-	</div>
-<?php endforeach; ?>
+<p class="<?php echo esc_attr( apply_filters( 'woocommerce_product_price_class', 'price' ) ); ?>"><?php echo $product->get_price_html(); ?></p>

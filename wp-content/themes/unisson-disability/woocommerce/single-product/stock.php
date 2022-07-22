@@ -1,8 +1,8 @@
 <?php
 /**
- * Show error messages
+ * Single Product stock.
  *
- * This template can be overridden by copying it to yourtheme/woocommerce/notices/error.php.
+ * This template can be overridden by copying it to yourtheme/woocommerce/single-product/stock.php.
  *
  * HOWEVER, on occasion WooCommerce will need to update template files and you
  * (the theme developer) will need to copy the new files to your theme to
@@ -12,22 +12,12 @@
  *
  * @see     https://docs.woocommerce.com/document/template-structure/
  * @package WooCommerce\Templates
- * @version 3.9.0
+ * @version 3.0.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! $notices ) {
-	return;
-}
-
 ?>
-<ul class="woocommerce-error" role="alert">
-	<?php foreach ( $notices as $notice ) : ?>
-		<li<?php echo wc_get_notice_data_attr( $notice ); ?>>
-			<?php echo wc_kses_notice( $notice['notice'] ); ?>
-		</li>
-	<?php endforeach; ?>
-</ul>
+<p class="stock <?php echo esc_attr( $class ); ?>"><?php echo wp_kses_post( $availability ); ?></p>
