@@ -170,29 +170,29 @@ add_action( 'wp_enqueue_scripts', 'unisson_disability_scripts' );
 //   }
 
 
-  if( function_exists('acf_add_options_page') ) {
+//   if( function_exists('acf_add_options_page') ) {
 	
-	acf_add_options_page(array(
-		'page_title' 	=> 'Unisson General Settings',
-		'menu_title'	=> 'Unisson Settings',
-		'menu_slug' 	=> 'unisson-general-settings',
-		'capability'	=> 'edit_posts',
-		'redirect'		=> true
-	));
+// 	acf_add_options_page(array(
+// 		'page_title' 	=> 'Unisson General Settings',
+// 		'menu_title'	=> 'Unisson Settings',
+// 		'menu_slug' 	=> 'unisson-general-settings',
+// 		'capability'	=> 'edit_posts',
+// 		'redirect'		=> true
+// 	));
 	
-	acf_add_options_sub_page(array(
-		'page_title' 	=> 'Unisson Header Settings',
-		'menu_title'	=> 'Header',
-		'parent_slug'	=> 'unisson-general-settings',
-	));
+// 	acf_add_options_sub_page(array(
+// 		'page_title' 	=> 'Unisson Header Settings',
+// 		'menu_title'	=> 'Header',
+// 		'parent_slug'	=> 'unisson-general-settings',
+// 	));
 	
-	acf_add_options_sub_page(array(
-		'page_title' 	=> 'Unisson Footer Settings',
-		'menu_title'	=> 'Footer',
-		'parent_slug'	=> 'unisson-general-settings',
-	));
+// 	acf_add_options_sub_page(array(
+// 		'page_title' 	=> 'Unisson Footer Settings',
+// 		'menu_title'	=> 'Footer',
+// 		'parent_slug'	=> 'unisson-general-settings',
+// 	));
 	
-}
+// }
 
 
 
@@ -218,7 +218,7 @@ add_action( 'wp_enqueue_scripts', 'unisson_disability_scripts' );
 
 
 
-add_filter('acf/settings/remove_wp_meta_box', '__return_false');
+//add_filter('acf/settings/remove_wp_meta_box', '__return_false');
 
 
 
@@ -254,7 +254,7 @@ add_filter('acf/settings/remove_wp_meta_box', '__return_false');
 /**
  * register location taxonomy
  */
- require get_template_directory() . '/inc/register-taxonomy.php';
+ //require get_template_directory() . '/inc/register-taxonomy.php';
 // /**
 /**
  * remove some field in checkout
