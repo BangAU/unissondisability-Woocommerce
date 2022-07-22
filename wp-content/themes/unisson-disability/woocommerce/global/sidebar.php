@@ -1,8 +1,8 @@
 <?php
 /**
- * Auth footer
+ * Sidebar
  *
- * This template can be overridden by copying it to yourtheme/woocommerce/auth/footer.php.
+ * This template can be overridden by copying it to yourtheme/woocommerce/global/sidebar.php.
  *
  * HOWEVER, on occasion WooCommerce will need to update template files and you
  * (the theme developer) will need to copy the new files to your theme to
@@ -11,15 +11,14 @@
  * the readme will list any important changes.
  *
  * @see         https://docs.woocommerce.com/document/template-structure/
- * @package WooCommerce\Templates\Auth
- * @version 2.4.0
+ * @package     WooCommerce\Templates
+ * @version     1.6.4
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+	exit; // Exit if accessed directly
 }
 
-?>
-		</div>
-	</body>
-</html>
+get_sidebar( 'shop' );
+
+/* Omit closing PHP tag at the end of PHP files to avoid "headers already sent" issues. */
