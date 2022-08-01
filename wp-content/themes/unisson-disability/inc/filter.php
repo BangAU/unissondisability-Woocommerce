@@ -172,10 +172,7 @@ $end_date = get_field('tour_end_date', $post_id);
         </div>
     </div>
 </div>
-
-<?php endwhile; ?>
-<?php endif; ?>
-
-<?php
-  
+<?php endwhile; 
+wp_die();
+endif; 
 }

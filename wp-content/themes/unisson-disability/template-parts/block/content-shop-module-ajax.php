@@ -42,9 +42,7 @@
 
                             <ul>
                                 <?php  $terms = get_terms(array('taxonomy'=> 'location','hide_empty' => false, ));  
-                         //    $count = 0;
                         foreach ( $terms as $term ) {
-                            // $count++;
                             if ($term->parent == 0 ) {
                         ?>
                                 <li>
