@@ -3,29 +3,28 @@
     align-items: center;
     margin-bottom: 0;
 
-    >li {
+    > li {
         position: static;
         padding: 0;
 
-        >a {
+        > a {
             color: #fff;
             display: block;
             font-size: 1.6rem;
             font-weight: 500;
             padding: 24px 10px;
             text-transform: uppercase;
-
         }
 
         &:hover {
-            >a {
+            > a {
                 text-decoration: underline;
             }
         }
 
         &.list-programs {
-            >a {
-                color: $color-yellow !important;
+            > a {
+                color: $color-black !important;
                 text-decoration: underline;
             }
         }
