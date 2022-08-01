@@ -224,3 +224,24 @@
         }
     }
 }
+
+footer.theme-dark {
+    background-color: #3e454d;
+
+    .info, .copyright, a, .logo {
+        color: $color-white;
+    }
+
+    .footer-ndis {
+        .text {
+            color: $color-white;
+        }
+    }
+
+    .lets-connect {
+        h4 {
+            color: $color-white;
+            font-size: 3.5rem;
+        }
+    }
+}

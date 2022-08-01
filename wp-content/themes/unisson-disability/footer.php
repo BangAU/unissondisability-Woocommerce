@@ -12,7 +12,7 @@
 ?>
 </main>
 
-<footer class="footer">
+<footer class="footer theme-dark">
     <div class="footer-top">
         <div class="container">
             <div class="footer-unisson app-md">
@@ -41,7 +41,7 @@
                 <?php if(have_rows('social_links','options')): ?>
                 <div class="col-lg-5 ml-lg-auto">
                     <div class="lets-connect">
-                        <h4>Let's connect</h4>
+                        <h4 class="heading">Let's connect</h4>
                         <div class="social-icons">
                             <?php 
                             while(have_rows('social_links','options')): the_row(); 
