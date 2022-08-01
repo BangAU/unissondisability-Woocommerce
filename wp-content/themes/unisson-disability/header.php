@@ -55,7 +55,7 @@
 
                     <div class="tools">
                         <div class="access-dropdown custom-dropdown">
-                            <div class="custom-dropdown-btn btn btn-yellow">Accessibility</div>
+                            <div class="custom-dropdown-btn btn btn-purple">Accessibility</div>
                             <div class="custom-dropdown-list">
                                 <div class="accessibility-row">
                                     <ul>
