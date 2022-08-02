@@ -189,26 +189,26 @@ function person_details($checkout) {
                  'required' => true,
                  ), $checkout->get_value( 'self_managed_funding_type_attendee_phone_' . $i ));
              //DOB
-             woocommerce_form_field( 'self_managed_funding_type_attendee_dob_' . $i, array(
-                 'type'          => 'date',
-                 'class'         => array('form-row-first'),
-                 'label'         => __('DOB '),
-                 'placeholder'   => __(''),
-                 'required' => true,
-                 ), $checkout->get_value( 'self_managed_funding_type_attendee_dob_' . $i ));
+            //  woocommerce_form_field( 'self_managed_funding_type_attendee_dob_' . $i, array(
+            //      'type'          => 'date',
+            //      'class'         => array('form-row-first'),
+            //      'label'         => __('DOB '),
+            //      'placeholder'   => __(''),
+            //      'required' => true,
+            //      ), $checkout->get_value( 'self_managed_funding_type_attendee_dob_' . $i ));
              //gender
-             woocommerce_form_field( 'self_managed_funding_type_attendee_gender_' . $i, array(
-                 'type' => 'select',
-                 'class' => array('form-row-last'),
-                 'label' => __('Gender'),
-                 'required' => true,
-                 'options' => array(
-                 'blank'  => __( '--'),
-                 'Male' => __( 'Male'),
-                 'Female' => __( 'Female'),
-                 'Others' => __( 'Others' )
-                 )
-                 ), $checkout->get_value( 'self_managed_funding_type_attendee_gender_' . $i ));
+            //  woocommerce_form_field( 'self_managed_funding_type_attendee_gender_' . $i, array(
+            //      'type' => 'select',
+            //      'class' => array('form-row-last'),
+            //      'label' => __('Gender'),
+            //      'required' => true,
+            //      'options' => array(
+            //      'blank'  => __( '--'),
+            //      'Male' => __( 'Male'),
+            //      'Female' => __( 'Female'),
+            //      'Others' => __( 'Others' )
+            //      )
+            //      ), $checkout->get_value( 'self_managed_funding_type_attendee_gender_' . $i ));
              //Address one 
              woocommerce_form_field( 'self_managed_funding_type_attendee_address_1_' . $i, array(
                  'type'          => 'text',
@@ -299,26 +299,26 @@ function person_details($checkout) {
                'required' => true,
                ), $checkout->get_value( 'plan_managed_funding_type_attendee_phone_' . $i ));
            //DOB
-           woocommerce_form_field( 'plan_managed_funding_type_attendee_dob_' . $i, array(
-               'type'          => 'date',
-               'class'         => array('atteplan-managed-funding-text form-row-first'),
-               'label'         => __('DOB '),
-               'placeholder'   => __(''),
-               'required' => true,
-               ), $checkout->get_value( 'plan_managed_funding_type_attendee_dob_' . $i ));
+        //    woocommerce_form_field( 'plan_managed_funding_type_attendee_dob_' . $i, array(
+        //        'type'          => 'date',
+        //        'class'         => array('atteplan-managed-funding-text form-row-first'),
+        //        'label'         => __('DOB '),
+        //        'placeholder'   => __(''),
+        //        'required' => true,
+        //        ), $checkout->get_value( 'plan_managed_funding_type_attendee_dob_' . $i ));
            //gender
-           woocommerce_form_field( 'plan_managed_funding_type_attendee_gender_' . $i, array(
-               'type' => 'select',
-               'class' => array('plan-managed-funding-text form-row-last'),
-               'label' => __('Gender'),
-               'required' => true,
-               'options' => array(
-            //    'blank'  => __( '--'),
-               'Male' => __( 'Male'),
-               'Female' => __( 'Female'),
-               'Others' => __( 'Others' )
-               )
-               ), $checkout->get_value( 'plan_managed_funding_type_attendee_gender_' . $i ));
+        //    woocommerce_form_field( 'plan_managed_funding_type_attendee_gender_' . $i, array(
+        //        'type' => 'select',
+        //        'class' => array('plan-managed-funding-text form-row-last'),
+        //        'label' => __('Gender'),
+        //        'required' => true,
+        //        'options' => array(
+        //     //    'blank'  => __( '--'),
+        //        'Male' => __( 'Male'),
+        //        'Female' => __( 'Female'),
+        //        'Others' => __( 'Others' )
+        //        )
+        //        ), $checkout->get_value( 'plan_managed_funding_type_attendee_gender_' . $i ));
            //Address one 
            woocommerce_form_field( 'plan_managed_funding_type_attendee_address_1_' . $i, array(
                'type'          => 'text',
@@ -460,12 +460,12 @@ function customise_checkout_field_update_order_meta($order_id) {
         if (!empty($_POST['self_managed_funding_type_attendee_phone_'.$i])) {
             update_post_meta($order_id, 'Self-Managed Phone Number of Attendee'.$i, sanitize_text_field($_POST['self_managed_funding_type_attendee_phone_'.$i]));
         }
-        if (!empty($_POST['self_managed_funding_type_attendee_dob_'.$i])) {
-            update_post_meta($order_id, 'Self-Managed DOB of Attendee'.$i, sanitize_text_field($_POST['self_managed_funding_type_attendee_dob_'.$i]));
-        }
-        if (!empty($_POST['self_managed_funding_type_attendee_gender_'.$i])) {
-            update_post_meta($order_id, 'Self-Managed Gender of Attendee'.$i, sanitize_text_field($_POST['self_managed_funding_type_attendee_gender_'.$i]));
-        }
+        // if (!empty($_POST['self_managed_funding_type_attendee_dob_'.$i])) {
+        //     update_post_meta($order_id, 'Self-Managed DOB of Attendee'.$i, sanitize_text_field($_POST['self_managed_funding_type_attendee_dob_'.$i]));
+        // }
+        // if (!empty($_POST['self_managed_funding_type_attendee_gender_'.$i])) {
+        //     update_post_meta($order_id, 'Self-Managed Gender of Attendee'.$i, sanitize_text_field($_POST['self_managed_funding_type_attendee_gender_'.$i]));
+        // }
         if (!empty($_POST['self_managed_funding_type_attendee_address_1_'.$i])) {
             update_post_meta($order_id, 'Self-Managed Address 1 of Attendee'.$i, sanitize_text_field($_POST['self_managed_funding_type_attendee_address_1_'.$i]));
         }
@@ -498,12 +498,12 @@ function customise_checkout_field_update_order_meta($order_id) {
         if (!empty($_POST['plan_managed_funding_type_attendee_phone_'.$i])) {
             update_post_meta($order_id, 'Plan-Managed Phone Number of Attendee'.$i, sanitize_text_field($_POST['plan_managed_funding_type_attendee_phone_'.$i]));
         }
-        if (!empty($_POST['plan_managed_funding_type_attendee_dob_'.$i])) {
-            update_post_meta($order_id, 'Plan-Managed DOB of Attendee'.$i, sanitize_text_field($_POST['plan_managed_funding_type_attendee_dob_'.$i]));
-        }
-        if (!empty($_POST['plan_managed_funding_type_attendee_gender_'.$i])) {
-            update_post_meta($order_id, 'Plan-Managed Gender of Attendee'.$i, sanitize_text_field($_POST['plan_managed_funding_type_attendee_gender_'.$i]));
-        }
+        // if (!empty($_POST['plan_managed_funding_type_attendee_dob_'.$i])) {
+        //     update_post_meta($order_id, 'Plan-Managed DOB of Attendee'.$i, sanitize_text_field($_POST['plan_managed_funding_type_attendee_dob_'.$i]));
+        // }
+        // if (!empty($_POST['plan_managed_funding_type_attendee_gender_'.$i])) {
+        //     update_post_meta($order_id, 'Plan-Managed Gender of Attendee'.$i, sanitize_text_field($_POST['plan_managed_funding_type_attendee_gender_'.$i]));
+        // }
         if (!empty($_POST['plan_managed_funding_type_attendee_address_1_'.$i])) {
             update_post_meta($order_id, 'Plan-Managed Address 1 of Attendee'.$i, sanitize_text_field($_POST['plan_managed_funding_type_attendee_address_1_'.$i]));
         }
@@ -536,7 +536,7 @@ function customise_checkout_field_update_order_meta($order_id) {
  * Add fields to order emails
  **/
 //add_action('woocommerce_order_details_after_order_table', 'my_custom_checkout_field_order_meta_keys' ); // Order received and view
-//add_action( 'woocommerce_email_after_order_table', 'my_custom_checkout_field_order_meta_keys' ); // Email notifications
+add_action( 'woocommerce_email_after_order_table', 'my_custom_checkout_field_order_meta_keys' ); // Email notifications
 //add_action( 'woocommerce_admin_order_data_after_billing_address', 'my_custom_checkout_field_order_meta_keys' ); // Admin edit Order
 add_action('woocommerce_email_order_meta_keys', 'my_custom_checkout_field_order_meta_keys');
 
