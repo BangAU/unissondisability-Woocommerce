@@ -535,27 +535,27 @@ function customise_checkout_field_update_order_meta($order_id) {
 /**
  * Add fields to order emails
  **/
-add_action('woocommerce_order_details_after_order_table', 'my_custom_checkout_field_order_meta_keys' ); // Order received and view
-add_action( 'woocommerce_email_after_order_table', 'my_custom_checkout_field_order_meta_keys' ); // Email notifications
-//add_action( 'woocommerce_admin_order_data_after_billing_address', 'my_custom_checkout_field_order_meta_keys' ); // Admin edit Order
-add_action('woocommerce_email_order_meta_keys', 'my_custom_checkout_field_order_meta_keys');
+// add_action('woocommerce_order_details_after_order_table', 'my_custom_checkout_field_order_meta_keys' ); // Order received and view
+// add_action( 'woocommerce_email_after_order_table', 'my_custom_checkout_field_order_meta_keys' ); // Email notifications
+// //add_action( 'woocommerce_admin_order_data_after_billing_address', 'my_custom_checkout_field_order_meta_keys' ); // Admin edit Order
+// add_action('woocommerce_email_order_meta_keys', 'my_custom_checkout_field_order_meta_keys');
 
-function my_custom_checkout_field_order_meta_keys( $keys ) {
-    global $woocommerce;
-    $count = $woocommerce->cart->cart_contents_count;
-    $i = 0;
-    echo '<h2>' . __( 'Attendee details', 'woocommerce' ) . '</h2>';
-           for($k=1; $k<= $count; $k++) {
-            $i++;
+// function my_custom_checkout_field_order_meta_keys( $keys ) {
+//     global $woocommerce;
+//     $count = $woocommerce->cart->cart_contents_count;
+//     $i = 0;
+//     echo '<h2>' . __( 'Attendee details', 'woocommerce' ) . '</h2>';
+//            for($k=1; $k<= $count; $k++) {
+//             $i++;
         
-            $keys[] = 'First Name of Attendee'.$i; 
-            $keys[] = 'Last Name of Attendee'.$i;
+//             $keys[] = 'First Name of Attendee'.$i; 
+//             $keys[] = 'Last Name of Attendee'.$i;
             
-        //echo '</div>';
+//         //echo '</div>';
 
-    }	
-    return $keys;
-    }
+//     }	
+//     return $keys;
+//     }
 
 
 
