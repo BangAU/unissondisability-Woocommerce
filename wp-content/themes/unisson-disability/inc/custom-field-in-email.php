@@ -48,4 +48,4 @@ add_filter( 'woocommerce_order_item_name', 'display_product_title_as_link', 10, 
 		}
 
 		return '<a href="'. $link .'"  rel="nofollow">'. $item_name .'</a><br>'. '<small>' . $_var_description . '</small>' ;
-	}
+}

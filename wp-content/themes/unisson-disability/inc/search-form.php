@@ -1,5 +1,5 @@
 <?php
-function aipm_placeholder_search_form($html) {
+function unisson_placeholder_search_form($html) {
 
     $search_input_text = get_option('search-input-text');
     $search_button_text = get_option('search-button-text'); 
@@ -27,5 +27,5 @@ function aipm_placeholder_search_form($html) {
     return $form;
 }
 
-add_filter('get_search_form','aipm_placeholder_search_form');
+add_filter('get_search_form','unisson_placeholder_search_form');
 ?>

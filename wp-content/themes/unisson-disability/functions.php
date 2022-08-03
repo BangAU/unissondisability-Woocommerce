@@ -152,13 +152,13 @@ add_action( 'wp_enqueue_scripts', 'unisson_disability_scripts' );
 
 
 /** Custom Search for Library */
-function my_search_filter($query) {
-    if ( $query->is_search && ! is_admin() ) {
-        $query->set( 'post_type', 'product' );
-        $query->is_post_type_archive = false;
-    }
-}
-add_filter('pre_get_posts','my_search_filter', 9);
+// function my_search_filter($query) {
+//     if ( $query->is_search && ! is_admin() ) {
+//         $query->set( 'post_type', 'product' );
+//         $query->is_post_type_archive = false;
+//     }
+// }
+// add_filter('pre_get_posts','my_search_filter', 9);
 
 function search_filter($query) {
 	if ( !is_admin() && $query->is_main_query() ) {
@@ -235,12 +235,12 @@ add_filter('acf/settings/remove_wp_meta_box', '__return_false');
 
 
 
-add_action( 'wp_logout', 'auto_redirect_external_after_logout');
-add_action('wp_logout','go_home');
-function go_home(){
-  wp_redirect( home_url() );
-  exit();
-}
+// add_action( 'wp_logout', 'auto_redirect_external_after_logout');
+// add_action('wp_logout','go_home');
+// function go_home(){
+//   wp_redirect( home_url() );
+//   exit();
+// }
 
 function change_wp_search_size($queryVars) {
     if ( isset($_REQUEST['s']) ) // Make sure it is a search page
@@ -253,7 +253,7 @@ require get_template_directory() . '/inc/scripts.php';
 
 require get_template_directory() . '/inc/filter.php';
 
-require get_template_directory() . '/inc/module-restriction.php';
+//require get_template_directory() . '/inc/module-restriction.php';
 /**
  * email notification
  */
@@ -366,21 +366,21 @@ if ( class_exists( 'WooCommerce' ) ) {
 	
 // }
 
-add_filter( 'woocommerce_countries_tax_or_vat', function( $return ) {
-	return 'GST';
-}, 10, 1 );
+// add_filter( 'woocommerce_countries_tax_or_vat', function( $return ) {
+// 	return 'GST';
+// }, 10, 1 );
 
-add_filter( 'gettext', function( $translation, $text, $domain ) {
-	if ( $domain == 'woocommerce' ) {
-		if ( $text == '(ex. VAT)' ) { $translation = '(ex. GST)'; }
-	}
-	return $translation;
-}, 10, 3 );
+// add_filter( 'gettext', function( $translation, $text, $domain ) {
+// 	if ( $domain == 'woocommerce' ) {
+// 		if ( $text == '(ex. VAT)' ) { $translation = '(ex. GST)'; }
+// 	}
+// 	return $translation;
+// }, 10, 3 );
 
-add_filter( 'woocommerce_countries_inc_tax_or_vat', function () {
-	return __( 'Includes GST', 'woocommerce' );
-  });
+// add_filter( 'woocommerce_countries_inc_tax_or_vat', function () {
+// 	return __( 'Includes GST', 'woocommerce' );
+//   });
   
-  add_filter( 'woocommerce_countries_ex_tax_or_vat', function () {
-	return __( 'Includes GST', 'woocommerce' );
-  });
+//   add_filter( 'woocommerce_countries_ex_tax_or_vat', function () {
+// 	return __( 'Includes GST', 'woocommerce' );
+//   });

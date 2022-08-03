@@ -652,10 +652,11 @@
         display: inline-block;
         font-size: 1.6rem;
         font-weight: 700;
-        color: #fff;
-        background-color: $color-orange;
+        color: $color-black;
+        background-color: $color-white;
         padding: 12px 24px;
         border-radius: 10px;
+        border: 1px solid $color-purple;
 
         .show-coupon {
             text-decoration: underline;
@@ -698,6 +699,10 @@
 
         p {
             margin-bottom: 7px;
+        }
+
+        p:first-child {
+            display: none;
         }
 
         #coupon_code {
@@ -1202,7 +1207,7 @@
         font-size: 1.6rem;
         color: #fff;
         background-color: $color-purple;
-        min-width: 220px;
+        min-width: 194px;
         height: 47px;
         display: flex;
         align-items: center;
@@ -1210,7 +1215,7 @@
         border: 0;
         cursor: pointer;
         text-align: center;
-        border-radius: 44px;
+        border-radius: 5px;
 
         @include margin-auto;
     }
@@ -1994,4 +1999,18 @@ a.woocommerce-privacy-policy-link {
 
 a.show-coupon {
     margin-left: 4px;
+    color: #ff6a27;
+}
+
+.payment {
+    margin-top: 46px;
+}
+
+p.form-row.woocommerce-SavedPaymentMethods-saveNew.woocommerce-validated {
+    display: inline-flex;
+    margin: 15px;
+
+    label {
+        margin: 15px;
+    }
 }
